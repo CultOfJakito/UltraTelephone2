@@ -22,4 +22,13 @@ internal static class EventBus {
 			s_playerDiedRaised = false;
 		}
 	}
+
+    public static event Action RestartedFromCheckpoint;
+
+    [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart))]
+    static class RaiseRestartedFromCheckpointPatch {
+        public static void Postfix(){
+			RestartedFromCheckpoint?.Invoke();
+        }
+    }
 }
