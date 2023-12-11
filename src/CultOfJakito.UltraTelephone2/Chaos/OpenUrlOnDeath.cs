@@ -7,9 +7,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 internal class OpenUrlOnDeath : ChaosEffect {
 	private static readonly string[] s_urlPool = [
 		CreateGoogleSearchUrl("why am i so bad at video games"),
-		CreateGoogleSearchUrl("ultrakill trainer free download"),
+		CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
+		CreateGoogleSearchUrl("ultrakill cheese strats"),
+		CreateGoogleSearchUrl("ultrakill cheat engine table"),
+        CreateGoogleSearchUrl("ultrakill trainer free download"),
 		CreateGoogleSearchUrl("ultrakill epic swag guide"),
-		CreateGoogleSearchUrl("suicide hotline"),
+		CreateGoogleSearchUrl("how to get better at ultrakill"),
+        CreateGoogleSearchUrl("suicide hotline"),
 		CreateGoogleSearchUrl("suicide hotline free download"),
 		"https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
 		"https://store.steampowered.com/app/1890950/REAVER/"
