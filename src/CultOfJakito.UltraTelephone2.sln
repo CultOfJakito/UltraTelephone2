@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultOfJakito.UltraTelephone2", "CultOfJakito.UltraTelephone2\CultOfJakito.UltraTelephone2.csproj", "{44CBC9C9-CAB9-4672-B4C6-897C8F48C75C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44CBC9C9-CAB9-4672-B4C6-897C8F48C75C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CBC9C9-CAB9-4672-B4C6-897C8F48C75C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CBC9C9-CAB9-4672-B4C6-897C8F48C75C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CBC9C9-CAB9-4672-B4C6-897C8F48C75C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D646830-7079-42D3-91FB-556CD0C71DBE}
+	EndGlobalSection
+EndGlobal
