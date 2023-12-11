@@ -11,8 +11,8 @@ internal class OpenUrlOnDeath : ChaosEffect {
 		CreateGoogleSearchUrl("ultrakill epic swag guide"),
 		CreateGoogleSearchUrl("suicide hotline"),
 		CreateGoogleSearchUrl("suicide hotline free download"),
-		"youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
-		"store.steampowered.com/app/1890950/REAVER/"
+		"https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
+		"https://store.steampowered.com/app/1890950/REAVER/"
 	];
 
 	[Inject]
@@ -39,6 +39,7 @@ internal class OpenUrlOnDeath : ChaosEffect {
 
 			int index = _random.Next(_urlPool.Count);
 			string url = _urlPool[index];
+			Logger.LogInfo($"Opening URL {url}");
 			_urlPool.RemoveAt(index);
 			UnityEngine.Application.OpenURL(url);
 		}
@@ -49,6 +50,6 @@ internal class OpenUrlOnDeath : ChaosEffect {
 	}
 
 	private static string CreateGoogleSearchUrl(string query) {
-		return $"google.com/search?q={query.Replace(' ', '+')}";
+		return $"https://google.com/search?q={query.Replace(' ', '+')}";
 	}
 }
