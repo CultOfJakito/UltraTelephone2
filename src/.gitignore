@@ -32,32 +32,6 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-unity/UT2_ModKit/Library/
-unity/UT2_ModKit/Temp/
-unity/UT2_ModKit/Builds/
-unity/UT2_ModKit/Logs/
-unity/UT2_ModKit/UserSettings/
-unity/UT2_ModKit/Obj/
-unity/UT2_ModKit/*.csproj
-unity/UT2_ModKit/*.vsconfig
-unity/UT2_ModKit/*.sln
-
-unity/UT2_ModKit/ExportedObj/
-.consulo/
-*.suo
-*.tmp
-*.user
-*.userprefs
-*.pidb
-*.booproj
-*.svd
-*.pdb
-*.mdb
-*.opendb
-*.VC.db
-
-sysinfo.txt
-
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
