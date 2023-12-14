@@ -16,8 +16,9 @@ internal class OpenUrlOnDeath : ChaosEffect {
         CreateGoogleSearchUrl("suicide hotline"),
 		CreateGoogleSearchUrl("suicide hotline free download"),
 		"https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
-		"https://store.steampowered.com/app/1890950/REAVER/"
-	];
+		"https://store.steampowered.com/app/1890950/REAVER/",
+        "https://www.youtube.com/clip/UgkxM-Qyq-QgUhaPmCyFD9SmfzdiVmJH72uf" // hakita tells you to cope seeth and mald
+    ];
 
 	[Inject]
 	public ManualLogSource Logger { get; set; }
