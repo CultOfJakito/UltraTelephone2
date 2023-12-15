@@ -36,6 +36,17 @@
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
 		<Private>false</Private>
     </Reference>
+	<Reference Include="AngryLevelLoader">
+      <HintPath>libs\AngryLevelLoader.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="RudeLevelScripts.Essentials">
+      <HintPath>libs\RudeLevelScripts.Essentials.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="NewtonSoft.Json">
+      <HintPath>libs\NewtonSoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
