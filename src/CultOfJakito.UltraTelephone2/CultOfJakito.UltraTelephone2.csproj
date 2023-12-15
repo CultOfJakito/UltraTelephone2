@@ -16,29 +16,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Patches\" />
-    <Folder Include="zelzmiy\Foxes\" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>libs\Assembly-CSharp.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>libs\Unity.Addressables.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>libs\UnityEngine.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="AngryLevelLoader">
+      <HintPath>libs\AngryLevelLoader.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="RudeLevelScripts.Essentials">
+      <HintPath>libs\RudeLevelScripts.Essentials.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="NewtonSoft.Json">
+      <HintPath>libs\NewtonSoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\BepInEx\core\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\Unity.Addressables.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
+    <Folder Include="Patches\" />
   </ItemGroup>
 
 </Project>

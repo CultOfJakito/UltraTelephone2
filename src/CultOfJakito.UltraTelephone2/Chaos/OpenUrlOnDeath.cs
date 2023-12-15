@@ -5,22 +5,22 @@ using CultOfJakito.UltraTelephone2.DependencyInjection;
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
 internal class OpenUrlOnDeath : ChaosEffect {
-	private static readonly string[] s_urlPool = [
-		CreateGoogleSearchUrl("why am i so bad at video games"),
-		CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
-		CreateGoogleSearchUrl("ultrakill cheese strats"),
-		CreateGoogleSearchUrl("ultrakill cheat engine table"),
+    private static readonly string[] s_urlPool = [
+        CreateGoogleSearchUrl("why am i so bad at video games"),
+        CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
+        CreateGoogleSearchUrl("ultrakill cheese strats"),
+        CreateGoogleSearchUrl("ultrakill cheat engine table"),
         CreateGoogleSearchUrl("ultrakill trainer free download"),
-		CreateGoogleSearchUrl("ultrakill epic swag guide"),
-		CreateGoogleSearchUrl("how to get better at ultrakill"),
+        CreateGoogleSearchUrl("ultrakill epic swag guide"),
+        CreateGoogleSearchUrl("how to get better at ultrakill"),
         CreateGoogleSearchUrl("suicide hotline"),
-		CreateGoogleSearchUrl("suicide hotline free download"),
-		"https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
-		"https://store.steampowered.com/app/1890950/REAVER/",
-        "https://www.youtube.com/clip/UgkxM-Qyq-QgUhaPmCyFD9SmfzdiVmJH72uf" // hakita tells you to cope seeth and mald
+        CreateGoogleSearchUrl("suicide hotline free download"),
+        "https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
+        "https://store.steampowered.com/app/1890950/REAVER/",
+		"https://www.youtube.com/clip/UgkxM-Qyq-QgUhaPmCyFD9SmfzdiVmJH72uf" // hakita tells you to cope seeth and mald
     ];
 
-	[Inject]
+    [Inject]
 	public ManualLogSource Logger { get; set; }
 
 	private List<string> _urlPool;
