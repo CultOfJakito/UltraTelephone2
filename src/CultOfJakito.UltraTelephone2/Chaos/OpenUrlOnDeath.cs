@@ -50,7 +50,12 @@ internal class OpenUrlOnDeath : ChaosEffect {
 		}
 	}
 
-	private void OnDestroy() {
+    public override int GetEffectCost()
+    {
+		return 1;
+    }
+
+    private void OnDestroy() {
 		EventBus.PlayerDied -= OnPlayerDied;
 	}
 
