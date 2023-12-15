@@ -31,6 +31,7 @@ internal class Plugin : BaseUnityPlugin {
 
 		services.AddScoped(AddComponentAndInject<ChaosManager>);
 		services.AddChaosEffect<OpenUrlOnDeath>();
+		services.AddChaosEffect<DamageOnHoldingSkull>();
 
 		services.AddScoped<Random>();
 
