@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security;
 using System.Text;
 using BepInEx;
 using BepInEx.Logging;
@@ -19,7 +20,9 @@ internal class Plugin : BaseUnityPlugin {
 	private IServiceScope _currentScope;
 	public static UnityEngine.GameObject BehaviourServiceHolder { get; private set; }
 
-	private void Awake() {
+    private AssetLoader _assetLoader;
+
+    private void Awake() {
 		BehaviourServiceHolder = new UnityEngine.GameObject("UT2 Service Holder");
 		DontDestroyOnLoad(BehaviourServiceHolder);
 
@@ -29,9 +32,12 @@ internal class Plugin : BaseUnityPlugin {
 		services.AddSingleton(this);
 		services.AddSingleton(s => s.GetRequiredService<Plugin>().Logger);
 
+		//TODO update this to use the assetbundles.
+		//_assetLoader = new AssetLoader(Resources.ut2assets);
+		//services.AddSingleton(s => s.GetRequiredService<Plugin>()._assetLoader);
+
 		services.AddScoped(AddComponentAndInject<ChaosManager>);
 		services.AddChaosEffect<OpenUrlOnDeath>();
-
 		services.AddScoped<Random>();
 
 		_serviceProvider = services.BuildServiceProvider();
