@@ -33,8 +33,8 @@ internal class Plugin : BaseUnityPlugin {
 		services.AddSingleton(s => s.GetRequiredService<Plugin>().Logger);
 
 		//TODO update this to use the assetbundles.
-		_assetLoader = new AssetLoader("");
-		services.AddSingleton(s => s.GetRequiredService<Plugin>()._assetLoader);
+		//_assetLoader = new AssetLoader(Resources.ut2assets);
+		//services.AddSingleton(s => s.GetRequiredService<Plugin>()._assetLoader);
 
 		services.AddScoped(AddComponentAndInject<ChaosManager>);
 		services.AddChaosEffect<OpenUrlOnDeath>();

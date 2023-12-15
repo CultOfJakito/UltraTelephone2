@@ -8,4 +8,21 @@ internal static class RandomExtensions {
 	static double Remap(double s, double a1, double a2, double b1, double b2) {
 		return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 	}
+
+	public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
+	{
+		T[] elements = source.ToArray();
+        for(int i = elements.Length - 1; i >= 0; i--)
+		{
+            int swapIndex = rng.Next(i + 1);
+            yield return elements[swapIndex];
+			elements[swapIndex] = elements[i];
+        }
+    }
+	
+	public static T RandomElement<T>(this IEnumerable<T> source, Random rng)
+	{
+		T[] elements = source.ToArray();
+        return elements[rng.Next(elements.Length)];
+    }
 }
