@@ -1,0 +1,2 @@
+#Incase some shmuck clones the repo and opens the root of the repo in vs
+.vs/
