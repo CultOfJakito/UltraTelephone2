@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2;
 
@@ -27,7 +28,13 @@ internal static class EventBus {
 
     [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart))]
     static class RaiseRestartedFromCheckpointPatch {
+
+        private static float timeOfLastRestart = 0f;
         public static void Postfix(){
+            if(Time.realtimeSinceStartup - timeOfLastRestart < 0.01f)
+                return;
+
+            timeOfLastRestart = Time.realtimeSinceStartup;
 			RestartedFromCheckpoint?.Invoke();
         }
     }

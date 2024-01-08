@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
+using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CultOfJakito.UltraTelephone2.Chaos
 {
-    internal class AnnoyingPopUp : ChaosEffect
+    [RegisterChaosEffect]
+    public class AnnoyingPopUp : ChaosEffect
     {
         [Configgable("Hydra","Show Annoying Death Messages")]
         private static ConfigToggle showAnnoyingPopUps = new ConfigToggle(true);
@@ -32,6 +32,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private void ShowPopUp()
         {
+            Debug.Log("POP UP REG");
             RandomizeEvent();
             ModalDialogue.ShowDialogue(dialogueEvent);
         }
@@ -102,6 +103,141 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             "NULL"
         };
 
+
+        private DialogueBoxOption[] evilOptions = new DialogueBoxOption[]
+        {
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "QUIT",
+                OnClick = () => { Application.Quit(); }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Spawn Minos Prime",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Enemies/MinosPrime.prefab").Completed += (g) =>
+                    {
+                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            GameObject.Instantiate(g.Result, pos, Quaternion.identity);
+                        }
+                    };
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Play Tutorial",
+                OnClick = () =>
+                {
+                    SceneHelper.LoadScene("Tutorial");
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Skip Level",
+                OnClick = () =>
+                {
+                    bool inLevel = InGameCheck.InLevel();
+                    if(!inLevel)
+                    {
+                        ModalDialogue.ShowSimple("You're not in a level!", "You're not in a level!", (b) => { }, "Ok", "Im sorry...");
+                        return;
+                    }
+
+                    string levelName = SceneHelper.CurrentScene;
+                    int hyphenIndex = levelName.IndexOf('-');
+
+                    if(hyphenIndex == -1)
+                        return;
+
+                    if(int.TryParse(levelName[hyphenIndex-1].ToString(), out int layerIndex))
+                    {
+                        if(int.TryParse(levelName[hyphenIndex+1].ToString(), out int levelIndex))
+                        {
+                            int nextLayer = 0;
+                            int nextLevel = 0;
+
+                            if(layerIndex == 0)
+                            {
+                                if(levelIndex == 5)
+                                {
+                                    levelIndex = 1;
+                                    levelIndex = 1;
+                                }
+                                else
+                                {
+                                    nextLevel = levelIndex + 1;
+                                    nextLayer = 0;
+                                }
+                            }
+                            else if(layerIndex % 3 == 0 && levelIndex == 2)
+                            {
+                                nextLayer = layerIndex;
+
+                                if((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
+                                {
+                                    nextLayer = layerIndex + 1;
+                                    nextLevel = 1;
+                                }
+                                else
+                                {
+                                    nextLevel = levelIndex + 1;
+                                }
+                            }
+
+                            SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
+                        }
+                    }
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Spawn Some MindFlayers",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Enemies/Mindflayer.prefab").Completed += (g) =>
+                    {
+                        int count = UltraTelephoneTwo.Instance.Random.Next(3,15);
+                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            for(int i = 0; i < count; i++)
+                            {
+                                GameObject mfGo = GameObject.Instantiate(g.Result, pos, Quaternion.identity);
+                                EnemyIdentifier mf = mfGo.GetComponent<EnemyIdentifier>();
+                                mf.radianceTier = 3;
+                                mf.speedBuff = true;
+                                mf.damageBuff = true;
+                                mf.healthBuff = true;
+                                mf.UpdateBuffs();
+                            }
+                        }
+                    };
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Enable Radiance Tier 10",
+                OnClick = () =>
+                {
+                    OptionsManager.forceRadiance = true;
+                    OptionsManager.radianceTier = 10;
+                    foreach (var eid in GameObject.FindObjectsOfType<EnemyIdentifier>())
+                    {
+                        eid.UpdateBuffs(false);
+                    }
+                }
+            }
+        };
+
         private static readonly Color orange = new Color(1, 0.682f, 0, 1f);
 
         private ModalDialogueEvent dialogueEvent;
@@ -121,14 +257,22 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private DialogueBoxOption CreateRandomOption()
         {
+            if (rng.PercentChance(0.1f))
+            {
+                return evilOptions.RandomElement(rng);
+            }
+
             return new DialogueBoxOption()
             {
                 Name = optionNames.RandomElement(rng),
                 Color = orange,
                 OnClick = () =>
                 {
-                    if(rng.Next(1,4) == 1)
-                        ShowPopUp();
+                    if(rng.NextDouble() > 0.75f)
+                    {
+                        if(rng.Bool())
+                            ShowPopUp();
+                    }
                 }
             };
         }

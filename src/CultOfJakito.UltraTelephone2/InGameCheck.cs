@@ -1,8 +1,4 @@
 ﻿using Configgy;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CultOfJakito.UltraTelephone2
@@ -22,7 +18,7 @@ namespace CultOfJakito.UltraTelephone2
         /// <summary>
         /// Enumerated version of the Ultrakill scene types
         /// </summary>
-        public enum UKLevelType { Intro, MainMenu, Level, Endless, Sandbox, Credits, Custom, Intermission, Secret, PrimeSanctum, Unknown }
+        public enum UKLevelType { Tutorial, Intro, MainMenu, Level, Endless, Sandbox, Credits, Custom, Intermission, Secret, PrimeSanctum, Unknown }
 
         /// <summary>
         /// Returns the current level type
@@ -99,6 +95,8 @@ namespace CultOfJakito.UltraTelephone2
                     return UKLevelType.PrimeSanctum;
                 case "CreditsMuseum2":
                     return UKLevelType.Credits;
+                case "Tutorial":
+                    return UKLevelType.Tutorial;
                 default:
                     return UKLevelType.Unknown;
             }
@@ -123,6 +121,7 @@ namespace CultOfJakito.UltraTelephone2
                 case UKLevelType.Intro:
                 case UKLevelType.Intermission:
                 case UKLevelType.Secret:
+                case UKLevelType.Tutorial:
                     return false;
                 default:
                     return true;
