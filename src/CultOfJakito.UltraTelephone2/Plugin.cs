@@ -1,30 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Security;
-using System.Text;
+﻿using System.Reflection;
 using BepInEx;
-using BepInEx.Logging;
+using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Hydra;
 using HarmonyLib;
 using Microsoft.Extensions.DependencyInjection;
-using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace CultOfJakito.UltraTelephone2;
 
+[BepInDependency("Hydraxous.ULTRAKILL.Configgy", BepInDependency.DependencyFlags.HardDependency)]
 [BepInPlugin(nameof(CultOfJakito.UltraTelephone2), "Ultratelephone 2", "1.0.0")]
-internal class Plugin : BaseUnityPlugin {
+public class Plugin : BaseUnityPlugin {
 	private IServiceProvider _serviceProvider;
 	private IServiceScope _currentScope;
 	public static UnityEngine.GameObject BehaviourServiceHolder { get; private set; }
 
     private AssetLoader _assetLoader;
+    private ConfigBuilder _config;
 
     private void Awake() {
 		BehaviourServiceHolder = new UnityEngine.GameObject("UT2 Service Holder");
 		DontDestroyOnLoad(BehaviourServiceHolder);
+
+        _config = new ConfigBuilder(nameof(CultOfJakito.UltraTelephone2), "Ultra Telephone 2");
+        _config.Build();
+
+        InGameCheck.Init();
 
 		new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
 
@@ -38,21 +41,43 @@ internal class Plugin : BaseUnityPlugin {
 
 		services.AddScoped(AddComponentAndInject<ChaosManager>);
 		services.AddChaosEffect<OpenUrlOnDeath>();
+        services.AddChaosEffect<AnnoyingPopUp>();
 		services.AddScoped<Random>();
 
 		_serviceProvider = services.BuildServiceProvider();
-
+        InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-		_currentScope?.Dispose();
-		_currentScope = null;
-		//TODO: Only do this for levels
+
+        if (SceneManager.GetActiveScene() != scene)
+            return;
+
+        _currentScope?.Dispose();
+        _currentScope = null;
+
+        if (!InGameCheck.InLevel())
+            return;
+
 		Logger.LogInfo("Starting new service scope");
 		_currentScope = _serviceProvider.CreateScope();
 		_currentScope.ServiceProvider.GetRequiredService<ChaosManager>().BeginEffects();
+
 	}
+
+    private void DoThing(string level)
+    {
+        if (!InGameCheck.InLevel())
+            return;
+
+        InGameCheck.OnLevelChanged -= DoThing;
+        ModalDialogue.ShowSimple("ULTRATELEPHONE", "ULTRA TELEPHONE", (b) =>
+        {
+
+        }, "No?", "FUCK NO");
+
+    }
 
 	private T AddComponentAndInject<T>(IServiceProvider services) where T : UnityEngine.Component {
 		T comp = BehaviourServiceHolder.AddComponent<T>();
