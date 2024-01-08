@@ -1,4 +1,6 @@
-﻿namespace CultOfJakito.UltraTelephone2;
+﻿using System.Runtime.CompilerServices;
+
+namespace CultOfJakito.UltraTelephone2;
 
 internal static class RandomExtensions {
 	public static double NextDouble(this Random random, double minimumValue, double maximumValue) {
@@ -8,6 +10,22 @@ internal static class RandomExtensions {
 	static double Remap(double s, double a1, double a2, double b1, double b2) {
 		return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 	}
+
+    public static bool Bool(this Random random)
+    {
+        return random.Next(2) == 0;
+    }
+
+    public static bool PercentChance(this Random random, float chance)
+    {
+        if (chance == 0f)
+            return false;
+
+        if (chance == 1f)
+            return true;
+
+        return random.NextDouble() < chance;
+    }
 
 	public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
 	{

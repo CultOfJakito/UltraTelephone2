@@ -1,39 +1,41 @@
-﻿using System.Collections.Concurrent;
-using BepInEx.Logging;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
-internal class OpenUrlOnDeath : ChaosEffect {
-    private static readonly string[] s_urlPool = [
-        CreateGoogleSearchUrl("why am i so bad at video games"),
-        CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
-        CreateGoogleSearchUrl("ultrakill cheese strats"),
-        CreateGoogleSearchUrl("ultrakill cheat engine table"),
-        CreateGoogleSearchUrl("ultrakill trainer free download"),
-        CreateGoogleSearchUrl("ultrakill epic swag guide"),
-        CreateGoogleSearchUrl("how to get better at ultrakill"),
-        CreateGoogleSearchUrl("suicide hotline"),
-        CreateGoogleSearchUrl("suicide hotline free download"),
-        "https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
-        "https://store.steampowered.com/app/1890950/REAVER/",
-		"https://www.youtube.com/clip/UgkxM-Qyq-QgUhaPmCyFD9SmfzdiVmJH72uf" // hakita tells you to cope seeth and mald
-    ];
+[RegisterChaosEffect]
+public class OpenUrlOnDeath : ChaosEffect {
 
-    [Inject]
-	public ManualLogSource Logger { get; set; }
+    [Configgable("TeamDoodz", "Open URL On Death")]
+    private static ConfigToggle openUrlOnDeath = new ConfigToggle(true);
+
+	private static readonly string[] s_urlPool = [
+		CreateGoogleSearchUrl("why am i so bad at video games"),
+		CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
+		CreateGoogleSearchUrl("ultrakill cheese strats"),
+		CreateGoogleSearchUrl("ultrakill cheat engine table"),
+        CreateGoogleSearchUrl("ultrakill trainer free download"),
+		CreateGoogleSearchUrl("ultrakill epic swag guide"),
+		CreateGoogleSearchUrl("how to get better at ultrakill"),
+        CreateGoogleSearchUrl("suicide hotline"),
+		CreateGoogleSearchUrl("suicide hotline free download"),
+		"https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
+		"https://store.steampowered.com/app/1890950/REAVER/"
+	];
+
 
 	private List<string> _urlPool;
 
 	private double _chance = 0;
-	private Random _random;
+	private System.Random _random;
 
-	public override void BeginEffect(Random random) {
+	public override void BeginEffect(System.Random random) {
 		EventBus.PlayerDied += OnPlayerDied;
 		_chance = random.NextDouble(0.5, 0.85);
 		_random = random;
 		_urlPool = new List<string>(s_urlPool);
-		Logger.LogInfo("Chance to open URL is " + _chance);
+		Debug.Log("Chance to open URL is " + _chance);
 	}
 
 	private void OnPlayerDied() {
@@ -44,11 +46,20 @@ internal class OpenUrlOnDeath : ChaosEffect {
 
 			int index = _random.Next(_urlPool.Count);
 			string url = _urlPool[index];
-			Logger.LogInfo($"Opening URL {url}");
+            Debug.Log($"Opening URL {url}");
 			_urlPool.RemoveAt(index);
 			UnityEngine.Application.OpenURL(url);
 		}
 	}
+
+    public override bool CanBeginEffect(ChaosSessionContext ctx)
+    {
+        bool canBegin = base.CanBeginEffect(ctx);
+        if (!canBegin)
+            return false;
+
+        return openUrlOnDeath.Value;
+    }
 
     public override int GetEffectCost()
     {

@@ -24,6 +24,10 @@
       <HintPath>libs\Unity.Addressables.dll</HintPath>
 		<Private>false</Private>
     </Reference>
+	<Reference Include="Unity.ResourceManager">
+      <HintPath>libs\Unity.ResourceManager.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>libs\UnityEngine.dll</HintPath>
 		<Private>false</Private>
@@ -46,6 +50,9 @@
     </Reference>
 	<Reference Include="NewtonSoft.Json">
       <HintPath>libs\NewtonSoft.Json.dll</HintPath>
+    </Reference>
+	<Reference Include="Configgy">
+      <HintPath>libs\Configgy.dll</HintPath>
     </Reference>
   </ItemGroup>
 

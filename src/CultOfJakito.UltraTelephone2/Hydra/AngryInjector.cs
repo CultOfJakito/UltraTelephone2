@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Text;
-using AngryLevelLoader;
+﻿using System.IO.Compression;
 using AngryLevelLoader.Containers;
 using AngryLevelLoader.DataTypes;
 using AngryLevelLoader.Managers;
