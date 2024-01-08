@@ -47,6 +47,9 @@
 	<Reference Include="NewtonSoft.Json">
       <HintPath>libs\NewtonSoft.Json.dll</HintPath>
     </Reference>
+	<Reference Include="Configgy">
+      <HintPath>libs\Configgy.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
