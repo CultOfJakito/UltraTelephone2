@@ -32,6 +32,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         InGameCheck.Init();
 
 		new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
+        Harmony.CreateAndPatchAll(typeof(BouncyCannonballPatch));
 
         string username = Environment.UserName;
         int dayOfTheWeek = (int)DateTime.Now.DayOfWeek;

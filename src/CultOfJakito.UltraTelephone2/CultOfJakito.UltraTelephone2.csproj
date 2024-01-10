@@ -40,6 +40,10 @@
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
 		<Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
+    <Private>false</Private>
+    </Reference>
 	<Reference Include="AngryLevelLoader">
       <HintPath>libs\AngryLevelLoader.dll</HintPath>
 		<Private>false</Private>
