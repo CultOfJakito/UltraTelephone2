@@ -1,10 +1,15 @@
-﻿using System.Collections.Concurrent;
-using BepInEx.Logging;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
-internal class OpenUrlOnDeath : ChaosEffect {
+[RegisterChaosEffect]
+public class OpenUrlOnDeath : ChaosEffect {
+
+    [Configgable("TeamDoodz", "Open URL On Death")]
+    private static ConfigToggle openUrlOnDeath = new ConfigToggle(true);
+
 	private static readonly string[] s_urlPool = [
 		CreateGoogleSearchUrl("why am i so bad at video games"),
 		CreateGoogleSearchUrl("ultrakill how to enable easy mode"),
@@ -19,20 +24,18 @@ internal class OpenUrlOnDeath : ChaosEffect {
 		"https://store.steampowered.com/app/1890950/REAVER/"
 	];
 
-	[Inject]
-	public ManualLogSource Logger { get; set; }
 
 	private List<string> _urlPool;
 
 	private double _chance = 0;
-	private Random _random;
+	private System.Random _random;
 
-	public override void BeginEffect(Random random) {
+	public override void BeginEffect(System.Random random) {
 		EventBus.PlayerDied += OnPlayerDied;
 		_chance = random.NextDouble(0.5, 0.85);
 		_random = random;
 		_urlPool = new List<string>(s_urlPool);
-		Logger.LogInfo("Chance to open URL is " + _chance);
+		Debug.Log("Chance to open URL is " + _chance);
 	}
 
 	private void OnPlayerDied() {
@@ -43,11 +46,20 @@ internal class OpenUrlOnDeath : ChaosEffect {
 
 			int index = _random.Next(_urlPool.Count);
 			string url = _urlPool[index];
-			Logger.LogInfo($"Opening URL {url}");
+            Debug.Log($"Opening URL {url}");
 			_urlPool.RemoveAt(index);
 			UnityEngine.Application.OpenURL(url);
 		}
 	}
+
+    public override bool CanBeginEffect(ChaosSessionContext ctx)
+    {
+        bool canBegin = base.CanBeginEffect(ctx);
+        if (!canBegin)
+            return false;
+
+        return openUrlOnDeath.Value;
+    }
 
     public override int GetEffectCost()
     {

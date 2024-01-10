@@ -1,24 +1,18 @@
-﻿using BepInEx.Logging;
+﻿using System.Reflection;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
-internal class ChaosManager : MonoBehaviour, IDisposable {
-	[Inject]
-	public ManualLogSource Logger { get; set; }
-
-	[Inject]
-	public IEnumerable<IChaosEffect> ChaosEffects { get; set; }
-
-	[Inject]
-	public System.Random Random { get; set; }
+public class ChaosManager : MonoBehaviour, IDisposable
+{ 
 
 	public void BeginEffects() {
 
+        System.Random random = UltraTelephone2.UltraTelephoneTwo.Instance.Random;
 		ChaosSessionContext ctx = new(this, SceneHelper.CurrentScene, 32);
 
-        foreach (IChaosEffect possibleEffect in ChaosEffects.Shuffle(Random))
+        foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
 		{
 			if (ctx.GetAvailableBudget() == 0)
 				break;
@@ -27,18 +21,27 @@ internal class ChaosManager : MonoBehaviour, IDisposable {
 				ctx.Add(possibleEffect);
 		}
 
-		Logger.LogInfo("Chaos started");
+		Debug.Log("Chaos started");
+
 		foreach(IChaosEffect effect in ctx.GetCurrentSelection()) {
-			effect.BeginEffect(new System.Random(Random.Next()));
+			effect.BeginEffect(new System.Random(random.Next()));
 		}
 	}
+
+    private IEnumerable<IChaosEffect> GetChaosEffects()
+    {
+        //TODO this fails to clean up monobehaviour types
+        return Assembly.GetExecutingAssembly().GetTypes()
+            .Where(x => x.GetCustomAttribute<RegisterChaosEffectAttribute>() != null && typeof(IChaosEffect).IsAssignableFrom(x) && !x.IsAbstract)
+            .Select(x => (IChaosEffect)Activator.CreateInstance(x));
+    }
 
 	public void Dispose() {
 		Destroy(this);
 	}
 }
 
-internal class ChaosSessionContext
+public class ChaosSessionContext
 {
 	public ChaosManager ChaosManager { get; }
 	public string LevelName { get; }
