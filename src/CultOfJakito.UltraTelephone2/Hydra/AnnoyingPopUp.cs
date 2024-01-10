@@ -156,44 +156,43 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                     if(hyphenIndex == -1)
                         return;
 
-                    if(int.TryParse(levelName[hyphenIndex-1].ToString(), out int layerIndex))
+                    if(!int.TryParse(levelName[hyphenIndex-1].ToString(), out int layerIndex))
+                        return;
+
+                    if(!int.TryParse(levelName[hyphenIndex+1].ToString(), out int levelIndex))
+                        return;
+
+                    int nextLayer = 0;
+                    int nextLevel = 0;
+
+                    if(layerIndex == 0)
                     {
-                        if(int.TryParse(levelName[hyphenIndex+1].ToString(), out int levelIndex))
+                        if(levelIndex == 5)
                         {
-                            int nextLayer = 0;
-                            int nextLevel = 0;
-
-                            if(layerIndex == 0)
-                            {
-                                if(levelIndex == 5)
-                                {
-                                    levelIndex = 1;
-                                    levelIndex = 1;
-                                }
-                                else
-                                {
-                                    nextLevel = levelIndex + 1;
-                                    nextLayer = 0;
-                                }
-                            }
-                            else if(layerIndex % 3 == 0 && levelIndex == 2)
-                            {
-                                nextLayer = layerIndex;
-
-                                if((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
-                                {
-                                    nextLayer = layerIndex + 1;
-                                    nextLevel = 1;
-                                }
-                                else
-                                {
-                                    nextLevel = levelIndex + 1;
-                                }
-                            }
-
-                            SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
+                            nextLayer = 1;
+                            nextLevel = 1;
+                        }
+                        else
+                        {
+                            nextLevel = levelIndex+1;
                         }
                     }
+                    else
+                    { 
+                        nextLayer = layerIndex;
+                        if((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
+                        {
+                            nextLayer = layerIndex + 1;
+                            nextLevel = 1;
+                        }
+                        else
+                        {
+                            nextLevel = levelIndex + 1;
+                        }
+                    }
+
+
+SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
                 }
             },
             new DialogueBoxOption()

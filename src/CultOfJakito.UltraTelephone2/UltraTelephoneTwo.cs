@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using BepInEx;
 using Configgy;
+using Configgy.UI;
 using CultOfJakito.UltraTelephone2.Chaos;
 using HarmonyLib;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin {
     private ConfigBuilder _config;
 
     public static UltraTelephoneTwo Instance { get; private set; }
+
 
     private void Awake() {
 
