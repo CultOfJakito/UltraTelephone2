@@ -11,7 +11,8 @@ namespace CultOfJakito.UltraTelephone2;
 
 [BepInDependency("Hydraxous.ULTRAKILL.Configgy", BepInDependency.DependencyFlags.HardDependency)]
 [BepInPlugin(nameof(CultOfJakito.UltraTelephone2), "Ultratelephone 2", "1.0.0")]
-public class UltraTelephoneTwo : BaseUnityPlugin {
+public class UltraTelephoneTwo : BaseUnityPlugin
+{
 
     public AssetLoader AssetLoader { get; private set; }
     public ChaosManager ChaosManager { get; private set; }
@@ -21,8 +22,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin {
 
     public static UltraTelephoneTwo Instance { get; private set; }
 
-
-    private void Awake() {
+    private void Awake()
+    {
 
         Instance = this;
 
@@ -32,6 +33,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin {
         InGameCheck.Init();
 
 		new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
+        Harmony.CreateAndPatchAll(typeof(BouncyCannonballPatch));
 
         string username = Environment.UserName;
         int dayOfTheWeek = (int)DateTime.Now.DayOfWeek;
@@ -40,12 +42,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin {
 
         //TODO update this to use the assetbundles.
         //_assetLoader = new AssetLoader(Resources.ut2assets);
-        
+
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
-	private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
 
         if (SceneManager.GetActiveScene() != scene)
             return;

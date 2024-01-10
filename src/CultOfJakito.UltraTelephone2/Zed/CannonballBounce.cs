@@ -1,0 +1,49 @@
+using Configgy;
+using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.DependencyInjection;
+using HarmonyLib;
+using ULTRAKILL;
+using UnityEngine;
+
+[RegisterChaosEffect]
+public class CannonBallBounce : ChaosEffect
+{
+    [Configgable("ZedDev", "Enable cannonball bounce")]
+    public static ConfigToggle Enabled = new ConfigToggle(true);
+    public static bool CanBounce = false;
+    public override void BeginEffect(System.Random random)
+    {
+        if(!Enabled.Value) CanBounce = false;
+        else CanBounce = true;
+        Debug.Log($"Cannonball bounce {(CanBounce ? "enabled" : "disabled")}");
+    }
+    public override bool CanBeginEffect(ChaosSessionContext ctx)
+    {
+        
+        return Enabled.Value;
+        
+    }
+    public override int GetEffectCost()
+    {
+        return 1;
+    }
+}
+public class BouncyCannonball : MonoBehaviour
+{
+    public float RemainingTime = 5f;
+    public Rigidbody rb;
+    SphereCollider sc;
+    public void Update()
+    {
+        RemainingTime -= Time.deltaTime;
+        if(RemainingTime <= 0) sc.material = null;
+    }
+    void Start()
+    {
+        // Create a sphere collider and assign the physics material
+        Debug.Log("Bouncy cannonball");
+        sc = gameObject.AddComponent<SphereCollider>();
+        sc.radius = 0.8f;
+        sc.material = BouncyCannonballPatch.Bouncy;
+    }
+}
