@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.zelzmiy
 {
     [RegisterChaosEffect]
-    internal class HRTBurgers : ChaosEffect
+    internal class HrtBurgers : ChaosEffect
     {
 
         private GameObject _estrogenBurger;
@@ -14,8 +14,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         public override void BeginEffect(System.Random random)
         {
-            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
-            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
+            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
+            _testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");
 
             if (!_estrogenBurger || !_testosteroneBurger)
             {
