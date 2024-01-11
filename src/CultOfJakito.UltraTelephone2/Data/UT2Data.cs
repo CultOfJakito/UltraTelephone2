@@ -25,6 +25,9 @@ namespace CultOfJakito.UltraTelephone2
 
         private static void Load()
         {
+            if(!Directory.Exists(Path.GetDirectoryName(saveDataPath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(saveDataPath));
+
             if(!File.Exists(saveDataPath))
             {
                 saveData = new UT2SaveData();
@@ -45,12 +48,15 @@ namespace CultOfJakito.UltraTelephone2
             }
         }
 
-        private static string saveDataPath => Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "saveData.json");
+        private static string saveDataPath => Paths.DataFilePath;
 
         public static void Save()
         {
             if (saveData == null)
                 return;
+
+            if (!Directory.Exists(Path.GetDirectoryName(saveDataPath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(saveDataPath));
 
             string json = JsonConvert.SerializeObject(saveData);
             File.WriteAllText(saveDataPath, json);

@@ -14,9 +14,6 @@ namespace CultOfJakito.UltraTelephone2;
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
     public AssetLoader AssetLoader { get; private set; }
-
-    public AssetLoader BurgerLoader;
-
     public ChaosManager ChaosManager { get; private set; }
     public System.Random Random { get; private set; }
 
@@ -27,22 +24,22 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void Awake()
     {
+
         Instance = this;
 
         _config = new ConfigBuilder(nameof(CultOfJakito.UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
 
+        Paths.ValidateFolders();
         InGameCheck.Init();
 
 		new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
-        Harmony.CreateAndPatchAll(typeof(BouncyCannonballPatch));
 
         string username = Environment.UserName;
         int dayOfTheWeek = (int)DateTime.Now.DayOfWeek;
 
         Random = new System.Random(username.GetHashCode()+dayOfTheWeek);
 
-        BurgerLoader = new("Bundles\\HRT Borgers");
 
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
