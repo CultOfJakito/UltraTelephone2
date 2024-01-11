@@ -4,6 +4,7 @@ using Configgy;
 using Configgy.UI;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Properties;
+using CultOfJakito.UltraTelephone2.zelzmiy;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,7 +42,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Random = new System.Random(username.GetHashCode()+dayOfTheWeek);
 
-        ZelzmiyBundle = new(Paths.GetBundleFilePath("Zelzmiy.resource"));
+        ZelzmiyBundle = new(Paths.GetBundleFilePath("zelzmiy.resource"));
 
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;

@@ -6,40 +6,45 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.zelzmiy
 {
     [RegisterChaosEffect]
+    [HarmonyPatch(typeof(Skull))]
     internal class HrtBurgers : ChaosEffect
     {
-
-        private GameObject _estrogenBurger;
-        private GameObject _testosteroneBurger;
+        private static GameObject s_estrogenBurger;
+        private static GameObject s_testosteroneBurger;
 
         public override void BeginEffect(System.Random random)
         {   
-            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
-            _testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");
-
-            if (!_estrogenBurger || !_testosteroneBurger)
-            {
-                Debug.LogError("Burgers Not Loaded!");
-            }
+            s_estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
+            s_testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");;           
         }
 
         public override int GetEffectCost() => 1;
 
-        [HarmonyPatch(typeof(ItemIdentifier), "Start"), HarmonyPostfix]
-        public void ReplaceSkull(ItemIdentifier __instance, ItemType ___itemType)
+        [HarmonyPatch("Start"), HarmonyPostfix]
+        public static void ReplaceSkull(Skull __instance)
         {
+            if (!s_estrogenBurger || !s_testosteroneBurger)
+            {
+                Debug.LogError("Burgers Not Loaded, Skipping Patch!");
+                return;
+            }
+
+            // this is kind of slow but it only runs once whenever the level starts so it's prolly fine
             Renderer renderer = __instance.gameObject.GetComponent<Renderer>();
+            ItemType itemType = __instance.gameObject.GetComponent<ItemIdentifier>().itemType;
             if (renderer != null)
             {
                 renderer.enabled = false;
-                if (___itemType == ItemType.SkullRed)
+                if (itemType == ItemType.SkullRed)
                 {
-                    Instantiate(_estrogenBurger, renderer.transform);
+                    Debug.Log("Instantiating estrogen burger");
+                    Instantiate(s_estrogenBurger, renderer.transform.position, renderer.transform.rotation, renderer.transform.parent);
                 }
 
-                if (___itemType == ItemType.SkullBlue)
+                if (itemType == ItemType.SkullBlue)
                 {
-                    Instantiate(_testosteroneBurger, renderer.transform);
+                    Debug.Log("Instantiating testosterone burger");
+                    Instantiate(s_testosteroneBurger, renderer.transform);
                 }
             }
         }
