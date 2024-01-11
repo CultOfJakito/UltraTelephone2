@@ -14,10 +14,10 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         public override void BeginEffect(System.Random random)
         {
-            UltraTelephoneTwo.Instance.BurgerLoader = new("HRT Borgers.resource");
+            UltraTelephoneTwo.Instance.ZelzmiyBundle = new("HRT Borgers.resource");
 
-            _estrogenBurger = UltraTelephoneTwo.Instance.BurgerLoader.LoadAsset<GameObject>("estrogen burger");
-            _testosteroneBurger = UltraTelephoneTwo.Instance.BurgerLoader.LoadAsset<GameObject>("testosterone burger");
+            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
+            _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
 
             if (!_estrogenBurger || !_testosteroneBurger)
             {
