@@ -10,6 +10,7 @@ public class CannonBallBounce : ChaosEffect
 {
     [Configgable("ZedDev", "Enable cannonball bounce")]
     public static ConfigToggle Enabled = new ConfigToggle(true);
+
     public static bool CanBounce = false;
     public override void BeginEffect(System.Random random)
     {
@@ -19,15 +20,17 @@ public class CannonBallBounce : ChaosEffect
     }
     public override bool CanBeginEffect(ChaosSessionContext ctx)
     {
-        
-        return Enabled.Value;
-        
+        if (!Enabled.Value)
+            return false;
+
+        return base.CanBeginEffect(ctx);
     }
     public override int GetEffectCost()
     {
         return 1;
     }
 }
+
 public class BouncyCannonball : MonoBehaviour
 {
     public float RemainingTime = 5f;
@@ -41,9 +44,26 @@ public class BouncyCannonball : MonoBehaviour
     void Start()
     {
         // Create a sphere collider and assign the physics material
-        Debug.Log("Bouncy cannonball");
+        //Debug.Log("Bouncy cannonball");
         sc = gameObject.AddComponent<SphereCollider>();
         sc.radius = 0.8f;
         sc.material = BouncyCannonballPatch.Bouncy;
+    }
+
+    private bool hurtPlayer = false;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //I think this is broken rn but it would be funny.
+        return;
+        if (hurtPlayer || RemainingTime == 5f)
+            return;
+
+        if (other.CompareTag("Player") && RemainingTime < 4.5f)
+        {
+            hurtPlayer = true;
+            NewMovement.Instance.GetHurt(40, true);
+
+        }
     }
 }

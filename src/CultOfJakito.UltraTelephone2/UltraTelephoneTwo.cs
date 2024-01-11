@@ -49,7 +49,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         if (SceneManager.GetActiveScene() != scene)
             return;
 

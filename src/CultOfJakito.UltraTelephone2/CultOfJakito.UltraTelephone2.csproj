@@ -44,6 +44,9 @@
       <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
     <Private>false</Private>
     </Reference>
+	<Reference Include="TextMeshPro">
+      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
 	<Reference Include="AngryLevelLoader">
       <HintPath>libs\AngryLevelLoader.dll</HintPath>
 		<Private>false</Private>

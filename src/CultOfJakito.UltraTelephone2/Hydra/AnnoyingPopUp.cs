@@ -178,7 +178,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                         }
                     }
                     else
-                    { 
+                    {
                         nextLayer = layerIndex;
                         if((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
                         {
@@ -190,9 +190,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                             nextLevel = levelIndex + 1;
                         }
                     }
-
-
-SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
+                    SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
                 }
             },
             new DialogueBoxOption()
@@ -233,6 +231,85 @@ SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
                     {
                         eid.UpdateBuffs(false);
                     }
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Restart Mission",
+                OnClick = () =>
+                {
+                    OptionsManager.Instance.RestartMission();
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Die Again",
+                OnClick = () =>
+                {
+                    NewMovement.Instance.GetHurt(1000, true);
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Explode",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Attacks and Projectiles/Explosions/Explosion Minos Prime.prefab").Completed += (g) =>
+                    {
+                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            GameObject.Instantiate(g.Result, pos, Quaternion.identity);
+                        }
+                    };
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Delete All Save-Data",
+                OnClick = () =>
+                {
+                    ModalDialogue.ShowSimple("Are you sure?", "Are you sure you want to delete all save data?", (result) =>
+                    {
+                        ModalDialogue.ShowDialogue(new ModalDialogueEvent()
+                        {
+                            Message = "Deleting Save Data.",
+                            Title = "Deleting Save Data.",
+                            Options = new DialogueBoxOption[]
+                            {
+                                new DialogueBoxOption()
+                                {
+                                    Color = Color.red,
+                                    Name = "Ok",
+                                    OnClick = () =>
+                                    {
+                                        if (UnityEngine.Random.value > 0.5f)
+                                        {
+                                            Application.Quit();
+                                        }
+                                        else
+                                        {
+                                            ModalDialogue.ShowSimple("Error", "Save data is already deleted.", (_)=>{ }, "OK", "OK");
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }, "Yeah, no.", "No, I'm positive.");
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Continue (100,000 <color=orange>P</color>)",
+                OnClick = () =>
+                {
+                    FakeBank.AddMoney(-100000);
+                    OkDialogue("Purchase Confirmed.", $"Your purchase has been completed. \nYour balance is now\n({FakeBank.FormatMoney(FakeBank.GetCurrentMoney())}<color=orange>P</color>)");
                 }
             }
         };
@@ -284,6 +361,24 @@ SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
         private void OnDestroy()
         {
             EventBus.RestartedFromCheckpoint -= ShowPopUp;
+        }
+
+        public static void OkDialogue(string title, string message, string option = "Ok", Action onClick = null)
+        {
+            ModalDialogue.ShowDialogue(new ModalDialogueEvent()
+            {
+                Message = message,
+                Title = title,
+                Options = new DialogueBoxOption[]
+                {
+                    new DialogueBoxOption()
+                    {
+                        Color = orange,
+                        Name = option,
+                        OnClick = onClick
+                    }
+                }
+            });
         }
     }
 }
