@@ -24,6 +24,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
 		Debug.Log("Chaos started");
 
 		foreach(IChaosEffect effect in ctx.GetCurrentSelection()) {
+            Debug.Log($"Beginning Effect: {effect.GetType().Name}");
 			effect.BeginEffect(new System.Random(random.Next()));
 		}
 	}

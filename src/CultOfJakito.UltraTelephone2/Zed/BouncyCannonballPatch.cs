@@ -16,7 +16,6 @@ public class BouncyCannonballPatch
     [HarmonyPrefix]
     public static void Start(Cannonball __instance)
     {
-        Debug.Log("Bouncy cannonball");
         BouncyCannonball cb = __instance.gameObject.AddComponent<BouncyCannonball>();
         cb.rb = __instance.GetComponent<Rigidbody>();
     }

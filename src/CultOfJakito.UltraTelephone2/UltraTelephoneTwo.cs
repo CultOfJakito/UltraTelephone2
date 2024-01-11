@@ -13,10 +13,10 @@ namespace CultOfJakito.UltraTelephone2;
 [BepInPlugin(nameof(CultOfJakito.UltraTelephone2), "Ultratelephone 2", "1.0.0")]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
-
     public AssetLoader AssetLoader { get; private set; }
     public ChaosManager ChaosManager { get; private set; }
     public System.Random Random { get; private set; }
+
 
     private ConfigBuilder _config;
 

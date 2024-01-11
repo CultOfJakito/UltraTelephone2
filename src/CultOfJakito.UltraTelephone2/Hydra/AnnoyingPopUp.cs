@@ -8,7 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
     [RegisterChaosEffect]
     public class AnnoyingPopUp : ChaosEffect
     {
-        [Configgable("Hydra","Show Annoying Death Messages")]
+        [Configgable("Hydra", "Show Annoying Death Messages")]
         private static ConfigToggle showAnnoyingPopUps = new ConfigToggle(true);
 
         private System.Random rng;
@@ -16,8 +16,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         public override void BeginEffect(System.Random random)
         {
             rng = random;
-            dialogueEvent = new ModalDialogueEvent();
-            EventBus.RestartedFromCheckpoint += ShowPopUp;
+            randomDialogueEvent = new ModalDialogueEvent();
+            GeneratePopups();
+            EventBus.RestartedFromCheckpoint += OnRestartedFromCheckPoint;
         }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
@@ -30,11 +31,158 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return showAnnoyingPopUps.Value;
         }
 
+        public override int GetEffectCost()
+        {
+            return 1;
+        }
+
+        private void OnDestroy()
+        {
+            EventBus.RestartedFromCheckpoint -= OnRestartedFromCheckPoint;
+        }
+
+        private void OnRestartedFromCheckPoint(bool playerDied)
+        {
+            if (playerDied)
+                ShowPopUp();
+        }
+
         private void ShowPopUp()
         {
-            Debug.Log("POP UP REG");
-            RandomizeEvent();
-            ModalDialogue.ShowDialogue(dialogueEvent);
+            ModalDialogueEvent dialogue = null;
+
+            if (rng.PercentChance(0.25f))
+                dialogue = dialogueBuilders.RandomElement(rng).Invoke();
+            else
+                dialogue = CreateRandomized();
+
+            ModalDialogue.ShowDialogue(dialogue);
+        }
+
+        private DialogueBoxOption[] evilOptions;
+
+        private void GeneratePopups()
+        {
+            evilOptions = new DialogueBoxOption[]
+            {
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "QUIT",
+                OnClick = () => { Application.Quit(); }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Spawn Minos Prime",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    UKPrefabs.MinosPrime.LoadObjectAsync((status, result) =>
+                    {
+                        if (status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            GameObject.Instantiate(result, pos, Quaternion.identity);
+                        }
+                    });
+                }
+            },
+            
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Skip Level",
+                OnClick = SkipLevel
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Spawn Some MindFlayers",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    UKPrefabs.MindFlayer.LoadObjectAsync((status, result) =>
+                    {
+                        if(status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            int count = UltraTelephoneTwo.Instance.Random.Next(3,17);
+                            for(int i = 0; i < count; i++)
+                            {
+                                GameObject mfGo = GameObject.Instantiate(result, pos, Quaternion.identity);
+                                EnemyIdentifier mf = mfGo.GetComponent<EnemyIdentifier>();
+                                mf.radianceTier = 3;
+                                mf.speedBuff = true;
+                                mf.damageBuff = true;
+                                mf.healthBuff = true;
+                                mf.UpdateBuffs();
+                            }
+                        }
+                    });
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Enable Radiance Tier 10",
+                OnClick = () =>
+                {
+                    OptionsManager.forceRadiance = true;
+                    OptionsManager.radianceTier = 10;
+                    foreach (var eid in GameObject.FindObjectsOfType<EnemyIdentifier>())
+                    {
+                        eid.UpdateBuffs(false);
+                    }
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Restart Mission",
+                OnClick = () =>
+                {
+                    OptionsManager.Instance.RestartMission();
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Explode",
+                OnClick = () =>
+                {
+                    Vector3 pos = NewMovement.Instance.transform.position;
+                    UKPrefabs.MinosPrimeExplosion.LoadObjectAsync((s,r) =>
+                    {
+                        if(s == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                        {
+                            GameObject.Instantiate(r, pos, Quaternion.identity);
+                        }
+                    });
+                }
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = "Delete All Save-Data",
+                OnClick = DeleteAllSaveDataFake
+            },
+            new DialogueBoxOption()
+            {
+                Color = Color.red,
+                Name = $"Spend ({FakeBank.PString(1000)})",
+                OnClick = () =>
+                {
+                    FakeBank.AddMoney(-1000);
+                    OkDialogue("Purchase Confirmed.", $"Your purchase has been completed. \nYour balance is now\n({FakeBank.PString(FakeBank.GetCurrentMoney())})");
+                }
+            }
+        };
+            dialogueBuilders = new Func<ModalDialogueEvent>[]
+            {
+                CreateDeathFee,
+                CreateTutorialPopUp,
+                CreateEndOfDemo,
+            };
+
         }
 
         private static readonly string[] titles =
@@ -103,184 +251,101 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             "NULL"
         };
 
+        private static readonly Color orange = new Color(1, 0.682f, 0, 1f);
 
-        private DialogueBoxOption[] evilOptions = new DialogueBoxOption[]
+        private ModalDialogueEvent randomDialogueEvent;
+        private Func<ModalDialogueEvent>[] dialogueBuilders;
+        private DialogueBoxOption CreateRandomOption()
         {
-            new DialogueBoxOption()
+            if (rng.PercentChance(0.1f))
             {
-                Color = Color.red,
-                Name = "QUIT",
-                OnClick = () => { Application.Quit(); }
-            },
-            new DialogueBoxOption()
+                return evilOptions.RandomElement(rng);
+            }
+
+            return new DialogueBoxOption()
             {
-                Color = Color.red,
-                Name = "Spawn Minos Prime",
+                Name = optionNames.RandomElement(rng),
+                Color = orange,
                 OnClick = () =>
                 {
-                    Vector3 pos = NewMovement.Instance.transform.position;
-                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Enemies/MinosPrime.prefab").Completed += (g) =>
+                    if (rng.NextDouble() > 0.75f)
                     {
-                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                        {
-                            GameObject.Instantiate(g.Result, pos, Quaternion.identity);
-                        }
-                    };
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Play Tutorial",
-                OnClick = () =>
-                {
-                    SceneHelper.LoadScene("Tutorial");
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Skip Level",
-                OnClick = () =>
-                {
-                    bool inLevel = InGameCheck.InLevel();
-                    if(!inLevel)
-                    {
-                        ModalDialogue.ShowSimple("You're not in a level!", "You're not in a level!", (b) => { }, "Ok", "Im sorry...");
-                        return;
-                    }
-
-                    string levelName = SceneHelper.CurrentScene;
-                    int hyphenIndex = levelName.IndexOf('-');
-
-                    if(hyphenIndex == -1)
-                        return;
-
-                    if(!int.TryParse(levelName[hyphenIndex-1].ToString(), out int layerIndex))
-                        return;
-
-                    if(!int.TryParse(levelName[hyphenIndex+1].ToString(), out int levelIndex))
-                        return;
-
-                    int nextLayer = 0;
-                    int nextLevel = 0;
-
-                    if(layerIndex == 0)
-                    {
-                        if(levelIndex == 5)
-                        {
-                            nextLayer = 1;
-                            nextLevel = 1;
-                        }
-                        else
-                        {
-                            nextLevel = levelIndex+1;
-                        }
-                    }
-                    else
-                    {
-                        nextLayer = layerIndex;
-                        if((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
-                        {
-                            nextLayer = layerIndex + 1;
-                            nextLevel = 1;
-                        }
-                        else
-                        {
-                            nextLevel = levelIndex + 1;
-                        }
-                    }
-                    SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Spawn Some MindFlayers",
-                OnClick = () =>
-                {
-                    Vector3 pos = NewMovement.Instance.transform.position;
-                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Enemies/Mindflayer.prefab").Completed += (g) =>
-                    {
-                        int count = UltraTelephoneTwo.Instance.Random.Next(3,15);
-                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                        {
-                            for(int i = 0; i < count; i++)
-                            {
-                                GameObject mfGo = GameObject.Instantiate(g.Result, pos, Quaternion.identity);
-                                EnemyIdentifier mf = mfGo.GetComponent<EnemyIdentifier>();
-                                mf.radianceTier = 3;
-                                mf.speedBuff = true;
-                                mf.damageBuff = true;
-                                mf.healthBuff = true;
-                                mf.UpdateBuffs();
-                            }
-                        }
-                    };
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Enable Radiance Tier 10",
-                OnClick = () =>
-                {
-                    OptionsManager.forceRadiance = true;
-                    OptionsManager.radianceTier = 10;
-                    foreach (var eid in GameObject.FindObjectsOfType<EnemyIdentifier>())
-                    {
-                        eid.UpdateBuffs(false);
+                        if (rng.Bool())
+                            ShowPopUp();
                     }
                 }
-            },
-            new DialogueBoxOption()
+            };
+        }
+
+       
+
+        private void SkipLevel()
+        {
+            bool inLevel = InGameCheck.InLevel();
+            if (!inLevel)
             {
-                Color = Color.red,
-                Name = "Restart Mission",
-                OnClick = () =>
+                ModalDialogue.ShowSimple("You're not in a level!", "You're not in a level!", (b) =>
                 {
-                    OptionsManager.Instance.RestartMission();
+                    if (!b)
+                        OkDialogue("You better be.", "Yeah you should be.");
+
+                }, "Ok", "Im sorry...");
+                return;
+            }
+
+            string levelName = SceneHelper.CurrentScene;
+            int hyphenIndex = levelName.IndexOf('-');
+
+            if (hyphenIndex == -1)
+                return;
+
+            if (!int.TryParse(levelName[hyphenIndex - 1].ToString(), out int layerIndex))
+                return;
+
+            if (!int.TryParse(levelName[hyphenIndex + 1].ToString(), out int levelIndex))
+                return;
+
+            int nextLayer = 0;
+            int nextLevel = 0;
+
+            if (layerIndex == 0)
+            {
+                if (levelIndex == 5)
+                {
+                    nextLayer = 1;
+                    nextLevel = 1;
                 }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Die Again",
-                OnClick = () =>
+                else
                 {
-                    NewMovement.Instance.GetHurt(1000, true);
+                    nextLevel = levelIndex + 1;
                 }
-            },
-            new DialogueBoxOption()
+            }
+            else
             {
-                Color = Color.red,
-                Name = "Explode",
-                OnClick = () =>
+                nextLayer = layerIndex;
+                if ((layerIndex % 3 == 0 && levelIndex == 2) || levelIndex == 4)
                 {
-                    Vector3 pos = NewMovement.Instance.transform.position;
-                    Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Attacks and Projectiles/Explosions/Explosion Minos Prime.prefab").Completed += (g) =>
+                    nextLayer = layerIndex + 1;
+                    nextLevel = 1;
+                }
+                else
+                {
+                    nextLevel = levelIndex + 1;
+                }
+            }
+            SceneHelper.LoadScene($"Level {nextLayer}-{nextLevel}");
+        }
+
+        private void DeleteAllSaveDataFake()
+        {
+            ModalDialogue.ShowSimple("Are you sure?", "Are you sure you want to delete all save data?", (result) =>
+            {
+                ModalDialogue.ShowDialogue(new ModalDialogueEvent()
+                {
+                    Message = "Deleting Save Data.",
+                    Title = "Deleting Save Data.",
+                    Options = new DialogueBoxOption[]
                     {
-                        if(g.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                        {
-                            GameObject.Instantiate(g.Result, pos, Quaternion.identity);
-                        }
-                    };
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Delete All Save-Data",
-                OnClick = () =>
-                {
-                    ModalDialogue.ShowSimple("Are you sure?", "Are you sure you want to delete all save data?", (result) =>
-                    {
-                        ModalDialogue.ShowDialogue(new ModalDialogueEvent()
-                        {
-                            Message = "Deleting Save Data.",
-                            Title = "Deleting Save Data.",
-                            Options = new DialogueBoxOption[]
-                            {
                                 new DialogueBoxOption()
                                 {
                                     Color = Color.red,
@@ -297,70 +362,189 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                                         }
                                     }
                                 }
-                            }
-                        });
-                    }, "Yeah, no.", "No, I'm positive.");
-                }
-            },
-            new DialogueBoxOption()
-            {
-                Color = Color.red,
-                Name = "Continue (100,000 <color=orange>P</color>)",
-                OnClick = () =>
-                {
-                    FakeBank.AddMoney(-100000);
-                    OkDialogue("Purchase Confirmed.", $"Your purchase has been completed. \nYour balance is now\n({FakeBank.FormatMoney(FakeBank.GetCurrentMoney())}<color=orange>P</color>)");
-                }
-            }
-        };
-
-        private static readonly Color orange = new Color(1, 0.682f, 0, 1f);
-
-        private ModalDialogueEvent dialogueEvent;
-
-        private void RandomizeEvent()
-        {
-            dialogueEvent.Title = titles.RandomElement(rng);
-            dialogueEvent.Message = messages.RandomElement(rng);
-
-            dialogueEvent.Options = new DialogueBoxOption[rng.Next(1,4)];
-
-            for(int i =0; i < dialogueEvent.Options.Length; i++)
-            {
-                dialogueEvent.Options[i] = CreateRandomOption();
-            }
+                    }
+                });
+            }, "Yeah, no.", "No, I'm positive.");
         }
 
-        private DialogueBoxOption CreateRandomOption()
+        private int tutorialPopUpCount = 0;
+        private ModalDialogueEvent CreateTutorialPopUp()
         {
-            if (rng.PercentChance(0.1f))
+            ModalDialogueEvent modalDialogue = new ModalDialogueEvent();
+            modalDialogue.Title = "Tutorial";
+            switch (tutorialPopUpCount)
             {
-                return evilOptions.RandomElement(rng);
+                case 0:
+                    modalDialogue.Message = "Welcome to Ultrakill! If you are having trouble you can play the in-game tutorial!";
+                    modalDialogue.Options = new DialogueBoxOption[]
+                    {
+                        new DialogueBoxOption()
+                        {
+                            Color = orange,
+                            Name = "Play Tutorial",
+                            OnClick = () =>
+                            {
+                                SceneHelper.LoadScene("Tutorial");
+                            }
+                        },new DialogueBoxOption()
+                        {
+                            Color = Color.red,
+                            Name = "No thank you.",
+                            OnClick = () => { }
+                        },
+                    };
+                    break;
+                case 1:
+                    modalDialogue.Message = "You look like you're having a little trouble. The tutorial may help you.";
+                    modalDialogue.Options = new DialogueBoxOption[]
+                    {
+                        new DialogueBoxOption()
+                        {
+                            Color = orange,
+                            Name = "Play Tutorial",
+                            OnClick = () =>
+                            {
+                                SceneHelper.LoadScene("Tutorial");
+                            }
+                        },new DialogueBoxOption()
+                        {
+                            Color = Color.red,
+                            Name = "No thank you.",
+                            OnClick = () =>
+                            {
+                                ModalDialogue.ShowDialogue(new ModalDialogueEvent()
+                                {
+                                    Message = "Are you sure?",
+                                    Title = "Are you sure?",
+                                    Options = new DialogueBoxOption[]
+                                    {
+                                        new DialogueBoxOption()
+                                        {
+                                            Color = Color.green,
+                                            Name = "Take me to the Tutorial",
+                                            OnClick = () =>
+                                            {
+                                                SceneHelper.LoadScene("Tutorial");
+                                            }
+                                        },
+                                        new DialogueBoxOption()
+                                        {
+                                            Color = Color.red,
+                                            Name = "I'll think about it.",
+                                            OnClick = () => { }
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                    };
+                    break;
+                default:
+                    modalDialogue.Message = "I'm not asking anymore. You will play the tutorial. Watching you play is like drinking a glass of orange juice after eating an entire pack of mentos.";
+                    modalDialogue.Options = new DialogueBoxOption[]
+                    {
+                        new DialogueBoxOption()
+                        {
+                            Color = Color.red,
+                            Name = "Play Tutorial",
+                            OnClick = () =>
+                            {
+                                SceneHelper.LoadScene("Tutorial");
+                            }
+                        }
+                    };
+                    break;
             }
 
-            return new DialogueBoxOption()
+            //hehe switch the order sometimes
+            if (rng.PercentChance(0.25f) && tutorialPopUpCount == 0 || tutorialPopUpCount == 1)
             {
-                Name = optionNames.RandomElement(rng),
-                Color = orange,
-                OnClick = () =>
+                DialogueBoxOption op1 = modalDialogue.Options[0];
+                modalDialogue.Options[0] = modalDialogue.Options[1];
+                modalDialogue.Options[1] = op1;
+            }
+
+            tutorialPopUpCount++;
+
+            return modalDialogue;
+        }
+
+        private ModalDialogueEvent CreateDeathFee()
+        {
+            long money = FakeBank.GetCurrentMoney();
+            int divisor = rng.Next(50, 101);
+            long fee = money / divisor;
+
+            return new ModalDialogueEvent()
+            {
+                Message = $"You died. You must pay a fee to continue.",
+                Title = "You died.",
+                Options = new DialogueBoxOption[]
                 {
-                    if(rng.NextDouble() > 0.75f)
+                    new DialogueBoxOption()
                     {
-                        if(rng.Bool())
-                            ShowPopUp();
+                        Color = Color.red,
+                        Name = $"Continue ({FakeBank.PString(fee)})",
+                        OnClick = () =>
+                        {
+                            FakeBank.AddMoney(-fee);
+                            OkDialogue("Purchase Confirmed.", $"Your purchase has been completed. \nYour balance is now\n({FakeBank.PString(FakeBank.GetCurrentMoney())})");
+                        }
                     }
                 }
             };
         }
 
-        public override int GetEffectCost()
+        private ModalDialogueEvent CreateEndOfDemo()
         {
-            return 1;
+            long gameCost = 250000;
+
+            return new ModalDialogueEvent()
+            {
+                Message = $"Thanks for trying out Ultrakill! You have reached the end of the demo! Please purchase the full game to continue!",
+                Title = "Thanks for playing!",
+                Options = new DialogueBoxOption[]
+                {
+                    new DialogueBoxOption()
+                    {
+                        Color = Color.red,
+                        Name = $"Continue ({FakeBank.PString(gameCost)})",
+                        OnClick = () =>
+                        {
+                            if(FakeBank.GetCurrentMoney() < gameCost)
+                            {
+                                OkDialogue("Purchase Failed.", $"You don't have that much money.");
+                                return;
+                            }
+
+                            FakeBank.AddMoney(-gameCost);
+                            OkDialogue("Purchase Confirmed.", $"Your purchase has been completed. \nYour balance is now\n({FakeBank.PString(FakeBank.GetCurrentMoney())})\nEnjoy the game!");
+                        }
+                    },
+                    new DialogueBoxOption()
+                    {
+                        Color = Color.red,
+                        Name = "QUIT",
+                        OnClick = () =>
+                        {
+                            Application.Quit();
+                        }
+                    }
+                }
+            };
         }
 
-        private void OnDestroy()
+        private ModalDialogueEvent CreateRandomized()
         {
-            EventBus.RestartedFromCheckpoint -= ShowPopUp;
+            int options = rng.Next(1, 4);
+            randomDialogueEvent.Message = messages.RandomElement(rng);
+            randomDialogueEvent.Title = titles.RandomElement(rng);
+            randomDialogueEvent.Options = new DialogueBoxOption[options];
+            for(int i = 0; i < randomDialogueEvent.Options.Length; i++)
+            {
+                randomDialogueEvent.Options[i] = CreateRandomOption();
+            }
+            return randomDialogueEvent;
         }
 
         public static void OkDialogue(string title, string message, string option = "Ok", Action onClick = null)
@@ -380,5 +564,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                 }
             });
         }
+
     }
 }

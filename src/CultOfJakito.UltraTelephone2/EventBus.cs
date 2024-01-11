@@ -24,18 +24,24 @@ internal static class EventBus {
 		}
 	}
 
-    public static event Action RestartedFromCheckpoint;
+    public static event Action<bool> RestartedFromCheckpoint;
 
-    [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart))]
+    [HarmonyPatch]
     static class RaiseRestartedFromCheckpointPatch {
 
-        private static float timeOfLastRestart = 0f;
-        public static void Postfix(){
-            if(Time.realtimeSinceStartup - timeOfLastRestart < 0.01f)
-                return;
+        private static bool s_died;
 
-            timeOfLastRestart = Time.realtimeSinceStartup;
-			RestartedFromCheckpoint?.Invoke();
+        [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart)), HarmonyPostfix]
+        public static void Postfix(){
+
+			RestartedFromCheckpoint?.Invoke(s_died);
+            s_died = false;
+        }
+
+        [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart)), HarmonyPrefix]
+        public static void Prefix()
+        {
+            s_died = NewMovement.Instance.hp <= 0;
         }
     }
 }
