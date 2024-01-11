@@ -18,36 +18,35 @@ namespace CultOfJakito.UltraTelephone2
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         static bool s_effectActive = false;
+        static System.Random random;
 
-        public override void BeginEffect(System.Random random)
+        public override void BeginEffect(System.Random rand)
         {
+            random = rand;
             s_effectActive = true;
-        }
-
-
-        [HarmonyPatch(typeof(FinalDoor), (nameof(FinalDoor.Open))), HarmonyPostfix]
-        public static void OnFinalDoorOpen(FinalDoor __instance)
-        {
-            if (!s_enabled.Value || !s_effectActive)
-                return;
-
-            __instance.doors.ForEach(x =>
-            {
-                DoorJammer jammer = x.gameObject.AddComponent<DoorJammer>();
-                jammer.Door = x;
-                jammer.JamOnOpen = true;
-                jammer.JamOnPercent = 0.11f;
-            });
         }
 
         [HarmonyPatch(typeof(Door), (nameof(Door.Open))), HarmonyPostfix]
         public static void OnDoorOpen(Door __instance)
         {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
             if (__instance.TryGetComponent<DoorJammer>(out DoorJammer jammer))
                 return;
 
             jammer = __instance.gameObject.AddComponent<DoorJammer>();
+            jammer.Door = __instance;
+            jammer.JamOnOpen = true;
+            jammer.JamOnPercent = ((float)random.NextDouble() / 5f);
+            jammer.UnjamAfterSeconds = (float)random.NextDouble() * 8f;
         }
+
+        //[HarmonyPatch(typeof(BigDoor), (nameof(BigDoor.Open))), HarmonyPostfix]
+        //public static void OnBigDoorOpen(BigDoor __instance)
+        //{
+
+        //}
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
@@ -75,9 +74,21 @@ namespace CultOfJakito.UltraTelephone2
         public bool JamOnOpen;
         public float UnjamAfterSeconds = 5f;
 
+        private bool didJam;
+
+
+        private void Start()
+        {
+            if (Door != null)
+                Door.onFullyOpened.AddListener(() =>
+                {
+                    didJam = false;
+                });
+        }
+
         private void Update()
         {
-            if (Door == null)
+            if (Door == null || didJam)
                 return;
 
             if(JamOnOpen == Door.open)
@@ -93,7 +104,6 @@ namespace CultOfJakito.UltraTelephone2
                 if (valueTraveled > JamOnPercent)
                 {
                     Jam();
-
                 }
             }
         }
@@ -101,6 +111,7 @@ namespace CultOfJakito.UltraTelephone2
         private void Jam()
         {
             //Door stuck.
+            didJam = true;
             Door.enabled = false;
             Invoke(nameof(ReleaseJam), UnjamAfterSeconds);
         }
@@ -108,7 +119,6 @@ namespace CultOfJakito.UltraTelephone2
         private void ReleaseJam()
         {
             Door.enabled = true;
-            enabled = false;
         }
     }
 }
