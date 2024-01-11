@@ -17,7 +17,7 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
             UltraTelephoneTwo.Instance.BurgerLoader = new("HRT Borgers.resource");
 
             _estrogenBurger = UltraTelephoneTwo.Instance.BurgerLoader.LoadAsset<GameObject>("estrogen burger");
-            _estrogenBurger = UltraTelephoneTwo.Instance.BurgerLoader.LoadAsset<GameObject>("testosterone burger");
+            _testosteroneBurger = UltraTelephoneTwo.Instance.BurgerLoader.LoadAsset<GameObject>("testosterone burger");
 
             if (!_estrogenBurger || !_testosteroneBurger)
             {

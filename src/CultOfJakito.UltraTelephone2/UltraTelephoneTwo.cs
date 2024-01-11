@@ -14,6 +14,9 @@ namespace CultOfJakito.UltraTelephone2;
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
     public AssetLoader AssetLoader { get; private set; }
+
+    public AssetLoader BurgerLoader { get; set; }
+
     public ChaosManager ChaosManager { get; private set; }
     public System.Random Random { get; private set; }
 
@@ -26,6 +29,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     {
 
         Instance = this;
+
 
         _config = new ConfigBuilder(nameof(CultOfJakito.UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -40,6 +44,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Random = new System.Random(username.GetHashCode()+dayOfTheWeek);
 
+        BurgerLoader = new(Paths.GetBundleFilePath("HRT Borgers.resource"));
 
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
