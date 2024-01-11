@@ -15,6 +15,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 {
 
     public AssetLoader AssetLoader { get; private set; }
+
+    public AssetLoader BurgerLoader;
+
     public ChaosManager ChaosManager { get; private set; }
     public System.Random Random { get; private set; }
 
@@ -24,7 +27,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void Awake()
     {
-
         Instance = this;
 
         _config = new ConfigBuilder(nameof(CultOfJakito.UltraTelephone2), "Ultra Telephone 2");
@@ -40,8 +42,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Random = new System.Random(username.GetHashCode()+dayOfTheWeek);
 
-        //TODO update this to use the assetbundles.
-        //_assetLoader = new AssetLoader(Resources.ut2assets);
+        BurgerLoader = new("Bundles\\HRT Borgers");
 
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
