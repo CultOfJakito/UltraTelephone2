@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.zelzmiy
 {
     [RegisterChaosEffect]
-    internal class HrtBurger : ChaosEffect
+    internal class hRtBurGeR : ChaosEffect
     {
 
         private GameObject _estrogenBurger;
