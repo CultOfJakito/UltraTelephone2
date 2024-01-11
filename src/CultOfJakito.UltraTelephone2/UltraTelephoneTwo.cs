@@ -17,9 +17,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     public ChaosManager ChaosManager { get; private set; }
     public System.Random Random { get; private set; }
 
-
     private ConfigBuilder _config;
-
     public static UltraTelephoneTwo Instance { get; private set; }
 
     private void Awake()
