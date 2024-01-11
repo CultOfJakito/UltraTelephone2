@@ -2,6 +2,7 @@ using HarmonyLib;
 using ULTRAKILL;
 using UnityEngine;
 
+[HarmonyPatch]
 public class BouncyCannonballPatch
 {
     public static PhysicMaterial Bouncy = new PhysicMaterial("Bouncy")

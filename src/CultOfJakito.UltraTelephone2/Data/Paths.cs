@@ -15,12 +15,22 @@ namespace CultOfJakito.UltraTelephone2
         public static string ModFolder => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string DataFilePath => Path.Combine(DataFolder, DATA_FILE_NAME);
         public static string DataFolder => Path.Combine(ModFolder, "Data");
+
         public static string GetBundleFilePath(string bundleFileName)
         {
             if(!Directory.Exists(BundleFolder))
                 Directory.CreateDirectory(BundleFolder);
 
             return Path.Combine(BundleFolder, bundleFileName);
+        }
+
+        public static void ValidateFolders()
+        {
+            if (!Directory.Exists(BundleFolder))
+                Directory.CreateDirectory(BundleFolder);
+
+            if (!Directory.Exists(DataFolder))
+                Directory.CreateDirectory(DataFolder);
         }
     }
 }
