@@ -15,14 +15,14 @@ namespace CultOfJakito.UltraTelephone2
             return UT2Data.SaveData.fakePAmount;
         }
 
-        public static void AddMoney(int amount)
+        public static void AddMoney(long amount)
         {
             Initialize();
             UT2Data.SaveData.fakePAmount += amount;
             UT2Data.Save();
         }
 
-        public static void SetMoney(int amount)
+        public static void SetMoney(long amount)
         {
             Initialize();
             UT2Data.SaveData.fakePAmount = amount;
@@ -62,6 +62,11 @@ namespace CultOfJakito.UltraTelephone2
                 return "-∞";
 
             return money.ToString("N0");
+        }
+
+        public static string PString(long money)
+        {
+            return "<color=white>" + FormatMoney(money) + "</color>" + "<color=orange>P</color>";
         }
 
     }

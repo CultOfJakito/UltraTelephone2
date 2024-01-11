@@ -16,7 +16,6 @@ public class CannonBallBounce : ChaosEffect
     {
         if(!Enabled.Value) CanBounce = false;
         else CanBounce = true;
-        Debug.Log($"Cannonball bounce {(CanBounce ? "enabled" : "disabled")}");
     }
     public override bool CanBeginEffect(ChaosSessionContext ctx)
     {
