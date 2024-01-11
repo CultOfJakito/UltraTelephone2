@@ -41,7 +41,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Random = new System.Random(username.GetHashCode()+dayOfTheWeek);
 
-        ZelzmiyBundle = new(Properties.Resources.Zelzmiy);
+        ZelzmiyBundle = new(Paths.GetBundleFilePath("Zelzmiy.resource"));
 
         InGameCheck.OnLevelChanged += DoThing;
 		SceneManager.sceneLoaded += OnSceneLoaded;
