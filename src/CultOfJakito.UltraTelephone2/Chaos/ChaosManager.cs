@@ -7,10 +7,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 public class ChaosManager : MonoBehaviour, IDisposable
 { 
 
-	public void BeginEffects() {
-
+	public void BeginEffects()
+    {
         System.Random random = UltraTelephone2.UltraTelephoneTwo.Instance.Random;
-		ChaosSessionContext ctx = new(this, SceneHelper.CurrentScene, 32);
+		ctx = new(this, SceneHelper.CurrentScene, 32);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
 		{
@@ -24,16 +24,73 @@ public class ChaosManager : MonoBehaviour, IDisposable
 		Debug.Log("Chaos started");
 
 		foreach(IChaosEffect effect in ctx.GetCurrentSelection()) {
+            Debug.Log($"Beginning Effect: {effect.GetType().Name}");
 			effect.BeginEffect(new System.Random(random.Next()));
 		}
 	}
 
+    private bool levelBegan;
+    private ChaosSessionContext ctx;
+
+    private void Update()
+    {
+        if (levelBegan)
+        {
+            if (!InGameCheck.PlayingLevel())
+            {
+                foreach (var x in ctx.GetCurrentSelection())
+                {
+                    if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
+                    {
+                        ((ILevelEvents)x).OnLevelComplete(ctx.LevelName);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (InGameCheck.PlayingLevel())
+            {
+                levelBegan = true;
+                foreach (var x in ctx.GetCurrentSelection())
+                {
+                    if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
+                    {
+                        ((ILevelEvents)x).OnLevelStarted(ctx.LevelName);
+                    }
+                }
+            }
+        }
+    }
+
     private IEnumerable<IChaosEffect> GetChaosEffects()
     {
         //TODO this fails to clean up monobehaviour types
-        return Assembly.GetExecutingAssembly().GetTypes()
-            .Where(x => x.GetCustomAttribute<RegisterChaosEffectAttribute>() != null && typeof(IChaosEffect).IsAssignableFrom(x) && !x.IsAbstract)
-            .Select(x => (IChaosEffect)Activator.CreateInstance(x));
+        List<IChaosEffect> chaosEffects = new List<IChaosEffect>();
+
+        foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
+        {
+            if (type.IsAbstract)
+                continue;
+
+            if (type.GetCustomAttribute<RegisterChaosEffectAttribute>() == null)
+                continue;
+
+            if (!typeof(IChaosEffect).IsAssignableFrom(type))
+                continue;
+
+           
+            if(typeof(MonoBehaviour).IsAssignableFrom(type))
+            {
+                chaosEffects.Add(gameObject.AddComponent(type) as IChaosEffect);
+            }
+            else
+            {
+                chaosEffects.Add((IChaosEffect)Activator.CreateInstance(type));
+            }
+        }
+
+        return chaosEffects;
     }
 
 	public void Dispose() {

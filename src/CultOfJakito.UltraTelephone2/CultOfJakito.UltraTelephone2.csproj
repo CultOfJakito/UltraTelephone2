@@ -36,6 +36,14 @@
       <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
 		<Private>false</Private>
     </Reference>
+	<Reference Include="UnityEngine.UIModule">
+      <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
+	<Reference Include="UnityEngine.UI">
+      <HintPath>libs\UnityEngine.UI.dll</HintPath>
+		<Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
 		<Private>false</Private>
@@ -43,6 +51,9 @@
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
     <Private>false</Private>
+    </Reference>
+	<Reference Include="TextMeshPro">
+      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
     </Reference>
 	<Reference Include="AngryLevelLoader">
       <HintPath>libs\AngryLevelLoader.dll</HintPath>
@@ -62,6 +73,21 @@
 
   <ItemGroup>
     <Folder Include="Patches\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -127,5 +127,21 @@ namespace CultOfJakito.UltraTelephone2
                     return true;
             }
         }
+
+        public static bool PlayingLevel()
+        {
+            if (!InLevel())
+                return false;
+
+            if (StatsManager.Instance == null)
+                return false;
+
+            //Finished level.
+            if (StatsManager.Instance.infoSent)
+                return false;
+
+            //Level timer has started, so level has started.
+            return StatsManager.Instance.seconds > 0f;
+        }
     }
 }

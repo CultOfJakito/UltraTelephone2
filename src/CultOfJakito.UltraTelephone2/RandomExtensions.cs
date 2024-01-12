@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace CultOfJakito.UltraTelephone2;
+﻿namespace CultOfJakito.UltraTelephone2;
 
 internal static class RandomExtensions
 {
