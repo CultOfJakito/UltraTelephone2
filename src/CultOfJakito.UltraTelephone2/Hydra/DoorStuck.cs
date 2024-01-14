@@ -39,14 +39,25 @@ namespace CultOfJakito.UltraTelephone2
             jammer.Door = __instance;
             jammer.JamOnOpen = true;
             jammer.JamOnPercent = ((float)random.NextDouble() / 5f);
-            jammer.UnjamAfterSeconds = (float)random.NextDouble() * 8f;
+            jammer.UnjamAfterSeconds = ((float)random.NextDouble() * 5f)+3f;
         }
 
-        //[HarmonyPatch(typeof(BigDoor), (nameof(BigDoor.Open))), HarmonyPostfix]
-        //public static void OnBigDoorOpen(BigDoor __instance)
-        //{
+        [HarmonyPatch(typeof(BigDoor), (nameof(BigDoor.Open))), HarmonyPostfix]
+        public static void OnBigDoorOpen(BigDoor __instance)
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
 
-        //}
+            if (__instance.TryGetComponent<DoorJammer>(out DoorJammer jammer))
+                return;
+
+            jammer = __instance.gameObject.AddComponent<DoorJammer>();
+            jammer.BigDoor = __instance;
+            jammer.JamOnOpen = true;
+            jammer.JamOnPercent = ((float)random.NextDouble() / 5f);
+            jammer.UnjamAfterSeconds = ((float)random.NextDouble() * 5f) + 3f;
+
+        }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
@@ -70,6 +81,7 @@ namespace CultOfJakito.UltraTelephone2
     public class DoorJammer : MonoBehaviour
     {
         public Door Door;
+        public BigDoor BigDoor;
         public float JamOnPercent;
         public bool JamOnOpen;
         public float UnjamAfterSeconds = 5f;
@@ -84,19 +96,57 @@ namespace CultOfJakito.UltraTelephone2
                 {
                     didJam = false;
                 });
+
+            if(BigDoor != null)
+            {
+                Door door = BigDoor.GetComponentInParent<Door>();
+                if(door != null)
+                    door.onFullyOpened.AddListener(() =>
+                    {
+                        didJam = false;
+                    });
+            }
         }
 
         private void Update()
         {
+            DoorUpdate();
+            BigDoorUpdate();
+        }
+
+        private void BigDoorUpdate()
+        {
+            if (BigDoor == null || didJam)
+                return;
+
+            if (JamOnOpen == BigDoor.open)
+            {
+                Vector3 rot = BigDoor.transform.localEulerAngles;
+                float valueTraveled = 0f;
+
+                if (JamOnOpen)
+                    valueTraveled = MathUtils.InverseLerpVector3(BigDoor.origRotation.eulerAngles, BigDoor.openRotation, rot);
+                else
+                    valueTraveled = MathUtils.InverseLerpVector3(BigDoor.openRotation, BigDoor.origRotation.eulerAngles, rot);
+
+                if (valueTraveled > JamOnPercent)
+                {
+                    Jam();
+                }
+            }
+        }
+
+        private void DoorUpdate()
+        {
             if (Door == null || didJam)
                 return;
 
-            if(JamOnOpen == Door.open)
+            if (JamOnOpen == Door.open)
             {
                 Vector3 pos = Door.transform.localPosition;
                 float valueTraveled = 0f;
 
-                if(JamOnOpen)
+                if (JamOnOpen)
                     valueTraveled = MathUtils.InverseLerpVector3(Door.closedPos, Door.openPos, pos);
                 else
                     valueTraveled = MathUtils.InverseLerpVector3(Door.openPos, Door.closedPos, pos);
@@ -112,13 +162,23 @@ namespace CultOfJakito.UltraTelephone2
         {
             //Door stuck.
             didJam = true;
-            Door.enabled = false;
+
+            if(Door != null)
+                Door.enabled = false;
+
+            if(BigDoor != null)
+                BigDoor.enabled = false;
+
             Invoke(nameof(ReleaseJam), UnjamAfterSeconds);
         }
 
         private void ReleaseJam()
         {
-            Door.enabled = true;
+            if(Door != null)
+                Door.enabled = true;
+
+            if(BigDoor != null)
+                BigDoor.enabled = true;
         }
     }
 }
