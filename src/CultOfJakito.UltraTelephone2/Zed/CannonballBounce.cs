@@ -1,68 +1,62 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using HarmonyLib;
-using ULTRAKILL;
 using UnityEngine;
+
+namespace CultOfJakito.UltraTelephone2.Zed;
 
 [RegisterChaosEffect]
 public class CannonBallBounce : ChaosEffect
 {
     [Configgable("ZedDev", "Enable cannonball bounce")]
-    public static ConfigToggle Enabled = new ConfigToggle(true);
+    public static ConfigToggle Enabled = new(true);
 
-    public static bool CanBounce = false;
-    public override void BeginEffect(System.Random random)
-    {
-        if(!Enabled.Value) CanBounce = false;
-        else CanBounce = true;
-    }
-    public override bool CanBeginEffect(ChaosSessionContext ctx)
-    {
-        if (!Enabled.Value)
-            return false;
+    public static bool CanBounce;
 
-        return base.CanBeginEffect(ctx);
-    }
-    public override int GetEffectCost()
-    {
-        return 1;
-    }
+    public override void BeginEffect(System.Random random) => CanBounce = Enabled.Value;
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
+    public override int GetEffectCost() => 1;
 }
 
 public class BouncyCannonball : MonoBehaviour
 {
     public float RemainingTime = 5f;
-    public Rigidbody rb;
-    SphereCollider sc;
+    public Rigidbody Rb;
+    private SphereCollider _sc;
+
     public void Update()
     {
         RemainingTime -= Time.deltaTime;
-        if(RemainingTime <= 0) sc.material = null;
+        if (RemainingTime <= 0)
+        {
+            _sc.material = null;
+        }
     }
-    void Start()
+
+    private void Start()
     {
         // Create a sphere collider and assign the physics material
         //Debug.Log("Bouncy cannonball");
-        sc = gameObject.AddComponent<SphereCollider>();
-        sc.radius = 0.8f;
-        sc.material = BouncyCannonballPatch.Bouncy;
+        _sc = gameObject.AddComponent<SphereCollider>();
+        _sc.radius = 0.8f;
+        _sc.material = BouncyCannonballPatch.Bouncy;
     }
 
-    private bool hurtPlayer = false;
+    private bool _hurtPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
         //I think this is broken rn but it would be funny.
         return;
-        if (hurtPlayer || RemainingTime == 5f)
+        if (_hurtPlayer || RemainingTime == 5f)
+        {
             return;
+        }
 
         if (other.CompareTag("Player") && RemainingTime < 4.5f)
         {
-            hurtPlayer = true;
+            _hurtPlayer = true;
             NewMovement.Instance.GetHurt(40, true);
-
         }
     }
 }

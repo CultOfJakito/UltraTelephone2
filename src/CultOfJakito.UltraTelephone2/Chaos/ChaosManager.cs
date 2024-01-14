@@ -5,45 +5,51 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
 public class ChaosManager : MonoBehaviour, IDisposable
-{ 
-
-	public void BeginEffects()
+{
+    public void BeginEffects()
     {
-        System.Random random = UltraTelephone2.UltraTelephoneTwo.Instance.Random;
-		ctx = new(this, SceneHelper.CurrentScene, 32);
+        System.Random random = UltraTelephoneTwo.Instance.Random;
+        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, 32);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
-		{
-			if (ctx.GetAvailableBudget() == 0)
-				break;
+        {
+            if (_ctx.GetAvailableBudget() == 0)
+            {
+                break;
+            }
 
-			if (possibleEffect.CanBeginEffect(ctx))
-				ctx.Add(possibleEffect);
-		}
+            if (possibleEffect.CanBeginEffect(_ctx))
+            {
+                _ctx.Add(possibleEffect);
+            }
+        }
 
-		Debug.Log("Chaos started");
+        Debug.Log("Chaos started");
 
-		foreach(IChaosEffect effect in ctx.GetCurrentSelection()) {
+        foreach (IChaosEffect effect in _ctx.GetCurrentSelection())
+        {
             Debug.Log($"Beginning Effect: {effect.GetType().Name}");
-			effect.BeginEffect(new System.Random(random.Next()));
-		}
-	}
+            effect.BeginEffect(new System.Random(random.Next()));
+        }
+    }
 
-    private bool levelBegan;
-    private ChaosSessionContext ctx;
+    private bool _levelBegan;
+    private ChaosSessionContext _ctx;
 
     private void Update()
     {
-        if (levelBegan)
+        if (_levelBegan)
         {
-            if (!InGameCheck.PlayingLevel())
+            if (InGameCheck.PlayingLevel())
             {
-                foreach (var x in ctx.GetCurrentSelection())
+                return;
+            }
+
+            foreach (IChaosEffect x in _ctx.GetCurrentSelection())
+            {
+                if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
                 {
-                    if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
-                    {
-                        ((ILevelEvents)x).OnLevelComplete(ctx.LevelName);
-                    }
+                    ((ILevelEvents)x).OnLevelComplete(_ctx.LevelName);
                 }
             }
         }
@@ -51,12 +57,12 @@ public class ChaosManager : MonoBehaviour, IDisposable
         {
             if (InGameCheck.PlayingLevel())
             {
-                levelBegan = true;
-                foreach (var x in ctx.GetCurrentSelection())
+                _levelBegan = true;
+                foreach (IChaosEffect x in _ctx.GetCurrentSelection())
                 {
                     if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
                     {
-                        ((ILevelEvents)x).OnLevelStarted(ctx.LevelName);
+                        ((ILevelEvents)x).OnLevelStarted(_ctx.LevelName);
                     }
                 }
             }
@@ -66,21 +72,27 @@ public class ChaosManager : MonoBehaviour, IDisposable
     private IEnumerable<IChaosEffect> GetChaosEffects()
     {
         //TODO this fails to clean up monobehaviour types
-        List<IChaosEffect> chaosEffects = new List<IChaosEffect>();
+        List<IChaosEffect> chaosEffects = new();
 
         foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
         {
             if (type.IsAbstract)
+            {
                 continue;
+            }
 
             if (type.GetCustomAttribute<RegisterChaosEffectAttribute>() == null)
+            {
                 continue;
+            }
 
             if (!typeof(IChaosEffect).IsAssignableFrom(type))
+            {
                 continue;
+            }
 
-           
-            if(typeof(MonoBehaviour).IsAssignableFrom(type))
+
+            if (typeof(MonoBehaviour).IsAssignableFrom(type))
             {
                 chaosEffects.Add(gameObject.AddComponent(type) as IChaosEffect);
             }
@@ -93,44 +105,30 @@ public class ChaosManager : MonoBehaviour, IDisposable
         return chaosEffects;
     }
 
-	public void Dispose() {
-		Destroy(this);
-	}
+    public void Dispose() => Destroy(this);
 }
 
 public class ChaosSessionContext
 {
-	public ChaosManager ChaosManager { get; }
-	public string LevelName { get; }
-	public int TotalBudget { get; }
+    public ChaosManager ChaosManager { get; }
+    public string LevelName { get; }
+    public int TotalBudget { get; }
 
-	private List<IChaosEffect> selection;
+    private List<IChaosEffect> _selection;
 
-	public ChaosSessionContext(ChaosManager chaosManager, string levelName, int budget)
-	{
+    public ChaosSessionContext(ChaosManager chaosManager, string levelName, int budget)
+    {
         ChaosManager = chaosManager;
-		this.LevelName = levelName;
-		this.TotalBudget = budget;
-		selection = new List<IChaosEffect>();
+        LevelName = levelName;
+        TotalBudget = budget;
+        _selection = new List<IChaosEffect>();
     }
 
-	public int GetAvailableBudget()
-	{
-		return TotalBudget - selection.Sum(x=>x.GetEffectCost());
-	}
+    public int GetAvailableBudget() => TotalBudget - _selection.Sum(x => x.GetEffectCost());
 
-	public void Add(IChaosEffect effect)
-	{
-		selection.Add(effect);
-	}
+    public void Add(IChaosEffect effect) => _selection.Add(effect);
 
-	public List<IChaosEffect> GetCurrentSelection()
-	{
-		return new List<IChaosEffect>(selection);
-    }
+    public List<IChaosEffect> GetCurrentSelection() => new(_selection);
 
-	public void ClearSelection()
-	{
-		selection.Clear();
-	}
+    public void ClearSelection() => _selection.Clear();
 }

@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <LangVersion>latest</LangVersion>
-	  <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="BepInEx.Core" Version="5.4.21">
-		  <PrivateAssets>all</PrivateAssets>
-	  </PackageReference>
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0">
-		  <PrivateAssets>all</PrivateAssets>
-	  </PackageReference>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -21,8 +21,8 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
-		<Private>false</Private>
-	</Reference>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Configgy">
       <HintPath>libs\Other\Configgy.dll</HintPath>
     </Reference>
@@ -31,40 +31,40 @@
     </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>libs\Unity.Addressables.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
-	<Reference Include="Unity.ResourceManager">
+    <Reference Include="Unity.ResourceManager">
       <HintPath>libs\Unity.ResourceManager.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
-	<Reference Include="Unity.TextMeshPro">
-	  <HintPath>libs\Managed\Unity.TextMeshPro.dll</HintPath>
-	</Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>libs\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>libs\UnityEngine.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
-	<Reference Include="UnityEngine.UIModule">
+    <Reference Include="UnityEngine.UIModule">
       <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
-	<Reference Include="UnityEngine.UI">
+    <Reference Include="UnityEngine.UI">
       <HintPath>libs\UnityEngine.UI.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
-		<Private>false</Private>
+      <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-    <Private>false</Private>
+      <Private>false</Private>
     </Reference>
-	<Reference Include="NewtonSoft.Json">
+    <Reference Include="NewtonSoft.Json">
       <HintPath>libs\NewtonSoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -82,6 +82,171 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="libs\BepInEx\0Harmony.dll" />
+    <Content Include="libs\BepInEx\0Harmony20.dll" />
+    <Content Include="libs\BepInEx\BepInEx.dll" />
+    <Content Include="libs\BepInEx\BepInEx.Harmony.dll" />
+    <Content Include="libs\BepInEx\BepInEx.Preloader.dll" />
+    <Content Include="libs\BepInEx\HarmonyXInterop.dll" />
+    <Content Include="libs\BepInEx\Mono.Cecil.dll" />
+    <Content Include="libs\BepInEx\Mono.Cecil.Mdb.dll" />
+    <Content Include="libs\BepInEx\Mono.Cecil.Pdb.dll" />
+    <Content Include="libs\BepInEx\Mono.Cecil.Rocks.dll" />
+    <Content Include="libs\BepInEx\MonoMod.RuntimeDetour.dll" />
+    <Content Include="libs\BepInEx\MonoMod.Utils.dll" />
+    <Content Include="libs\Managed\Assembly-CSharp.dll" />
+    <Content Include="libs\Managed\Autodesk.Fbx.dll" />
+    <Content Include="libs\Managed\endel.nativewebsocket.dll" />
+    <Content Include="libs\Managed\Facepunch.Steamworks.Win64.dll" />
+    <Content Include="libs\Managed\FbxBuildTestAssets.dll" />
+    <Content Include="libs\Managed\Microsoft.CSharp.dll" />
+    <Content Include="libs\Managed\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="libs\Managed\Mono.Posix.dll" />
+    <Content Include="libs\Managed\Mono.Security.dll" />
+    <Content Include="libs\Managed\mscorlib.dll" />
+    <Content Include="libs\Managed\Naelstrof.JigglePhysics.dll" />
+    <Content Include="libs\Managed\NavMeshComponents.dll" />
+    <Content Include="libs\Managed\netstandard.dll" />
+    <Content Include="libs\Managed\NewBlood.LegacyInput.dll" />
+    <Content Include="libs\Managed\Newtonsoft.Json.dll" />
+    <Content Include="libs\Managed\pcon.core.dll" />
+    <Content Include="libs\Managed\pcon.unity.dll" />
+    <Content Include="libs\Managed\plog.dll" />
+    <Content Include="libs\Managed\System.ComponentModel.Composition.dll" />
+    <Content Include="libs\Managed\System.Configuration.dll" />
+    <Content Include="libs\Managed\System.Core.dll" />
+    <Content Include="libs\Managed\System.Data.dll" />
+    <Content Include="libs\Managed\System.Diagnostics.StackTrace.dll" />
+    <Content Include="libs\Managed\System.dll" />
+    <Content Include="libs\Managed\System.Drawing.dll" />
+    <Content Include="libs\Managed\System.EnterpriseServices.dll" />
+    <Content Include="libs\Managed\System.Globalization.Extensions.dll" />
+    <Content Include="libs\Managed\System.IO.Compression.dll" />
+    <Content Include="libs\Managed\System.IO.Compression.FileSystem.dll" />
+    <Content Include="libs\Managed\System.Net.Http.dll" />
+    <Content Include="libs\Managed\System.Numerics.dll" />
+    <Content Include="libs\Managed\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="libs\Managed\System.Runtime.dll" />
+    <Content Include="libs\Managed\System.Runtime.Serialization.dll" />
+    <Content Include="libs\Managed\System.Runtime.Serialization.Xml.dll" />
+    <Content Include="libs\Managed\System.Security.dll" />
+    <Content Include="libs\Managed\System.ServiceModel.Internals.dll" />
+    <Content Include="libs\Managed\System.Transactions.dll" />
+    <Content Include="libs\Managed\System.Xml.dll" />
+    <Content Include="libs\Managed\System.Xml.Linq.dll" />
+    <Content Include="libs\Managed\System.Xml.XPath.XDocument.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Core.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Core.Enums.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Core.Interfaces.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Core.Models.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Helix.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.Helix.Models.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.V5.dll" />
+    <Content Include="libs\Managed\TwitchLib.Api.V5.Models.dll" />
+    <Content Include="libs\Managed\TwitchLib.Client.dll" />
+    <Content Include="libs\Managed\TwitchLib.Client.Enums.dll" />
+    <Content Include="libs\Managed\TwitchLib.Client.Models.dll" />
+    <Content Include="libs\Managed\TwitchLib.Communication.dll" />
+    <Content Include="libs\Managed\TwitchLib.PubSub.dll" />
+    <Content Include="libs\Managed\TwitchLib.Unity.dll" />
+    <Content Include="libs\Managed\Unity.Addressables.dll" />
+    <Content Include="libs\Managed\Unity.Analytics.DataPrivacy.dll" />
+    <Content Include="libs\Managed\Unity.Analytics.StandardEvents.dll" />
+    <Content Include="libs\Managed\Unity.Analytics.StandardEvents.dll.mdb" />
+    <Content Include="libs\Managed\Unity.Analytics.Tracker.dll" />
+    <Content Include="libs\Managed\Unity.Analytics.Tracker.dll.mdb" />
+    <Content Include="libs\Managed\Unity.Burst.dll" />
+    <Content Include="libs\Managed\Unity.Burst.Unsafe.dll" />
+    <Content Include="libs\Managed\Unity.Collections.dll" />
+    <Content Include="libs\Managed\Unity.Formats.Fbx.Runtime.dll" />
+    <Content Include="libs\Managed\Unity.InputSystem.dll" />
+    <Content Include="libs\Managed\Unity.Mathematics.dll" />
+    <Content Include="libs\Managed\Unity.Polybrush.dll" />
+    <Content Include="libs\Managed\Unity.ProBuilder.dll" />
+    <Content Include="libs\Managed\Unity.ProBuilder.KdTree.dll" />
+    <Content Include="libs\Managed\Unity.ProBuilder.Poly2Tri.dll" />
+    <Content Include="libs\Managed\Unity.ProBuilder.Stl.dll" />
+    <Content Include="libs\Managed\Unity.ProGrids.dll" />
+    <Content Include="libs\Managed\Unity.Recorder.Base.dll" />
+    <Content Include="libs\Managed\Unity.Recorder.dll" />
+    <Content Include="libs\Managed\Unity.ResourceManager.dll" />
+    <Content Include="libs\Managed\Unity.ScriptableBuildPipeline.dll" />
+    <Content Include="libs\Managed\Unity.TextMeshPro.dll" />
+    <Content Include="libs\Managed\Unity.Timeline.dll" />
+    <Content Include="libs\Managed\UnityEngine.AccessibilityModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.Advertisements.dll" />
+    <Content Include="libs\Managed\UnityEngine.AIModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.AndroidJNIModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.AnimationModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ARModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.AssetBundleModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.AudioModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ClothModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ClusterInputModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ClusterRendererModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.CoreModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.CrashReportingModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.DirectorModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.dll" />
+    <Content Include="libs\Managed\UnityEngine.DSPGraphModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.GameCenterModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.GridModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.HotReloadModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ImageConversionModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.IMGUIModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.InputLegacyModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.InputModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.JSONSerializeModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.LocalizationModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.Monetization.dll" />
+    <Content Include="libs\Managed\UnityEngine.ParticleSystemModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.PerformanceReportingModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.Physics2DModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.PhysicsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.ProfilerModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.Purchasing.dll" />
+    <Content Include="libs\Managed\UnityEngine.ScreenCaptureModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.SharedInternalsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.SpatialTracking.dll" />
+    <Content Include="libs\Managed\UnityEngine.SpriteMaskModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.SpriteShapeModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.StreamingModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.SubstanceModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.SubsystemsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TerrainModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TerrainPhysicsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TextCoreModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TextRenderingModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TilemapModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.TLSModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UI.dll" />
+    <Content Include="libs\Managed\UnityEngine.UIElementsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UIModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UmbraModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UNETModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityAnalyticsModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityConnectModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityTestProtocolModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityWebRequestModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityWebRequestTextureModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.UnityWebRequestWWWModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.VehiclesModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.VFXModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.VideoModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.VRModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.WindModule.dll" />
+    <Content Include="libs\Managed\UnityEngine.XR.LegacyInputHelpers.dll" />
+    <Content Include="libs\Managed\UnityEngine.XRModule.dll" />
+    <Content Include="libs\Managed\UnityUIExtensions.dll" />
+    <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
+    <Content Include="libs\Other\AngryLevelLoader.dll" />
+    <Content Include="libs\Other\Configgy.dll" />
   </ItemGroup>
 
 </Project>

@@ -1,60 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CultOfJakito.UltraTelephone2
+namespace CultOfJakito.UltraTelephone2.Hydra;
+
+[RegisterChaosEffect]
+[HarmonyPatch]
+public class NoEscape : ChaosEffect
 {
-    [RegisterChaosEffect]
-    [HarmonyPatch]
-    public class NoEscape : ChaosEffect
+    [Configgable("Hydra/Chaos", "No Escape")]
+    private static ConfigToggle s_enabled = new(true);
+
+    public override void BeginEffect(System.Random random) => DisableEscapeButtons();
+
+    private void DisableEscapeButtons()
     {
-        [Configgable("Hydra/Chaos", "No Escape")]
-        private static ConfigToggle s_enabled = new ConfigToggle(true);
-
-        public override void BeginEffect(System.Random random)
+        Transform pauseMenuTf = CanvasController.Instance.transform.Find("PauseMenu");
+        if (pauseMenuTf == null)
         {
-            DisableEscapeButtons();
+            return;
         }
 
-        private void DisableEscapeButtons()
-        {
-            Transform pauseMenuTF = CanvasController.Instance.transform.Find("PauseMenu");
-            if (pauseMenuTF == null)
-                return;
+        pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Quit Mission")?.gameObject.SetActive(false);
+        pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Restart Mission")?.gameObject.SetActive(false);
+        pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Restart Checkpoint")?.gameObject.SetActive(false);
+    }
 
-            pauseMenuTF.transform.GetComponentsInChildren<Button>().Where(x=>x.name == "Quit Mission").FirstOrDefault()?.gameObject.SetActive(false);
-            pauseMenuTF.transform.GetComponentsInChildren<Button>().Where(x=>x.name == "Restart Mission").FirstOrDefault()?.gameObject.SetActive(false);
-            pauseMenuTF.transform.GetComponentsInChildren<Button>().Where(x=>x.name == "Restart Checkpoint").FirstOrDefault()?.gameObject.SetActive(false);
+    public override int GetEffectCost() => 4;
+
+    public override bool CanBeginEffect(ChaosSessionContext ctx)
+    {
+        if (!s_enabled.Value)
+        {
+            return false;
         }
 
-        public override int GetEffectCost()
+        return ctx.LevelName switch
         {
-            return 4;
-        }
-
-        public override bool CanBeginEffect(ChaosSessionContext ctx)
-        {
-            if (!s_enabled.Value)
-                return false;
-
-            switch (ctx.LevelName)
-            {
-                case "uk_construct":
-                    return false;
-                case "CreditsMuseum2":
-                    return false;
-                case "Endless":
-                    return false;
-            }
-
-            return base.CanBeginEffect(ctx);
-        }
-
+            "uk_construct" => false,
+            "CreditsMuseum2" => false,
+            "Endless" => false,
+            _ => base.CanBeginEffect(ctx)
+        };
     }
 }

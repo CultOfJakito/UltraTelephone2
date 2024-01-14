@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using HarmonyLib;
 
-namespace CultOfJakito.UltraTelephone2
+namespace CultOfJakito.UltraTelephone2.Hydra.FakePBank.Patches;
+
+[HarmonyPatch]
+public static class InstantLandmine
 {
-    [HarmonyPatch]
-    public static class InstantLandmine
+    [Configgable("Hydra/Tweaks", "Realistic Landmines")]
+    private static ConfigToggle s_enabled = new(true);
+
+
+    [HarmonyPatch(typeof(Landmine), nameof(Landmine.Activate))]
+    [HarmonyPostfix]
+    public static void OnActivate(Landmine instance, bool activated)
     {
-        [Configgable("Hydra/Tweaks", "Realistic Landmines")]
-        private static ConfigToggle enabled = new ConfigToggle(true);
-
-
-        [HarmonyPatch(typeof(Landmine), nameof(Landmine.Activate)), HarmonyPostfix]
-        public static void OnActivate(Landmine __instance, bool ___activated)
+        if (!s_enabled.Value)
         {
-            if (!enabled.Value)
-                return;
-
-            //Reflection is being dumb so idfc cry about it
-            __instance.Invoke("Explode", 0f);
+            return;
         }
 
+        //Reflection is being dumb so idfc cry about it
+        instance.Invoke("Explode", 0f);
     }
 }
