@@ -16,10 +16,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AngryLevelLoader">
+      <HintPath>libs\Other\AngryLevelLoader.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
 		<Private>false</Private>
 	</Reference>
+    <Reference Include="Configgy">
+      <HintPath>libs\Other\Configgy.dll</HintPath>
+    </Reference>
+    <Reference Include="RudeLevelScripts.Essentials">
+      <HintPath>libs\Other\RudeLevelScripts.Essentials.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>libs\Unity.Addressables.dll</HintPath>
 		<Private>false</Private>
@@ -28,6 +37,9 @@
       <HintPath>libs\Unity.ResourceManager.dll</HintPath>
 		<Private>false</Private>
     </Reference>
+	<Reference Include="Unity.TextMeshPro">
+	  <HintPath>libs\Managed\Unity.TextMeshPro.dll</HintPath>
+	</Reference>
     <Reference Include="UnityEngine">
       <HintPath>libs\UnityEngine.dll</HintPath>
 		<Private>false</Private>
@@ -52,27 +64,9 @@
       <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
     <Private>false</Private>
     </Reference>
-	<Reference Include="TextMeshPro">
-      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-	<Reference Include="AngryLevelLoader">
-      <HintPath>libs\AngryLevelLoader.dll</HintPath>
-		<Private>false</Private>
-    </Reference>
-	<Reference Include="RudeLevelScripts.Essentials">
-      <HintPath>libs\RudeLevelScripts.Essentials.dll</HintPath>
-		<Private>false</Private>
-    </Reference>
 	<Reference Include="NewtonSoft.Json">
       <HintPath>libs\NewtonSoft.Json.dll</HintPath>
     </Reference>
-	<Reference Include="Configgy">
-      <HintPath>libs\Configgy.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Patches\" />
   </ItemGroup>
 
   <ItemGroup>
