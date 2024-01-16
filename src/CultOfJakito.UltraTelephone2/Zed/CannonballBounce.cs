@@ -42,8 +42,6 @@ public class BouncyCannonball : MonoBehaviour
     }
     void Start()
     {
-        // Create a sphere collider and assign the physics material
-        //Debug.Log("Bouncy cannonball");
         sc = gameObject.AddComponent<SphereCollider>();
         sc.radius = 0.8f;
         sc.material = BouncyCannonballPatch.Bouncy;
