@@ -1,124 +1,175 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2
+namespace CultOfJakito.UltraTelephone2.Hydra;
+
+[RegisterChaosEffect]
+[HarmonyPatch]
+public class DoorStuck : ChaosEffect
 {
-    [RegisterChaosEffect]
-    [HarmonyPatch]
-    public class DoorStuck : ChaosEffect
+    [Configgable("Hydra/Chaos", "Door Stuck")]
+    private static ConfigToggle s_enabled = new(true);
+
+    private static bool s_effectActive;
+    private static System.Random s_random;
+
+    public override void BeginEffect(System.Random rand)
     {
+        s_random = rand;
+        s_effectActive = true;
+    }
 
-        [Configgable("Hydra/Chaos", "Door Stuck")]
-        private static ConfigToggle s_enabled = new ConfigToggle(true);
-
-        static bool s_effectActive = false;
-        static System.Random random;
-
-        public override void BeginEffect(System.Random rand)
+    [HarmonyPatch(typeof(Door), nameof(Door.Open))]
+    [HarmonyPostfix]
+    public static void OnDoorOpen(Door instance)
+    {
+        if (!s_effectActive || !s_enabled.Value)
         {
-            random = rand;
-            s_effectActive = true;
+            return;
         }
 
-        [HarmonyPatch(typeof(Door), (nameof(Door.Open))), HarmonyPostfix]
-        public static void OnDoorOpen(Door __instance)
+        if (instance.TryGetComponent(out DoorJammer jammer))
         {
-            if (!s_effectActive || !s_enabled.Value)
-                return;
-
-            if (__instance.TryGetComponent<DoorJammer>(out DoorJammer jammer))
-                return;
-
-            jammer = __instance.gameObject.AddComponent<DoorJammer>();
-            jammer.Door = __instance;
-            jammer.JamOnOpen = true;
-            jammer.JamOnPercent = ((float)random.NextDouble() / 5f);
-            jammer.UnjamAfterSeconds = (float)random.NextDouble() * 8f;
+            return;
         }
 
-        //[HarmonyPatch(typeof(BigDoor), (nameof(BigDoor.Open))), HarmonyPostfix]
-        //public static void OnBigDoorOpen(BigDoor __instance)
-        //{
+        jammer = instance.gameObject.AddComponent<DoorJammer>();
+        jammer.Door = instance;
+        jammer.JamOnOpen = true;
+        jammer.JamOnPercent = (float)s_random.NextDouble() / 5f;
+        jammer.UnjamAfterSeconds = (float)s_random.NextDouble() * 5f + 3f;
+    }
 
-        //}
-
-        public override bool CanBeginEffect(ChaosSessionContext ctx)
+    [HarmonyPatch(typeof(BigDoor), nameof(BigDoor.Open))]
+    [HarmonyPostfix]
+    public static void OnBigDoorOpen(BigDoor instance)
+    {
+        if (!s_effectActive || !s_enabled.Value)
         {
-            if (!s_enabled.Value)
-                return false;
-
-            return base.CanBeginEffect(ctx);
+            return;
         }
 
-        public override int GetEffectCost()
+        if (instance.TryGetComponent(out DoorJammer jammer))
         {
-            return 4;
+            return;
         }
 
-        private void OnDestroy()
+        jammer = instance.gameObject.AddComponent<DoorJammer>();
+        jammer.BigDoor = instance;
+        jammer.JamOnOpen = true;
+        jammer.JamOnPercent = (float)s_random.NextDouble() / 5f;
+        jammer.UnjamAfterSeconds = (float)s_random.NextDouble() * 5f + 3f;
+    }
+
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+    public override int GetEffectCost() => 4;
+    private void OnDestroy() => s_effectActive = false;
+}
+
+public class DoorJammer : MonoBehaviour
+{
+    public Door Door;
+    public BigDoor BigDoor;
+    public float JamOnPercent;
+    public bool JamOnOpen;
+    public float UnjamAfterSeconds = 5f;
+
+    private bool _didJam;
+
+    private void Start()
+    {
+        if (Door != null)
         {
-            s_effectActive = false;
+            Door.onFullyOpened.AddListener(() => { _didJam = false; });
+        }
+
+        if (BigDoor != null)
+        {
+            Door door = BigDoor.GetComponentInParent<Door>();
+            if (door != null)
+            {
+                door.onFullyOpened.AddListener(() => { _didJam = false; });
+            }
         }
     }
 
-    public class DoorJammer : MonoBehaviour
+    private void Update()
     {
-        public Door Door;
-        public float JamOnPercent;
-        public bool JamOnOpen;
-        public float UnjamAfterSeconds = 5f;
+        DoorUpdate();
+        BigDoorUpdate();
+    }
 
-        private bool didJam;
-
-
-        private void Start()
+    private void BigDoorUpdate()
+    {
+        if (BigDoor == null || _didJam)
         {
-            if (Door != null)
-                Door.onFullyOpened.AddListener(() =>
-                {
-                    didJam = false;
-                });
+            return;
         }
 
-        private void Update()
+        if (JamOnOpen == BigDoor.open)
         {
-            if (Door == null || didJam)
-                return;
+            Vector3 rot = BigDoor.transform.localEulerAngles;
+            float valueTraveled = JamOnOpen ? MathUtils.InverseLerpVector3(BigDoor.origRotation.eulerAngles, BigDoor.openRotation, rot) :
+                MathUtils.InverseLerpVector3(BigDoor.openRotation, BigDoor.origRotation.eulerAngles, rot);
 
-            if(JamOnOpen == Door.open)
+            if (valueTraveled > JamOnPercent)
             {
-                Vector3 pos = Door.transform.localPosition;
-                float valueTraveled = 0f;
-
-                if(JamOnOpen)
-                    valueTraveled = MathUtils.InverseLerpVector3(Door.closedPos, Door.openPos, pos);
-                else
-                    valueTraveled = MathUtils.InverseLerpVector3(Door.openPos, Door.closedPos, pos);
-
-                if (valueTraveled > JamOnPercent)
-                {
-                    Jam();
-                }
+                Jam();
             }
         }
+    }
 
-        private void Jam()
+    private void DoorUpdate()
+    {
+        if (Door == null || _didJam)
         {
-            //Door stuck.
-            didJam = true;
-            Door.enabled = false;
-            Invoke(nameof(ReleaseJam), UnjamAfterSeconds);
+            return;
         }
 
-        private void ReleaseJam()
+        if (JamOnOpen == Door.open)
+        {
+            Vector3 pos = Door.transform.localPosition;
+            float valueTraveled = JamOnOpen ? MathUtils.InverseLerpVector3(Door.closedPos, Door.openPos, pos) :
+                MathUtils.InverseLerpVector3(Door.openPos, Door.closedPos, pos);
+
+            if (valueTraveled > JamOnPercent)
+            {
+                Jam();
+            }
+        }
+    }
+
+    private void Jam()
+    {
+        //Door stuck.
+        _didJam = true;
+
+        if (Door != null)
+        {
+            Door.enabled = false;
+        }
+
+        if (BigDoor != null)
+        {
+            BigDoor.enabled = false;
+        }
+
+        Invoke(nameof(ReleaseJam), UnjamAfterSeconds);
+    }
+
+    private void ReleaseJam()
+    {
+        if (Door != null)
         {
             Door.enabled = true;
+        }
+
+        if (BigDoor != null)
+        {
+            BigDoor.enabled = true;
         }
     }
 }

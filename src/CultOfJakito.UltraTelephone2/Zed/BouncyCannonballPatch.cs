@@ -1,11 +1,12 @@
 using HarmonyLib;
-using ULTRAKILL;
 using UnityEngine;
+
+namespace CultOfJakito.UltraTelephone2.Zed;
 
 [HarmonyPatch]
 public class BouncyCannonballPatch
 {
-    public static PhysicMaterial Bouncy = new PhysicMaterial("Bouncy")
+    public static PhysicMaterial Bouncy = new("Bouncy")
     {
         bounciness = 1f,
         dynamicFriction = 0f,
@@ -13,18 +14,16 @@ public class BouncyCannonballPatch
         frictionCombine = PhysicMaterialCombine.Minimum,
         bounceCombine = PhysicMaterialCombine.Maximum
     };
+
     [HarmonyPatch(typeof(Cannonball), "Start")]
     [HarmonyPrefix]
-    public static void Start(Cannonball __instance)
+    public static void Start(Cannonball instance)
     {
-        BouncyCannonball cb = __instance.gameObject.AddComponent<BouncyCannonball>();
-        cb.rb = __instance.GetComponent<Rigidbody>();
+        BouncyCannonball cb = instance.gameObject.AddComponent<BouncyCannonball>();
+        cb.Rb = instance.GetComponent<Rigidbody>();
     }
+
     [HarmonyPatch(typeof(Cannonball), "Break")]
     [HarmonyPrefix]
-    public static bool Break(Cannonball __instance)
-    {
-        if(!CannonBallBounce.Enabled.Value || __instance.GetComponent<BouncyCannonball>().RemainingTime <= 0) return true;
-        return false;
-    }
+    public static bool Break(Cannonball instance) => !CannonBallBounce.Enabled.Value || instance.GetComponent<BouncyCannonball>().RemainingTime <= 0;
 }
