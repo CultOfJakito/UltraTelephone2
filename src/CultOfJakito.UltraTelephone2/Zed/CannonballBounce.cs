@@ -35,9 +35,9 @@ public class BouncyCannonball : MonoBehaviour
 
     private void Start()
     {
-        sc = gameObject.AddComponent<SphereCollider>();
-        sc.radius = 0.8f;
-        sc.material = BouncyCannonballPatch.Bouncy;
+        _sc = gameObject.AddComponent<SphereCollider>();
+        _sc.radius = 0.8f;
+        _sc.material = BouncyCannonballPatch.Bouncy;
     }
 
     private bool _hurtPlayer;
