@@ -13,8 +13,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy;
 /// Suggestion #298: from: oxblood, "yuri" <br/>
 /// Adds an image to the terminal
 /// </summary>
-[RegisterChaosEffect]
 [HarmonyPatch]
+[RegisterChaosEffect]
 internal class Yuri : ChaosEffect
 {
     private static GameObject s_yuri;
