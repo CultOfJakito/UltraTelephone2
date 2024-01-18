@@ -434,6 +434,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a071b3b3a848a7409441962b5ef0782, type: 3}
+--- !u!1001 &456789218522486078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589834816376830939, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591126217141748220, guid: 48593d18b3b1f0f4b98484f300ba0281,
+        type: 3}
+      propertyPath: m_Name
+      value: Yuri!!!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48593d18b3b1f0f4b98484f300ba0281, type: 3}
 --- !u!1001 &1482398720459108370
 PrefabInstance:
   m_ObjectHideFlags: 0
