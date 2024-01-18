@@ -51,7 +51,7 @@ internal class HrtBurgers : ChaosEffect
             if (itemType == ItemType.SkullRed)
             {
                 Debug.Log("Instantiating estrogen burger");
-                Instantiate(s_estrogenBurger, renderer.transform.position, renderer.transform.rotation, renderer.transform.parent);
+                Instantiate(s_estrogenBurger, renderer.transform);
             }
 
             if (itemType == ItemType.SkullBlue)
