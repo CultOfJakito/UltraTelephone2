@@ -26,9 +26,9 @@ internal class HrtBurger : ChaosEffect
 
     [HarmonyPatch(typeof(ItemIdentifier), "Start")]
     [HarmonyPostfix]
-    public void ReplaceSkull(ItemIdentifier instance, ItemType itemType)
+    public void ReplaceSkull(ItemIdentifier __instance, ItemType itemType)
     {
-        Renderer renderer = instance.gameObject.GetComponent<Renderer>();
+        Renderer renderer = __instance.gameObject.GetComponent<Renderer>();
 
         if (renderer == null)
         {

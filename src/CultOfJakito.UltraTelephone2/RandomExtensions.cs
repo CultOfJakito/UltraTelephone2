@@ -45,4 +45,20 @@ internal static class RandomExtensions
         T[] elements = source.ToArray();
         return elements[rng.Next(elements.Length)];
     }
+
+    public static bool FastStartsWith(this string str, string value)
+    {
+        if (value.Length > str.Length)
+        {
+            return false;
+        }
+        for (int i = 0; i < value.Length; i++)
+        {
+            if (str[i] != value[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

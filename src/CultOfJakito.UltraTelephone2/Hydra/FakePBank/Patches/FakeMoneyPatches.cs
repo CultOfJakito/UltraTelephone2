@@ -10,9 +10,9 @@ public static class FakeMoneyPatches
     [HarmonyPatch(typeof(GameProgressSaver))]
     [HarmonyPatch(nameof(GameProgressSaver.GetMoney))]
     [HarmonyPrefix]
-    public static bool SwitcherooFakeMoney(ref int result)
+    public static bool SwitcherooFakeMoney(ref int __result)
     {
-        result = (int)FakeBank.GetCurrentMoney();
+        __result = (int)FakeBank.GetCurrentMoney();
         return false;
     }
 
@@ -28,19 +28,19 @@ public static class FakeMoneyPatches
     [HarmonyPatch(typeof(MoneyText))]
     [HarmonyPatch(nameof(MoneyText.DivideMoney))]
     [HarmonyPrefix]
-    public static bool FixPString(ref string result, int dosh)
+    public static bool FixPString(ref string __result, int dosh)
     {
         if (dosh == int.MaxValue)
         {
-            result = "∞";
+            __result = "∞";
         }
         else if (dosh == int.MinValue)
         {
-            result = "-∞";
+            __result = "-∞";
         }
         else
         {
-            result = dosh.ToString("N0");
+            __result = dosh.ToString("N0");
         }
 
         return false;
@@ -49,9 +49,9 @@ public static class FakeMoneyPatches
     [HarmonyPatch(typeof(MoneyText))]
     [HarmonyPatch(nameof(MoneyText.UpdateMoney))]
     [HarmonyPostfix]
-    public static void FixMoneyDisplay(MoneyText instance)
+    public static void FixMoneyDisplay(MoneyText __instance)
     {
-        TMP_Text text = instance.GetComponent<TMP_Text>();
+        TMP_Text text = __instance.GetComponent<TMP_Text>();
         text.text = FakeBank.FormatMoney(FakeBank.GetCurrentMoney()) + "<color=orange>P</color>";
     }
 }

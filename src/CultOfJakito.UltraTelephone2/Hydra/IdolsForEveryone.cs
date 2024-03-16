@@ -26,26 +26,26 @@ public class IdolsForEveryone : ChaosEffect
 
     [HarmonyPatch(typeof(EnemyIdentifier), "Awake")]
     [HarmonyPostfix]
-    public static void OnEnemySpawn(EnemyIdentifier instance)
+    public static void OnEnemySpawn(EnemyIdentifier __instance)
     {
         if (!s_enabled.Value || !s_effectActive)
         {
             return;
         }
 
-        if (instance.dead)
+        if (__instance.dead)
         {
             return;
         }
 
         //Dont spawn idols for idols or centaur ffs
-        if (instance.enemyType is EnemyType.Idol or EnemyType.Centaur)
+        if (__instance.enemyType is EnemyType.Idol or EnemyType.Centaur)
         {
             return;
         }
 
-        Vector3 pos = instance.transform.position;
-        Transform parent = instance.transform.parent;
+        Vector3 pos = __instance.transform.position;
+        Transform parent = __instance.transform.parent;
 
         if (parent == null)
         {
@@ -55,7 +55,7 @@ public class IdolsForEveryone : ChaosEffect
         //spawn an idol
         UkPrefabs.Idol.LoadObjectAsync((s, r) =>
         {
-            if (instance == null || parent == null || s != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            if (__instance == null || parent == null || s != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
             {
                 return;
             }
@@ -63,7 +63,7 @@ public class IdolsForEveryone : ChaosEffect
             GameObject newIdol = Instantiate(r, pos, Quaternion.identity);
             newIdol.transform.SetParent(parent, true);
             Idol idol = newIdol.GetComponent<Idol>();
-            idol.ChangeOverrideTarget(instance);
+            idol.ChangeOverrideTarget(__instance);
         });
     }
 

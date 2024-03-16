@@ -12,7 +12,7 @@ public static class InstantLandmine
 
     [HarmonyPatch(typeof(Landmine), nameof(Landmine.Activate))]
     [HarmonyPostfix]
-    public static void OnActivate(Landmine instance, bool activated)
+    public static void OnActivate(Landmine __instance)
     {
         if (!s_enabled.Value)
         {
@@ -20,6 +20,6 @@ public static class InstantLandmine
         }
 
         //Reflection is being dumb so idfc cry about it
-        instance.Invoke("Explode", 0f);
+        __instance.Invoke("Explode", 0f);
     }
 }

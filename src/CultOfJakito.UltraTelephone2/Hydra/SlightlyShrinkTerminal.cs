@@ -21,7 +21,7 @@ public class SlightlyShrinkTerminal : ChaosEffect
 
     [HarmonyPatch(typeof(ShopZone), "Start")]
     [HarmonyPostfix]
-    public static void OnStart(ShopZone instance)
+    public static void OnStart(ShopZone __instance)
     {
         if (!s_effectActive || !s_enabled.Value)
         {
@@ -29,20 +29,20 @@ public class SlightlyShrinkTerminal : ChaosEffect
         }
 
         //Horrible and disgusting but I have to circumvent meshcombine somehow
-        GameObject cube = instance.transform.Find("Cube").gameObject;
+        GameObject cube = __instance.transform.Find("Cube").gameObject;
         cube.SetActive(false);
 
         GameObject terminalPrefab = UkPrefabs.ShopTerminal.GetObject();
 
         GameObject terminalCopy = Instantiate(terminalPrefab);
 
-        terminalCopy.transform.SetParent(instance.transform.parent, true);
-        terminalCopy.transform.position = instance.transform.position;
-        terminalCopy.transform.rotation = instance.transform.rotation;
-        terminalCopy.transform.localScale = instance.transform.localScale;
+        terminalCopy.transform.SetParent(__instance.transform.parent, true);
+        terminalCopy.transform.position = __instance.transform.position;
+        terminalCopy.transform.rotation = __instance.transform.rotation;
+        terminalCopy.transform.localScale = __instance.transform.localScale;
         GameObject terminalMesh = terminalCopy.transform.Find("Cube").gameObject;
 
-        terminalMesh.transform.SetParent(instance.transform, true);
+        terminalMesh.transform.SetParent(__instance.transform, true);
         DestroyImmediate(terminalCopy);
 
         terminalMesh.layer = cube.layer;
@@ -58,7 +58,7 @@ public class SlightlyShrinkTerminal : ChaosEffect
         randomValue = (randomValue - 0.5f) * 2f;
         randomValue *= s_variance.Value;
         randomValue = 1 - randomValue;
-        instance.transform.localScale *= randomValue;
+        __instance.transform.localScale *= randomValue;
     }
 
     private static System.Random s_rng;

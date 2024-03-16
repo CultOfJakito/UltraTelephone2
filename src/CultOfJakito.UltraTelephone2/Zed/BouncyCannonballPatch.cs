@@ -17,13 +17,13 @@ public class BouncyCannonballPatch
 
     [HarmonyPatch(typeof(Cannonball), "Start")]
     [HarmonyPrefix]
-    public static void Start(Cannonball instance)
+    public static void Start(Cannonball __instance)
     {
-        BouncyCannonball cb = instance.gameObject.AddComponent<BouncyCannonball>();
-        cb.Rb = instance.GetComponent<Rigidbody>();
+        BouncyCannonball cb = __instance.gameObject.AddComponent<BouncyCannonball>();
+        cb.Rb = __instance.GetComponent<Rigidbody>();
     }
 
     [HarmonyPatch(typeof(Cannonball), "Break")]
     [HarmonyPrefix]
-    public static bool Break(Cannonball instance) => !CannonBallBounce.Enabled.Value || instance.GetComponent<BouncyCannonball>().RemainingTime <= 0;
+    public static bool Break(Cannonball __instance) => !CannonBallBounce.Enabled.Value || __instance.GetComponent<BouncyCannonball>().RemainingTime <= 0;
 }

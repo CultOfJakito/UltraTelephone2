@@ -24,20 +24,20 @@ public class DoorStuck : ChaosEffect
 
     [HarmonyPatch(typeof(Door), nameof(Door.Open))]
     [HarmonyPostfix]
-    public static void OnDoorOpen(Door instance)
+    public static void OnDoorOpen(Door __instance)
     {
         if (!s_effectActive || !s_enabled.Value)
         {
             return;
         }
 
-        if (instance.TryGetComponent(out DoorJammer jammer))
+        if (__instance.TryGetComponent(out DoorJammer jammer))
         {
             return;
         }
 
-        jammer = instance.gameObject.AddComponent<DoorJammer>();
-        jammer.Door = instance;
+        jammer = __instance.gameObject.AddComponent<DoorJammer>();
+        jammer.Door = __instance;
         jammer.JamOnOpen = true;
         jammer.JamOnPercent = (float)s_random.NextDouble() / 5f;
         jammer.UnjamAfterSeconds = (float)s_random.NextDouble() * 5f + 3f;
@@ -45,20 +45,20 @@ public class DoorStuck : ChaosEffect
 
     [HarmonyPatch(typeof(BigDoor), nameof(BigDoor.Open))]
     [HarmonyPostfix]
-    public static void OnBigDoorOpen(BigDoor instance)
+    public static void OnBigDoorOpen(BigDoor __instance)
     {
         if (!s_effectActive || !s_enabled.Value)
         {
             return;
         }
 
-        if (instance.TryGetComponent(out DoorJammer jammer))
+        if (__instance.TryGetComponent(out DoorJammer jammer))
         {
             return;
         }
 
-        jammer = instance.gameObject.AddComponent<DoorJammer>();
-        jammer.BigDoor = instance;
+        jammer = __instance.gameObject.AddComponent<DoorJammer>();
+        jammer.BigDoor = __instance;
         jammer.JamOnOpen = true;
         jammer.JamOnPercent = (float)s_random.NextDouble() / 5f;
         jammer.UnjamAfterSeconds = (float)s_random.NextDouble() * 5f + 3f;

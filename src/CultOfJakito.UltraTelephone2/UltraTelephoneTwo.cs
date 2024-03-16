@@ -3,6 +3,7 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,6 +44,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         ZelzmiyBundle = new AssetLoader(Data.Paths.GetBundleFilePath("Zelzmiy.resource"));
 
         InGameCheck.OnLevelChanged += DoThing;
+        MinecraftBookPatch.Init();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

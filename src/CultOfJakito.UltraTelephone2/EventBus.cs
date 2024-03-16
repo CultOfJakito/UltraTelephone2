@@ -10,9 +10,9 @@ internal static class EventBus
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.GetHurt))]
     private static class RaisePlayerDiedPatch
     {
-        public static void Postfix(NewMovement instance)
+        public static void Postfix(NewMovement __instance)
         {
-            if (!instance.dead || s_playerDiedRaised)
+            if (!__instance.dead || s_playerDiedRaised)
             {
                 return;
             }
