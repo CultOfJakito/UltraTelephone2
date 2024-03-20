@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
@@ -24,7 +25,7 @@ internal class Yuri : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        s_yuri = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("yuri!!!");
+        s_yuri = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("yuri!!!");
 
         if (!s_yuri)
         {

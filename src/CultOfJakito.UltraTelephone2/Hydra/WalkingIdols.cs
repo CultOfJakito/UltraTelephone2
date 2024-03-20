@@ -18,7 +18,7 @@ public class WalkingIdols : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     [Configgable("Hydra/Chaos", "Walking Idol Speed")]
-    public static FloatSlider S_WalkSpeed = new(20f, 0.1f, 30f);
+    public static FloatSlider S_WalkSpeed = new(40f, 0.1f, 200f);
 
     [HarmonyPatch(typeof(Idol), "Start")]
     [HarmonyPostfix]
@@ -74,8 +74,11 @@ public class IdolWalker : MonoBehaviour
 
     private void Update()
     {
-        if(agent.remainingDistance < 3f || timeUntilChangeDirection <= 0f)
+        timeUntilChangeDirection = Mathf.Max(0f, timeUntilChangeDirection - Time.deltaTime);
+
+        if(agent.remainingDistance < 2f || timeUntilChangeDirection <= 0f)
         {
+            timeUntilChangeDirection = rng.Float() * 4f;
             targetPoint = RandomNearbyPoint();
         }
 
@@ -94,7 +97,7 @@ public class IdolWalker : MonoBehaviour
 
     private Vector3 RandomNearbyPoint()
     {
-        Vector3 randomDirection = rng.InsideUnitSphere() * 10f;
+        Vector3 randomDirection = rng.InsideUnitSphere() * 16f;
         randomDirection += transform.position;
         NavMeshHit hit;
         Vector3 pos = Vector3.zero;

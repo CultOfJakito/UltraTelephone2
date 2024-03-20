@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
@@ -22,8 +23,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         public override void BeginEffect(UniRandom random)
         {
-            s_oreo = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("Oreo");
-            s_oreoSplash = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("Oreo Splash");
+            s_oreo = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo");
+            s_oreoSplash = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo Splash");
         }
 
         public override int GetEffectCost() => 1;

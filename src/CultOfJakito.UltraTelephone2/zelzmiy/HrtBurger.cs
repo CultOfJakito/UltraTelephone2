@@ -1,4 +1,5 @@
-﻿using CultOfJakito.UltraTelephone2.Chaos;
+﻿using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
@@ -13,8 +14,8 @@ internal class HrtBurger : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
-        _testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");
+        _estrogenBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
+        _testosteroneBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");
 
         if (!_estrogenBurger || !_testosteroneBurger)
         {

@@ -1,4 +1,5 @@
 ﻿using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
@@ -22,8 +23,8 @@ internal class HrtBurgers : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        s_estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
-        s_testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
+        s_estrogenBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
+        s_testosteroneBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
     }
 
     public override int GetEffectCost() => 1;

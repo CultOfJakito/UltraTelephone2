@@ -16,10 +16,6 @@ namespace CultOfJakito.UltraTelephone2;
 [BepInPlugin(nameof(UltraTelephone2), "UltraTelephone 2", "1.0.0")]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
-    public AssetLoader AssetLoader { get; private set; }
-
-    public AssetLoader ZelzmiyBundle;
-
     public ChaosManager ChaosManager { get; private set; }
     public UniRandom Random { get; private set; }
 
@@ -35,7 +31,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Data.Paths.ValidateFolders();
         InGameCheck.Init();
-        ZedResources.Init();
 
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
@@ -43,7 +38,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         int dayOfTheMonth = DateTime.Now.Day;
         Random = new UniRandom(dayOfTheMonth);
 
-        ZelzmiyBundle = new AssetLoader(Data.Paths.GetBundleFilePath("Zelzmiy.resource"));
+        UT2Assets.ForceLoad();
 
         RegisterEventListeners();
 

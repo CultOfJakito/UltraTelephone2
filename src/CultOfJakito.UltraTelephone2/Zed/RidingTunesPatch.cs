@@ -1,3 +1,4 @@
+using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Zed
         [HarmonyPostfix]
         public static void Riding(Grenade __instance)
         {
-            AudioClip? audio = ZedResources.GetCached<AudioClip>("ridingtunes");
+            AudioClip audio = UT2Assets.ZedBundle.LoadAsset<AudioClip>("ridingtunes");
             if(__instance.GetComponentsInChildren<Marker>().Any(s => s.Name == "PlaySound"))
             {
                 AudioSource audioSource = __instance.GetComponentsInChildren<Marker>().Where(s => s.Name == "PlaySound").First().gameObject.GetComponent<AudioSource>();   
