@@ -33,8 +33,10 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Data.Paths.ValidateFolders();
         InGameCheck.Init();
+        ZedResources.Init();
 
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
+        Patches.PatchAll();
 
         string username = Environment.UserName;
         int dayOfTheWeek = (int)DateTime.Now.DayOfWeek;
