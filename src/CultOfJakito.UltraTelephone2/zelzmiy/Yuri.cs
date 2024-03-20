@@ -22,7 +22,7 @@ internal class Yuri : ChaosEffect
     [Configgable("zelzmiy", "Yuri blocking Termianl")]
     private static ConfigToggle s_enabled = new(true);
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         s_yuri = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("yuri!!!");
 

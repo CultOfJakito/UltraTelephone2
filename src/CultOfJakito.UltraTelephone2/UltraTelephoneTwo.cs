@@ -3,7 +3,9 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.LevelSpecific;
 using CultOfJakito.UltraTelephone2.Zed;
+using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,7 +21,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     public AssetLoader ZelzmiyBundle;
 
     public ChaosManager ChaosManager { get; private set; }
-    public System.Random Random { get; private set; }
+    public UniRandom Random { get; private set; }
 
     private ConfigBuilder _config;
     public static UltraTelephoneTwo Instance { get; private set; }
@@ -38,16 +40,21 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
-        string username = Environment.UserName;
-        int dayOfTheWeek = (int)DateTime.Now.DayOfWeek;
-
-        Random = new System.Random(username.GetHashCode() + dayOfTheWeek);
+        int dayOfTheMonth = DateTime.Now.Day;
+        Random = new UniRandom(dayOfTheMonth);
 
         ZelzmiyBundle = new AssetLoader(Data.Paths.GetBundleFilePath("Zelzmiy.resource"));
+
+        RegisterEventListeners();
 
         InGameCheck.OnLevelChanged += DoThing;
         MinecraftBookPatch.Init();
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void RegisterEventListeners()
+    {
+        UKGameEventRegistry.RegisterListener(new TestEventListener());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

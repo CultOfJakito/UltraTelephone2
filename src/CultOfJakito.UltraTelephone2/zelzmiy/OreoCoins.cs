@@ -20,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
         private static GameObject s_oreo;
         private static GameObject s_oreoSplash;
 
-        public override void BeginEffect(System.Random random)
+        public override void BeginEffect(UniRandom random)
         {
             s_oreo = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("Oreo");
             s_oreoSplash = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("Oreo Splash");

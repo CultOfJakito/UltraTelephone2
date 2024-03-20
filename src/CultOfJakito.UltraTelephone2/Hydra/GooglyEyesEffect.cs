@@ -8,9 +8,9 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 public class GooglyEyesEffect : ChaosEffect
 {
     private static bool s_effectActive;
-    private static System.Random s_random;
+    private static UniRandom s_random;
 
-    public override void BeginEffect(System.Random rand)
+    public override void BeginEffect(UniRandom rand)
     {
         s_random = rand;
         s_effectActive = true;

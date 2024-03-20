@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.LevelSpecific;
+using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
@@ -8,7 +10,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
 {
     public void BeginEffects()
     {
-        System.Random random = UltraTelephoneTwo.Instance.Random;
+        UniRandom random = UltraTelephoneTwo.Instance.Random;
         _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, 32);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
@@ -29,7 +31,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
         foreach (IChaosEffect effect in _ctx.GetCurrentSelection())
         {
             Debug.Log($"Beginning Effect: {effect.GetType().Name}");
-            effect.BeginEffect(new System.Random(random.Next()));
+            effect.BeginEffect(new UniRandom(random.Next()));
         }
     }
 
@@ -45,6 +47,8 @@ public class ChaosManager : MonoBehaviour, IDisposable
                 return;
             }
 
+            UKGameEventRegistry.RaiseEvent(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
+
             foreach (IChaosEffect x in _ctx.GetCurrentSelection())
             {
                 if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
@@ -58,6 +62,9 @@ public class ChaosManager : MonoBehaviour, IDisposable
             if (InGameCheck.PlayingLevel())
             {
                 _levelBegan = true;
+
+                UKGameEventRegistry.RaiseEvent(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
+
                 foreach (IChaosEffect x in _ctx.GetCurrentSelection())
                 {
                     if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
@@ -91,14 +98,22 @@ public class ChaosManager : MonoBehaviour, IDisposable
                 continue;
             }
 
+            IChaosEffect chaosEffectObject = null;
 
             if (typeof(MonoBehaviour).IsAssignableFrom(type))
             {
-                chaosEffects.Add(gameObject.AddComponent(type) as IChaosEffect);
+                chaosEffectObject = gameObject.AddComponent(type) as IChaosEffect;
             }
             else
             {
-                chaosEffects.Add((IChaosEffect)Activator.CreateInstance(type));
+                chaosEffectObject = (IChaosEffect)Activator.CreateInstance(type);
+            }
+
+            chaosEffects.Add(chaosEffectObject);
+
+            if(typeof(IEventListener).IsAssignableFrom(type))
+            {
+                UKGameEventRegistry.RegisterListener((IEventListener)chaosEffectObject);
             }
         }
 

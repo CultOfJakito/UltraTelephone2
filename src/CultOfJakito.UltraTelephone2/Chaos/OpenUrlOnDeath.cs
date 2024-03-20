@@ -28,13 +28,13 @@ public class OpenUrlOnDeath : ChaosEffect
 
     private List<string> _urlPool;
 
-    private double _chance;
-    private System.Random _random;
+    private float _chance;
+    private UniRandom _random;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         EventBus.PlayerDied += OnPlayerDied;
-        _chance = random.NextDouble(0.5, 0.85);
+        _chance = random.Range(0.5f, 0.85f);
         _random = random;
         _urlPool = new List<string>(s_urlPool);
         Debug.Log("Chance to open URL is " + _chance);
@@ -42,7 +42,7 @@ public class OpenUrlOnDeath : ChaosEffect
 
     private void OnPlayerDied()
     {
-        if (_random.NextDouble() <= _chance)
+        if (_random.Float() <= _chance)
         {
             if (_urlPool.Count <= 0)
             {

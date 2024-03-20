@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
 public abstract class ChaosEffect : MonoBehaviour, IChaosEffect, IDisposable
 {
-    public abstract void BeginEffect(System.Random random);
+    public abstract void BeginEffect(UniRandom random);
 
     public virtual bool CanBeginEffect(ChaosSessionContext ctx) => ctx.GetAvailableBudget() >= GetEffectCost();
 

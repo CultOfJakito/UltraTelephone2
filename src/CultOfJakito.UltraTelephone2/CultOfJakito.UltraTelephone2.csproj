@@ -44,6 +44,9 @@
       <HintPath>libs\UnityEngine.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>libs\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>false</Private>
@@ -264,6 +267,10 @@
     <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LevelSpecific\" />
   </ItemGroup>
 
 </Project>

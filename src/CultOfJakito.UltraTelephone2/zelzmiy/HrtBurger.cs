@@ -11,7 +11,7 @@ internal class HrtBurger : ChaosEffect
     private GameObject _estrogenBurger;
     private GameObject _testosteroneBurger;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         _estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
         _testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");

@@ -15,9 +15,9 @@ public class IdolsForEveryone : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive;
-    private System.Random _random;
+    private UniRandom _random;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         _random = random;
         s_effectActive = true;

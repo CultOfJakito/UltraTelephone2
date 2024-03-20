@@ -14,9 +14,9 @@ public class DoorStuck : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive;
-    private static System.Random s_random;
+    private static UniRandom s_random;
 
-    public override void BeginEffect(System.Random rand)
+    public override void BeginEffect(UniRandom rand)
     {
         s_random = rand;
         s_effectActive = true;
@@ -39,8 +39,8 @@ public class DoorStuck : ChaosEffect
         jammer = __instance.gameObject.AddComponent<DoorJammer>();
         jammer.Door = __instance;
         jammer.JamOnOpen = true;
-        jammer.JamOnPercent = (float)s_random.NextDouble() / 5f;
-        jammer.UnjamAfterSeconds = (float)s_random.NextDouble() * 5f + 3f;
+        jammer.JamOnPercent = s_random.Float() / 5f;
+        jammer.UnjamAfterSeconds = s_random.Float() * 5f + 3f;
     }
 
     [HarmonyPatch(typeof(BigDoor), nameof(BigDoor.Open))]

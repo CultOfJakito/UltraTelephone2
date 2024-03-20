@@ -29,7 +29,7 @@ public class Ponder : ChaosEffect, ILevelEvents
     [Configgable("ZedDev", "Enable pondering")]
     public static ConfigToggle Enabled = new(true);
 
-    public override void BeginEffect(Random random)
+    public override void BeginEffect(UniRandom random)
     {
     }
 

@@ -20,7 +20,7 @@ internal class HrtBurgers : ChaosEffect
     private static GameObject s_estrogenBurger;
     private static GameObject s_testosteroneBurger;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         s_estrogenBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
         s_testosteroneBurger = UltraTelephoneTwo.Instance.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");

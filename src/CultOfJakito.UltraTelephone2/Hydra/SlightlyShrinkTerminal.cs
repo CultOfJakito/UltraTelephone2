@@ -54,16 +54,16 @@ public class SlightlyShrinkTerminal : ChaosEffect
         //Praying this works.
         targetMeshRenderer.materials = sourceMeshRenderer.materials;
 
-        float randomValue = (float)s_rng.NextDouble();
+        float randomValue = s_rng.Float();
         randomValue = (randomValue - 0.5f) * 2f;
         randomValue *= s_variance.Value;
         randomValue = 1 - randomValue;
         __instance.transform.localScale *= randomValue;
     }
 
-    private static System.Random s_rng;
+    private static UniRandom s_rng;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         s_rng = random;
         s_effectActive = true;

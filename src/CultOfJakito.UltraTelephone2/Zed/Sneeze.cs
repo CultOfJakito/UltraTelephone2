@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Sneeze : ChaosEffect
 {
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
 
     }

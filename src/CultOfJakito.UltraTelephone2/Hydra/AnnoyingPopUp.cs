@@ -13,9 +13,9 @@ public class AnnoyingPopUp : ChaosEffect
     [Configgable("Hydra", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
 
-    private System.Random _rng;
+    private UniRandom _rng;
 
-    public override void BeginEffect(System.Random random)
+    public override void BeginEffect(UniRandom random)
     {
         _rng = random;
         _randomDialogueEvent = new ModalDialogueEvent();
@@ -146,18 +146,18 @@ public class AnnoyingPopUp : ChaosEffect
 
     private DialogueBoxOption CreateRandomOption()
     {
-        if (_rng.PercentChance(0.1f))
+        if (_rng.Chance(0.1f))
         {
-            return _evilOptions.RandomElement(_rng);
+            return _rng.SelectRandom(_evilOptions);
         }
 
         return new DialogueBoxOption
         {
-            Name = s_optionNames.RandomElement(_rng),
+            Name = _rng.SelectRandom(s_optionNames),
             Color = s_orange,
             OnClick = () =>
             {
-                if (_rng.NextDouble() > 0.75f)
+                if (_rng.Float() > 0.75f)
                 {
                     if (_rng.Bool())
                     {
