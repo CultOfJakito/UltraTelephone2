@@ -35,8 +35,10 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
-        int dayOfTheMonth = DateTime.Now.Day;
-        Random = new UniRandom(dayOfTheMonth);
+
+        int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
+        Random = new UniRandom(globalSeed);
+        UniRandom.InitializeGlobal(globalSeed);
 
         UT2Assets.ForceLoad();
 
@@ -81,4 +83,34 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         InGameCheck.OnLevelChanged -= DoThing;
         ModalDialogue.ShowSimple("ULTRATELEPHONE", "ULTRA TELEPHONE", _ => { }, "No?", "FUCK NO");
     }
+
+    private static int PersonalizationLevelToSeed(PersonalizationLevel level)
+    {
+        switch (level)
+        {
+            default:
+            case PersonalizationLevel.None:
+                return 0;
+            case PersonalizationLevel.NotMuch:
+                return (int)DateTime.Now.DayOfWeek;
+            case PersonalizationLevel.Some:
+                return DateTime.Now.Day;
+            case PersonalizationLevel.More:
+                return (int)DateTime.Now.Hour;
+            case PersonalizationLevel.Personalized:
+                return Environment.UserName.GetHashCode();
+            case PersonalizationLevel.ULTRAPERSONALIZED:
+                return (int)DateTime.Now.Ticks+Environment.UserName.GetHashCode();
+        }
+    }
+}
+
+public enum PersonalizationLevel
+{
+    None,
+    NotMuch,
+    Some,
+    More,
+    Personalized,
+    ULTRAPERSONALIZED,
 }

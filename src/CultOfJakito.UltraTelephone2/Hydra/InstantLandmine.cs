@@ -1,12 +1,12 @@
 ﻿using Configgy;
 using HarmonyLib;
 
-namespace CultOfJakito.UltraTelephone2.Hydra.FakePBank.Patches;
+namespace CultOfJakito.UltraTelephone2.Hydra;
 
 [HarmonyPatch]
 public static class InstantLandmine
 {
-    [Configgable("Hydra/Tweaks", "Realistic Landmines")]
+    [Configgable("Hydra/Patches", "Realistic Landmines")]
     private static ConfigToggle s_enabled = new(true);
 
 
@@ -15,9 +15,7 @@ public static class InstantLandmine
     public static void OnActivate(Landmine __instance)
     {
         if (!s_enabled.Value)
-        {
             return;
-        }
 
         //Reflection is being dumb so idfc cry about it
         __instance.Invoke("Explode", 0f);
