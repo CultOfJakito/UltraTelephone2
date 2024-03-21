@@ -2,37 +2,48 @@
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Hydra;
 
 [RegisterChaosEffect]
-public class AnnoyingPopUp : ChaosEffect
+public class AnnoyingPopUp : ChaosEffect, IEventListener
 {
     [Configgable("Hydra", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
 
     private UniRandom _rng;
+    private Guid? listenerGuid;
 
     public override void BeginEffect(UniRandom random)
     {
         _rng = random;
         _randomDialogueEvent = new ModalDialogueEvent();
         GeneratePopups();
-        EventBus.RestartedFromCheckpoint += OnRestartedFromCheckPoint;
+
+        listenerGuid = UKGameEventRegistry.RegisterListener(this);
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_showAnnoyingPopUps.Value;
     public override int GetEffectCost() => 1;
-    private void OnDestroy() => EventBus.RestartedFromCheckpoint -= OnRestartedFromCheckPoint;
 
-    private void OnRestartedFromCheckPoint(bool playerDied)
+    [EventListener]
+    private void OnRestartedFromCheckPoint(PlayerRespawnEvent e)
     {
-        if (playerDied)
+        if (!e.IsManualRespawn)
         {
             ShowPopUp();
         }
+    }
+
+    public override void Dispose()
+    {
+        if(listenerGuid != null)
+            UKGameEventRegistry.RemoveListener(listenerGuid.Value);
+
+        base.Dispose();
     }
 
     private void ShowPopUp()

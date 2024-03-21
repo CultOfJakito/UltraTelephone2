@@ -1,11 +1,12 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Events;
 
 namespace CultOfJakito.UltraTelephone2.Zed;
 
 [RegisterChaosEffect]
-public class Ponder : ChaosEffect, ILevelEvents
+public class Ponder : ChaosEffect, IEventListener
 {
     // Guys please add more prompts, my brain isn't made for that
     private List<string> _prompts =
@@ -26,20 +27,26 @@ public class Ponder : ChaosEffect, ILevelEvents
         "Who put Jakito behind bars?"
     ];
 
-    [Configgable("ZedDev", "Enable pondering")]
+    [Configgable("ZedDev/Chaos", "Enable pondering")]
     public static ConfigToggle Enabled = new(true);
 
     public override void BeginEffect(UniRandom random)
     {
+        UKGameEventRegistry.RegisterListener(this);
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
 
     public override int GetEffectCost() => 1;
 
-    public void OnLevelStarted(string levelName) => HudMessageReceiver.Instance.SendHudMessage(_prompts[UnityEngine.Random.Range(0, _prompts.Count - 1)]);
 
-    public void OnLevelComplete(string levelName)
+    [EventListener]
+    public void OnLevelStateChange(LevelStateChangeEvent e)
     {
+        if (e.IsPlaying)
+        {
+            HudMessageReceiver.Instance.SendHudMessage(_prompts[UnityEngine.Random.Range(0, _prompts.Count - 1)]);
+        }
     }
+    
 }

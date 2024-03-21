@@ -11,10 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Assets
         {
             get
             {
-                if (zedBundle == null)
-                {
-                    zedBundle = new AssetLoader(Properties.Resources.zelzmiy);
-                }
+                zedBundle ??= new AssetLoader(Properties.Resources.zed);
                 return zedBundle;
             }
         }
@@ -24,21 +21,27 @@ namespace CultOfJakito.UltraTelephone2.Assets
         {
             get
             {
-                if(zelzmiyBundle == null)
-                {
-                    zelzmiyBundle = new AssetLoader(Properties.Resources.zelzmiy);
-                }
+                zelzmiyBundle ??= new AssetLoader(Properties.Resources.zelzmiy);
                 return zelzmiyBundle;
+            }
+        }
+
+
+        private static AssetLoader hydraBundle;
+        public static AssetLoader HydraBundle
+        {
+            get
+            {
+                hydraBundle ??= new AssetLoader(Properties.Resources.hydra);
+                return hydraBundle;
             }
         }
 
         public static void ForceLoad()
         {
-            if(zelzmiyBundle != null)
-                zelzmiyBundle = new AssetLoader(Properties.Resources.zelzmiy);
-
-            if(zedBundle != null)
-                zedBundle = new AssetLoader(Properties.Resources.zed);
+            zelzmiyBundle ??= new AssetLoader(Properties.Resources.zelzmiy);
+            zedBundle ??= new AssetLoader(Properties.Resources.zed);
+            hydraBundle ??= new AssetLoader(Properties.Resources.hydra);
         }
     }
 }

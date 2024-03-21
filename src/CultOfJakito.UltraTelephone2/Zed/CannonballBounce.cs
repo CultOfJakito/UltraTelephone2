@@ -16,6 +16,12 @@ public class CannonBallBounce : ChaosEffect
     public override void BeginEffect(UniRandom random) => CanBounce = Enabled.Value;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
+
+    public override void Dispose()
+    {
+        CanBounce = false;
+        base.Dispose();
+    }
 }
 
 public class BouncyCannonball : MonoBehaviour

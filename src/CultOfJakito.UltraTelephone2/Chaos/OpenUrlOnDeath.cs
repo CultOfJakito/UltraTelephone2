@@ -1,13 +1,14 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
 [RegisterChaosEffect]
-public class OpenUrlOnDeath : ChaosEffect
+public class OpenUrlOnDeath : ChaosEffect, IEventListener
 {
-    [Configgable("TeamDoodz", "Open URL On Death")]
+    [Configgable("TeamDoodz/Chaos", "Open URL On Death")]
     private static ConfigToggle s_openUrlOnDeath = new(true);
 
     private static readonly string[] s_urlPool =
@@ -30,17 +31,21 @@ public class OpenUrlOnDeath : ChaosEffect
 
     private float _chance;
     private UniRandom _random;
+    private Guid? listenerGuid;
 
     public override void BeginEffect(UniRandom random)
     {
-        EventBus.PlayerDied += OnPlayerDied;
         _chance = random.Range(0.5f, 0.85f);
         _random = random;
         _urlPool = new List<string>(s_urlPool);
+
+        listenerGuid = UKGameEventRegistry.RegisterListener(this);
         Debug.Log("Chance to open URL is " + _chance);
     }
 
-    private void OnPlayerDied()
+
+    [EventListener]
+    private void OnPlayerDied(PlayerDeathEvent e)
     {
         if (_random.Float() <= _chance)
         {
@@ -59,6 +64,12 @@ public class OpenUrlOnDeath : ChaosEffect
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_openUrlOnDeath.Value;
     public override int GetEffectCost() => 1;
-    private void OnDestroy() => EventBus.PlayerDied -= OnPlayerDied;
+
+    private void OnDestroy()
+    {
+        if(listenerGuid != null)
+            UKGameEventRegistry.RemoveListener(listenerGuid.Value);
+    }
+
     private static string CreateGoogleSearchUrl(string query) => $"https://google.com/search?q={query.Replace(' ', '+')}";
 }

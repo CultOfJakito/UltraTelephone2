@@ -11,9 +11,11 @@ namespace CultOfJakito.UltraTelephone2.Events
     {
         private static Dictionary<Type, List<EventSubscriber>> _listeners = new Dictionary<Type, List<EventSubscriber>>();
 
-        public static void RegisterListener(IEventListener listener)
+        public static Guid? RegisterListener(IEventListener listener)
         {
             Type type = listener.GetType();
+            Guid targetID = Guid.NewGuid();
+            int listenersCreated = 0;
             MethodInfo[] methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             foreach (MethodInfo method in methods)
             {
@@ -30,10 +32,13 @@ namespace CultOfJakito.UltraTelephone2.Events
                         if (!_listeners.ContainsKey(parameterType))
                             _listeners[parameterType] = new List<EventSubscriber>();
 
-                        _listeners[parameterType].Add(new EventSubscriber(method, listener));
+                        listenersCreated++;
+                        _listeners[parameterType].Add(new EventSubscriber(method, listener, targetID));
                     }
                 }
             }
+
+            return listenersCreated > 0 ? targetID : null;
         }
 
         public static void RaiseEvent<T>(T gameEvent) where T : UKGameEvent
@@ -56,11 +61,11 @@ namespace CultOfJakito.UltraTelephone2.Events
             }
         }
 
-        public static void RemoveListenerOfId(Guid id)
+        public static void RemoveListener(Guid id)
         {
             foreach (List<EventSubscriber> subscribers in _listeners.Values)
             {
-                subscribers.RemoveAll(x => x.Id == id);
+                subscribers.RemoveAll(x => x.Id == id || x.TargetId == id);
             }
         }
     }
@@ -72,19 +77,21 @@ public class EventSubscriber
     public MethodInfo Method { get; }
     public object TargetInstance { get; }
     public Guid Id { get; }
+    public Guid TargetId { get; }
 
-    public EventSubscriber(MethodInfo method, object targetInstance)
+    public EventSubscriber(MethodInfo method, object targetInstance, Guid targetId)
     {
         Method = method;
         TargetInstance = targetInstance;
         Id = Guid.NewGuid();
+        TargetId = targetId;
     }
 
     public void Invoke(object obj)
     {
         if(TargetInstance == null || Method == null)
         {
-            UKGameEventRegistry.RemoveListenerOfId(Id);
+            UKGameEventRegistry.RemoveListener(Id);
             return;
         }
 

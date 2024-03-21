@@ -3,21 +3,32 @@ using UnityEngine;
 using System.Collections;
 using HarmonyLib;
 using UnityEngine.Events;
+using CultOfJakito.UltraTelephone2.DependencyInjection;
+using Configgy;
 
+//[RegisterChaosEffect]
 public class Sneeze : ChaosEffect
 {
+    [Configgable("ZedDev/ChaosEffects", "Sneeze")]
+    private static ConfigToggle s_enabled = new(true);
+
     public override void BeginEffect(UniRandom random)
     {
 
     }
+
     public override bool CanBeginEffect(ChaosSessionContext ctx)
     {
+        if (!s_enabled.Value)
+            return false;
+
         if(sneezeEvent is null)
         {
             sneezeEvent = new UltrakillEvent();
             sneezeEvent.onActivate.AddListener(EndSneeze);
         }
-        return true;
+
+        return base.CanBeginEffect(ctx);
     }
 
     IEnumerator Countdown(float time)
