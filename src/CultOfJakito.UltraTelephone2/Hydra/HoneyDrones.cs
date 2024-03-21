@@ -25,6 +25,12 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         private static void MakeDroneBee(Drone __instance)
         {
+            if (!__instance.TryGetComponent<EnemyIdentifier>(out EnemyIdentifier eid))
+                return;
+
+            if (eid.enemyType != EnemyType.Drone)
+                return;
+
             AudioSource audioSource = __instance.gameObject.AddComponent<AudioSource>();
             audioSource.clip = HydraAssets.BeeAudioLoop;
             audioSource.loop = true;
