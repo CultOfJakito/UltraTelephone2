@@ -502,7 +502,7 @@ public class GooglyEyesEffect : ChaosEffect
         eye2.transform.localScale = Vector3.one * 0.3644443f;
     }
 
-    //TODO Gabriel 1 + 2, gutterman
+    //TODO Gabriel 1 + 2, gutterman, hideous mass, centaur, flesh prisons, rats
 
 }
 
@@ -518,7 +518,13 @@ public class GooglyEye : MonoBehaviour
     private Transform eyeTransform;
     private Transform radiusMarkTransform;
     private float energy;
-    private float energyDecayRate = 5f;
+
+    private static float energyDecayRate = 7f;
+    private static float energyAddRate = 2.54f;
+    private static float maxEnergy = 12f;
+    private static float wiggleSpeed = 20f;
+    private static float maxAngle = 110f;
+
 
     float maxRadius;
 
@@ -526,12 +532,12 @@ public class GooglyEye : MonoBehaviour
     {
         center = FindButGood("EyeRoot");
         eyeTransform = FindButGood("Eye");
-        radiusMarkTransform = FindButGood("LowPosition");
+        radiusMarkTransform = FindButGood("LowPosiiton");
     }
 
     private Transform FindButGood(string name)
     {
-        return transform.GetComponentsInChildren<Transform>().Where(x => x.name == name).FirstOrDefault();
+        return transform.GetComponentsInChildren<Transform>(true).Where(x => x.name == name).FirstOrDefault();
     }
 
     private void Start()
@@ -544,18 +550,17 @@ public class GooglyEye : MonoBehaviour
     {
         energy = Mathf.Max(0, energy - Time.deltaTime * energyDecayRate);
         Vector3 centerPoint = center.position;
-        float sin = Mathf.Sin(Time.time*energy);
+        float sin = Mathf.Sin(Time.time*wiggleSpeed);
 
-        if(energy == 0f)
-            sin = 0f;
+        float normalizedEnergy = energy / maxEnergy;
+        float angle = sin * normalizedEnergy * maxAngle;
 
-        float angle = sin * Mathf.Min(energy, 10f)*10f;
         Quaternion rot = Quaternion.Euler(0, 0, angle);
         rot = transform.rotation * rot;
         Vector3 offset = rot * Vector3.down*maxRadius;
         eyeTransform.position = centerPoint + offset;
 
-        energy = Mathf.Min(energy + (transform.position - positionLastFrame).magnitude/2f, 20f);
+        energy = Mathf.Clamp(energy + (transform.position - positionLastFrame).magnitude * energyAddRate, 0f, maxEnergy);
         positionLastFrame = transform.position;
     }
 

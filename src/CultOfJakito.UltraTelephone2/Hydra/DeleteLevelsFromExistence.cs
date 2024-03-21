@@ -9,10 +9,8 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [HarmonyPatch]
     public static class DeleteLevelsFromExistence
     {
-
         [Configgable("Hydra/Patches", "Disable Some Levels")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
-
 
         [HarmonyPatch(typeof(LayerSelect), "Awake"), HarmonyPostfix]
         public static void OnAwake(LayerSelect __instance)
@@ -20,12 +18,15 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             if (!s_enabled.Value)
                 return;
 
-            UniRandom rng = UniRandom.GlobalRandom();
+            int uniqueHash = __instance.layerNumber;
+            int globalSeed = UniRandom.GlobalSeed;
+
+            UniRandom rng = new UniRandom(globalSeed+uniqueHash);
             LevelSelectPanel[] levelSelects = __instance.GetComponentsInChildren<LevelSelectPanel>(true);
             int deleteIndex = rng.Next(0, levelSelects.Length);
             for (int i = 0; i < levelSelects.Length; i++)
             {
-                levelSelects[i].gameObject.SetActive(i==deleteIndex);
+                levelSelects[i].gameObject.SetActive(i!=deleteIndex);
             }
         }
     }

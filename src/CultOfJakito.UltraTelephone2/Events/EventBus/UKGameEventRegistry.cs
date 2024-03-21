@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Events
 {
+    //there is a bug rn where null listeners arent getting purged. guh
     public static class UKGameEventRegistry
     {
         private static Dictionary<Type, List<EventSubscriber>> _listeners = new Dictionary<Type, List<EventSubscriber>>();
@@ -48,6 +49,8 @@ namespace CultOfJakito.UltraTelephone2.Events
             if (!_listeners.ContainsKey(type))
                 return;
 
+            List<Action> postInvokeAction = new List<Action>();
+
             foreach (EventSubscriber subscriber in _listeners[type])
             {
                 try
@@ -56,8 +59,17 @@ namespace CultOfJakito.UltraTelephone2.Events
                 }
                 catch (Exception e)
                 {
+                    postInvokeAction.Add(() =>
+                    {
+                        RemoveListener(subscriber.Id);
+                    });
                     Debug.LogError($"Error invoking event {type.Name} on {subscriber.TargetInstance.GetType().Name} - {e.Message}");
                 }
+            }
+
+            foreach (Action action in postInvokeAction)
+            {
+                action?.Invoke();
             }
         }
 
