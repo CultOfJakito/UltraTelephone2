@@ -32,7 +32,7 @@ public class Ponder : ChaosEffect, IEventListener
 
     public override void BeginEffect(UniRandom random)
     {
-        UKGameEventRegistry.RegisterListener(this);
+        GameEvents.OnLevelStateChange += OnLevelStateChange;
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
@@ -40,7 +40,6 @@ public class Ponder : ChaosEffect, IEventListener
     public override int GetEffectCost() => 1;
 
 
-    [EventListener]
     public void OnLevelStateChange(LevelStateChangeEvent e)
     {
         if (e.IsPlaying)
@@ -48,5 +47,10 @@ public class Ponder : ChaosEffect, IEventListener
             HudMessageReceiver.Instance.SendHudMessage(_prompts[UnityEngine.Random.Range(0, _prompts.Count - 1)]);
         }
     }
-    
+
+    public override void Dispose()
+    {
+        GameEvents.OnLevelStateChange -= OnLevelStateChange;
+        base.Dispose();
+    }
 }

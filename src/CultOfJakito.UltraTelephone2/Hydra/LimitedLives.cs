@@ -19,15 +19,13 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             return v > 0;
         });
 
-        private Guid? listenerGuid;
-
         public override void BeginEffect(UniRandom random)
         {
             livesLeft = s_lives.Value;
-            listenerGuid = UKGameEventRegistry.RegisterListener(this);
+            GameEvents.OnPlayerDeath += OnPlayerDeath;
         }
 
-        public bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost()
         {
@@ -36,8 +34,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         private int livesLeft;
 
-        [EventListener]
-        private void OnPlayerDeath(PlayerDeathEvent _)
+        private void OnPlayerDeath()
         {
             --livesLeft;
 
@@ -67,10 +64,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         public override void Dispose()
         {
-            //Cleanup
-            if(listenerGuid != null)
-                UKGameEventRegistry.RemoveListener(listenerGuid.Value);
-
+            GameEvents.OnPlayerDeath -= OnPlayerDeath;
             base.Dispose();
         }
     }

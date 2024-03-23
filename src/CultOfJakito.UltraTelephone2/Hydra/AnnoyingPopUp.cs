@@ -9,13 +9,12 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.Hydra;
 
 [RegisterChaosEffect]
-public class AnnoyingPopUp : ChaosEffect, IEventListener
+public class AnnoyingPopUp : ChaosEffect
 {
     [Configgable("Hydra", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
 
     private UniRandom _rng;
-    private Guid? listenerGuid;
 
     public override void BeginEffect(UniRandom random)
     {
@@ -23,14 +22,13 @@ public class AnnoyingPopUp : ChaosEffect, IEventListener
         _randomDialogueEvent = new ModalDialogueEvent();
         GeneratePopups();
 
-        listenerGuid = UKGameEventRegistry.RegisterListener(this);
+        GameEvents.OnPlayerRespawn += OnPlayerRespawn;
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_showAnnoyingPopUps.Value;
     public override int GetEffectCost() => 1;
 
-    [EventListener]
-    private void OnRestartedFromCheckPoint(PlayerRespawnEvent e)
+    private void OnPlayerRespawn(PlayerRespawnEvent e)
     {
         if (!e.IsManualRespawn)
         {
@@ -40,9 +38,7 @@ public class AnnoyingPopUp : ChaosEffect, IEventListener
 
     public override void Dispose()
     {
-        if(listenerGuid != null)
-            UKGameEventRegistry.RemoveListener(listenerGuid.Value);
-
+        GameEvents.OnPlayerRespawn -= OnPlayerRespawn;
         base.Dispose();
     }
 

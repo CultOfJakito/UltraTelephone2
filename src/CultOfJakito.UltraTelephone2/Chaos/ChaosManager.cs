@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.LevelSpecific;
 using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
                 return;
             }
 
-            UKGameEventRegistry.RaiseEvent(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
+            GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
 
             foreach (IChaosEffect x in _ctx.GetCurrentSelection())
             {
@@ -63,7 +62,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
             {
                 _levelBegan = true;
 
-                UKGameEventRegistry.RaiseEvent(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
+                GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
 
                 foreach (IChaosEffect x in _ctx.GetCurrentSelection())
                 {
@@ -110,11 +109,6 @@ public class ChaosManager : MonoBehaviour, IDisposable
             }
 
             chaosEffects.Add(chaosEffectObject);
-
-            if(typeof(IEventListener).IsAssignableFrom(type))
-            {
-                UKGameEventRegistry.RegisterListener((IEventListener)chaosEffectObject);
-            }
         }
 
         return chaosEffects;

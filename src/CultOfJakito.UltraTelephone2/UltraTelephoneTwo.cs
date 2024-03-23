@@ -3,7 +3,6 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
-using CultOfJakito.UltraTelephone2.LevelSpecific;
 using CultOfJakito.UltraTelephone2.Zed;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
@@ -42,16 +41,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         UT2Assets.ForceLoad();
 
-        RegisterEventListeners();
-
         InGameCheck.OnLevelChanged += DoThing;
         MinecraftBookPatch.Init();
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void RegisterEventListeners()
-    {
-        UKGameEventRegistry.RegisterListener(new TestEventListener());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -27,12 +27,12 @@ namespace ULTRASTATS.Patches
             int damage = __state.Health - health;
             if (damage > 0)
             {
-                UKGameEventRegistry.RaiseEvent(new PlayerHurtEvent(__instance, damage));
+                GameEvents.OnPlayerHurt.Invoke(new PlayerHurtEvent(__instance, damage));
             }
 
             if (!__state.Dead && __instance.dead)
             {
-                UKGameEventRegistry.RaiseEvent(new PlayerDeathEvent(__instance));
+                GameEvents.OnPlayerDeath.Invoke();
             }
         }
 
@@ -60,7 +60,7 @@ namespace ULTRASTATS.Patches
 
             if (healthRegained > 0)
             {
-                UKGameEventRegistry.RaiseEvent(new PlayerHealEvent(__instance, healthRegained));
+                GameEvents.OnPlayerHeal.Invoke(new PlayerHealEvent(__instance, healthRegained));
             }
         }
 
@@ -84,14 +84,14 @@ namespace ULTRASTATS.Patches
 
             if (antiGained > 0)
             {
-                UKGameEventRegistry.RaiseEvent(new PlayerAntiHealEvent(__instance, (int)antiGained));
+                GameEvents.OnPlayerAntiHeal.Invoke(new PlayerAntiHealEvent(__instance, (int)antiGained));
             }
         }
 
         [HarmonyPatch(typeof(Punch), nameof(Punch.Parry)), HarmonyPostfix]
         public static void PostTryParryProjecilte(Punch __instance)
         {
-            UKGameEventRegistry.RaiseEvent(new PlayerParryEvent(NewMovement.Instance, __instance));
+            GameEvents.OnParry.Invoke();
         }
 
         private static bool s_diedToRespawn;
@@ -99,7 +99,7 @@ namespace ULTRASTATS.Patches
         [HarmonyPostfix]
         public static void Postfix()
         {
-            UKGameEventRegistry.RaiseEvent(new PlayerRespawnEvent(NewMovement.Instance, !s_diedToRespawn));
+            GameEvents.OnPlayerRespawn.Invoke(new PlayerRespawnEvent(NewMovement.Instance, !s_diedToRespawn));
             s_diedToRespawn = false;
         }
 

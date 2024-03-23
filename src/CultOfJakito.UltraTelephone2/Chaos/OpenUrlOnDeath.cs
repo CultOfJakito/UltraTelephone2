@@ -31,7 +31,6 @@ public class OpenUrlOnDeath : ChaosEffect, IEventListener
 
     private float _chance;
     private UniRandom _random;
-    private Guid? listenerGuid;
 
     public override void BeginEffect(UniRandom random)
     {
@@ -39,13 +38,13 @@ public class OpenUrlOnDeath : ChaosEffect, IEventListener
         _random = random;
         _urlPool = new List<string>(s_urlPool);
 
-        listenerGuid = UKGameEventRegistry.RegisterListener(this);
+        //Register death event
+        GameEvents.OnPlayerDeath += OnPlayerDied;
         Debug.Log("Chance to open URL is " + _chance);
     }
 
 
-    [EventListener]
-    private void OnPlayerDied(PlayerDeathEvent e)
+    private void OnPlayerDied()
     {
         if (_random.Float() <= _chance)
         {
@@ -67,8 +66,7 @@ public class OpenUrlOnDeath : ChaosEffect, IEventListener
 
     private void OnDestroy()
     {
-        if(listenerGuid != null)
-            UKGameEventRegistry.RemoveListener(listenerGuid.Value);
+        GameEvents.OnPlayerDeath -= OnPlayerDied;
     }
 
     private static string CreateGoogleSearchUrl(string query) => $"https://google.com/search?q={query.Replace(' ', '+')}";
