@@ -6,7 +6,7 @@ using CultOfJakito.UltraTelephone2.Events;
 namespace CultOfJakito.UltraTelephone2.Zed;
 
 [RegisterChaosEffect]
-public class Ponder : ChaosEffect, IEventListener
+public class Ponder : ChaosEffect
 {
     // Guys please add more prompts, my brain isn't made for that
     private List<string> _prompts =

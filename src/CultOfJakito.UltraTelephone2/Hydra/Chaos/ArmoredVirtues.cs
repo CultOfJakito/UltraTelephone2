@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
-    public class ArmoredVirtues : ChaosEffect, IEventListener
+    public class ArmoredVirtues : ChaosEffect
     {
         [Configgable("Hydra/Chaos", "Armored Virtues")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
@@ -21,7 +21,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             s_effectActive = true;
         }
 
-        public bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost()
         {
@@ -37,7 +37,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         [HarmonyPatch(typeof(Drone), "Start"), HarmonyPostfix]
         private static void OnDroneStart(Drone __instance)
         {
-            if (!s_enabled.Value)
+            if (!s_enabled.Value || !s_effectActive)
                 return;
 
             if(!__instance.TryGetComponent<EnemyIdentifier>(out EnemyIdentifier eid))

@@ -22,6 +22,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             int globalSeed = UniRandom.GlobalSeed;
 
             UniRandom rng = new UniRandom(globalSeed^uniqueHash);
+
+            if (rng.PercentChance(0.7f))
+                return;
+
             LevelSelectPanel[] levelSelects = __instance.GetComponentsInChildren<LevelSelectPanel>(true);
             int deleteIndex = rng.Next(0, levelSelects.Length);
             for (int i = 0; i < levelSelects.Length; i++)

@@ -26,6 +26,35 @@ public class GooglyEyesEffect : ChaosEffect
     public override int GetEffectCost() => 1;
     private void OnDestroy() => s_effectActive = false;
 
+    [HarmonyPatch(typeof(SeasonalHats), "Start"), HarmonyPostfix]
+    private static void OnSeasonalHatStart(SeasonalHats __instance)
+    {
+        string scene = SceneHelper.CurrentScene;
+
+        //This is a workaround to put the googly eyes on centaur and minos boss
+        switch(SceneHelper.CurrentScene)
+        {
+            case "Level 7-4":
+                ApplyGooglyEyes_CentaurBoss(__instance);
+                break;
+            case "Level 2-4":
+                //ApplyGooglyEyes_MinosBoss(__instance);
+                break;
+            default:
+                return;
+        }
+    }
+
+    [HarmonyPatch(typeof(MinosBoss), "Start"), HarmonyPostfix]
+    private static void OnMinosBoss(MinosBoss __instance)
+    {
+        EnemyIdentifier eid = __instance.GetComponent<EnemyIdentifier>();
+        if (eid == null)
+            return;
+
+        ApplyGooglyEyes_MinosCorpse(eid);
+    }
+
 
     [HarmonyPatch(typeof(EnemyIdentifier), "Start"), HarmonyPostfix]
     private static void OnEnemyStart(EnemyIdentifier __instance)
@@ -86,9 +115,6 @@ public class GooglyEyesEffect : ChaosEffect
             case EnemyType.V2Second:
                 ApplyGooglyEyes_V2Two(__instance);
                 break;
-            case EnemyType.Minos:
-                ApplyGooglyEyes_MinosCorpse(__instance);
-                break;
             case EnemyType.Ferryman:
                 ApplyGooglyEyes_Ferryman(__instance);
                 break;
@@ -101,11 +127,87 @@ public class GooglyEyesEffect : ChaosEffect
             case EnemyType.Stalker:
                 ApplyGooglyEyes_Stalker(__instance);
                 break;
+            case EnemyType.Gabriel:
+                ApplyGooglyEyes_Gabriel(__instance);
+                break;
+            case EnemyType.GabrielSecond:
+                ApplyGooglyEyes_Gabriel2(__instance);
+                break;
+            case EnemyType.HideousMass:
+                ApplyGooglyEyes_HideousMass(__instance);
+                break;
+            case EnemyType.FleshPrison:
+                ApplyGooglyEyes_FleshPrison(__instance);
+                break;
+            case EnemyType.FleshPanopticon:
+                ApplyGooglyEyes_FleshPanopticon(__instance);
+                break;
+            case EnemyType.VeryCancerousRodent:
+                ApplyGooglyEyes_Rodent(__instance);
+                break;
+            case EnemyType.Mandalore:
+                ApplyGooglyEyes_Mandalore(__instance);
+                break;
+            case EnemyType.Gutterman:
+                ApplyGooglyEyes_Gutterman(__instance);
+                break;
+            case EnemyType.Leviathan:
+                ApplyGooglyEyes_Leviathan(__instance);
+                break;
+            case EnemyType.Minotaur:
+                ApplyGooglyEyes_Minotaur(__instance);
+                break;
             default:
                 break;
         }
     }
 
+    private static void ApplyGooglyEyes_CentaurBoss(SeasonalHats __instance)
+    {
+        UnlockBestiary unlock = __instance.GetComponentInParent<UnlockBestiary>();
+        if (unlock == null)
+            return;
+
+        //This is how we check if the enemy is a centaur. Since it has no eid. Gross.
+        if(unlock.enemy != EnemyType.Centaur)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(__instance.transform);
+        eye.transform.localPosition = new Vector3(0.0469f, 0.0245f, 0.1066f);
+        eye.transform.localRotation = Quaternion.Euler(8.008f, 17.674f, 0f);
+        eye.transform.localScale = Vector3.one * 0.1424114f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(__instance.transform);
+        eye2.transform.localPosition = new Vector3(0.0542f, 0.1028f, 0.1129f);
+        eye2.transform.localRotation = Quaternion.Euler(0f, 17.674f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.1424114f;
+
+        GooglyEye eye3 = GooglyEye.New();
+        eye3.transform.SetParent(__instance.transform);
+        eye3.transform.localPosition = new Vector3(0.0538f, 0.1836f, 0.1132f);
+        eye3.transform.localRotation = Quaternion.Euler(-5.831f, 17.674f, 0f);
+        eye3.transform.localScale = Vector3.one * 0.1424114f;
+
+        GooglyEye eye4 = GooglyEye.New();
+        eye4.transform.SetParent(__instance.transform);
+        eye4.transform.localPosition = new Vector3(-0.0469f, 0.0245f, 0.1066f);
+        eye4.transform.localRotation = Quaternion.Euler(8.008f, -17.674f, 0f);
+        eye4.transform.localScale = Vector3.one * 0.1424114f;
+
+        GooglyEye eye5 = GooglyEye.New();
+        eye5.transform.SetParent(__instance.transform);
+        eye5.transform.localPosition = new Vector3(-0.0542f, 0.1028f, 0.1129f);
+        eye5.transform.localRotation = Quaternion.Euler(0f, -17.674f, 0f);
+        eye5.transform.localScale = Vector3.one * 0.1424114f;
+
+        GooglyEye eye6 = GooglyEye.New();
+        eye6.transform.SetParent(__instance.transform);
+        eye6.transform.localPosition = new Vector3(-0.0538f, 0.1836f, 0.1132f);
+        eye6.transform.localRotation = Quaternion.Euler(-5.831f, -17.674f, 0f);
+        eye6.transform.localScale = Vector3.one * 0.1424114f;
+    }
 
     private static void ApplyGooglyEyes_Filth(EnemyIdentifier __instance)
     {
@@ -397,7 +499,7 @@ public class GooglyEyesEffect : ChaosEffect
 
     private static void ApplyGooglyEyes_MinosCorpse(EnemyIdentifier __instance)
     {
-        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        SeasonalHats hat = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x=>x.transform.parent.name == "Head").FirstOrDefault();
         if (hat == null)
             return;
 
@@ -502,8 +604,279 @@ public class GooglyEyesEffect : ChaosEffect
         eye2.transform.localScale = Vector3.one * 0.3644443f;
     }
 
-    //TODO Gabriel 1 + 2, gutterman, hideous mass, centaur, flesh prisons, rats
+    private static void ApplyGooglyEyes_Gabriel(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
 
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.06221204f, 0.1809662f, 0.2148465f);
+        eye.transform.localRotation = Quaternion.Euler(-7.291f, 0f, 0f);
+        eye.transform.localScale = Vector3.one * 0.2876147f;
+
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.06221204f, 0.1809662f, 0.2148465f);
+        eye2.transform.localRotation = Quaternion.Euler(-7.291f, 0f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.2876147f;
+    }
+
+    private static void ApplyGooglyEyes_Gabriel2(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.09512724f, 0.1705315f, 0.2057892f);
+        eye.transform.localRotation = Quaternion.Euler(-2.003f, 2.422f, -0.622f);
+        eye.transform.localScale = Vector3.one * 0.3525708f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.09512724f, 0.1705315f, 0.2057892f);
+        eye2.transform.localRotation = Quaternion.Euler(-2.003f, -2.422f, -0.622f);
+        eye2.transform.localScale = Vector3.one * 0.3525708f;
+    }
+
+    private static void ApplyGooglyEyes_HideousMass(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.1059043f, 0.05596152f, 0.638726f);
+        eye.transform.localRotation = Quaternion.Euler(-5.482f, 17.866f, -1.764f);
+        eye.transform.localScale = Vector3.one * 0.341916f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.1059043f, 0.05596152f, 0.638726f);
+        eye2.transform.localRotation = Quaternion.Euler(-5.482f, -17.866f, -1.764f);
+        eye2.transform.localScale = Vector3.one * 0.341916f;
+    }
+
+    private static void ApplyGooglyEyes_Minotaur(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.1689887f, 0.1655711f, 0.179873f);
+        eye.transform.localRotation = Quaternion.Euler(-17.706f, 54.508f, -24.924f);
+        eye.transform.localScale = Vector3.one * 0.492525f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.1689887f, 0.1655711f, 0.179873f);
+        eye2.transform.localRotation = Quaternion.Euler(-17.706f, -54.508f, 24.924f);
+        eye2.transform.localScale = Vector3.one * 0.492525f;
+    }
+
+    private static void ApplyGooglyEyes_Gutterman(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x=>x.name == "Seasonal Hats").FirstOrDefault();
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.0193f, 0.2071f, 0.2085f);
+        eye.transform.localRotation = Quaternion.Euler(-38.096f, 0f, 0f);
+        eye.transform.localScale = Vector3.one * 0.3180321f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(0.019f, 0.3007f, -0.1368f);
+        eye2.transform.localRotation = Quaternion.Euler(-70.40501f, 180f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.3180321f;
+
+        GooglyEye eye3 = GooglyEye.New();
+        eye3.transform.SetParent(hat.transform);
+        eye3.transform.localPosition = new Vector3(0.2317f, 0.1236f, 0.1713f);
+        eye3.transform.localRotation = Quaternion.Euler(-24.998f, 45f, 0f);
+        eye3.transform.localScale = Vector3.one * 0.3180321f;
+
+        GooglyEye eye4 = GooglyEye.New();
+        eye4.transform.SetParent(hat.transform);
+        eye4.transform.localPosition = new Vector3(0.2058f, 0.2621f, 0.0149f);
+        eye4.transform.localRotation = Quaternion.Euler(-54.358f, 68.855f, -2.442f);
+        eye4.transform.localScale = Vector3.one * 0.3180321f;
+
+        GooglyEye eye5 = GooglyEye.New();
+        eye5.transform.SetParent(hat.transform);
+        eye5.transform.localPosition = new Vector3(-0.1905f, 0.1231f, 0.1685f);
+        eye5.transform.localRotation = Quaternion.Euler(-24.998f, -45f, 0f);
+        eye5.transform.localScale = Vector3.one * 0.3180321f;
+
+        GooglyEye eye6 = GooglyEye.New();
+        eye6.transform.SetParent(hat.transform);
+        eye6.transform.localPosition = new Vector3(-0.1664f, 0.2588f, 0.01f);
+        eye6.transform.localRotation = Quaternion.Euler(-54.345f, -75.356f, 2.843f);
+        eye6.transform.localScale = Vector3.one * 0.3180321f;
+
+        //Coffin guy hat
+        SeasonalHats backhat = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x => x.name == "Seasonal Hats (1)").FirstOrDefault();
+        if (backhat == null)
+            return;
+
+        GooglyEye eye7 = GooglyEye.New();
+        eye7.transform.SetParent(backhat.transform);
+        eye7.transform.localPosition = new Vector3(0.058f, 0.076f, 0.135f);
+        eye7.transform.localRotation = Quaternion.Euler(-38.096f, 0f, 0f);
+        eye7.transform.localScale = Vector3.one * 0.3178667f;
+
+        GooglyEye eye8 = GooglyEye.New();
+        eye8.transform.SetParent(backhat.transform);
+        eye8.transform.localPosition = new Vector3(-0.0931f, 0.076f, 0.135f);
+        eye8.transform.localRotation = Quaternion.Euler(-38.096f, 0f, 0f);
+        eye8.transform.localScale = Vector3.one * 0.3178667f;
+    }
+
+    private static void ApplyGooglyEyes_FleshPrison(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(-0.2124802f, 0.2201618f, -0.2237052f);
+        eye.transform.localRotation = Quaternion.Euler(-32.637f, -138.143f, 8.507f);
+        eye.transform.localScale = Vector3.one * 0.9577239f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(0.1745193f, -0.3253382f, -0.1732055f);
+        eye2.transform.localRotation = Quaternion.Euler(33.477f, -225.152f, -7.834001f);
+        eye2.transform.localScale = Vector3.one * 0.9577239f;
+    }
+
+    private static void ApplyGooglyEyes_FleshPanopticon(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(-0.3795007f, 0.2670003f, 0.2574936f);
+        eye.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+        eye.transform.localScale = Vector3.one * 0.4335901f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(0.2379995f, -0.2610001f, 0.3814925f);
+        eye2.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.4335901f;
+
+        GooglyEye eye3 = GooglyEye.New();
+        eye3.transform.SetParent(hat.transform);
+        eye3.transform.localPosition = new Vector3(0.3809995f, 0.2390002f, 0.03199306f);
+        eye3.transform.localRotation = Quaternion.Euler(0f, -270f, 0f);
+        eye3.transform.localScale = Vector3.one * 0.4335901f;
+
+        GooglyEye eye4 = GooglyEye.New();
+        eye4.transform.SetParent(hat.transform);
+        eye4.transform.localPosition = new Vector3(0.2234994f, -0.2815001f, -0.3770067f);
+        eye4.transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
+        eye4.transform.localScale = Vector3.one * 0.4335901f;
+    }
+
+    private static void ApplyGooglyEyes_Centaur(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        
+    }
+
+    private static void ApplyGooglyEyes_Rodent(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.1253717f, 0.224778f, 0.1119429f);
+        eye.transform.localRotation = Quaternion.Euler(-45.713f, 0f, 0f);
+        eye.transform.localScale = Vector3.one * 0.4934936f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.104f, 0.224778f, 0.1119429f);
+        eye2.transform.localRotation = Quaternion.Euler(-45.713f, 0f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.4934936f;
+    }
+
+    private static void ApplyGooglyEyes_Leviathan(EnemyIdentifier __instance)
+    {
+        SeasonalHats hat = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x => x.name == "Seasonal Hats").FirstOrDefault();
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.1012508f, 0.2393614f, 0.1313226f);
+        eye.transform.localRotation = Quaternion.Euler(-38.744f, -316.845f, -29.3f);
+        eye.transform.localScale = Vector3.one * 0.3816452f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.107f, 0.242f, 0.134f);
+        eye2.transform.localRotation = Quaternion.Euler(-38.744f, 316.845f, 29.3f);
+        eye2.transform.localScale = Vector3.one * 0.3816452f;
+    }
+
+    private static void ApplyGooglyEyes_Mandalore(EnemyIdentifier __instance)
+    {
+        //Mandalore head
+        SeasonalHats hat = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x=>x.transform.parent.name == "Cylinder").FirstOrDefault();
+        if (hat == null)
+            return;
+
+        GooglyEye eye = GooglyEye.New();
+        eye.transform.SetParent(hat.transform);
+        eye.transform.localPosition = new Vector3(0.1200014f, 0.16f, 0.1006969f);
+        eye.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        eye.transform.localScale = Vector3.one * 0.3531409f;
+
+        GooglyEye eye2 = GooglyEye.New();
+        eye2.transform.SetParent(hat.transform);
+        eye2.transform.localPosition = new Vector3(-0.1200014f, 0.16f, 0.1006969f);
+        eye2.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        eye2.transform.localScale = Vector3.one * 0.3531409f;
+
+        //Shammy head
+        SeasonalHats hat2 = __instance.GetComponentsInChildren<SeasonalHats>(true).Where(x => x.transform.parent.name == "Shammy").FirstOrDefault();
+        if (hat2 == null)
+            return;
+
+        GooglyEye eye3 = GooglyEye.New();
+        eye3.transform.SetParent(hat2.transform);
+        eye3.transform.localPosition = new Vector3(0.103f, 0.193f, 0.157f);
+        eye3.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        eye3.transform.localScale = Vector3.one * 0.47694499f;
+
+        GooglyEye eye4 = GooglyEye.New();
+        eye4.transform.SetParent(hat2.transform);
+        eye4.transform.localPosition = new Vector3(-0.099f, 0.193f, 0.157f);
+        eye4.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        eye4.transform.localScale = Vector3.one * 0.47694499f;
+
+
+
+    }
 }
 
 public class GooglyEye : MonoBehaviour

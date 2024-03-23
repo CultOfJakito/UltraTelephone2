@@ -8,7 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
-    public class LimitedLives : ChaosEffect, IEventListener
+    public class LimitedLives : ChaosEffect 
     {
         [Configgable("Hydra/Chaos", "Limited Lives")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);

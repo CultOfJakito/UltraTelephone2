@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
 [RegisterChaosEffect]
-public class OpenUrlOnDeath : ChaosEffect, IEventListener
+public class OpenUrlOnDeath : ChaosEffect
 {
     [Configgable("TeamDoodz/Chaos", "Open URL On Death")]
     private static ConfigToggle s_openUrlOnDeath = new(true);
