@@ -69,6 +69,12 @@ public class UltraTelephoneTwo : BaseUnityPlugin
   
     private void OnSceneLoaded(string name)
     {
+        if(GeneralSettings.Personalization.Value == PersonalizationLevel.ULTRAPERSONALIZED)
+        {
+            //full random seed.
+            Random = UniRandom.CreateFullRandom();
+        }
+
         if (!InGameCheck.InLevel())
         {
             return;
