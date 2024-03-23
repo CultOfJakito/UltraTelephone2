@@ -73,6 +73,16 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] TelephoneMod {
+            get {
+                object obj = ResourceManager.GetObject("TelephoneMod", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] zed {
             get {
                 object obj = ResourceManager.GetObject("zed", resourceCulture);

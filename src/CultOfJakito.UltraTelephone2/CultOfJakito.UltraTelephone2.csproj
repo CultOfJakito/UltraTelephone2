@@ -47,6 +47,9 @@
     <Reference Include="UnityEngine.AIModule">
       <HintPath>libs\UnityEngine.AIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>false</Private>
@@ -58,6 +61,12 @@
     <Reference Include="UnityEngine.ImageConversion">
       <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
@@ -77,6 +86,21 @@
     </Reference>
     <Reference Include="NewtonSoft.Json">
       <HintPath>libs\NewtonSoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 

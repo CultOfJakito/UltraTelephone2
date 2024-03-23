@@ -1,10 +1,7 @@
 ﻿using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ULTRASTATS.Patches
+namespace CultOfJakito.UltraTelephone2
 {
     [HarmonyPatch]
     public static class PlayerTrackingPatch

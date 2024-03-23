@@ -4,17 +4,22 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Zed;
-using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using CultOfJakito.UltraTelephone2.Util;
+using UltraTelephone.Hydra;
+using CultOfJakito.UltraTelephone2.Events;
 
 namespace CultOfJakito.UltraTelephone2;
 
 [BepInDependency("Hydraxous.ULTRAKILL.Configgy")]
-[BepInPlugin(nameof(UltraTelephone2), "UltraTelephone 2", "1.0.0")]
+[BepInPlugin(MOD_GUID, MOD_NAME, VERSION)]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
+    public const string VERSION = "1.0.0";
+    public const string MOD_NAME = "UltraTelephone2";
+    public const string MOD_GUID = "CultOfJakito.UltraTelephone2";
     public ChaosManager ChaosManager { get; private set; }
     public UniRandom Random { get; private set; }
 
@@ -34,25 +39,36 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
-
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
+        UT2Paths.EnsureFolders();
         UT2Assets.ForceLoad();
+
+        TextureHelper.LoadTextures(UT2Paths.TextureFolder);
+        AudioHelper.LoadClips(UT2Paths.AudioFolder);
 
         InGameCheck.OnLevelChanged += DoThing;
         MinecraftBookPatch.Init();
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        InGameCheck.OnLevelChanged += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void InitializeStuff()
     {
-        if (SceneManager.GetActiveScene() != scene)
+        HerobrineManager.Init();
+        GameEvents.OnPlayerHurt += (e) =>
         {
-            return;
-        }
+            if(e.Damage > 10)
+            {
+                Jumpscare.Scare();
+            }
+        };
+    }
 
+  
+    private void OnSceneLoaded(string name)
+    {
         if (!InGameCheck.InLevel())
         {
             return;
@@ -61,7 +77,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         Logger.LogInfo("Starting new service scope");
         GameObject chaosManagerObject = new("UT2 Chaos Manager");
         ChaosManager = chaosManagerObject.AddComponent<ChaosManager>();
-
         ChaosManager.BeginEffects();
     }
 

@@ -37,11 +37,22 @@ namespace CultOfJakito.UltraTelephone2.Assets
             }
         }
 
+        private static AssetLoader ultraTelephoneLegacyBundle;
+        public static AssetLoader UltraTelephoneLegacyBundle
+        {
+            get
+            {
+                ultraTelephoneLegacyBundle ??= new AssetLoader(Properties.Resources.TelephoneMod);
+                return ultraTelephoneLegacyBundle;
+            }
+        }
+
         public static void ForceLoad()
         {
             zelzmiyBundle ??= new AssetLoader(Properties.Resources.zelzmiy);
             zedBundle ??= new AssetLoader(Properties.Resources.zed);
             hydraBundle ??= new AssetLoader(Properties.Resources.hydra);
+            ultraTelephoneLegacyBundle ??= new AssetLoader(Properties.Resources.TelephoneMod);
         }
     }
 }

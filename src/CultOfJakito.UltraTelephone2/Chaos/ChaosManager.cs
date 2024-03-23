@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
@@ -7,9 +8,17 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 
 public class ChaosManager : MonoBehaviour, IDisposable
 {
+    [Configgable(displayName:"Chaos Budget")]
+    private static ConfigInputField<int> _chaosBudget = new ConfigInputField<int>(32, (v) =>
+    {
+        return v > 0;
+    });
+
     public void BeginEffects()
     {
-        UniRandom random = UltraTelephoneTwo.Instance.Random;
+        //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
+        int seed = UltraTelephoneTwo.Instance.Random.Seed ^ UniRandom.StringToSeed(SceneHelper.CurrentScene);
+        UniRandom random = new UniRandom(seed);
         _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, 32);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
@@ -48,6 +57,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
             GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
 
+            //TODO remove this.
             foreach (IChaosEffect x in _ctx.GetCurrentSelection())
             {
                 if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
@@ -64,6 +74,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
                 GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
 
+                //TODO remove this.
                 foreach (IChaosEffect x in _ctx.GetCurrentSelection())
                 {
                     if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))

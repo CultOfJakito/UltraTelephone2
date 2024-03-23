@@ -20,7 +20,7 @@ namespace UltraTelephone.Hydra
         public float lookSpeed = 40f;
 
         [Configgable("Hydra/Fun/Herobrine", "Herobrine Frequency Upperbound")]
-        private static ConfigInputField<float> herobrineFrequencyUpperBound = new ConfigInputField<float>(30f, (v) => v > 0f && v>= herobrineFrequencyUpperBound.Value);
+        private static ConfigInputField<float> herobrineFrequencyUpperBound = new ConfigInputField<float>(30f, (v) => v > 0f && v>= herobrineFrequencyLowerBound.Value);
 
         [Configgable("Hydra/Fun/Herobrine", "Herobrine Frequency Lowerbound")]
         private static ConfigInputField<float> herobrineFrequencyLowerBound = new ConfigInputField<float>(5f, (v) => v > 0f && v <= herobrineFrequencyUpperBound.Value);
@@ -316,7 +316,7 @@ namespace UltraTelephone.Hydra
 
             public override void EnterState(Herobrine herobrine)
             {
-                lurkDelayRange = new Vector2(5.0f, herobrineFrequencyUpperBound.Value);
+                lurkDelayRange = new Vector2(herobrineFrequencyLowerBound.Value, herobrineFrequencyUpperBound.Value);
                 torments = new HerobrineState[]
                 {
                     herobrine.stalk,
@@ -810,7 +810,6 @@ namespace UltraTelephone.Hydra
                 herobrine.agent.enabled = false;
                 herobrine.allVisuals.SetActive(true);
                 herobrine.SetAlpha(0f);
-                RandomSounds.PlayRandomSound();
                 timer = length;
                 headOffset = herobrine.transform.position - herobrine.head.position;
             }
