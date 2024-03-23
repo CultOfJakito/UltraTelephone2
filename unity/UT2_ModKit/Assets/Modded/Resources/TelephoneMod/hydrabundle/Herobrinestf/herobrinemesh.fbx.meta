@@ -1,0 +1,596 @@
+fileFormatVersion: 2
+guid: e2ccc69c5a4362446ba22f6f59577bab
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 5805127158331366216
+    second: Crouching
+  - first:
+      74: -544244333504809374
+    second: Armature|Floating
+  - first:
+      74: -8945691123924629249
+    second: Herobrine_Idle
+  - first:
+      74: -7439417394998063122
+    second: ItemLeft
+  - first:
+      74: -51236231724254352
+    second: Armature|ItemRight
+  - first:
+      74: -3828583913261678786
+    second: Armature|Running
+  - first:
+      74: -4779212398625334856
+    second: Armature|Tpose
+  - first:
+      74: -4274770991410265338
+    second: Armature|Walking
+  - first:
+      74: -5317887767387918893
+    second: Floating
+  - first:
+      74: -600485472347336705
+    second: ItemRight
+  - first:
+      74: -9121621101649706817
+    second: Running
+  - first:
+      74: -6712725380312225458
+    second: Herobrine_Tpose
+  - first:
+      74: -1610863427237328480
+    second: Walking
+  - first:
+      74: 1809395633476462551
+    second: Herobrine_Crouching
+  - first:
+      74: 1537907988433120607
+    second: Herobrine_Floating
+  - first:
+      74: -1913160631138825454
+    second: Herobrine_ItemLeft
+  - first:
+      74: 522723266884200330
+    second: Herobrine_ItemRight
+  - first:
+      74: 6073432327235085849
+    second: Herobrine_Running
+  - first:
+      74: 6388778254239677938
+    second: Herobrine_Walking
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Herobrine_Crouching
+      takeName: Armature|Crouching
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 1
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Root/Body/Leg.R
+        weight: 1
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 1
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_Floating
+      takeName: Armature|Floating
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 57
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 1
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Root/Body/Leg.R
+        weight: 1
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 1
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_Idle
+      takeName: Armature|Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 114
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 1
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Root/Body/Leg.R
+        weight: 1
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 1
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_ItemLeft
+      takeName: Armature|ItemLeft
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 57
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Body
+        weight: 0
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 0
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 0
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 0
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.R
+        weight: 0
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 0
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_ItemRight
+      takeName: Armature|ItemRight
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Body
+        weight: 0
+      - path: Armature/Root/Body/Arm.L
+        weight: 0
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 0
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 0
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.R
+        weight: 0
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 0
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_Running
+      takeName: Armature|Running
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 1
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Root/Body/Leg.R
+        weight: 1
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 1
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_Tpose
+      takeName: Armature|Tpose
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Herobrine_Walking
+      takeName: Armature|Walking
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Body/Arm.L
+        weight: 1
+      - path: Armature/Root/Body/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Root/Body/Arm.R
+        weight: 1
+      - path: Armature/Root/Body/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Root/Body/Head
+        weight: 0
+      - path: Armature/Root/Body/Head/Head_end
+        weight: 0
+      - path: Armature/Root/Body/Leg.L
+        weight: 1
+      - path: Armature/Root/Body/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Root/Body/Leg.R
+        weight: 1
+      - path: Armature/Root/Body/Leg.R/Leg.R_end
+        weight: 1
+      - path: HerobrineMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: Root
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
