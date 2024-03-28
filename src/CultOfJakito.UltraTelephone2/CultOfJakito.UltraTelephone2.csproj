@@ -6,6 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="BepInEx.Core" Version="5.4.21">
       <PrivateAssets>all</PrivateAssets>
@@ -61,6 +69,9 @@
     <Reference Include="UnityEngine.ImageConversion">
       <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>libs\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -291,10 +302,6 @@
     <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="LevelSpecific\" />
   </ItemGroup>
 
 </Project>
