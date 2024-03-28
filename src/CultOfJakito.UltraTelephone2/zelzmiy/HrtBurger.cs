@@ -16,8 +16,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy;
 [HarmonyPatch]
 internal class HRTBurger : ChaosEffect
 {
-    private GameObject _estrogenBurger;
-    private GameObject _testosteroneBurger;
+    private static GameObject _estrogenBurger;
+    private static GameObject _testosteroneBurger;
 
     [Configgable("Chaos/Effects", "HRT Burgers")]
     private static ConfigToggle s_enabled = new(true);
@@ -26,8 +26,8 @@ internal class HRTBurger : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        _estrogenBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
-        _testosteroneBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
+        _estrogenBurger ??= UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
+        _testosteroneBurger ??= UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
         s_effectActive = true;
     }
 
@@ -35,9 +35,9 @@ internal class HRTBurger : ChaosEffect
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-    [HarmonyPatch(typeof(ItemIdentifier), "Start")]
+    [HarmonyPatch(typeof(Skull), "Start")]
     [HarmonyPostfix]
-    public void ReplaceSkull(ItemIdentifier __instance)
+    public static void ReplaceSkull(Skull __instance)
     {
         if (!s_enabled.Value || !s_effectActive)
             return;
@@ -48,8 +48,8 @@ internal class HRTBurger : ChaosEffect
             return;
 
         renderer.enabled = false;
-
-        switch (__instance.itemType)
+        ItemType itemType = __instance.gameObject.GetComponent<ItemIdentifier>().itemType;
+        switch (itemType)
         {
             case ItemType.SkullRed:
                 Instantiate(_estrogenBurger, renderer.transform);

@@ -72,6 +72,8 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
                         charIndex++;
                     }
                 }
+
+                text = sb.ToString();
             }
             else
             {
