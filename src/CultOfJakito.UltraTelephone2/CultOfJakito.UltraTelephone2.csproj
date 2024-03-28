@@ -62,6 +62,9 @@
       <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>libs\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
@@ -291,10 +294,6 @@
     <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="LevelSpecific\" />
   </ItemGroup>
 
 </Project>
