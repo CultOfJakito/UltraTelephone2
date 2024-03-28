@@ -44,7 +44,7 @@ public class AnnoyingPopUp : ChaosEffect
 
     private void ShowPopUp()
     {
-        ModalDialogueEvent dialogue = _rng.PercentChance(0.25f) ? _dialogueBuilders.RandomElement(_rng).Invoke() : CreateRandomized();
+        ModalDialogueEvent dialogue = _rng.Chance(0.25f) ? _rng.SelectRandom(_dialogueBuilders).Invoke() : CreateRandomized();
         ModalDialogue.ShowDialogue(dialogue);
     }
 
@@ -296,7 +296,7 @@ public class AnnoyingPopUp : ChaosEffect
         }
 
         //hehe switch the order sometimes
-        if ((_rng.PercentChance(0.25f) && _tutorialPopUpCount == 0) || _tutorialPopUpCount == 1)
+        if ((_rng.Chance(0.25f) && _tutorialPopUpCount == 0) || _tutorialPopUpCount == 1)
         {
             (modalDialogue.Options[0], modalDialogue.Options[1]) = (modalDialogue.Options[1], modalDialogue.Options[0]);
         }
@@ -366,8 +366,8 @@ public class AnnoyingPopUp : ChaosEffect
     private ModalDialogueEvent CreateRandomized()
     {
         int options = _rng.Next(1, 4);
-        _randomDialogueEvent.Message = s_messages.RandomElement(_rng);
-        _randomDialogueEvent.Title = s_titles.RandomElement(_rng);
+        _randomDialogueEvent.Message = _rng.SelectRandom(s_messages);
+        _randomDialogueEvent.Title = _rng.SelectRandom(s_titles);
         _randomDialogueEvent.Options = new DialogueBoxOption[options];
         for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)
         {

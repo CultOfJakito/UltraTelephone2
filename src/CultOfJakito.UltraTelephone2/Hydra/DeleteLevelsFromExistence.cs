@@ -23,7 +23,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
             UniRandom rng = new UniRandom(globalSeed^uniqueHash);
 
-            if (rng.PercentChance(0.7f))
+            if (rng.Chance(0.7f))
                 return;
 
             LevelSelectPanel[] levelSelects = __instance.GetComponentsInChildren<LevelSelectPanel>(true);
