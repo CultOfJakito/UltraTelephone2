@@ -24,12 +24,12 @@ namespace CultOfJakito.UltraTelephone2
             int damage = __state.Health - health;
             if (damage > 0)
             {
-                GameEvents.OnPlayerHurt.Invoke(new PlayerHurtEvent(__instance, damage));
+                GameEvents.OnPlayerHurt?.Invoke(new PlayerHurtEvent(__instance, damage));
             }
 
             if (!__state.Dead && __instance.dead)
             {
-                GameEvents.OnPlayerDeath.Invoke();
+                GameEvents.OnPlayerDeath?.Invoke();
             }
         }
 
@@ -57,15 +57,9 @@ namespace CultOfJakito.UltraTelephone2
 
             if (healthRegained > 0)
             {
-                GameEvents.OnPlayerHeal.Invoke(new PlayerHealEvent(__instance, healthRegained));
+                GameEvents.OnPlayerHeal?.Invoke(new PlayerHealEvent(__instance, healthRegained));
             }
         }
-
-        //[HarmonyPatch(typeof(PlayerAnimations), nameof(PlayerAnimations.Footstep)), HarmonyPostfix]
-        //public static void OnFootstep()
-        //{
-
-        //}
 
         [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.ForceAntiHP)), HarmonyPrefix]
         public static void PreForceAntiHP(NewMovement __instance, out float __state)
@@ -81,14 +75,14 @@ namespace CultOfJakito.UltraTelephone2
 
             if (antiGained > 0)
             {
-                GameEvents.OnPlayerAntiHeal.Invoke(new PlayerAntiHealEvent(__instance, (int)antiGained));
+                GameEvents.OnPlayerAntiHeal?.Invoke(new PlayerAntiHealEvent(__instance, (int)antiGained));
             }
         }
 
         [HarmonyPatch(typeof(Punch), nameof(Punch.Parry)), HarmonyPostfix]
         public static void PostTryParryProjecilte(Punch __instance)
         {
-            GameEvents.OnParry.Invoke();
+            GameEvents.OnParry?.Invoke();
         }
 
         private static bool s_diedToRespawn;
@@ -96,7 +90,7 @@ namespace CultOfJakito.UltraTelephone2
         [HarmonyPostfix]
         public static void Postfix()
         {
-            GameEvents.OnPlayerRespawn.Invoke(new PlayerRespawnEvent(NewMovement.Instance, !s_diedToRespawn));
+            GameEvents.OnPlayerRespawn?.Invoke(new PlayerRespawnEvent(NewMovement.Instance, !s_diedToRespawn));
             s_diedToRespawn = false;
         }
 
