@@ -20,7 +20,7 @@ internal class Yuri : ChaosEffect
 {
     private static GameObject s_yuri;
 
-    [Configgable("Chaos", "Terminal Yuri")]
+    [Configgable("Chaos/Effects", "Terminal Yuri")]
     private static ConfigToggle s_enabled = new(true);
 
     public override void BeginEffect(UniRandom random)

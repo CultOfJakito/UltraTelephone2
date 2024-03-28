@@ -27,6 +27,11 @@ namespace CultOfJakito.UltraTelephone2.Util
         /// </summary>
         public static string AudioFolder => Path.Combine(DataFolder, "audio");
 
+        /// <summary>
+        /// Text here
+        /// </summary>
+        public static string TextFolder => Path.Combine(DataFolder, "text");
+
         public static void EnsureFolders()
         {
             if (!Directory.Exists(DataFolder))
@@ -37,6 +42,9 @@ namespace CultOfJakito.UltraTelephone2.Util
 
             if (!Directory.Exists(AudioFolder))
                 Directory.CreateDirectory(AudioFolder);
+
+            if (!Directory.Exists(TextFolder))
+                Directory.CreateDirectory(TextFolder);
         }
     }
 }

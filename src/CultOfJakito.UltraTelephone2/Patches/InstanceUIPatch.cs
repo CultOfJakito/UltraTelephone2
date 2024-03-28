@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
 using UltraTelephone.Hydra;
 using UnityEngine;
@@ -17,26 +18,21 @@ namespace CultOfJakito.UltraTelephone2
             RectTransform rect = __instance.GetComponent<RectTransform>();
 
             rect.gameObject.AddComponent<Jumpscare>();
-            //MakeTitleImageUT2(rect);
+            MakeTitleImageUT2(rect);
         }
 
-        //Sets the Early Access text to ULTRATELEPHONE 2
+        //Sets the main title image to ULTRATELEPHONE 2 logo
         private static void MakeTitleImageUT2(RectTransform canvasRect)
         {
             if (SceneHelper.CurrentScene != "Main Menu")
                 return;
 
-            //Create TMP text object and
             GamepadObjectSelector menuComp = canvasRect.GetComponentsInChildren<GamepadObjectSelector>().Where(x => x.name == "Main Menu (1)").FirstOrDefault();
             if (menuComp == null)
                 return;
 
             Image ultrakillImage = menuComp.GetComponentInChildren<Image>();
-            Text[] texts = ultrakillImage.GetComponentsInChildren<Text>();
-            foreach (Text text in texts)
-            {
-                text.text = $"-- ULTRATELEPHONE 2 --";
-            }
+            ultrakillImage.sprite = HydraAssets.UT2Banner;
         }
     }
 }

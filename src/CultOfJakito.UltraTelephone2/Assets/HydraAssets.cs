@@ -9,5 +9,6 @@ namespace CultOfJakito.UltraTelephone2.Assets
     {
         public static AudioClip BeeAudioLoop => UT2Assets.HydraBundle.LoadAsset<AudioClip>("bee_loop");
         public static GameObject GooglyEye => UT2Assets.HydraBundle.LoadAsset<GameObject>("googlyeyemesh");
+        public static Sprite UT2Banner => UT2Assets.HydraBundle.LoadAsset<Sprite>("UltraTelephone2Header");
     }
 }
