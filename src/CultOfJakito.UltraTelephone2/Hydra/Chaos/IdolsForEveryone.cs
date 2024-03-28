@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 [RegisterChaosEffect]
 public class IdolsForEveryone : ChaosEffect
 {
-    [Configgable("Hydra/Chaos", "Idols For All!")]
+    [Configgable("Chaos/Effects", "Idols For Everyone!")]
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive;

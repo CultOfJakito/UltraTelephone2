@@ -10,7 +10,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [RegisterChaosEffect]
     public class ZeroGravityCoins : ChaosEffect
     {
-        [Configgable("Hydra/Chaos", "Zero-G Coins")]
+        [Configgable("Chaos/Effects", "Zero-G Coins")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [HarmonyPatch(typeof(Coin), "Start"), HarmonyPostfix]
@@ -30,7 +30,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             s_effectActive = true;
         }
 
-        public bool CanBeginEffect(ChaosSessionContext ctx) =>  s_enabled.Value && base.CanBeginEffect(ctx);
+        public override bool CanBeginEffect(ChaosSessionContext ctx) =>  s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost()
         {

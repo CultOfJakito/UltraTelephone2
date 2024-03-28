@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 [RegisterChaosEffect]
 public class AnnoyingPopUp : ChaosEffect
 {
-    [Configgable("Hydra", "Show Annoying Death Messages")]
+    [Configgable("Chaos/Effects", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
 
     private UniRandom _rng;

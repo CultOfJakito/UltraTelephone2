@@ -13,10 +13,10 @@ public class SlightlyShrinkTerminal : ChaosEffect
 {
     private static bool s_effectActive;
 
-    [Configgable("Hydra/Chaos", "Change Terminal Size")]
+    [Configgable("Chaos/Effects/Weird Terminal", "Change Terminal Size")]
     private static ConfigToggle s_enabled = new(true);
 
-    [Configgable("Hydra/Chaos", "Terminal Size Variance")]
+    [Configgable("Chaos/Effects/Weird Terminal", "Terminal Size Variance")]
     private static FloatSlider s_variance = new(0.3f, 0f, 0.8f);
 
     [HarmonyPatch(typeof(ShopZone), "Start")]

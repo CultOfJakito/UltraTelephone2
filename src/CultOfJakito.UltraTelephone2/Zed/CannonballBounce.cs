@@ -8,7 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Zed;
 [RegisterChaosEffect]
 public class CannonBallBounce : ChaosEffect
 {
-    [Configgable("ZedDev", "Enable cannonball bounce")]
+    [Configgable("Chaos/Effects", "Bouncy Cannonballs")]
     public static ConfigToggle Enabled = new(true);
 
     public static bool CanBounce;

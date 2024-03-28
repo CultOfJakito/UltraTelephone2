@@ -10,7 +10,7 @@ namespace CultOfJakito.UltraTelephone2.Zed;
 
 public class MinecraftBookPatch
 {
-    [Configgable("ZedDev/Patches", "Minecraft Book")]
+    [Configgable("Patches", "Minecraft Book")]
     private static ConfigToggle s_enabled = new(true);
 
     private static Sprite? minecraftBookSprite;

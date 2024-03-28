@@ -27,7 +27,7 @@ public class Ponder : ChaosEffect
         "Who put Jakito behind bars?"
     ];
 
-    [Configgable("ZedDev/Chaos", "Enable pondering")]
+    [Configgable("Chaos/Effects", "Enabled Pondering")]
     public static ConfigToggle Enabled = new(true);
 
     public override void BeginEffect(UniRandom random)

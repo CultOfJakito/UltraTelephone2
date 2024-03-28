@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [HarmonyPatch]
     public static class DeleteLevelsFromExistence
     {
-        [Configgable("Hydra/Patches", "Disable Some Levels")]
+        [Configgable("Patches", "Disable Some Levels")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [HarmonyPatch(typeof(LayerSelect), "Awake"), HarmonyPostfix]

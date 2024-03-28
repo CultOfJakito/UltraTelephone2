@@ -8,7 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Zed;
 [PatchThis("CultOfJakito.UltraTelephone2.Zed.VineboomMauricePatch")]
 public class VineboomMauricePatch
 {
-    [Configgable("ZedDev/Patches", "Vine boom maurice")]
+    [Configgable("Patches", "Maurice Vine Boom")]
     private static ConfigToggle s_enabled = new ConfigToggle(true);
 
     [HarmonyPatch(typeof(EnemyIdentifier), "OnEnable")]

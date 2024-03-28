@@ -14,10 +14,10 @@ public class WalkingIdols : ChaosEffect
 {
     private static bool s_effectActive;
 
-    [Configgable("Hydra/Chaos", "Walking Idols")]
+    [Configgable("Chaos/Effects/Walking Idols", "Walking Idols")]
     private static ConfigToggle s_enabled = new(true);
 
-    [Configgable("Hydra/Chaos", "Walking Idol Speed")]
+    [Configgable("Chaos/Effects/Walking Idols", "Walking Idol Speed")]
     public static FloatSlider S_WalkSpeed = new(40f, 0.1f, 200f);
 
     [HarmonyPatch(typeof(Idol), "Start")]

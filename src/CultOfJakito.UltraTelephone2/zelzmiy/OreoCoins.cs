@@ -14,9 +14,10 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
     [RegisterChaosEffect]
     internal class OreoCoins : ChaosEffect
     {
-        [Configgable("zelzmiy", "Oreo Coins")]
+        [Configgable("Chaos", "Oreo Coins")]
         private static ConfigToggle s_enabled = new(true);
 
+        private static bool s_effectActive;
 
         private static GameObject s_oreo;
         private static GameObject s_oreoSplash;
@@ -25,14 +26,23 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
         {
             s_oreo = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo");
             s_oreoSplash = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo Splash");
+            s_effectActive = true;
         }
+
+        public override void Dispose()
+        {
+            s_effectActive = false;
+            base.Dispose();
+        }
+
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost() => 1;
 
         [HarmonyPatch(typeof(Coin), "Start"), HarmonyPostfix]
         private static void ChangeCoinToOreo(Coin __instance)
         {
-            if (!s_enabled.Value || !s_oreoSplash)
+            if (!s_enabled.Value || !s_effectActive)
                 return;
 
             __instance.flash = s_oreoSplash;

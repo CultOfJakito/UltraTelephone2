@@ -19,10 +19,10 @@ namespace UltraTelephone.Hydra
 
         public float lookSpeed = 40f;
 
-        [Configgable("Hydra/Fun/Herobrine", "Herobrine Frequency Upperbound")]
+        [Configgable("Fun/Herobrine", "Herobrine Frequency Upperbound")]
         private static ConfigInputField<float> herobrineFrequencyUpperBound = new ConfigInputField<float>(30f, (v) => v > 0f && v>= herobrineFrequencyLowerBound.Value);
 
-        [Configgable("Hydra/Fun/Herobrine", "Herobrine Frequency Lowerbound")]
+        [Configgable("Fun/Herobrine", "Herobrine Frequency Lowerbound")]
         private static ConfigInputField<float> herobrineFrequencyLowerBound = new ConfigInputField<float>(5f, (v) => v > 0f && v <= herobrineFrequencyUpperBound.Value);
 
         private Transform target;

@@ -15,13 +15,13 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         private static List<string> splashPhrases = new List<string>();
         private static string splashTextFilePath => Path.Combine(UT2Paths.DataFolder, "splashes.txt");
 
-        [Configgable("Hydra/Fun/SplashText", "Enable Splash Text")]
+        [Configgable("Fun/SplashText", "Enable Splash Text")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [Configgable("Hydra/Fun/SplashText", "Reload Text File")]
+        [Configgable("Fun/SplashText", "Reload Text File")]
         private static ConfigButton reloadFile = new ConfigButton(ReloadFile, "Reload Text File");
 
-        [Configgable("Hydra/Fun/SplashText", "Change Splash Text")]
+        [Configgable("Fun/SplashText", "Change Splash Text")]
         private static ConfigButton changeSplashText = new ConfigButton(ChangeSplashText, "Change Splash Text");
 
         static int seedOffset = 0;
@@ -89,10 +89,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
     public class SplashTextBouncer : MonoBehaviour
     {
-        [Configgable("Hydra/Fun/SplashText", "Bounce Speed")]
+        [Configgable("Fun/SplashText", "Bounce Speed")]
         private static ConfigInputField<float> bounceSpeed = new ConfigInputField<float>(2f);
 
-        [Configgable("Hydra/Fun/SplashText", "Bounce Size")]
+        [Configgable("Fun/SplashText", "Bounce Size")]
         private static ConfigInputField<float> bounceSize = new ConfigInputField<float>(0.2f);
 
         private void Update()

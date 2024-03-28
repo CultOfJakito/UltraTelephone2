@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [RegisterChaosEffect]
     public class ArmoredVirtues : ChaosEffect
     {
-        [Configgable("Hydra/Chaos", "Armored Virtues")]
+        [Configgable("Chaos/Effects", "Armored Virtues")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         private static bool s_effectActive = false;

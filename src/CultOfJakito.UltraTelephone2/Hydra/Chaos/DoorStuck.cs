@@ -10,7 +10,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 [HarmonyPatch]
 public class DoorStuck : ChaosEffect
 {
-    [Configgable("Hydra/Chaos", "Door Stuck")]
+    [Configgable("Chaos/Effects", "Door Stuck")]
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive;

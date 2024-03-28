@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 [HarmonyPatch]
 public class NoEscape : ChaosEffect
 {
-    [Configgable("Hydra/Chaos", "No Escape")]
+    [Configgable("Chaos/Effects", "No Escape")]
     private static ConfigToggle s_enabled = new(true);
 
     public override void BeginEffect(UniRandom random) => DisableEscapeButtons();

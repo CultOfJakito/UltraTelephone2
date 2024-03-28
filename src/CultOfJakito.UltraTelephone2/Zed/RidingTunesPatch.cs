@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Zed
 {
-    [PatchThis("CultOfJakito.UltraTelephone2.Zed.RidingTunesPatch")]
+    [HarmonyPatch]
     public class RidingTunesPatch
     {
 
-        [Configgable("ZedDev/Patches", "Rocket Riding Music")]
+        [Configgable("Patches", "Rocket Riding Music")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [HarmonyPatch(typeof(Grenade), "PlayerRideStart")]
         [HarmonyPostfix]
         public static void Riding(Grenade __instance)
         {
-            if (!s_enabled.Value)
+            if (!s_enabled.Value || !GeneralSettings.EnableCopyrightedMusic.Value)
                 return;
 
             AudioClip audio = UT2Assets.ZedBundle.LoadAsset<AudioClip>("ridingtunes");
@@ -35,7 +35,7 @@ namespace CultOfJakito.UltraTelephone2.Zed
         [HarmonyPostfix]
         public static void RidingEnd(Grenade __instance)
         {
-            if (!s_enabled.Value)
+            if (!s_enabled.Value || !GeneralSettings.EnableCopyrightedMusic.Value)
                 return;
 
             if(__instance.GetComponentsInChildren<Marker>().Any(s => s.Name == "PlaySound"))

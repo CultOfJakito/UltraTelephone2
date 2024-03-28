@@ -9,7 +9,7 @@ using Configgy;
 //[RegisterChaosEffect]
 public class Sneeze : ChaosEffect
 {
-    [Configgable("ZedDev/ChaosEffects", "Sneeze")]
+    [Configgable("Chaos/Effects", "Sneeze")]
     private static ConfigToggle s_enabled = new(true);
 
     public override void BeginEffect(UniRandom random)
