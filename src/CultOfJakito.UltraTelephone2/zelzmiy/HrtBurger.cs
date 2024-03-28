@@ -8,7 +8,12 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.zelzmiy;
 
+/// <summary>
+/// suggestion #314: from:bobot, "add consumable estrogen burger" <br/>
+/// Replaces the Blue and red skulls with burgers that have 'T' and "E' written on them respectively
+/// </summary>
 [RegisterChaosEffect]
+[HarmonyPatch]
 internal class HRTBurger : ChaosEffect
 {
     private GameObject _estrogenBurger;
@@ -21,8 +26,8 @@ internal class HRTBurger : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        _estrogenBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab");
-        _testosteroneBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger.prefab");
+        _estrogenBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
+        _testosteroneBurger = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
         s_effectActive = true;
     }
 
@@ -32,7 +37,7 @@ internal class HRTBurger : ChaosEffect
 
     [HarmonyPatch(typeof(ItemIdentifier), "Start")]
     [HarmonyPostfix]
-    public void ReplaceSkull(ItemIdentifier __instance, ItemType itemType)
+    public void ReplaceSkull(ItemIdentifier __instance)
     {
         if (!s_enabled.Value || !s_effectActive)
             return;
@@ -44,7 +49,7 @@ internal class HRTBurger : ChaosEffect
 
         renderer.enabled = false;
 
-        switch (itemType)
+        switch (__instance.itemType)
         {
             case ItemType.SkullRed:
                 Instantiate(_estrogenBurger, renderer.transform);

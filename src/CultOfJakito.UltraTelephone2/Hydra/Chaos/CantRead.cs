@@ -55,9 +55,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             for (int i = 0; i < words; i++)
             {
                 sb.Append(s_rng.SelectRandomList(s_illegebleWords));
+                sb.Append(' ');
             }
 
-            text = sb.ToString();
+            text = sb.ToString().TrimEnd(' ');
         }
     }
 }
