@@ -146,7 +146,42 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to when
+        ///you
+        ///and
+        ///the
+        ///then
+        ///when
+        ///we
+        ///was
+        ///where
+        ///and
+        ///then
+        ///he
+        ///she
+        ///they
+        ///and
+        ///it
+        ///was
+        ///awesome
+        ///then
+        ///you
+        ///just
+        ///about
+        ///to
+        ///too
+        ///there
+        ///their
+        ///then
+        ///they&apos;re
+        ///not
+        ///very
+        ///huge
+        ///big
+        ///small
+        ///sand-covered
+        ///silly
+        ///:3.
         /// </summary>
         internal static string cantReadWords {
             get {
@@ -161,6 +196,27 @@ namespace CultOfJakito.UltraTelephone2.Properties {
             get {
                 object obj = ResourceManager.GetObject("hydra", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
+        ///101110010000101101011101101010110
+        ///Weeeeeeeeeeeeeeeee
+        ///How the fuck did a 1000-THR get in hell
+        ///I thought a cerberus was a type of dog...
+        ///What exactly generates the power from blood?
+        ///Do guttermen dream?
+        ///If Sisyphus could just break out of the prison, why did he wait?
+        ///I just [EXCEPTION][EXCEPTION][EXCEPTION] Mindflayer [EXCEPTION]
+        ///What if Guttertanks were always meant to topple?
+        ///What if he made it up?
+        ///What the heck them blue orbs
+        ///What does P even stand for? P [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ponder {
+            get {
+                return ResourceManager.GetString("ponder", resourceCulture);
             }
         }
         
