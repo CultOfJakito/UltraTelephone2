@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using BepInEx;
+using CultOfJakito.UltraTelephone2.Util;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Data;
@@ -6,6 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Data;
 public static class Ut2Data
 {
     private static Ut2SaveData s_saveData;
+    private static string SaveDataPath => Path.Combine(UT2Paths.DataFolder, "saveData.json");
 
     public static Ut2SaveData SaveData
     {
@@ -47,7 +50,6 @@ public static class Ut2Data
         }
     }
 
-    private static string SaveDataPath => Paths.DataFilePath;
 
     public static void Save()
     {

@@ -71,6 +71,15 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string splashes {
+            get {
+                return ResourceManager.GetString("splashes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] TelephoneMod {
