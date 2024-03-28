@@ -61,20 +61,96 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Mega
+        ///Based
+        ///Cringe
+        ///Super
+        ///Gay
+        ///ULTRA
+        ///Pro
+        ///Hyper
+        ///Peak
+        ///Noob
+        ///Final
+        ///Ultimate
+        ///Cowardly
+        ///Elite
+        ///Blue
+        ///Red
+        ///Stupid
+        ///Stinky
+        ///Smelly
+        ///Lazy
+        ///Awesome
+        ///Magic
+        ///Evil
+        ///Kind
+        ///The
+        ///Skibidi
+        ///Powerful
+        ///Disgusting
+        ///THE AMAZING
+        ///Mid
+        ///Masterful
+        ///Goopy
+        ///Funny
+        ///Friendly
+        ///Hostile
+        ///LORD
+        ///HOLY
+        ///SAINT
+        ///GOOBER
+        ///PSYCHO
+        ///BADASS
+        ///GLISTENING
+        ///BURNING.
         /// </summary>
-        internal static string funnyBossBar_prefixes {
+        internal static string bossBar_prefixes {
             get {
-                return ResourceManager.GetString("funnyBossBar_prefixes", resourceCulture);
+                return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THE MAN
+        ///(FINAL FORM)
+        ///I
+        ///II
+        ///III
+        ///IV
+        ///V
+        ///VI
+        ///VII
+        ///VIII
+        ///IX
+        ///X
+        ///PHD
+        ///FROM OHIO
+        ///WITH RIZZ
+        ///JR.
+        ///SR.
+        ///ESQUIRE
+        ///LORD OF CINDER
+        ///LORD OF HELL
+        ///OCCUPANT OF HELL
+        ///BOSS
+        ///PRIME
+        ///THE FIFTH
+        ///HELLS GUARDIAN
+        ///SWAG MASTER.
+        /// </summary>
+        internal static string bossBar_suffixes {
+            get {
+                return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string funnyBossBar_suffixes {
+        internal static string cantReadWords {
             get {
-                return ResourceManager.GetString("funnyBossBar_suffixes", resourceCulture);
+                return ResourceManager.GetString("cantReadWords", resourceCulture);
             }
         }
         

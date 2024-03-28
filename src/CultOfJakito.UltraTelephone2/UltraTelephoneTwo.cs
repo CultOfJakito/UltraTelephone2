@@ -3,6 +3,7 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra;
 using CultOfJakito.UltraTelephone2.Util;
@@ -57,8 +58,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private void InitializeObjects()
     {
         MinecraftBookPatch.Init();
-        MinecraftSplashText.ReloadFile();
-        FunnyBossBar.ReloadFiles();
+        UT2TextFiles.ReloadFiles();
         HerobrineManager.Init();
         GameEvents.OnPlayerHurt += (e) =>
         {
