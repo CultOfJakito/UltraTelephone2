@@ -14,7 +14,7 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
     [RegisterChaosEffect]
     internal class OreoCoins : ChaosEffect
     {
-        [Configgable("Chaos", "Oreo Coins")]
+        [Configgable("Chaos/Effects", "Oreo Coins")]
         private static ConfigToggle s_enabled = new(true);
 
         private static bool s_effectActive;

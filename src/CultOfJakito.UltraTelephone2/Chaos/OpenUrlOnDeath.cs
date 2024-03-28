@@ -8,7 +8,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 [RegisterChaosEffect]
 public class OpenUrlOnDeath : ChaosEffect
 {
-    [Configgable("TeamDoodz/Chaos", "Open URL On Death")]
+    [Configgable("Chaos/Effects", "Open URL On Death")]
     private static ConfigToggle s_openUrlOnDeath = new(true);
 
     private static readonly string[] s_urlPool =

@@ -14,10 +14,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [Configgable("Patches/Silly Boss Bar", "Prefix Chance")]
-        private static FloatSlider s_prefixChance = new FloatSlider(0.25f, 0f, 1f);
+        private static FloatSlider s_prefixChance = new FloatSlider(0.4f, 0f, 1f);
 
         [Configgable("Patches/Silly Boss Bar", "Suffix Chance")]
-        private static FloatSlider s_suffixChance = new FloatSlider(0.25f, 0f, 1f);
+        private static FloatSlider s_suffixChance = new FloatSlider(0.15f, 0f, 1f);
 
         [Configgable("Patches/Silly Boss Bar", "Reload Text Files")]
         private static ConfigButton s_reloadFiles = new ConfigButton(ReloadFiles, "Reload Text Files");
@@ -55,25 +55,30 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             {
                 string builtInText = Properties.Resources.funnyBossBar_prefixes;
                 File.WriteAllText(funnyBossBarPrefixesFilePath, builtInText);
-                s_prefixes = new List<string>(builtInText.Split('\n'));
+                s_prefixes = ParseTextFile(builtInText);
             }
             else
             {
                 string text = File.ReadAllText(funnyBossBarPrefixesFilePath);
-                s_prefixes = new List<string>(text.Split('\n'));
+                s_prefixes = ParseTextFile(text);
             }
 
             if (!File.Exists(funnyBossBarSuffixesFilePath))
             {
                 string builtInText = Properties.Resources.funnyBossBar_suffixes;
                 File.WriteAllText(funnyBossBarSuffixesFilePath, builtInText);
-                s_suffixes = new List<string>(builtInText.Split('\n'));
+                s_suffixes = ParseTextFile(builtInText);
             }
             else
             {
                 string text = File.ReadAllText(funnyBossBarSuffixesFilePath);
-                s_suffixes = new List<string>(text.Split('\n'));
+                s_suffixes = ParseTextFile(text);
             }
+        }
+
+        private static List<string> ParseTextFile(string file)
+        {
+            return file.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.TrimEnd('\n', '\r')).ToList();
         }
 
     }

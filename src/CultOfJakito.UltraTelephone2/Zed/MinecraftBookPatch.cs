@@ -43,8 +43,12 @@ public class MinecraftBookPatch
         if (!s_enabled.Value)
             return;
 
-        Transform scanning = CanvasController.Instance?.transform.Find("ScanningStuff");
+        if (!InGameCheck.InLevel())
+            return;
+
         ScanningStuff scanningStuff = ScanningStuff.Instance;
+        if (scanningStuff == null)
+            return;
 
         Image img = GetReadingPanel(scanningStuff).GetComponent<Image>();
         img.rectTransform.SetAnchor(AnchorPresets.MiddleCenter, 0, 0);

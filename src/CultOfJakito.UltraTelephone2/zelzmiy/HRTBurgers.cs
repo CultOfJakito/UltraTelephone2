@@ -15,7 +15,7 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy;
 [RegisterChaosEffect]
 internal class HrtBurgers : ChaosEffect
 {
-    [Configgable("Chaos", "HRT Burgers")]
+    [Configgable("Chaos/Effects", "HRT Burgers")]
     private static ConfigToggle s_enabled = new(true);
 
     private static GameObject s_estrogenBurger;
