@@ -14,8 +14,11 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
     [RegisterChaosEffect]
     public class CantRead : ChaosEffect
     {
-        [Configgable("Chaos/Effects", "Cant Read")]
+        [Configgable("Chaos/Effects/Cant Read", "Cant Read")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
+
+        [Configgable("Chaos/Effects/Cant Read", "Jumble Text Instead")]
+        private static ConfigToggle s_jumbleTextInstead = new ConfigToggle(true);
 
         private static bool s_effectActive = false;
 
@@ -48,16 +51,45 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            int words = text.Split(' ').Length;
-
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < words; i++)
+            if (s_jumbleTextInstead.Value)
             {
-                sb.Append(s_rng.SelectRandomList(s_illegebleWords));
+                string copy = text;
+
+                List<char> chars = new List<char>(copy.Where(x => x != ' '));
+                chars.Shuffle(s_rng);
+                int charIndex = 0;
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < copy.Length; i++)
+                {
+                    if (copy[i] == ' ')
+                    {
+                        sb.Append(' ');
+                    }
+                    else
+                    {
+                        sb.Append(chars[charIndex]);
+                        charIndex++;
+                    }
+                }
+
+                text = sb.ToString();
+            }
+            else
+            {
+                int words = text.Split(' ').Length;
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < words; i++)
+                {
+                    sb.Append(s_rng.SelectRandomList(s_illegebleWords));
+                    sb.Append(' ');
+                }
+
+                text = sb.ToString().TrimEnd(' ');
             }
 
-            text = sb.ToString();
+            HudMessageReceiver.Instance.SendHudMessage("I should really learn how to read...");
         }
     }
 }
