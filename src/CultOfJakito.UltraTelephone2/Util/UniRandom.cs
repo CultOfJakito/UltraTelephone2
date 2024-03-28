@@ -228,6 +228,11 @@ public class UniRandom : System.Random
         return values[this.Next(0, values.Length)];
     }
 
+    public T SelectRandomList<T>(IEnumerable<T> values)
+    {
+        return this.SelectRandom(values.ToArray());
+    }
+
     public T SelectRandomWeighted<T>(IEnumerable<T> values, Func<T, int> weightSelector)
     {
         int totalWeight = 0;

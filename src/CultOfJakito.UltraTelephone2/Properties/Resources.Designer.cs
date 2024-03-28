@@ -61,6 +61,24 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string funnyBossBar_prefixes {
+            get {
+                return ResourceManager.GetString("funnyBossBar_prefixes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string funnyBossBar_suffixes {
+            get {
+                return ResourceManager.GetString("funnyBossBar_suffixes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] hydra {
@@ -71,7 +89,31 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Totally tubular
+        ///Better than UltraTelephone!
+        ///ULTRAWHO?
+        ///Minos Prime
+        ///I&apos;m going to ultrakill you
+        ///Welcome Noobs!
+        ///Have fun.
+        ///,&apos;:]
+        ///FREE P RANK DOWNLOAD NOW!
+        ///In the end it has to be this way.
+        ///Made with love &lt;3
+        ///CULT OF JAKITO SENDS ITS REGARDS!
+        ///What&apos;s weave?
+        ///ULTRAMOD MANAGER!
+        ///Ultramodded ULTRAKILL
+        ///ULTRAULTRAKILL
+        ///play primordial hunger on the angry level loader
+        ///Rated M for Machine
+        ///HOW TO GET FREE P-RANK ULTRAKILL
+        ///Hello Machine.
+        ///Hello Machines.
+        ///Hello Machines..
+        ///Who are you?
+        ///Good luck.
+        ///It is a sa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string splashes {
             get {

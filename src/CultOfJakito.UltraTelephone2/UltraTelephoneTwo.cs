@@ -58,6 +58,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     {
         MinecraftBookPatch.Init();
         MinecraftSplashText.ReloadFile();
+        FunnyBossBar.ReloadFiles();
         HerobrineManager.Init();
         GameEvents.OnPlayerHurt += (e) =>
         {
