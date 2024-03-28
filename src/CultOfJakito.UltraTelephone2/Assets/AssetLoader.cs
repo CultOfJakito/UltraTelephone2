@@ -1,29 +1,22 @@
 ﻿using UnityEngine;
 
+namespace CultOfJakito.UltraTelephone2.Assets;
+
 public class AssetLoader
 {
     public AssetBundle Bundle { get; }
-    private Dictionary<string, UnityEngine.Object> loadedAssets = new Dictionary<string, UnityEngine.Object>();
+    private Dictionary<string, UnityEngine.Object> _loadedAssets = new();
 
-    public AssetLoader(AssetBundle bundle)
-    {
-        this.Bundle = bundle;
-    }
-
-    public AssetLoader(byte[] bundleBytes)
-    {
-        this.Bundle = AssetBundle.LoadFromMemory(bundleBytes);
-    }
-
-    public AssetLoader(string filePath)
-    {
-        this.Bundle = AssetBundle.LoadFromFile(filePath);
-    }
+    public AssetLoader(AssetBundle bundle) => Bundle = bundle;
+    public AssetLoader(byte[] bundleBytes) => Bundle = AssetBundle.LoadFromMemory(bundleBytes);
+    public AssetLoader(string filePath) => Bundle = AssetBundle.LoadFromFile(filePath);
 
     public T LoadAsset<T>(string assetName) where T : UnityEngine.Object
     {
-        if (loadedAssets.ContainsKey(assetName))
-            return (T)loadedAssets[assetName];
+        if (_loadedAssets.ContainsKey(assetName))
+        {
+            return (T)_loadedAssets[assetName];
+        }
 
         T asset = Bundle.LoadAsset<T>(assetName);
 
@@ -33,7 +26,7 @@ public class AssetLoader
             return null;
         }
 
-        loadedAssets.Add(assetName, asset);
+        _loadedAssets.Add(assetName, asset);
         return asset;
     }
 
@@ -44,17 +37,18 @@ public class AssetLoader
         foreach (T asset in assets)
         {
             if (asset == null)
+            {
                 continue;
+            }
 
-            if (!loadedAssets.ContainsKey(asset.name))
-                loadedAssets.Add(asset.name, asset);
+            if (!_loadedAssets.ContainsKey(asset.name))
+            {
+                _loadedAssets.Add(asset.name, asset);
+            }
         }
 
         return assets;
     }
 
-    public void Unload(bool unloadAllLoadedObjects = true)
-    {
-        Bundle.Unload(unloadAllLoadedObjects);
-    }
+    public void Unload(bool unloadAllLoadedObjects = true) => Bundle.Unload(unloadAllLoadedObjects);
 }

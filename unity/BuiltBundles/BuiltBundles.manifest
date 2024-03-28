@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 3427568875
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: zed
+      Dependencies: {}
+    Info_1:
+      Name: zelzimybundle
+      Dependencies: {}

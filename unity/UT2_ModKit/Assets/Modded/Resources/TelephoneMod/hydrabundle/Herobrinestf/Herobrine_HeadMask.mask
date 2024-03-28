@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Herobrine_HeadMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Root
+    m_Weight: 0
+  - m_Path: Armature/Root/Body
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Arm.L
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Arm.L/Arm.L_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Arm.R
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Arm.R/Arm.R_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Head
+    m_Weight: 1
+  - m_Path: Armature/Root/Body/Head/Head_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Body/Leg.L
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Leg.L/Leg.L_end
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Leg.R
+    m_Weight: 0
+  - m_Path: Armature/Root/Body/Leg.R/Leg.R_end
+    m_Weight: 0
+  - m_Path: HerobrineMesh
+    m_Weight: 0

@@ -1,0 +1,49 @@
+ManifestFileVersion: 0
+CRC: 3368087526
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 609c64d53cdfe6bbc7e6f0bd9ffb0d36
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 04c8befcd4fa360efbf89a569ab92db2
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Textures/Burger_Base.png
+- Assets/Telephone 2/Zelzmiy/Oreo Coins/oreo Splash.png
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Materials/Burger_Testosterone.mat
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Textures/Burger_Testosterone.png
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Materials/patty.mat
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Materials/Burger_Base.mat
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Materials/lettus.mat
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Burger NoTex.fbx
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Textures/patty.png
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/estrogen burger.prefab
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Textures/lettus.png
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Materials/burger estrogen.mat
+- Assets/Telephone 2/Zelzmiy/Oreo Coins/Oreo.fbx
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/testosterone burger.prefab
+- Assets/Telephone 2/Zelzmiy/HRT Borgers/Textures/Burger_Estrogen.png
+Dependencies: []

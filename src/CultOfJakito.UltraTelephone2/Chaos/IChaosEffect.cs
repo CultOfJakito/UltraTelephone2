@@ -1,7 +1,7 @@
 ﻿namespace CultOfJakito.UltraTelephone2.Chaos;
-
-internal interface IChaosEffect {
-	public void BeginEffect(Random random);
-	public bool CanBeginEffect(ChaosSessionContext ctx);
-	public int GetEffectCost();
+public interface IChaosEffect : IDisposable
+{
+    public void BeginEffect(UniRandom random);
+    public bool CanBeginEffect(ChaosSessionContext ctx);
+    public int GetEffectCost();
 }

@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 3511189054
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f8dfdfe1fd5c3ba368d5b954eb76e63f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/zed/vineboom.mp3
+Dependencies: []
