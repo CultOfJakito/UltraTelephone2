@@ -121,11 +121,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Resource1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
+    <Compile Remove="libs\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -133,14 +129,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Remove="libs\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="libs\BepInEx\0Harmony.dll" />
+      <Content Include="libs\BepInEx\0Harmony.dll" />
     <Content Include="libs\BepInEx\0Harmony20.dll" />
     <Content Include="libs\BepInEx\BepInEx.dll" />
     <Content Include="libs\BepInEx\BepInEx.Harmony.dll" />
@@ -302,6 +295,11 @@
     <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
+    <Folder Include="Hydra\Chaos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="libs\**" />
   </ItemGroup>
 
 </Project>

@@ -36,8 +36,10 @@ public class Sneeze : ChaosEffect
         yield return new WaitForSeconds(time);
         DoSneeze();
     }
+
     AudioClip cartoonSneeze = null;
     UltrakillEvent sneezeEvent = null;
+
     private void DoSneeze()
     {
         GameObject sneeze = new("Sneeze");

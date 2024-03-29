@@ -1,58 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CultOfJakito.UltraTelephone2.Assets
 {
     public static class UT2Assets
     {
-        private static AssetLoader zedBundle;
-        public static AssetLoader ZedBundle
+        private static Dictionary<string, UnityEngine.Object> _loadedAssets = new();
+
+        public static T GetAsset<T>(string assetName) where T : UnityEngine.Object
         {
-            get
+            if (_loadedAssets.ContainsKey(assetName))
             {
-                zedBundle ??= new AssetLoader(Properties.Resources.zed);
-                return zedBundle;
+                return (T)_loadedAssets[assetName];
             }
-        }
 
-        private static AssetLoader zelzmiyBundle;
-        public static AssetLoader ZelzmiyBundle
-        {
-            get
+            T asset = Addressables.LoadAssetAsync<T>(assetName).WaitForCompletion();
+
+            if (asset == null)
             {
-                zelzmiyBundle ??= new AssetLoader(Properties.Resources.zelzmiy);
-                return zelzmiyBundle;
+                Debug.LogError($"{assetName} of type {typeof(T)} not found in Assetbundle.");
+                return null;
             }
-        }
 
-
-        private static AssetLoader hydraBundle;
-        public static AssetLoader HydraBundle
-        {
-            get
-            {
-                hydraBundle ??= new AssetLoader(Properties.Resources.hydra);
-                return hydraBundle;
-            }
-        }
-
-        private static AssetLoader ultraTelephoneLegacyBundle;
-        public static AssetLoader UltraTelephoneLegacyBundle
-        {
-            get
-            {
-                ultraTelephoneLegacyBundle ??= new AssetLoader(Properties.Resources.TelephoneMod);
-                return ultraTelephoneLegacyBundle;
-            }
-        }
-
-        public static void ForceLoad()
-        {
-            zelzmiyBundle ??= new AssetLoader(Properties.Resources.zelzmiy);
-            zedBundle ??= new AssetLoader(Properties.Resources.zed);
-            hydraBundle ??= new AssetLoader(Properties.Resources.hydra);
-            ultraTelephoneLegacyBundle ??= new AssetLoader(Properties.Resources.TelephoneMod);
+            _loadedAssets.Add(assetName, asset);
+            return asset;
         }
     }
 }

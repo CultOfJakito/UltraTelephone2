@@ -26,7 +26,7 @@ namespace UltraTelephone.Hydra
         private void Awake()
         {
             instance = this;
-            GameObject prefab = UT2Assets.UltraTelephoneLegacyBundle.LoadAsset<GameObject>("JumpscareEngine");
+            GameObject prefab = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/JumpscareEngine.prefab");
 
             if (prefab == null)
             {

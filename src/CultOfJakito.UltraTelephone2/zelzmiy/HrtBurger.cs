@@ -26,8 +26,8 @@ internal class HRTBurger : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        _estrogenBurger ??= UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger");
-        _testosteroneBurger ??= UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("testosterone burger");
+        _estrogenBurger ??= UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/HRT Borgers/estrogen burger.prefab");
+        _testosteroneBurger ??= UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/HRT Borgers/testosterone burger.prefab");
         s_effectActive = true;
     }
 

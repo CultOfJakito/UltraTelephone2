@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Hydra
 {
-    [Harmony]
+    [HarmonyPatch]
     public static class HoneyDrones
     {
         [Configgable("Patches", "Bee Drones")]

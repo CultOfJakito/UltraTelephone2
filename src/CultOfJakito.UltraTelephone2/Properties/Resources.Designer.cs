@@ -10,8 +10,8 @@
 
 namespace CultOfJakito.UltraTelephone2.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace CultOfJakito.UltraTelephone2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,8 +59,8 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
+
+         /// <summary>
         ///   Looks up a localized string similar to Mega
         ///Based
         ///Cringe
@@ -110,7 +110,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to THE MAN
         ///(FINAL FORM)
@@ -144,7 +144,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to when
         ///you
@@ -188,17 +188,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("cantReadWords", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] hydra {
-            get {
-                object obj = ResourceManager.GetObject("hydra", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
         ///101110010000101101011101101010110
@@ -219,7 +209,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("ponder", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Totally tubular
         ///Better than UltraTelephone!
@@ -250,36 +240,6 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         internal static string splashes {
             get {
                 return ResourceManager.GetString("splashes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] TelephoneMod {
-            get {
-                object obj = ResourceManager.GetObject("TelephoneMod", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] zed {
-            get {
-                object obj = ResourceManager.GetObject("zed", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] zelzmiy {
-            get {
-                object obj = ResourceManager.GetObject("zelzmiy", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }
