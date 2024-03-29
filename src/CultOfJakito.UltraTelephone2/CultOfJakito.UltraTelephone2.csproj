@@ -58,6 +58,9 @@
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>libs\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>libs\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>false</Private>
@@ -78,6 +81,9 @@
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>..\..\..\..\..\UltraTelephone2\UltraTelephone2\src\CultOfJakito.UltraTelephone2\libs\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>libs\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>libs\UnityEngine.UIModule.dll</HintPath>

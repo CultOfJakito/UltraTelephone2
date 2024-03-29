@@ -3,7 +3,6 @@ using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.zelzmiy;
@@ -35,7 +34,7 @@ internal class HRTBurger : ChaosEffect
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-    [HarmonyPatch(typeof(Skull), "Start")]
+    [HarmonyPatch(typeof(Skull), nameof(Skull.Start))]
     [HarmonyPostfix]
     public static void ReplaceSkull(Skull __instance)
     {

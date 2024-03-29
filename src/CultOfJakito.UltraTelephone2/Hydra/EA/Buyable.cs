@@ -20,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
                 return;
 
             long newMoney = money - GetCost();
-            BuyablesManager.Bought(GetBuyableID());
+            BuyablesManager.Bought(this);
             FakeBank.SetMoney(newMoney);
             OnBuy?.Invoke();
         }

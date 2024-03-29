@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         [Configgable("Patches", "Disable Some Levels")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [HarmonyPatch(typeof(LayerSelect), "Awake"), HarmonyPostfix]
+        [HarmonyPatch(typeof(LayerSelect), nameof(LayerSelect.Awake)), HarmonyPostfix]
         public static void OnAwake(LayerSelect __instance)
         {
             if (!s_enabled.Value)

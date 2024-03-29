@@ -8,16 +8,14 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 {
     public static class BuyablesManager
     {
-        private static Dictionary<string, BuyableReceipt> receiptLog = new Dictionary<string, BuyableReceipt>();
-
         private static HashSet<string> boughtIDs = new HashSet<string>();
 
         public static void Load()
         {
-            List<BuyableReceipt> receipts = UT2Data.SaveData.purchases;
+            List<BuyableReceipt> receipts = UT2SaveData.SaveData.purchases;
             if(receipts == null)
             {
-                UT2Data.SaveData.purchases = new List<BuyableReceipt>();
+                UT2SaveData.SaveData.purchases = new List<BuyableReceipt>();
                 return;
             }
 
@@ -29,24 +27,25 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
         public static bool IsBought(string buyableID)
         {
-            return receiptLog.ContainsKey(buyableID);
+            return boughtIDs.Contains(buyableID);
         }
 
-        public static void Bought(string buyableID)
+        public static void Bought(IBuyable buyable)
         {
-            if (boughtIDs.Contains(buyableID))
+            if (boughtIDs.Contains(buyable.GetBuyableID()))
             {
-                Debug.LogError($"Buyable {buyableID} has already been bought!");
+                Debug.LogError($"Buyable {buyable.GetBuyableID()} has already been bought!");
                 return;
             }
 
-            boughtIDs.Add(buyableID);
-            UT2Data.SaveData.purchases.Add(new BuyableReceipt()
+            boughtIDs.Add(buyable.GetBuyableID());
+            UT2SaveData.SaveData.purchases.Add(new BuyableReceipt()
             {
-                BuyableID = buyableID,
+                Cost = buyable.GetCost(),
+                BuyableID = buyable.GetBuyableID(),
                 TimeOfPurchase = DateTime.Now.Ticks
             });
-            UT2Data.Save();
+            UT2SaveData.Save();
         }
 
     }

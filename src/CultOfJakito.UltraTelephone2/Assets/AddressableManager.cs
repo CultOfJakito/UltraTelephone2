@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -11,15 +12,13 @@ namespace CultOfJakito.UltraTelephone2.Assets;
 public static class AddressableManager
 {
     private static bool s_dontSanitizeScenes;
-
-    public static string ModFolder => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-    public static string AssetPath => Path.Combine(ModFolder, "Assets");
-    public static string CatalogPath => Path.Combine(AssetPath, "catalog_wbp.json");
-    public static string ModDataPath => Path.Combine(AssetPath, "data.json");
+    public static string CatalogPath => Path.Combine(UT2Paths.InternalAssetsFolder, "catalog_wbp.json");
+    public static string ModDataPath => Path.Combine(UT2Paths.InternalAssetsFolder, "data.json");
+    public static string AssetPath => UT2Paths.InternalAssetsFolder;
 
     public static void LoadCatalog()
     {
-        Addressables.LoadContentCatalogAsync(CatalogPath, true).WaitForCompletion();
+        Addressables.LoadContentCatalogAsync(CatalogPath, false).WaitForCompletion();
     }
 
     public static void LoadSceneUnsanitzed(string path)

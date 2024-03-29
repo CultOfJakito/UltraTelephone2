@@ -1,12 +1,15 @@
 ﻿using System.Reflection;
+using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
+using CultOfJakito.UltraTelephone2.LevelInjection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CultOfJakito.UltraTelephone2.Hydra.EA
 {
-    public class BuyLevelAccess : MonoBehaviour, IBuyable
+    [RegisterLevelInjector]
+    public class BuyLevelAccess : MonoBehaviour, IBuyable, ILevelInjector
     {
         private GameObject barricade;
         private GameObject breakFX;
@@ -14,13 +17,15 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
         private Text levelNameText;
         private Text purchaseDescriptionText;
 
+        private GameObject instancedBarricade;
+
         private ShopZone shop;
         private Button button;
         private ShopButton shopButton;
 
         public string GetBuyableID()
         {
-            return $"buyable.{SceneHelper.CurrentScene}";
+            return $"buyable.level.{SceneHelper.CurrentScene}";
         }
 
         private long? cost;
@@ -32,8 +37,14 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
             string sceneName = SceneHelper.CurrentScene;
 
+            if(sceneName.Contains("Level 0-"))
+            {
+                //its FREE!!
+                return 0L;
+            }
+
             //Parse numbers from level name for price :3
-            long basePrice = 100;
+            long basePrice = 1000;
             long finalPrice = basePrice;
 
             List<int> levelNumbers = new List<int>();
@@ -68,10 +79,13 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
             if(levelNumbers.Count > 0)
             {
+                long newCost = 10L;
                 foreach (int cost in levelNumbers)
                 {
-                    finalPrice += cost * 500;
+                     newCost *= cost * 10;
                 }
+
+                finalPrice += newCost;
             }
             else
             {
@@ -93,39 +107,42 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
             return (UnityEvent)s_shopZoneOnEnterZoneField.GetValue(shop);
         }
 
-        private void Awake()
-        {
-            shop = GetComponentInChildren<ShopZone>(true);
-            GetShopZoneOnEnterZone(shop).AddListener(UpdateButton);
-
-            shopButton = GetComponentInChildren<ShopButton>(true);
-            button = GetComponentInChildren<Button>(true);
-            button.onClick.AddListener(Buy);
-
-            barricade = LocateObject<Transform>("Barricade").gameObject;
-
-            costText = LocateObject<Text>("Text_Cost");
-            levelNameText = LocateObject<Text>("Text_LevelName");
-            purchaseDescriptionText = LocateObject<Text>("Text_Description");
-        }
-
-        private T LocateObject<T>(string name) where T : Component
-        {
-            return transform.GetComponentsInChildren<T>().Where(x => x.name == name).FirstOrDefault();
-        }
-
         private void Start()
         {
+            if(instancedBarricade == null)
+            {
+                //Destroy self if the barricade is not found.
+                UnityEngine.Object.Destroy(this);
+                return;
+            }
+
+            shop = instancedBarricade.GetComponentInChildren<ShopZone>(true);
+            GetShopZoneOnEnterZone(shop).AddListener(UpdateButton);
+
+            shopButton = instancedBarricade.GetComponentInChildren<ShopButton>(true);
+            button = instancedBarricade.GetComponentInChildren<Button>(true);
+            button.onClick.AddListener(Buy);
+
+            barricade = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Transform>("Barricade").gameObject;
+
+            costText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Cost");
+            levelNameText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_LevelName");
+            purchaseDescriptionText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Description");
+
             bool isBought = BuyablesManager.IsBought(GetBuyableID());
 
             if(isBought)
             {
-                gameObject.SetActive(false);
+                instancedBarricade.gameObject.SetActive(false);
                 return;
             }
 
             long cost = GetCost();
-            costText.text = FakeBank.PString(cost);
+
+            if (cost > 0)
+                costText.text = FakeBank.PString(cost);
+            else
+                costText.text = "<color=orange>-- FREE --</color>";
             levelNameText.text = SceneHelper.CurrentScene;
             //purchaseDescriptionText.text 
             UpdateButton();
@@ -133,7 +150,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
         private void UpdateButton()
         {
-            ShopButton shopButton = GetComponentInChildren<ShopButton>(true);
+            ShopButton shopButton = instancedBarricade.GetComponentInChildren<ShopButton>(true);
             shopButton.failure = FakeBank.GetCurrentMoney() < GetCost();
         }
 
@@ -144,7 +161,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
                 return;
 
             long newMoney = money - GetCost();
-            BuyablesManager.Bought(GetBuyableID());
+            BuyablesManager.Bought(this);
             FakeBank.SetMoney(newMoney);
             BreakBarricade();
             HudMessageReceiver.Instance.SendHudMessage($"THANK YOU FOR YOUR PURCHASE!");
@@ -153,9 +170,25 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
         //Breaks the barricade with a cool effect
         private void BreakBarricade()
         {
-            GameObject.Instantiate(breakFX, barricade.transform.position, Quaternion.identity);
-            gameObject.SetActive(false);
+            if (breakFX == null)
+                breakFX = UkPrefabs.BreakParticleMetal.GetObject();
+
+            if(breakFX)
+                GameObject.Instantiate(breakFX, barricade.transform.position, Quaternion.identity);
+
+            instancedBarricade.gameObject.SetActive(false);
             shop.UpdatePlayerState(false);
+        }
+
+        public void OnLevelLoaded(string sceneName)
+        {
+            //Find first room.
+            //Spawn the barricade.
+            FirstRoomPrefab firstRoom = FindObjectOfType<FirstRoomPrefab>();
+            if (firstRoom == null)
+                return;
+
+            instancedBarricade = Instantiate(HydraAssets.BuyLevelAccessBarricade, firstRoom.transform);
         }
     }
 }

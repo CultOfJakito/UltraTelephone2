@@ -17,7 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         static int? s_offset = null;
 
-        [HarmonyPatch(typeof(Clock), "Update"), HarmonyPrefix]
+        [HarmonyPatch(typeof(Clock), nameof(Clock.Update)), HarmonyPrefix]
         public static bool OnUpdate(Clock __instance)
         {
             if(!s_enabled.Value)

@@ -14,7 +14,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         [Configgable("Patches", "Bee Drones")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [HarmonyPatch(typeof(Drone), "Start"), HarmonyPostfix]
+        [HarmonyPatch(typeof(Drone), nameof(Drone.Start)), HarmonyPostfix]
         public static void OnStart(Drone __instance)
         {
             if (!s_enabled.Value)
