@@ -27,7 +27,7 @@ public class JumpscareEffect : ChaosEffect
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && UnityEngine.Random.value < 0.05f)
+        if (Input.GetMouseButtonDown(0) && UnityEngine.Random.value < 0.15f)
         {
             UltraTelephone.Hydra.Jumpscare.Scare(true);
         }
