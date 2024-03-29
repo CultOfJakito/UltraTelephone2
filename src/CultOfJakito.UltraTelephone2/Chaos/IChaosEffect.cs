@@ -1,4 +1,5 @@
 ﻿namespace CultOfJakito.UltraTelephone2.Chaos;
+
 public interface IChaosEffect
 {
     public void BeginEffect(UniRandom random);

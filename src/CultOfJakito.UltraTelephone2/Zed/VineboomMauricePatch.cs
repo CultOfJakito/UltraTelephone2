@@ -8,23 +8,21 @@ namespace CultOfJakito.UltraTelephone2.Zed;
 [PatchThis("CultOfJakito.UltraTelephone2.Zed.VineboomMauricePatch")]
 public class VineboomMauricePatch
 {
-    [Configgable("ZedDev/Patches", "Vine boom maurice")]
-    private static ConfigToggle s_enabled = new ConfigToggle(true);
+    [Configgable("ZedDev/Patches", "Maurice Vine Boom")]
+    private static ConfigToggle s_enabled = new(true);
+    private static AudioClip s_vineBoom = UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc Sounds/vineboom.mp3");
 
-    [HarmonyPatch(typeof(EnemyIdentifier), "OnEnable")]
-    [HarmonyPostfix]
+    [HarmonyPostfix, HarmonyPatch(typeof(EnemyIdentifier), nameof(EnemyIdentifier.OnEnable))]
     public static void PlaySound(EnemyIdentifier __instance)
     {
         if (!s_enabled.Value)
             return;
 
         if(!__instance.GetComponent<SpiderBody>()) return;
-        AudioClip vineboom = UT2Assets.ZedBundle.LoadAsset<AudioClip>("vineboom");
 
-        if(vineboom != null)
+        if(s_vineBoom != null)
         {
             Debug.Log("Playing vineboom");
-            vineboom.PlaySound(position: __instance.transform.position);
         }
         else
         {

@@ -25,7 +25,7 @@ internal class Yuri : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        s_yuri = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("yuri!!!");
+        s_yuri = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/YURI!!!/Yuri!!!.prefab");
 
         if (!s_yuri)
         {
@@ -38,7 +38,7 @@ internal class Yuri : ChaosEffect
     {
         if (!s_yuri || !s_enabled.Value)
             return;
-        
+
         Canvas shopCanvas = __instance.gameObject.GetComponentInChildren<Canvas>(true);
 
         if (!shopCanvas)

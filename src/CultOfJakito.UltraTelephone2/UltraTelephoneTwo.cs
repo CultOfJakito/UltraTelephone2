@@ -44,7 +44,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         UniRandom.InitializeGlobal(globalSeed);
 
         UT2Paths.EnsureFolders();
-        UT2Assets.ForceLoad();
+        AddressableManager.LoadCatalog();
 
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
@@ -66,7 +66,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         };
     }
 
-  
+
     private void OnSceneLoaded(string name)
     {
         if(GeneralSettings.Personalization.Value == PersonalizationLevel.ULTRAPERSONALIZED)

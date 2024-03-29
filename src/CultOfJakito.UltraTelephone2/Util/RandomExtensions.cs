@@ -61,18 +61,4 @@ internal static class RandomExtensions
         }
         return true;
     }
-    public static UnityEngine.AudioSource PlaySound(this UnityEngine.AudioClip clip, UnityEngine.Vector3? position = null, UnityEngine.Transform? parent = null, float volume = 1f, bool keepSource = false, bool loop = false)
-    {
-        UnityEngine.GameObject go = new UnityEngine.GameObject("Audio: " + clip.name);
-        go.AddComponent<Marker>().Name = "PlaySound";
-        go.transform.position = position ?? UnityEngine.Vector3.zero;
-        if(parent != null) go.transform.parent = parent;
-        UnityEngine.AudioSource source = go.AddComponent<UnityEngine.AudioSource>();
-        source.clip = clip;
-        source.volume = volume;
-        source.loop = loop;
-        source.Play();
-        if(!keepSource) UnityEngine.Object.Destroy(go, clip.length);
-        return source;
-    }
 }

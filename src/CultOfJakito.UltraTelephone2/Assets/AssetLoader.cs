@@ -11,7 +11,7 @@ public class AssetLoader
     public AssetLoader(byte[] bundleBytes) => Bundle = AssetBundle.LoadFromMemory(bundleBytes);
     public AssetLoader(string filePath) => Bundle = AssetBundle.LoadFromFile(filePath);
 
-    public T LoadAsset<T>(string assetName) where T : UnityEngine.Object
+    public T GetAsset<T>(string assetName) where T : UnityEngine.Object
     {
         if (_loadedAssets.ContainsKey(assetName))
         {

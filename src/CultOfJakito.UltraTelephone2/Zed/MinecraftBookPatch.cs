@@ -13,13 +13,13 @@ public class MinecraftBookPatch
     [Configgable("ZedDev/Patches", "Minecraft Book")]
     private static ConfigToggle s_enabled = new(true);
 
-    private static Sprite? minecraftBookSprite;
+    private static Sprite? s_minecraftBookSprite;
     public static void Init()
     {
         Texture2D texture = new Texture2D(146, 180);
         texture.LoadImage(Resource1.book);
         texture.filterMode = FilterMode.Point;
-        minecraftBookSprite = Sprite.Create(texture, new Rect(0, 0, 146, 180), new Vector2(0.5f, 0.5f));
+        s_minecraftBookSprite = Sprite.Create(texture, new Rect(0, 0, 146, 180), new Vector2(0.5f, 0.5f));
         SceneManager.sceneLoaded += Apply;
     }
 
@@ -36,7 +36,7 @@ public class MinecraftBookPatch
             img.rectTransform.SetAnchor(AnchorPresets.MiddleCenter, 0, 0);
             img.rectTransform.SetPivot(PivotPresets.MiddleCenter);
             img.rectTransform.sizeDelta = new Vector2(146 * 3f, 180 * 3f);
-            img.sprite = minecraftBookSprite;
+            img.sprite = s_minecraftBookSprite;
             img.color = new Color(1, 1, 1, 1f);
             img.rectTransform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0f);
 
