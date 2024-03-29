@@ -8,7 +8,7 @@ using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.zelzmiy
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
     internal class CoinPlushy : ChaosEffect
@@ -21,8 +21,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         private static List<GameObject> _plushiePrefabs = new()
         {
-            UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("zelzmiy Niko Plush.prefab"),
-            UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("HydraDevPlushie.prefab"),
+            UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab"),
+            UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab"),
             // TODO: Add everybody else's Plushies in here :) (once they have them)
         };
 
@@ -44,9 +44,9 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
             GameObject plushie = _plushiePrefabs[_randomPlushieIndex];
 
-            GameObject plush = Instantiate(plushie,__instance.transform.position,__instance.transform.rotation);
+            GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
             plush.GetComponent<Rigidbody>().AddForce(__instance.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
-            
+
             Destroy(__instance.gameObject);
         }
     }

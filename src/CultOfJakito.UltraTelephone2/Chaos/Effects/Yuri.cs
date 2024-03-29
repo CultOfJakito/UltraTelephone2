@@ -9,7 +9,7 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CultOfJakito.UltraTelephone2.zelzmiy;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
 /// <summary>
 /// Suggestion #298: from: oxblood, "yuri" <br/>
