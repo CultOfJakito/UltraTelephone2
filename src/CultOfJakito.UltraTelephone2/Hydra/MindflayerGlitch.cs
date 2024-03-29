@@ -20,10 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
             Transform chestTf = __instance.transform.LocateObjectButItActuallyFuckingWorks<Transform>("spine.002");
             if (chestTf == null)
-            {
-                Debug.Log("NO BOOBBS!?");
                 return;
-            }
 
             GameObject bar = new GameObject("Glitch");
             AlwaysLookAtCamera alwaysLook = bar.AddComponent<AlwaysLookAtCamera>();
