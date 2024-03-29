@@ -77,11 +77,15 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 		private static void BuildContentFast()
 		{
 			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
-			Settings.groups.RemoveAll(commonGroups.Contains);
-            ValidateAddressables();
+            foreach (AddressableAssetGroup group in commonGroups)
+            {
+                group.GetSchema<BundledAssetGroupSchema>().IncludeInBuild = false;
+            }
 			AddressableAssetSettings.BuildPlayerContent();
-			Settings.groups.AddRange(commonGroups);
-			ValidateAddressables(); // this method refreshes asset db, means that you dont get missing references when readding groups
+            foreach (AddressableAssetGroup group in commonGroups)
+            {
+                group.GetSchema<BundledAssetGroupSchema>().IncludeInBuild = true;
+            }
 		}
 
 		private static void SetCorrectValuesForSettings()

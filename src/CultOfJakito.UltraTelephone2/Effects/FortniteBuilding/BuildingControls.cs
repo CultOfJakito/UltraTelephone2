@@ -32,9 +32,9 @@ public class BuildingControls : MonoSingleton<BuildingControls>
     };
 
     private Dictionary<BuildTypes, GameObject> _typeToPreview = new();
-    private List<string> _placedWallIdentifiers = new(); //this fucking sucks but im tired
-    private List<string> _placedFloorIdentifiers = new();
-    private List<string> _placedRampConeIdentifiers = new();
+    private Dictionary<GameObject, string> _placedWallIdentifiers = new(); //this fucking sucks but im tired
+    private Dictionary<GameObject, string> _placedFloorIdentifiers = new();
+    private Dictionary<GameObject, string> _placedRampConeIdentifiers = new();
     private BuildTypes _currentBuild;
     private const int VoxelSize = 10;
 
@@ -88,48 +88,61 @@ public class BuildingControls : MonoSingleton<BuildingControls>
 
         if (Input.GetMouseButton(0))
         {
-            if (!CanBuildHere(_currentBuild, spawnPos, spawnRot))
-            {
-                return;
-            }
-
-            Instantiate(s_typeToBuild[_currentBuild], spawnPos, spawnRot);
+            TryBuild(_currentBuild, spawnPos, spawnRot);
         }
     }
 
-    private bool CanBuildHere(BuildTypes type, Vector3 position, Quaternion rotation)
+    private bool TryBuild(BuildTypes type, Vector3 position, Quaternion rotation)
     {
         switch (type)
         {
             case BuildTypes.Wall:
                 string thisIdentifier = position + "|" + rotation.eulerAngles;
-                if (_placedWallIdentifiers.Contains(thisIdentifier))
+                if (_placedWallIdentifiers.Values.Contains(thisIdentifier))
                 {
                     return false;
                 }
-                _placedWallIdentifiers.Add(thisIdentifier);
+                _placedWallIdentifiers.Add(Instantiate(s_typeToBuild[type], position, rotation), thisIdentifier);
                 return true;
 
             case BuildTypes.Floor:
                 thisIdentifier = position.ToString();
-                if (_placedFloorIdentifiers.Contains(thisIdentifier))
+                if (_placedFloorIdentifiers.Values.Contains(thisIdentifier))
                 {
                     return false;
                 }
-                _placedFloorIdentifiers.Add(thisIdentifier);
+                _placedFloorIdentifiers.Add(Instantiate(s_typeToBuild[type], position, rotation), thisIdentifier);
                 return true;
 
             case BuildTypes.Cone or BuildTypes.Ramp:
                 thisIdentifier = position.ToString();
-                if (_placedRampConeIdentifiers.Contains(thisIdentifier))
+                if (_placedRampConeIdentifiers.Values.Contains(thisIdentifier))
                 {
                     return false;
                 }
-                _placedRampConeIdentifiers.Add(thisIdentifier);
+                _placedRampConeIdentifiers.Add(Instantiate(s_typeToBuild[type], position, rotation), thisIdentifier);
                 return true;
         }
 
         return false;
+    }
+
+    public void RemoveBuildFromList(FortniteBuild build)
+    {
+        switch (build.BuildType)
+        {
+            case BuildTypes.Wall:
+                _placedWallIdentifiers.Remove(build.gameObject);
+                return;
+
+            case BuildTypes.Floor:
+                _placedFloorIdentifiers.Remove(build.gameObject);
+                return;
+
+            case BuildTypes.Cone or BuildTypes.Ramp:
+                _placedRampConeIdentifiers.Remove(build.gameObject);
+                return;
+        }
     }
 
     private Vector3 RoundToNearestVoxel(Vector3 position)

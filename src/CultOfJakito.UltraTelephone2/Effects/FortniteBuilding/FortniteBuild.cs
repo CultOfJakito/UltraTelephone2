@@ -6,6 +6,7 @@ public class FortniteBuild : MonoBehaviour
 {
     public const KeyCode EditBind = KeyCode.G;
     public BuildChunk[] Edits;
+    [field: SerializeField] public BuildTypes BuildType { get; private set; }
     private bool _editing;
 
     private void Update()
@@ -50,7 +51,12 @@ public class FortniteBuild : MonoBehaviour
 
         if (Edits.Length != 0 && !hasEnabledChunks)
         {
-            Destroy(gameObject);
+            GetComponent<Breakable>().Break();
         }
+    }
+
+    private void OnDestroy()
+    {
+        BuildingControls.Instance.RemoveBuildFromList(this);
     }
 }
