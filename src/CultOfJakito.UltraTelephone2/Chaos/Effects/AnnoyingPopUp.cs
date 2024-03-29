@@ -4,21 +4,23 @@ using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
+using HarmonyLib;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Hydra;
 
+[HarmonyPatch]
 [RegisterChaosEffect]
 public class AnnoyingPopUp : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
 
-    private UniRandom _rng;
+    private static UniRandom s_rng;
 
     public override void BeginEffect(UniRandom random)
     {
-        _rng = random;
+        s_rng = random;
         _randomDialogueEvent = new ModalDialogueEvent();
         GeneratePopups();
 
@@ -26,13 +28,23 @@ public class AnnoyingPopUp : ChaosEffect
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_showAnnoyingPopUps.Value;
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 3;
 
     private void OnPlayerRespawn(PlayerRespawnEvent e)
     {
         if (!e.IsManualRespawn)
         {
             ShowPopUp();
+        }
+    }
+
+    [HarmonyPatch(typeof(EnemyIdentifier), nameof(EnemyIdentifier.Death)), HarmonyPostfix]
+    private static void PopupOnEnemyDeath()
+    {
+        if (s_rng.Chance(0.025f))
+        {
+            // I am very good at coding
+            FindObjectOfType<AnnoyingPopUp>().ShowPopUp();
         }
     }
 
@@ -44,7 +56,7 @@ public class AnnoyingPopUp : ChaosEffect
 
     private void ShowPopUp()
     {
-        ModalDialogueEvent dialogue = _rng.Chance(0.25f) ? _rng.SelectRandom(_dialogueBuilders).Invoke() : CreateRandomized();
+        ModalDialogueEvent dialogue = s_rng.Chance(0.25f) ? s_rng.SelectRandom(_dialogueBuilders).Invoke() : CreateRandomized();
         ModalDialogue.ShowDialogue(dialogue);
     }
 
@@ -153,20 +165,20 @@ public class AnnoyingPopUp : ChaosEffect
 
     private DialogueBoxOption CreateRandomOption()
     {
-        if (_rng.Chance(0.1f))
+        if (s_rng.Chance(0.1f))
         {
-            return _rng.SelectRandom(_evilOptions);
+            return s_rng.SelectRandom(_evilOptions);
         }
 
         return new DialogueBoxOption
         {
-            Name = _rng.SelectRandom(s_optionNames),
+            Name = s_rng.SelectRandom(s_optionNames),
             Color = s_orange,
             OnClick = () =>
             {
-                if (_rng.Float() > 0.75f)
+                if (s_rng.Float() > 0.75f)
                 {
-                    if (_rng.Bool())
+                    if (s_rng.Bool())
                     {
                         ShowPopUp();
                     }
@@ -296,7 +308,7 @@ public class AnnoyingPopUp : ChaosEffect
         }
 
         //hehe switch the order sometimes
-        if ((_rng.Chance(0.25f) && _tutorialPopUpCount == 0) || _tutorialPopUpCount == 1)
+        if ((s_rng.Chance(0.25f) && _tutorialPopUpCount == 0) || _tutorialPopUpCount == 1)
         {
             (modalDialogue.Options[0], modalDialogue.Options[1]) = (modalDialogue.Options[1], modalDialogue.Options[0]);
         }
@@ -309,7 +321,7 @@ public class AnnoyingPopUp : ChaosEffect
     private ModalDialogueEvent CreateDeathFee()
     {
         long money = FakeBank.GetCurrentMoney();
-        int divisor = _rng.Next(50, 101);
+        int divisor = s_rng.Next(50, 101);
         long fee = money / divisor;
 
         return new ModalDialogueEvent
@@ -365,9 +377,9 @@ public class AnnoyingPopUp : ChaosEffect
 
     private ModalDialogueEvent CreateRandomized()
     {
-        int options = _rng.Next(1, 4);
-        _randomDialogueEvent.Message = _rng.SelectRandom(s_messages);
-        _randomDialogueEvent.Title = _rng.SelectRandom(s_titles);
+        int options = s_rng.Next(1, 4);
+        _randomDialogueEvent.Message = s_rng.SelectRandom(s_messages);
+        _randomDialogueEvent.Title = s_rng.SelectRandom(s_titles);
         _randomDialogueEvent.Options = new DialogueBoxOption[options];
         for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)
         {
