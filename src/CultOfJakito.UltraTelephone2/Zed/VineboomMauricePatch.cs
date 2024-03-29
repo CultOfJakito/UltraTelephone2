@@ -19,7 +19,7 @@ public class VineboomMauricePatch
             return;
 
         if(!__instance.GetComponent<SpiderBody>()) return;
-        AudioClip vineboom = UT2Assets.ZedBundle.LoadAsset<AudioClip>("vineboom");
+        AudioClip vineboom = UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/vineboom.mp3");
 
         if(vineboom != null)
         {

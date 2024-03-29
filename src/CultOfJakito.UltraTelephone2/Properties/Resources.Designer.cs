@@ -60,13 +60,186 @@ namespace CultOfJakito.UltraTelephone2.Properties {
             }
         }
 
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+         /// <summary>
+        ///   Looks up a localized string similar to Mega
+        ///Based
+        ///Cringe
+        ///Super
+        ///Gay
+        ///ULTRA
+        ///Pro
+        ///Hyper
+        ///Peak
+        ///Noob
+        ///Final
+        ///Ultimate
+        ///Cowardly
+        ///Elite
+        ///Blue
+        ///Red
+        ///Stupid
+        ///Stinky
+        ///Smelly
+        ///Lazy
+        ///Awesome
+        ///Magic
+        ///Evil
+        ///Kind
+        ///The
+        ///Skibidi
+        ///Powerful
+        ///Disgusting
+        ///THE AMAZING
+        ///Mid
+        ///Masterful
+        ///Goopy
+        ///Funny
+        ///Friendly
+        ///Hostile
+        ///LORD
+        ///HOLY
+        ///SAINT
+        ///GOOBER
+        ///PSYCHO
+        ///BADASS
+        ///GLISTENING
+        ///BURNING.
         /// </summary>
-        internal static byte[] Bundle {
+        internal static string bossBar_prefixes {
             get {
-                object obj = ResourceManager.GetObject("Bundle", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to THE MAN
+        ///(FINAL FORM)
+        ///I
+        ///II
+        ///III
+        ///IV
+        ///V
+        ///VI
+        ///VII
+        ///VIII
+        ///IX
+        ///X
+        ///PHD
+        ///FROM OHIO
+        ///WITH RIZZ
+        ///JR.
+        ///SR.
+        ///ESQUIRE
+        ///LORD OF CINDER
+        ///LORD OF HELL
+        ///OCCUPANT OF HELL
+        ///BOSS
+        ///PRIME
+        ///THE FIFTH
+        ///HELLS GUARDIAN
+        ///SWAG MASTER.
+        /// </summary>
+        internal static string bossBar_suffixes {
+            get {
+                return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to when
+        ///you
+        ///and
+        ///the
+        ///then
+        ///when
+        ///we
+        ///was
+        ///where
+        ///and
+        ///then
+        ///he
+        ///she
+        ///they
+        ///and
+        ///it
+        ///was
+        ///awesome
+        ///then
+        ///you
+        ///just
+        ///about
+        ///to
+        ///too
+        ///there
+        ///their
+        ///then
+        ///they&apos;re
+        ///not
+        ///very
+        ///huge
+        ///big
+        ///small
+        ///sand-covered
+        ///silly
+        ///:3.
+        /// </summary>
+        internal static string cantReadWords {
+            get {
+                return ResourceManager.GetString("cantReadWords", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
+        ///101110010000101101011101101010110
+        ///Weeeeeeeeeeeeeeeee
+        ///How the fuck did a 1000-THR get in hell
+        ///I thought a cerberus was a type of dog...
+        ///What exactly generates the power from blood?
+        ///Do guttermen dream?
+        ///If Sisyphus could just break out of the prison, why did he wait?
+        ///I just [EXCEPTION][EXCEPTION][EXCEPTION] Mindflayer [EXCEPTION]
+        ///What if Guttertanks were always meant to topple?
+        ///What if he made it up?
+        ///What the heck them blue orbs
+        ///What does P even stand for? P [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ponder {
+            get {
+                return ResourceManager.GetString("ponder", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Totally tubular
+        ///Better than UltraTelephone!
+        ///ULTRAWHO?
+        ///Minos Prime
+        ///I&apos;m going to ultrakill you
+        ///Welcome Noobs!
+        ///Have fun.
+        ///,&apos;:]
+        ///FREE P RANK DOWNLOAD NOW!
+        ///In the end it has to be this way.
+        ///Made with love &lt;3
+        ///CULT OF JAKITO SENDS ITS REGARDS!
+        ///What&apos;s weave?
+        ///ULTRAMOD MANAGER!
+        ///Ultramodded ULTRAKILL
+        ///ULTRAULTRAKILL
+        ///play primordial hunger on the angry level loader
+        ///Rated M for Machine
+        ///HOW TO GET FREE P-RANK ULTRAKILL
+        ///Hello Machine.
+        ///Hello Machines.
+        ///Hello Machines..
+        ///Who are you?
+        ///Good luck.
+        ///It is a sa [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string splashes {
+            get {
+                return ResourceManager.GetString("splashes", resourceCulture);
             }
         }
     }

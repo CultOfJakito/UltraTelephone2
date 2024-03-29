@@ -24,8 +24,8 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         public override void BeginEffect(UniRandom random)
         {
-            s_oreo = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo");
-            s_oreoSplash = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("Oreo Splash");
+            s_oreo = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Oreo Coins/Oreo.prefab");
+            s_oreoSplash = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Oreo Coins/Oreo Splash.prefab");
             s_effectActive = true;
         }
 

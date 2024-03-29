@@ -12,10 +12,10 @@ public class BuildingControls : MonoSingleton<BuildingControls>
         new(KeyCode.V, BuildTypes.Cone)
     };
 
-    private static readonly Dictionary<BuildTypes, GameObject> s_typeToBuild =
+    private static readonly Dictionary<BuildTypes, GameObject> s_typeToBuild = new()
     {
-        new(BuildTypes.Wall, AssetLo)
-    }
+        //new(BuildTypes.Wall, AssetLo)
+    };
 
     private BuildTypes _currentBuild;
 
@@ -31,7 +31,7 @@ public class BuildingControls : MonoSingleton<BuildingControls>
 
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate()
+            //Instantiate()
         }
     }
 
