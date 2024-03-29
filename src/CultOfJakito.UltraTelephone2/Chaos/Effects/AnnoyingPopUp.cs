@@ -15,7 +15,7 @@ public class AnnoyingPopUp : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Show Annoying Death Messages")]
     private static ConfigToggle s_showAnnoyingPopUps = new(true);
-
+    private static bool s_effectActive;
     private static UniRandom s_rng;
 
     public override void BeginEffect(UniRandom random)
@@ -23,6 +23,7 @@ public class AnnoyingPopUp : ChaosEffect
         s_rng = random;
         _randomDialogueEvent = new ModalDialogueEvent();
         GeneratePopups();
+        s_effectActive = true;
 
         GameEvents.OnPlayerRespawn += OnPlayerRespawn;
     }
@@ -32,7 +33,7 @@ public class AnnoyingPopUp : ChaosEffect
 
     private void OnPlayerRespawn(PlayerRespawnEvent e)
     {
-        if (!e.IsManualRespawn)
+        if (!e.IsManualRespawn && s_effectActive)
         {
             ShowPopUp();
         }
@@ -41,15 +42,21 @@ public class AnnoyingPopUp : ChaosEffect
     [HarmonyPatch(typeof(EnemyIdentifier), nameof(EnemyIdentifier.Death)), HarmonyPostfix]
     private static void PopupOnEnemyDeath()
     {
+        if (!s_effectActive)
+        {
+            return;
+        }
+
         if (s_rng.Chance(0.025f))
         {
             // I am very good at coding
-            FindObjectOfType<AnnoyingPopUp>().ShowPopUp();
+            FindObjectOfType<AnnoyingPopUp>()?.ShowPopUp();
         }
     }
 
     public override void Dispose()
     {
+        s_effectActive = false;
         GameEvents.OnPlayerRespawn -= OnPlayerRespawn;
         base.Dispose();
     }

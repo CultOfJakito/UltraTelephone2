@@ -16,8 +16,6 @@ namespace CultOfJakito.UltraTelephone2
         public static void OnAwake(CanvasController __instance)
         {
             RectTransform rect = __instance.GetComponent<RectTransform>();
-
-            rect.gameObject.AddComponent<Jumpscare>();
             MakeTitleImageUT2(rect);
         }
 
