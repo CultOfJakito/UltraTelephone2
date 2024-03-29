@@ -19,6 +19,7 @@ namespace UltraTelephone.Hydra
         [Configgable("Chaos/Effects/Freebird")]
         private static ConfigInputField<int> maxBirdAmount = new ConfigInputField<int>(18, (v) => { return v >= 1 && v >= minBirdAmount.Value; });
 
+        private static bool s_effectActive;
         private GameObject freeBird;
 
         private List<GameObject> activeBirds = new List<GameObject>();
@@ -32,6 +33,7 @@ namespace UltraTelephone.Hydra
         public override void Dispose()
         {
             KillAll();
+            s_effectActive = false;
             base.Dispose();
         }
 
@@ -50,13 +52,18 @@ namespace UltraTelephone.Hydra
 
         private void Update()
         {
+            if (!s_effectActive)
+            {
+                return;
+            }
+
             if(timeTillNextBird > 0f)
             {
                 timeTillNextBird = Mathf.Max(0f, timeTillNextBird - Time.deltaTime);
                 return;
             }
 
-            if (activeBirds.Count < currentBirdAmount)
+            if (activeBirds.Count > currentBirdAmount)
                 return;
 
             timeTillNextBird = UnityEngine.Random.Range(3.0f, 17.0f);
@@ -67,6 +74,7 @@ namespace UltraTelephone.Hydra
         {
             if (freeBird != null)
             {
+                Debug.Log("spawned bird");
                 Vector3 spawnPos = NewMovement.Instance.transform.position;
                 Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
                 spawnPos += randomOffset * 2.1f;
@@ -80,6 +88,7 @@ namespace UltraTelephone.Hydra
             if(freeBird == null)
                 freeBird = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/FreeBird.prefab");
 
+            s_effectActive = true;
             currentBirdAmount = random.Range(minBirdAmount.Value, maxBirdAmount.Value);
         }
 

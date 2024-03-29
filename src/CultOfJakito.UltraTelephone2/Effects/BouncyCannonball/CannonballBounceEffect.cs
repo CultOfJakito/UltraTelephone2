@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Effects.BouncyCannonball;
 
+[HarmonyPatch]
 [RegisterChaosEffect]
 public class CannonballBounceEffect : ChaosEffect
 {

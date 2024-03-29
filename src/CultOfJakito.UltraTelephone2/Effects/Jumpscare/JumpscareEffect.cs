@@ -36,7 +36,7 @@ public class JumpscareEffect : ChaosEffect
         if (!s_effectActive)
             return;
 
-        if (Input.GetMouseButtonDown(0) && _random.Chance(0.05f))
+        if (Input.GetMouseButtonDown(0) && _random.Chance(0.15f))
         {
             UltraTelephone.Hydra.Jumpscare.Scare(true);
         }

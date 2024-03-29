@@ -10,15 +10,17 @@ public class FortniteBuild : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(EditBind))
+        if (Input.GetKeyDown(EditBind) && Edits.Any(chunk => chunk.LookingAt))
         {
             if (!_editing)
             {
                 StartEditing();
+                _editing = true;
             }
             else
             {
                 StopEditing();
+                _editing = false;
             }
         }
 
