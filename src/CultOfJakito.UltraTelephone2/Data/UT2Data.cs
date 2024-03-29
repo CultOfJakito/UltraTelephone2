@@ -1,11 +1,12 @@
 ﻿using BepInEx;
+using CultOfJakito.UltraTelephone2.Hydra.EA;
 using CultOfJakito.UltraTelephone2.Util;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Data;
 
-public static class Ut2Data
+public static class UT2Data
 {
     private static Ut2SaveData s_saveData;
     private static string SaveDataPath => Path.Combine(UT2Paths.DataFolder, "saveData.json");
@@ -75,4 +76,6 @@ public class Ut2SaveData
     public bool InitializedPAmount;
     public long FakePAmount;
     public int LastRealPAmount;
+
+    public List<BuyableReceipt> purchases;
 }

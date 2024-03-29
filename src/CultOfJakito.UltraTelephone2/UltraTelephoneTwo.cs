@@ -6,6 +6,7 @@ using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra;
+using CultOfJakito.UltraTelephone2.Hydra.EA;
 using CultOfJakito.UltraTelephone2.Util;
 using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
@@ -60,6 +61,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init();
+        BuyablesManager.Load();
         GameEvents.OnPlayerHurt += (e) =>
         {
             if(e.Damage > 10)
