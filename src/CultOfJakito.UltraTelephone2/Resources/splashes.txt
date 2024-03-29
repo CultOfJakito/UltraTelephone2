@@ -123,6 +123,7 @@ Made By ULTRAKILL!
 We WILL sue you!
 Quality NOT gaurnteed!
 Call now for 2 for special!
+6 DOLLAR SHRIMP SPECIAL!
 Also Try Cult of the Lamb!
 Is this thing on?
 $"{System.GetUser().GetHomeAdress()}"
@@ -140,6 +141,7 @@ at least it's not ULTRAfreddy fazbear.. because freddy fivebears.. he comes out 
 Made BY 𝓯𝓻𝓮𝓪𝓴𝔂 Devs
 Please seek help!
 NOT written in Rust!
+Rust is pretty mid.
 Aged Like a fine Toilet Wine!
 Long! but not like.. too long.
 Aprox. 49 MB! 
@@ -151,6 +153,10 @@ Under Renovation!
 Voted Most Likely to break in the next update!
 9 Times "Kids Choice Awards" Loser
 Ill Conceived!
+From the people who played Ultrakill!
+I love you
+I HATE YOU
+If you're reading this, you're a nerd.
 Primordial In Nature!
 Glowing and strangely Pulsating..
 I've had to google so many things for these splash texts! i'm so bad at spelling..
@@ -177,5 +183,47 @@ All Proceeds go towards worshipping Nyarlathotep!
 Great during an acid trip!
 Consult with your physicist before playing!
 ~\int_{0}^{0.8165}\frac{x^{\cos\left(x\right)}}{\sin\left(x\right)}dx Mathmaticians Approve!
+Theres a 1 in 10 chance this text is a lie!
+The Best Splash Text in the World!
+This is splash text number 188!
+This is splash text number 189!
+This is splash text number 190!
+How many splash texts are there?
+This is splash text number 192!
+Have no fear, Splash Text 193 is here!
+Did you know that the average human has less than two legs?
+No I'm not a robot, I'm a machine!
+PLAY HADES CAVE ON ITCH.IO
+Go subcribe to the Cult of Jakito on Youtube!
+ULTRAKILL lost media
+Ultrakill but good
+Ultrakill but bad
+Ultrakill but even
+Ultrakill but ugly
 If you get and compute the math one, you're a real nerd.
 Last one to take their hand off of the swordsmachine gets to keep it!
+At least it don't got Red 21... at least it don't got that in it.
+Made with 100% Real Pixels!
+Contains 0% Real Pixels!
+What's 9+10? 21!
+At least it dont got that in it.
+Red 21
+Bear5 is real?
+Bear5 is real.
+Bear5 is real!
+Bear5 is real!!
+Bass Pro Shops
+Shotgun boosting is mid
+The best speedrunner is...
+HEY HEY YOU YOU CLICK THIS TEXT AND YOU WILL DIE
+Just Kidding!
+I'm not kidding!
+AND IM NOT KIDDING!
+Clean that up..
+Clean your room.
+Get those bottles off your desk.
+I'm watching you.
+o _ o
+o w o
+.w.
+^w^

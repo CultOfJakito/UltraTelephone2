@@ -7,6 +7,7 @@ using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra;
 using CultOfJakito.UltraTelephone2.Hydra.EA;
+using CultOfJakito.UltraTelephone2.LevelInjection;
 using CultOfJakito.UltraTelephone2.Util;
 using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
@@ -40,6 +41,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
+        UT2SaveData.Load();
+
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
@@ -58,10 +61,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void InitializeObjects()
     {
+        gameObject.AddComponent<LevelInjectionManager>();
+
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
-        HerobrineManager.Init();
+        HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
+
         GameEvents.OnPlayerHurt += (e) =>
         {
             if(e.Damage > 10)

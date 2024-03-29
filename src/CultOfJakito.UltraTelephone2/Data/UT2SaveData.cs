@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Data;
 
-public static class UT2Data
+public static class UT2SaveData
 {
     private static Ut2SaveData s_saveData;
     private static string SaveDataPath => Path.Combine(UT2Paths.DataFolder, "saveData.json");
@@ -24,13 +24,8 @@ public static class UT2Data
         }
     }
 
-    private static void Load()
+    public static void Load()
     {
-        if (!Directory.Exists(Path.GetDirectoryName(SaveDataPath)))
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(SaveDataPath));
-        }
-
         if (!File.Exists(SaveDataPath))
         {
             s_saveData = new Ut2SaveData();

@@ -9,21 +9,21 @@ public static class FakeBank
     public static long GetCurrentMoney()
     {
         Initialize();
-        return UT2Data.SaveData.FakePAmount;
+        return UT2SaveData.SaveData.FakePAmount;
     }
 
     public static void AddMoney(long amount)
     {
         Initialize();
-        UT2Data.SaveData.FakePAmount += amount;
-        UT2Data.Save();
+        UT2SaveData.SaveData.FakePAmount += amount;
+        UT2SaveData.Save();
     }
 
     public static void SetMoney(long amount)
     {
         Initialize();
-        UT2Data.SaveData.FakePAmount = amount;
-        UT2Data.Save();
+        UT2SaveData.SaveData.FakePAmount = amount;
+        UT2SaveData.Save();
     }
 
     private static void Initialize()
@@ -35,20 +35,20 @@ public static class FakeBank
 
         //Dont use GetMoney() here, it will cause a stack overflow
         int p = GameProgressSaver.GetGeneralProgress().money;
-        int lastP = UT2Data.SaveData.LastRealPAmount;
-        UT2Data.SaveData.LastRealPAmount = p;
+        int lastP = UT2SaveData.SaveData.LastRealPAmount;
+        UT2SaveData.SaveData.LastRealPAmount = p;
 
-        if (!UT2Data.SaveData.InitializedPAmount)
+        if (!UT2SaveData.SaveData.InitializedPAmount)
         {
             lastP = p;
-            UT2Data.SaveData.FakePAmount = p;
-            UT2Data.SaveData.InitializedPAmount = true;
-            UT2Data.Save();
+            UT2SaveData.SaveData.FakePAmount = p;
+            UT2SaveData.SaveData.InitializedPAmount = true;
+            UT2SaveData.Save();
         }
 
         if (p != lastP)
         {
-            UT2Data.SaveData.FakePAmount += p - lastP;
+            UT2SaveData.SaveData.FakePAmount += p - lastP;
         }
 
 
