@@ -19,6 +19,7 @@ public static class UkPrefabs
     public static UKAsset<AudioClip> BubbleLoopClip { get; private set; } = new("Assets/Sounds/Environment/WaterBubblesLoop.wav");
     public static UKAsset<Sprite> WhiteUI { get; private set; } = new("Assets/Textures/WhiteUI.png");
     public static AudioMixerGroup MainMixer => AudioMixerController.Instance.allSound.outputAudioMixerGroup;
+    public static UKAsset<GameObject> MannequinEnemy { get; private set; } = new ("Assets/Prefabs/Enemies/Mannequin.prefab");
 }
 
 public class UKAsset<T> where T : UnityEngine.Object

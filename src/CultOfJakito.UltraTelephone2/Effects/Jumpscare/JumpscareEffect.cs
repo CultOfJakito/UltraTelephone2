@@ -10,10 +10,10 @@ namespace CultOfJakito.UltraTelephone2.Effects.Jumpscare;
 [HarmonyPatch]
 public class JumpscareEffect : ChaosEffect
 {
-    [Configgable("Chaos Effects", "Jumpscares")]
+    [Configgable("Chaos/Effects", "Jumpscares")]
     private static ConfigToggle s_enabled = new(true);
 
-    private static bool s_effectActive = false;
+    private bool s_effectActive = false;
     private UniRandom _random;
 
     public override void BeginEffect(UniRandom random)
@@ -23,7 +23,12 @@ public class JumpscareEffect : ChaosEffect
     }
 
     public override int GetEffectCost() => 5;
-    public override void Dispose() => s_effectActive = false;
+    public override void Dispose()
+    {
+        s_effectActive = false;
+        base.Dispose();
+    }
+
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
     private void Update()

@@ -60,5 +60,10 @@
         {
             return GetSeed();
         }
+
+        public static implicit operator int(SeedBuilder seedBuilder)
+        {
+            return seedBuilder.GetSeed();
+        }
     }
 }
