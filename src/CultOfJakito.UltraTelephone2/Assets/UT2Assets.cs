@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Assets
     {
         private static Dictionary<string, UnityEngine.Object> _loadedAssets = new();
 
-        //ez
+        //Uncomment in case of emergency :3c
         //private static AssetLoader monoscripts = new AssetLoader(Properties.Resources.ultratelephone2_monoscripts);
         //private static AssetLoader backupLoader = new AssetLoader(Properties.Resources.telephone2_assets_all);
 

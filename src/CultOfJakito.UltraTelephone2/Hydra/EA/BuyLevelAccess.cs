@@ -79,10 +79,13 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
             if(levelNumbers.Count > 0)
             {
+                long newCost = 10L;
                 foreach (int cost in levelNumbers)
                 {
-                    finalPrice *= cost * 100;
+                     newCost *= cost * 10;
                 }
+
+                finalPrice += newCost;
             }
             else
             {

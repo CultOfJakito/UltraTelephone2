@@ -15,8 +15,8 @@ public static class UkPrefabs
     public static UKAsset<TMP_FontAsset> VCRFont { get; private set; } = new("Assets/Fonts/VCR_OSD_MONO_1.asset");
     public static UKAsset<GameObject> BreakParticleMetal { get; private set; } = new("Assets/Particles/Breaks/BreakParticleMetal.prefab");
     public static UKAsset<Material> BubbleMaterial { get; private set; } = new("Assets/Materials/Sprites/Bubble.mat");
-
     public static UKAsset<AudioClip> BubbleLoopClip { get; private set; } = new("Assets/Sounds/Environment/WaterBubblesLoop.wav");
+    public static UKAsset<Sprite> WhiteUI { get; private set; } = new("Assets/Textures/WhiteUI.png");
 }
 
 public class UKAsset<T> where T : UnityEngine.Object
