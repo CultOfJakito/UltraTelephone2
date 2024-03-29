@@ -148,6 +148,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             newColor.g = Mathf.MoveTowards(newColor.g, targetColor.g, delta);
             newColor.b = Mathf.MoveTowards(newColor.b, targetColor.b, delta);
             currentColor = newColor;
+            Light.color = currentColor;
         }
 
         public void Reset()
