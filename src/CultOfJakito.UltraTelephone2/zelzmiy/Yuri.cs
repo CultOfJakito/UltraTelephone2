@@ -7,6 +7,7 @@ using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CultOfJakito.UltraTelephone2.zelzmiy;
 
@@ -18,27 +19,24 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy;
 [RegisterChaosEffect]
 internal class Yuri : ChaosEffect
 {
-    private static GameObject s_yuri;
-
     [Configgable("Chaos/Effects", "Terminal Yuri")]
     private static ConfigToggle s_enabled = new(true);
 
+    private static bool s_effectActive;
+    private static Sprite s_yuriSprite;
+
     public override void BeginEffect(UniRandom random)
     {
-        s_yuri = UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("yuri!!!");
-
-        if (!s_yuri)
-        {
-            Debug.Log("Couldn't Find Yuri!!!!");
-            return;
-        }
+        s_yuriSprite ??= UT2Assets.GetAsset<Sprite>("Assets/Telephone 2/YURI!!!/Yuri Image.gif");
+        s_effectActive = true;
     }
-    [HarmonyPatch(typeof(ShopZone), "Start"), HarmonyPostfix]
+
+    [HarmonyPatch(typeof(ShopZone), nameof(ShopZone.Start)), HarmonyPostfix]
     public static void AddYuriToShop(ShopZone __instance)
     {
-        if (!s_yuri || !s_enabled.Value)
+        if (!s_effectActive || !s_enabled.Value)
             return;
-        
+
         Canvas shopCanvas = __instance.gameObject.GetComponentInChildren<Canvas>(true);
 
         if (!shopCanvas)
@@ -47,9 +45,21 @@ internal class Yuri : ChaosEffect
             return;
         }
 
-        Debug.Log("Found Canvas, Instantiating Yuri");
+        if (__instance.transform.parent != null)
+        {
+            if (__instance.transform.parent.name == "Barricade")
+            {
+                //Don't add Yuri to the barricade shops :3
+                return;
+            }
+        }
 
-        Instantiate(s_yuri, shopCanvas.transform, false);
+        Image bg = shopCanvas.transform.LocateObjectButItActuallyFuckingWorks<Image>("Background");
+        if (bg == null)
+            return;
+
+        bg.sprite = s_yuriSprite;
+        bg.color = Color.white;
     }
 
     public override int GetEffectCost() => 1;

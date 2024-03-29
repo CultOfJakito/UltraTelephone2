@@ -5,12 +5,14 @@ using UnityEngine.UI;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Util;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Chaos;
+using HarmonyLib;
 
 namespace UltraTelephone.Hydra
 {
+    [HarmonyPatch]
     public class Jumpscare : MonoBehaviour
     {
-
         [Configgable("Fun", "Jumpscare Enabled")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
@@ -23,10 +25,21 @@ namespace UltraTelephone.Hydra
 
         private Texture2D currentTexture;
 
+        [HarmonyPatch(typeof(CanvasController), nameof(CanvasController.Awake)), HarmonyPostfix]
+        private static void CreateJumpscare()
+        {
+            if (!s_enabled.value || instance != null)
+            {
+                return;
+            }
+
+            new GameObject("awesome gameobject").gameObject.gameObject.gameObject.gameObject.gameObject.gameObject.gameObject.AddComponent<Jumpscare>();
+        }
+
         private void Awake()
         {
             instance = this;
-            GameObject prefab = UT2Assets.UltraTelephoneLegacyBundle.LoadAsset<GameObject>("JumpscareEngine");
+            GameObject prefab = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/JumpscareEngine.prefab");
 
             if (prefab == null)
             {
@@ -35,6 +48,7 @@ namespace UltraTelephone.Hydra
             }
 
             GameObject newJumpscareUI = GameObject.Instantiate<GameObject>(prefab, Vector3.zero, Quaternion.identity);
+            newJumpscareUI.transform.parent = transform;
             canvas = newJumpscareUI.GetComponent<RectTransform>();
             audioSrc = canvas.GetComponent<AudioSource>();
             ogClip = audioSrc.clip;
@@ -45,7 +59,7 @@ namespace UltraTelephone.Hydra
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
-                Jumpscare.Scare(true);
+                Scare(true);
             }
         }
 
@@ -90,6 +104,7 @@ namespace UltraTelephone.Hydra
         {
             rand ??= UniRandom.SessionNext();
             Texture2D newTex = TextureHelper.RandomTextureFromCache(rand);
+
             if (newTex != null)
             {
                 currentTexture = newTex;
@@ -126,6 +141,7 @@ namespace UltraTelephone.Hydra
 
         public void DoScare(bool force = false)
         {
+            Debug.Log($"Doscare: {running} {force}");
             if (running && !force)
                 return;
 

@@ -127,22 +127,31 @@
   <data name="cantReadWords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cantReadWords.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="hydra" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hydra.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="catalog_wbp_hash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\catalog_wbp.hash;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="catalog_wbp_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\catalog_wbp.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ponder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ponder.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="shader_unitybuiltinshaders" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\shader_unitybuiltinshaders.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="shiteTips" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shiteTips.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="splashes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\splashes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="TelephoneMod" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelephoneMod.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="telephone2_assets_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\telephone2_assets_all.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="zed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zed.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="telephone2_scenes_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\telephone2_scenes_all.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="zelzmiy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zelzmiy.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ultratelephone2_monoscripts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Addressables\ultratelephone2_monoscripts.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

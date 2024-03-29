@@ -51,7 +51,7 @@ namespace CultOfJakito.UltraTelephone2.Util
         public static Texture2D RandomTextureFromCache(UniRandom random)
         {
             if (cachedTextures.Length > 0)
-                random.SelectRandom(cachedTextures);
+                return random.SelectRandom(cachedTextures);
 
             return null;
         }

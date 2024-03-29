@@ -1,0 +1,65 @@
+Did you know you can shoot enemies to hurt them
+Hit the boss until its health bar is empty to win
+You can also dodge attacks by moving out of the way
+You can also use the dodge button to dodge attacks
+Press the shoot button to shoot enemies
+You can also use the shoot button to shoot enemies
+If you run out of health, you will lose the game
+If your health reaches zero, you lose
+Dont let the boss hit you
+Dont lose
+Dont get hit by enemies
+Your weapons do damage
+Use your weapons to defeat enemies
+Use your weapons to defeat the boss
+Use your weapons to defeat the boss and win the game
+Dont lose the game
+If you heal yourself, you will gain health
+If you dont heal yourself, you will lose health if you get hit
+Try to not get hit
+Try to not lose
+Try to not lose the game
+P-Rank is the highest rank you can get but it might be hard for you to get it
+S-Rank is the 2nd highest rank you can get but it might be hard for you to get it
+A-Rank is the 3rd highest rank you can get but it might be hard for you to get it
+B-Rank is the 4th highest rank you can get but it might be hard for you to get it
+C-Rank is the 5th highest rank you can get but it might be hard for you to get it
+D-Rank is the 6th highest rank you can get but you might be able to get it
+You can beat the game if you want
+Just try to not lose
+Just try to not lose the game
+Just try to not get hit
+Just try to not get hit by enemies
+Just try to not get hit by the boss
+Just try to not get hit by the boss and lose the game
+Heal yourself if you need to
+How to play: dont die
+How to play: dont lose
+How to play: dont lose the game
+How to play: dont get hit
+Your pistol does damage
+Your shotgun does damage
+Your rocket launcher does damage
+If you had a sniper rifle, it would do damage
+If you had a machine gun, it would do damage
+If you had a flamethrower, it would do damage
+If you had a laser gun, it would do damage
+If you had a plasma gun, it would do damage
+Your railgun does damage
+Your rocket launcher does damage
+Your nailgun does damage
+In order to win, you must defeat the boss
+In order to win, you must defeat the boss and win the game
+If you pause the game, you can quit
+You can leave the level if you want
+If the level is too hard, you can leave
+If the level is too hard, you can leave the level
+If the level is too hard, you can quit
+If the game is too hard, you can quit
+If the game is too hard, you can leave
+Stay here if you want
+Stay here, its safe here.
+Stay here, its safe here. You can rest here.
+Dont leave, its dangerous out there.
+Dont leave, its dangerous out there. You might get hurt.
+HIIIIIIIIIII
