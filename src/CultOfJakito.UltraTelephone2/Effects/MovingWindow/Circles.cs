@@ -13,7 +13,7 @@ public class Circles : MovementMode
     public override Vector2 Move(Vector2Int resolution, Vector2Int currentWindowPoint)
     {
         _angle += Time.unscaledDeltaTime * _rotationSpeed;
-        _movementSpeed += (Time.unscaledDeltaTime / 10) * Screen.width;
+        _movementSpeed += (Time.unscaledDeltaTime / 25) * Screen.width;
         return new Vector2((float)Math.Cos(_angle * Mathf.Deg2Rad), (float)Math.Sin(_angle * Mathf.Deg2Rad)) * _movementSpeed;
     }
 }
