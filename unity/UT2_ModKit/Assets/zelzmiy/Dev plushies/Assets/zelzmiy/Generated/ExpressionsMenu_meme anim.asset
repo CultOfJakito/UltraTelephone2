@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: ExpressionsMenu_meme anim
+  m_EditorClassIdentifier: 
+  controls:
+  - name: Marley and me dog
+    icon: {fileID: 2800000, guid: f7e1f53b60ed737408c8f143a19ed984, type: 3}
+    type: 102
+    parameter:
+      name: Marley and me dog
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: club penguin
+    icon: {fileID: 2800000, guid: 446a8627a121c9848a967d63db3af7bd, type: 3}
+    type: 102
+    parameter:
+      name: club penguin
+    value: 2
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: my pp itches
+    icon: {fileID: 2800000, guid: e917d368358f2fb40b7dfeaaf3b60188, type: 3}
+    type: 102
+    parameter:
+      name: my pp itches
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: GETDOWN
+    icon: {fileID: 2800000, guid: f56c9b524ddf0264c9dbb6ad9c62967c, type: 3}
+    type: 102
+    parameter:
+      name: GETDOWN
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: chad stride
+    icon: {fileID: 2800000, guid: 8e62712b85144eb4eae0924cb49b7a5f, type: 3}
+    type: 102
+    parameter:
+      name: bunny rabit
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: death
+    icon: {fileID: 2800000, guid: 178c141a9d1a88b45adddc96ce167758, type: 3}
+    type: 102
+    parameter:
+      name: GetFunky
+    value: 2
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: you left your lights on
+    icon: {fileID: 2800000, guid: 637370db38b0e9b4aad660ccaed722ae, type: 3}
+    type: 101
+    parameter:
+      name: you left your lights on
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Sid dance
+    icon: {fileID: 2800000, guid: a5e73d090f2cfe949b4beb8ad96114f6, type: 3}
+    type: 102
+    parameter:
+      name: Sid dance
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
