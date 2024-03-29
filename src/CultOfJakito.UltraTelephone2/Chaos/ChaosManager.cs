@@ -56,7 +56,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
             if (InGameCheck.PlayingLevel())
                 return;
 
-            GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
+            GameEvents.OnLevelStateChange?.Invoke(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
             Dispose();
         }
         else
@@ -64,8 +64,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
             if (InGameCheck.PlayingLevel())
             {
                 _levelBegan = true;
-
-                GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
+                GameEvents.OnLevelStateChange?.Invoke(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
             }
         }
     }

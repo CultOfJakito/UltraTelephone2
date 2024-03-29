@@ -32,5 +32,12 @@ namespace CultOfJakito.UltraTelephone2
             Image ultrakillImage = menuComp.GetComponentInChildren<Image>();
             ultrakillImage.sprite = HydraAssets.UT2Banner;
         }
+
+        private static void InstanceMoneyCounter(RectTransform canvasRect)
+        {
+
+
+
+        }
     }
 }

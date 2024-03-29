@@ -1,5 +1,6 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
+using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             if (!s_enabled.Value)
                 return;
 
-            TextMeshProUGUI tmp = __instance.transform.LocateObjectButItActuallyFuckingWorks<TextMeshProUGUI>("TipText");
+            TextMeshProUGUI tmp = __instance.transform.LocateComponentInChildren<TextMeshProUGUI>("TipText");
 
             if (tmp == null)
                 return;

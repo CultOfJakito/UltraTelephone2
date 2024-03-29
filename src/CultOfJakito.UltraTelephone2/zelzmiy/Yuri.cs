@@ -5,6 +5,7 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,7 +55,7 @@ internal class Yuri : ChaosEffect
             }
         }
 
-        Image bg = shopCanvas.transform.LocateObjectButItActuallyFuckingWorks<Image>("Background");
+        Image bg = shopCanvas.transform.LocateComponentInChildren<Image>("Background");
         if (bg == null)
             return;
 

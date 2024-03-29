@@ -14,8 +14,14 @@ public class JumpscareEffect : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive = false;
+    private UniRandom _random;
 
-    public override void BeginEffect(UniRandom random) => s_effectActive = true;
+    public override void BeginEffect(UniRandom random)
+    {
+        _random = random;
+        s_effectActive = true;
+    }
+
     public override int GetEffectCost() => 5;
     public override void Dispose() => s_effectActive = false;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
@@ -23,11 +29,9 @@ public class JumpscareEffect : ChaosEffect
     private void Update()
     {
         if (!s_effectActive)
-        {
             return;
-        }
 
-        if (Input.GetMouseButtonDown(0) && UnityEngine.Random.value < 0.05f)
+        if (Input.GetMouseButtonDown(0) && _random.Chance(0.05f))
         {
             UltraTelephone.Hydra.Jumpscare.Scare(true);
         }
