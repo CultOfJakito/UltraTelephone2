@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 265406410409746669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 8205535975970405923}
   - {fileID: 2572356564918008509}
@@ -52,8 +52,8 @@ MonoBehaviour:
   - {fileID: 8097958557586507210}
   - {fileID: 5819197346103088371}
   - {fileID: 6418175502656997216}
---- !u!64 &1227244575163656493
-MeshCollider:
+--- !u!65 &5189466171458481995
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -62,10 +62,42 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2212009239438826721, guid: 4ee343b6ee45124489a45c52de7465b5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.20000015, z: 2.0000005}
+  m_Center: {x: 1, y: -0.000000048428785, z: 3.0000007}
+--- !u!114 &7759856961961376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869384084212971868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a524737f646494abe5e93136e7464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonSolid: 0
+  oneTime: 0
+  targets: []
+  onIndoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
+  onOutdoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &5819197346103088371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,8 +114,8 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
---- !u!64 &8339414774440267680
-MeshCollider:
+--- !u!65 &2714412002959920297
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,10 +124,42 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4493585093827132993, guid: c6c8a2181b1d37641af4ea2bebb0da51, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.20000015, z: 2.0000005}
+  m_Center: {x: -1, y: -0.000000048428785, z: 3.0000007}
+--- !u!114 &704576057422168206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2293964274053117123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a524737f646494abe5e93136e7464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonSolid: 0
+  oneTime: 0
+  targets: []
+  onIndoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
+  onOutdoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &6418175502656997216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,8 +176,8 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
---- !u!64 &6606326966191486359
-MeshCollider:
+--- !u!65 &8491361484935067769
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,10 +186,42 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5741174448488666723, guid: 8974840292f78f5458b3c50685a98ed3, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.20000015, z: 2.0000005}
+  m_Center: {x: -1, y: 0.000000048428785, z: 1.0000002}
+--- !u!114 &959030012615098550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952399853338271751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a524737f646494abe5e93136e7464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonSolid: 0
+  oneTime: 0
+  targets: []
+  onIndoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
+  onOutdoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &8097958557586507210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +238,8 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
---- !u!64 &1987894454777029166
-MeshCollider:
+--- !u!65 &4490034901543847673
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,10 +248,42 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2477511411847689622, guid: ba534eb85669ac64b826630b8b93417b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.20000015, z: 2.0000005}
+  m_Center: {x: 1, y: 0.000000048428785, z: 1.0000002}
+--- !u!114 &1873668051644257244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8832750543749719193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a524737f646494abe5e93136e7464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonSolid: 0
+  oneTime: 0
+  targets: []
+  onIndoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
+  onOutdoors:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &5996450469911659656
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,9 +40,17 @@ public class FortniteBuild : MonoBehaviour
 
     public void StopEditing()
     {
+        bool hasEnabledChunks = false;
+
         foreach (BuildChunk chunk in Edits)
         {
             chunk.StopEditing();
+            hasEnabledChunks = hasEnabledChunks || chunk.Enabled;
+        }
+
+        if (Edits.Length != 0 && !hasEnabledChunks)
+        {
+            Destroy(gameObject);
         }
     }
 }

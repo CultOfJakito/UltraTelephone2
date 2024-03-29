@@ -32,15 +32,11 @@ public class BuildingControls : MonoSingleton<BuildingControls>
     };
 
     private Dictionary<BuildTypes, GameObject> _typeToPreview = new();
-    private Dictionary<BuildTypes, List<Vector2>> _typeToPositions = new()
-    {
-        { BuildTypes.Floor, new List<Vector2>() },
-        { BuildTypes.Ramp, new List<Vector2>() },
-        { BuildTypes.Cone, new List<Vector2>() }
-    };
     private List<string> _placedWallIdentifiers = new(); //this fucking sucks but im tired
+    private List<string> _placedFloorIdentifiers = new();
+    private List<string> _placedRampConeIdentifiers = new();
     private BuildTypes _currentBuild;
-    private const int VoxelSize = 8;
+    private const int VoxelSize = 10;
 
     private void Start()
     {
@@ -85,33 +81,55 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             }
         }
 
-        Vector3 spawnPos = RoundToNearestVoxel(NewMovement.Instance.transform.position + NewMovement.Instance.transform.forward * VoxelSize / 2f);
+        Vector3 spawnPos = RoundToNearestVoxel(NewMovement.Instance.transform.position + CameraController.Instance.transform.forward * VoxelSize / 1.75f);
+        Quaternion spawnRot = RoundRotation(NewMovement.Instance.transform.rotation);
         _typeToPreview[_currentBuild].transform.position = spawnPos;
-        _typeToPreview[_currentBuild].transform.rotation = RoundRotation(NewMovement.Instance.transform.rotation);
+        _typeToPreview[_currentBuild].transform.rotation = spawnRot;
 
         if (Input.GetMouseButton(0))
         {
-            if (_currentBuild != BuildTypes.Wall)
+            if (!CanBuildHere(_currentBuild, spawnPos, spawnRot))
             {
-                if (_typeToPositions[_currentBuild].Contains(spawnPos))
-                {
-                    return;
-                }
-
-                _typeToPositions[_currentBuild].Add(spawnPos);
+                return;
             }
-            else
-            {
-                string thisIdentifier = spawnPos.ToString() + "|" + RoundRotation(NewMovement.Instance.transform.rotation).eulerAngles;
+
+            Instantiate(s_typeToBuild[_currentBuild], spawnPos, spawnRot);
+        }
+    }
+
+    private bool CanBuildHere(BuildTypes type, Vector3 position, Quaternion rotation)
+    {
+        switch (type)
+        {
+            case BuildTypes.Wall:
+                string thisIdentifier = position + "|" + rotation.eulerAngles;
                 if (_placedWallIdentifiers.Contains(thisIdentifier))
                 {
-                    return;
+                    return false;
                 }
                 _placedWallIdentifiers.Add(thisIdentifier);
-            }
+                return true;
 
-            Instantiate(s_typeToBuild[_currentBuild], spawnPos, RoundRotation(NewMovement.Instance.transform.rotation));
+            case BuildTypes.Floor:
+                thisIdentifier = position.ToString();
+                if (_placedFloorIdentifiers.Contains(thisIdentifier))
+                {
+                    return false;
+                }
+                _placedFloorIdentifiers.Add(thisIdentifier);
+                return true;
+
+            case BuildTypes.Cone or BuildTypes.Ramp:
+                thisIdentifier = position.ToString();
+                if (_placedRampConeIdentifiers.Contains(thisIdentifier))
+                {
+                    return false;
+                }
+                _placedRampConeIdentifiers.Add(thisIdentifier);
+                return true;
         }
+
+        return false;
     }
 
     private Vector3 RoundToNearestVoxel(Vector3 position)
