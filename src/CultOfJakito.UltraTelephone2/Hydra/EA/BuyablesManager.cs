@@ -8,8 +8,6 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 {
     public static class BuyablesManager
     {
-        private static Dictionary<string, BuyableReceipt> receiptLog = new Dictionary<string, BuyableReceipt>();
-
         private static HashSet<string> boughtIDs = new HashSet<string>();
 
         public static void Load()
@@ -29,7 +27,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
 
         public static bool IsBought(string buyableID)
         {
-            return receiptLog.ContainsKey(buyableID);
+            return boughtIDs.Contains(buyableID);
         }
 
         public static void Bought(IBuyable buyable)

@@ -23,8 +23,9 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         private static ConfigButton changeSplashText = new ConfigButton(ChangeSplashText, "Change Splash Text");
 
         static int seedOffset = 0;
+        private static Text[] splashTexts;
 
-        [HarmonyPatch(typeof(CanvasController), "Awake"), HarmonyPostfix]
+        [HarmonyPatch(typeof(CanvasController), nameof(CanvasController.Awake)), HarmonyPostfix]
         public static void OnAwake(CanvasController __instance)
         {
             if (!s_enabled.Value)
@@ -39,36 +40,53 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
             Image ultrakillImage = menuComp.GetComponentInChildren<Image>();
 
-            Text earlyAccessText = ultrakillImage.GetComponentInChildren<Text>();
+            Text[] texts = ultrakillImage.GetComponentsInChildren<Text>(true);
 
-            if (earlyAccessText == null)
+            if (texts == null)
                 return;
 
-            splashText = earlyAccessText;
-            splashText.fontSize = 24;
+            splashTexts = texts;
 
-            float imageWidth = ultrakillImage.rectTransform.rect.width;
+            for(int i = 0; i < texts.Length; i++)
+            {
+                Text splashText = texts[i];
+                splashText.fontSize = 24;
 
-            Vector2 sizeDelta = splashText.rectTransform.sizeDelta;
-            sizeDelta.x = 1000f;
-            splashText.rectTransform.sizeDelta = sizeDelta;
-            splashText.raycastTarget = false;
-            splashText.color = Color.yellow;
-            splashText.rectTransform.localRotation = Quaternion.Euler(0, 0, UniRandom.Global.Range(-20f,20f));
-            splashText.gameObject.AddComponent<SplashTextBouncer>();
+                float imageWidth = ultrakillImage.rectTransform.rect.width;
+
+                Vector2 sizeDelta = splashText.rectTransform.sizeDelta;
+                sizeDelta.x = 1000f;
+                splashText.rectTransform.sizeDelta = sizeDelta;
+                splashText.raycastTarget = false;
+                splashText.color = Color.yellow;
+                splashText.rectTransform.localRotation = Quaternion.Euler(0, 0, UniRandom.Global.Range(-20f, 20f));
+                splashText.gameObject.AddComponent<SplashTextBouncer>();
+            }
+
             ChangeSplashText();
         }
 
+
         private static void ChangeSplashText()
         {
-            if (splashText == null)
+            if (splashTexts == null)
                 return;
 
-            splashText.text = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandom(splashPhrases.ToArray());
+            string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandom(splashPhrases.ToArray());
+
+
+            for (int i = 0; i < splashTexts.Length; i++)
+            {
+                if (splashTexts[i] == null)
+                    continue;
+
+                Text splashText = splashTexts[i];
+                splashText.text = phrase;
+            }
+
             ++seedOffset;
         }
 
-        private static Text splashText;
 
     }
 

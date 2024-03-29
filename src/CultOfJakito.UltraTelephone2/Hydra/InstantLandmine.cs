@@ -17,7 +17,6 @@ public static class InstantLandmine
         if (!s_enabled.Value)
             return;
 
-        //Reflection is being dumb so idfc cry about it
-        __instance.Invoke("Explode", 0f);
+        __instance.Explode();
     }
 }

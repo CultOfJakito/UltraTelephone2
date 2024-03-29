@@ -10,8 +10,8 @@
 
 namespace CultOfJakito.UltraTelephone2.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace CultOfJakito.UltraTelephone2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,13 +59,14 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 resourceCulture = value;
             }
         }
-
-         /// <summary>
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mega
         ///Based
         ///Cringe
         ///Super
         ///Gay
+        ///Aromantic
         ///ULTRA
         ///Pro
         ///Hyper
@@ -103,14 +104,35 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///PSYCHO
         ///BADASS
         ///GLISTENING
-        ///BURNING.
+        ///BURNING
+        ///Sir.
+        ///Upside-Down
+        ///Confused
+        ///Listless
+        ///Generous
+        ///Blocky
+        ///Round
+        ///Enraged
+        ///Angry
+        ///Rude
+        ///Rotund
+        ///Caffeinated
+        ///Combustable
+        ///Menacing
+        ///Fast
+        ///Heroic
+        ///Fair
+        ///Epic
+        ///Legendary
+        ///Odd
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bossBar_prefixes {
             get {
                 return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to THE MAN
         ///(FINAL FORM)
@@ -125,6 +147,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///IX
         ///X
         ///PHD
+        ///M.D
         ///FROM OHIO
         ///WITH RIZZ
         ///JR.
@@ -137,14 +160,42 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///PRIME
         ///THE FIFTH
         ///HELLS GUARDIAN
-        ///SWAG MASTER.
+        ///SWAG MASTER
+        ///The Everlasting
+        ///The Desolate
+        ///The Destroyer
+        ///The Hungry
+        ///:3
+        ///The Squeamish
+        ///The Tired
+        ///The Broken
+        ///The Cold
+        ///The Abstracted
+        ///B.A
+        ///B.Sc
+        ///M.A
+        ///M.L.A. 
+        ///M.F.A. 
+        ///M.S.W. 
+        ///M.L.
+        ///B.Tech
+        ///B.Ed
+        ///Monarch
+        ///DD
+        ///OFM
+        ///CSV
+        ///The Incomplete
+        ///The Rushed
+        ///The Anointed
+        ///The Revived
+        ///Estranged.
         /// </summary>
         internal static string bossBar_suffixes {
             get {
                 return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to when
         ///you
@@ -188,7 +239,27 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("cantReadWords", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] catalog_wbp_hash {
+            get {
+                object obj = ResourceManager.GetObject("catalog_wbp_hash", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] catalog_wbp_json {
+            get {
+                object obj = ResourceManager.GetObject("catalog_wbp_json", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
         ///101110010000101101011101101010110
@@ -209,7 +280,26 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("ponder", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] shader_unitybuiltinshaders {
+            get {
+                object obj = ResourceManager.GetObject("shader_unitybuiltinshaders", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string shiteTips {
+            get {
+                return ResourceManager.GetString("shiteTips", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Totally tubular
         ///Better than UltraTelephone!
@@ -240,6 +330,36 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         internal static string splashes {
             get {
                 return ResourceManager.GetString("splashes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] telephone2_assets_all {
+            get {
+                object obj = ResourceManager.GetObject("telephone2_assets_all", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] telephone2_scenes_all {
+            get {
+                object obj = ResourceManager.GetObject("telephone2_scenes_all", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ultratelephone2_monoscripts {
+            get {
+                object obj = ResourceManager.GetObject("ultratelephone2_monoscripts", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

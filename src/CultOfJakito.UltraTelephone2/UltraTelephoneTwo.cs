@@ -41,17 +41,20 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
-        UT2SaveData.Load();
 
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
+
+        //UT2Assets.ValidateAssetIntegrity();
         UT2Paths.EnsureFolders();
         AddressableManager.LoadCatalog();
+        UT2SaveData.Load();
 
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
+
 
         InitializeObjects();
 

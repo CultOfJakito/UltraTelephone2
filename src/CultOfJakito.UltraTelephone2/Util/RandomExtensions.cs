@@ -48,6 +48,16 @@ internal static class RandomExtensions
         return true;
     }
 
+    /// <summary>
+    /// Thanks unity!
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T[] FindObjectsOfTypeIncludingInactive<T>() where T : Component
+    {
+        return Resources.FindObjectsOfTypeAll<T>().Where(x=>x.hideFlags != HideFlags.NotEditable && x.hideFlags != HideFlags.HideAndDontSave).ToArray();
+    }
+
     public static UnityEngine.AudioSource PlaySound(this UnityEngine.AudioClip clip, UnityEngine.Vector3? position = null, UnityEngine.Transform? parent = null, float volume = 1f, bool keepSource = false, bool loop = false)
     {
         UnityEngine.GameObject go = new UnityEngine.GameObject("Audio: " + clip.name);

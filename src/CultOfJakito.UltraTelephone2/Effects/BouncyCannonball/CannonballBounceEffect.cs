@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Effects.BouncyCannonball;
 [RegisterChaosEffect]
 public class CannonballBounceEffect : ChaosEffect
 {
-    [Configgable("Chaos Effects", "Bouncy Cannonball")]
+    [Configgable("Chaos/Effects", "Bouncy Cannonball")]
     public static ConfigToggle Enabled = new(true);
 
     private static bool s_currentlyActive;
@@ -30,7 +30,7 @@ public class CannonballBounceEffect : ChaosEffect
         BouncyCannonball cb = __instance.gameObject.AddComponent<BouncyCannonball>();
     }
 
-    [HarmonyPrefix, HarmonyPatch(typeof(Cannonball), "Break")]
+    [HarmonyPrefix, HarmonyPatch(typeof(Cannonball), nameof(Cannonball.Break))]
     public static bool Break(Cannonball __instance) => !s_currentlyActive || __instance.GetComponent<BouncyCannonball>().RemainingTime <= 0;
 }
 

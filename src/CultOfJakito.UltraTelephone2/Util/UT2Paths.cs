@@ -32,10 +32,20 @@ namespace CultOfJakito.UltraTelephone2.Util
         /// </summary>
         public static string TextFolder => Path.Combine(DataFolder, "text");
 
+
+        /// <summary>
+        /// internal assets here
+        /// </summary>
+        public static string InternalAssetsFolder => Path.Combine(ModFolder, "Assets");
+
+
         public static void EnsureFolders()
         {
             if (!Directory.Exists(DataFolder))
                 Directory.CreateDirectory(DataFolder);
+
+            if (!Directory.Exists(InternalAssetsFolder))
+                Directory.CreateDirectory(InternalAssetsFolder);
 
             if (!Directory.Exists(TextureFolder))
                 Directory.CreateDirectory(TextureFolder);

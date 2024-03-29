@@ -59,7 +59,7 @@ public static class UT2SaveData
             Directory.CreateDirectory(Path.GetDirectoryName(SaveDataPath));
         }
 
-        string json = JsonConvert.SerializeObject(s_saveData);
+        string json = JsonConvert.SerializeObject(s_saveData, Formatting.Indented);
         File.WriteAllText(SaveDataPath, json);
         Debug.Log("Saved UT2 data");
     }

@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
 [RegisterChaosEffect]
 public class BuildingEffect : ChaosEffect
 {
-    [Configgable("Chaos Effects", "Fortnite Building")]
+    [Configgable("Chaos/Effects", "Fortnite Building")]
     private static ConfigToggle s_enabled = new(true);
     private static bool s_currentlyActive;
 
