@@ -1,4 +1,6 @@
-﻿namespace CultOfJakito.UltraTelephone2;
+﻿using UnityEngine;
+
+namespace CultOfJakito.UltraTelephone2;
 
 internal static class RandomExtensions
 {
@@ -13,7 +15,7 @@ internal static class RandomExtensions
 
     private static double Remap(double s, double a1, double a2, double b1, double b2) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 
-    public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
+    public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, System.Random rng)
     {
         T[] elements = source.ToArray();
         for (int i = elements.Length - 1; i >= 0; i--)
@@ -22,6 +24,11 @@ internal static class RandomExtensions
             yield return elements[swapIndex];
             elements[swapIndex] = elements[i];
         }
+    }
+
+    public static T LocateObjectButItActuallyFuckingWorks<T>(this Transform tf, string name) where T : Component
+    {
+        return tf.GetComponentsInChildren<T>().Where(x => x.name == name).FirstOrDefault();
     }
 
     // what?

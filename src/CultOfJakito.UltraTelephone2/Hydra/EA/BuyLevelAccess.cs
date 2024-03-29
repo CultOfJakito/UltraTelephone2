@@ -102,17 +102,14 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
             button = GetComponentInChildren<Button>(true);
             button.onClick.AddListener(Buy);
 
-            barricade = LocateObject<Transform>("Barricade").gameObject;
+            barricade = transform.LocateObjectButItActuallyFuckingWorks<Transform>("Barricade").gameObject;
 
-            costText = LocateObject<Text>("Text_Cost");
-            levelNameText = LocateObject<Text>("Text_LevelName");
-            purchaseDescriptionText = LocateObject<Text>("Text_Description");
+            costText = transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Cost");
+            levelNameText = transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_LevelName");
+            purchaseDescriptionText = transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Description");
         }
 
-        private T LocateObject<T>(string name) where T : Component
-        {
-            return transform.GetComponentsInChildren<T>().Where(x => x.name == name).FirstOrDefault();
-        }
+       
 
         private void Start()
         {
