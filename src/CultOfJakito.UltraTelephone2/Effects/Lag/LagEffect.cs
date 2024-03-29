@@ -19,6 +19,7 @@ public class LagEffect : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
+        _random = random;
         _lagRoutine = StartCoroutine(Lag());
     }
 
