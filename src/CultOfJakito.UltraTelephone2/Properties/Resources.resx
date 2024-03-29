@@ -118,8 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bossBar_prefixes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bossBar.prefixes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="bossBar_suffixes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bossBar.suffixes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="cantReadWords" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cantReadWords.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="hydra" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hydra.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ponder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ponder.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="splashes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\splashes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="TelephoneMod" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TelephoneMod.resource;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

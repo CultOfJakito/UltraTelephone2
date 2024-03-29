@@ -10,10 +10,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [RegisterChaosEffect]
     public class LimitedLives : ChaosEffect 
     {
-        [Configgable("Hydra/Chaos", "Limited Lives")]
+        [Configgable("Chaos/Effects/LimitedLives", "Limited Lives")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [Configgable("Hydra/Chaos", "Limited Life Count")]
+        [Configgable("Chaos/Effects/LimitedLives", "Limited Life Count")]
         private static ConfigInputField<int> s_lives = new ConfigInputField<int>(3, (v) =>
         {
             return v > 0;

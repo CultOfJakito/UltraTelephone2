@@ -1,0 +1,31 @@
+﻿using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace CultOfJakito.UltraTelephone2.Hydra.EA
+{
+    public class Buyable : MonoBehaviour, IBuyable
+    {
+        public UnityEvent OnBuy;
+        public string BuyableID;
+        public long Cost;
+
+        public void Buy()
+        {
+            if(BuyablesManager.IsBought(BuyableID))
+                return;
+
+            long money = FakeBank.GetCurrentMoney();
+            if (money < GetCost())
+                return;
+
+            long newMoney = money - GetCost();
+            BuyablesManager.Bought(GetBuyableID());
+            FakeBank.SetMoney(newMoney);
+            OnBuy?.Invoke();
+        }
+
+        public string GetBuyableID() => BuyableID;
+        public long GetCost() => Cost;
+    }
+}

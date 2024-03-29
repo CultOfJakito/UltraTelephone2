@@ -3,13 +3,15 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Data;
+using CultOfJakito.UltraTelephone2.Events;
+using CultOfJakito.UltraTelephone2.Hydra;
+using CultOfJakito.UltraTelephone2.Hydra.EA;
+using CultOfJakito.UltraTelephone2.Util;
 using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using CultOfJakito.UltraTelephone2.Util;
 using UltraTelephone.Hydra;
-using CultOfJakito.UltraTelephone2.Events;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2;
 
@@ -33,7 +35,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
 
-        Data.Paths.ValidateFolders();
         InGameCheck.Init();
 
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
@@ -49,14 +50,18 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
 
+        InitializeObjects();
+
         InGameCheck.OnLevelChanged += DoThing;
-        MinecraftBookPatch.Init();
         InGameCheck.OnLevelChanged += OnSceneLoaded;
     }
 
-    private void InitializeStuff()
+    private void InitializeObjects()
     {
+        MinecraftBookPatch.Init();
+        UT2TextFiles.ReloadFiles();
         HerobrineManager.Init();
+        BuyablesManager.Load();
         GameEvents.OnPlayerHurt += (e) =>
         {
             if(e.Damage > 10)
@@ -113,7 +118,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             case PersonalizationLevel.Personalized:
                 return Environment.UserName.GetHashCode();
             case PersonalizationLevel.ULTRAPERSONALIZED:
-                return (int)DateTime.Now.Ticks+Environment.UserName.GetHashCode();
+                return (int)DateTime.Now.Ticks^Environment.UserName.GetHashCode();
         }
     }
 }

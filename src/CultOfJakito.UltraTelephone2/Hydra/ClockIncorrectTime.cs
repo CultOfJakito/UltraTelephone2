@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     [HarmonyPatch(typeof(Clock))]
     public static class ClockIncorrectTime 
     {
-        [Configgable("Hydra/Patches", "Broken Clock")]
+        [Configgable("Patches", "Broken Clock")]
         private static ConfigToggle s_enabled = new(true);
 
         static int? s_offset = null;

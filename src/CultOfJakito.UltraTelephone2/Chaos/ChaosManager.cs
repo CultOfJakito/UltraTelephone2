@@ -35,13 +35,16 @@ public class ChaosManager : MonoBehaviour, IDisposable
         }
 
         Debug.Log("Chaos started");
+        activatedEffects = _ctx.GetCurrentSelection();
 
-        foreach (IChaosEffect effect in _ctx.GetCurrentSelection())
+        foreach (IChaosEffect effect in activatedEffects)
         {
             Debug.Log($"Beginning Effect: {effect.GetType().Name}");
             effect.BeginEffect(new UniRandom(random.Next()));
         }
     }
+
+    private List<IChaosEffect> activatedEffects;
 
     private bool _levelBegan;
     private ChaosSessionContext _ctx;
@@ -51,20 +54,10 @@ public class ChaosManager : MonoBehaviour, IDisposable
         if (_levelBegan)
         {
             if (InGameCheck.PlayingLevel())
-            {
                 return;
-            }
 
             GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(false, SceneHelper.CurrentScene));
-
-            //TODO remove this.
-            foreach (IChaosEffect x in _ctx.GetCurrentSelection())
-            {
-                if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
-                {
-                    ((ILevelEvents)x).OnLevelComplete(_ctx.LevelName);
-                }
-            }
+            Dispose();
         }
         else
         {
@@ -73,15 +66,6 @@ public class ChaosManager : MonoBehaviour, IDisposable
                 _levelBegan = true;
 
                 GameEvents.OnLevelStateChange.Invoke(new LevelStateChangeEvent(true, SceneHelper.CurrentScene));
-
-                //TODO remove this.
-                foreach (IChaosEffect x in _ctx.GetCurrentSelection())
-                {
-                    if (typeof(ILevelEvents).IsAssignableFrom(x.GetType()))
-                    {
-                        ((ILevelEvents)x).OnLevelStarted(_ctx.LevelName);
-                    }
-                }
             }
         }
     }
@@ -125,7 +109,23 @@ public class ChaosManager : MonoBehaviour, IDisposable
         return chaosEffects;
     }
 
-    public void Dispose() => Destroy(this);
+    public void Dispose()
+    {
+        if(activatedEffects != null)
+        {
+            for (int i = 0; i < activatedEffects.Count; i++)
+            {
+                if (activatedEffects[i] == null)
+                    continue;
+
+                IChaosEffect effect = activatedEffects[i];
+                activatedEffects[i] = null;
+                effect.Dispose();
+            }
+        }
+
+        Destroy(this);
+    }
 }
 
 public class ChaosSessionContext

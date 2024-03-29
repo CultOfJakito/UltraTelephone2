@@ -6,7 +6,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra;
 [HarmonyPatch]
 public static class InstantLandmine
 {
-    [Configgable("Hydra/Patches", "Realistic Landmines")]
+    [Configgable("Patches", "Realistic Landmines")]
     private static ConfigToggle s_enabled = new(true);
 
 

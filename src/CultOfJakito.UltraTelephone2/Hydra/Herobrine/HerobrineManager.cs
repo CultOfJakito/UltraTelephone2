@@ -9,7 +9,7 @@ namespace UltraTelephone.Hydra
         private static Herobrine herobrine;
         private static GameObject herobrinePrefab => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Herobrine/Herobrine.prefab");
 
-        [Configgable("Hydra/Fun/Herobrine", "Herobrine Enabled")]
+        [Configgable("Fun/Herobrine", "Herobrine")]
         private static ConfigToggle herobrineEnabled = new ConfigToggle(true);
 
         private static bool initialized;

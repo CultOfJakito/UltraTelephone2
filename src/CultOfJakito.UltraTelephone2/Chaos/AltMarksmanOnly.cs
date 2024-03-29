@@ -10,7 +10,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
     //[RegisterChaosEffect]
     public class AltMarksmanOnly : ChaosEffect
     {
-        [Configgable("Hydra/Chaos", "Alt Marksman Only")]
+        [Configgable("Chaos/Effects", "Alt Marksman Only")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         public override void BeginEffect(UniRandom random)

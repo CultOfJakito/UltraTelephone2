@@ -10,7 +10,8 @@ namespace UltraTelephone.Hydra
 {
     public class Jumpscare : MonoBehaviour
     {
-        [Configgable("Hydra/Fun", "Jumpscare Enabled")]
+
+        [Configgable("Fun", "Jumpscare Enabled")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         private static Jumpscare instance;
@@ -25,7 +26,7 @@ namespace UltraTelephone.Hydra
         private void Awake()
         {
             instance = this;
-            GameObject prefab = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/JumpscareEngine.prefab");
+            GameObject prefab = UT2Assets.UltraTelephoneLegacyBundle.LoadAsset<GameObject>("JumpscareEngine");
 
             if (prefab == null)
             {

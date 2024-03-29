@@ -10,13 +10,13 @@ namespace UltraTelephone.Hydra
     [RegisterChaosEffect]
     public class BirdFreer : ChaosEffect
     {
-        [Configgable("Hydra/Chaos/Freebird", "Free Neco Arc")]
+        [Configgable("Chaos/Effects/Freebird", "Free Neco Arc")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [Configgable("Hydra/Chaos/Freebird")]
+        [Configgable("Chaos/Effects/Freebird")]
         private static ConfigInputField<int> minBirdAmount = new ConfigInputField<int>(1, (v) => { return v >= 1 && v <= maxBirdAmount.Value; });
 
-        [Configgable("Hydra/Chaos/Freebird")]
+        [Configgable("Chaos/Effects/Freebird")]
         private static ConfigInputField<int> maxBirdAmount = new ConfigInputField<int>(18, (v) => { return v >= 1 && v >= minBirdAmount.Value; });
 
         private GameObject freeBird;

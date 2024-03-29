@@ -14,7 +14,7 @@ public class GooglyEyesEffect : ChaosEffect
     private static bool s_effectActive;
     private static UniRandom s_random;
 
-    [Configgable("Hydra/Chaos", "Googly Eyes")]
+    [Configgable("Chaos/Effects", "Googly Eyes")]
     private static ConfigToggle s_enabled = new(true);
 
     public override void BeginEffect(UniRandom rand)
