@@ -115,16 +115,16 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             default:
             case PersonalizationLevel.None:
                 return 0;
+            case PersonalizationLevel.Personalized:
+                return UniRandom.StringToSeed(Environment.UserName);
             case PersonalizationLevel.NotMuch:
                 return (int)DateTime.Now.DayOfWeek;
             case PersonalizationLevel.Some:
                 return DateTime.Now.Day;
             case PersonalizationLevel.More:
-                return (int)DateTime.Now.Hour;
-            case PersonalizationLevel.Personalized:
-                return Environment.UserName.GetHashCode();
+                return DateTime.Now.Hour^(DateTime.Now.Minute%20);
             case PersonalizationLevel.ULTRAPERSONALIZED:
-                return (int)DateTime.Now.Ticks^Environment.UserName.GetHashCode();
+                return (int)DateTime.Now.Ticks^UniRandom.StringToSeed(Environment.UserName);
         }
     }
 }
@@ -132,9 +132,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 public enum PersonalizationLevel
 {
     None,
+    Personalized,
     NotMuch,
     Some,
     More,
-    Personalized,
     ULTRAPERSONALIZED,
 }
