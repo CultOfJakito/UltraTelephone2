@@ -10,7 +10,7 @@ public class MusicalRocket : MonoBehaviour
     public void Start()
     {
         _source = new GameObject("Rocket Music").AddComponent<AudioSource>();
-        _source.clip = UT2Assets.GetAsset<AudioClip>("ridingtunes");
+        _source.clip = UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/ridingtunes.mp3");
         _source.gameObject.transform.parent = transform;
     }
 
