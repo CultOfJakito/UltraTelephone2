@@ -16,7 +16,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [Configgable("Patches/Out Of Order Terminal", "Chance For Out Of Order")]
-        private static FloatSlider s_chance = new FloatSlider(0.1f, 0f, 1f);
+        private static FloatSlider s_chance = new FloatSlider(0.15f, 0f, 1f);
 
         [HarmonyPatch(typeof(ShopZone), nameof(ShopZone.Start)), HarmonyPostfix]
         public static void OnShopZoneStart(ShopZone __instance)

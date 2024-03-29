@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using CultOfJakito.UltraTelephone2.Assets;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2;
 
 internal static class RandomExtensions
 {
-
     public static void ForEach<T>(this IEnumerable<T> col, Action<T> action)
     {
         foreach (T item in col)
@@ -26,11 +26,6 @@ internal static class RandomExtensions
         }
     }
 
-    public static T LocateObjectButItActuallyFuckingWorks<T>(this Transform tf, string name) where T : Component
-    {
-        return tf.GetComponentsInChildren<T>().Where(x => x.name == name).FirstOrDefault();
-    }
-
     // what?
     public static bool FastStartsWith(this string str, string value)
     {
@@ -48,27 +43,28 @@ internal static class RandomExtensions
         return true;
     }
 
-    /// <summary>
-    /// Thanks unity!
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static T[] FindObjectsOfTypeIncludingInactive<T>() where T : Component
+    public static AudioSource PlaySound(this AudioClip clip, Vector3? position = null, Transform? parent = null, float volume = 1f, bool keepSource = false, bool loop = false)
     {
-        return Resources.FindObjectsOfTypeAll<T>().Where(x=>x.hideFlags != HideFlags.NotEditable && x.hideFlags != HideFlags.HideAndDontSave).ToArray();
-    }
+        GameObject go = new GameObject("Audio: " + clip.name);
+        go.transform.position = position ?? Vector3.zero;
 
-    public static UnityEngine.AudioSource PlaySound(this UnityEngine.AudioClip clip, UnityEngine.Vector3? position = null, UnityEngine.Transform? parent = null, float volume = 1f, bool keepSource = false, bool loop = false)
-    {
-        UnityEngine.GameObject go = new UnityEngine.GameObject("Audio: " + clip.name);
-        go.transform.position = position ?? UnityEngine.Vector3.zero;
-        if(parent != null) go.transform.parent = parent;
-        UnityEngine.AudioSource source = go.AddComponent<UnityEngine.AudioSource>();
+        if(parent != null)
+            go.transform.parent = parent;
+
+        AudioSource source = go.AddComponent<AudioSource>();
         source.clip = clip;
         source.volume = volume;
         source.loop = loop;
+
+        if(position != null)
+            source.spatialBlend = 1f;
+
+        source.outputAudioMixerGroup = UkPrefabs.MainMixer;
         source.Play();
-        if(!keepSource) UnityEngine.Object.Destroy(go, clip.length);
+
+        if(!keepSource)
+            UnityEngine.Object.Destroy(go, clip.length);
+
         return source;
     }
 }

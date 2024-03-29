@@ -50,7 +50,7 @@ public class UniRandom : System.Random
 
     public static UniRandom GlobalAdditive(int seed)
     {
-        return new UniRandom(GlobalSeed + seed);
+        return new UniRandom(GlobalSeed^seed);
     }
 
     private static UniRandom globalSessionRandomizer;

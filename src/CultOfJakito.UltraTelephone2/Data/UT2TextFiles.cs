@@ -26,6 +26,7 @@ namespace CultOfJakito.UltraTelephone2.Data
             S_SplashTextsFile.Load();
             S_CantReadWordsFile.Load();
             S_PonderPrompts.Load();
+            S_ShiteTipsFile.Load();
         }
     }
 }

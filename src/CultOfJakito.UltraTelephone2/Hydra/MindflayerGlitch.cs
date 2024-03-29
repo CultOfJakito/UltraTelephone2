@@ -1,5 +1,6 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             if (!s_enabled.Value)
                 return;
 
-            Transform chestTf = __instance.transform.LocateObjectButItActuallyFuckingWorks<Transform>("spine.002");
+            Transform chestTf = __instance.transform.LocateComponentInChildren<Transform>("spine.002");
             if (chestTf == null)
                 return;
 
