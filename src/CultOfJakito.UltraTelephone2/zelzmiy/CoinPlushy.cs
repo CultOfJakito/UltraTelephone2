@@ -21,14 +21,16 @@ namespace CultOfJakito.UltraTelephone2.zelzmiy
 
         private static List<GameObject> _plushiePrefabs = new()
         {
-            UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("estrogen burger.prefab"),
+            UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("zelzmiy Niko Plush.prefab"),
+            UT2Assets.ZelzmiyBundle.LoadAsset<GameObject>("HydraDevPlushie.prefab"),
+            // TODO: Add everybody else's Plushies in here :) (once they have them)
         };
 
         private static int _randomPlushieIndex;
 
         public override void BeginEffect(UniRandom random)
         {
-            _randomPlushieIndex = random.Next(0, 1);
+            _randomPlushieIndex = random.Next(0, _plushiePrefabs.Count - 1);
             s_effectActive = true;
         }
 
