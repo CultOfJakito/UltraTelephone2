@@ -14,6 +14,7 @@ public static class AddressableManager
     private static bool s_dontSanitizeScenes;
     public static string CatalogPath => Path.Combine(UT2Paths.InternalAssetsFolder, "catalog_wbp.json");
     public static string ModDataPath => Path.Combine(UT2Paths.InternalAssetsFolder, "data.json");
+    public static string AssetPath => UT2Paths.InternalAssetsFolder;
 
     public static void LoadCatalog()
     {

@@ -12,12 +12,12 @@ namespace CultOfJakito.UltraTelephone2.Assets
         private static Dictionary<string, UnityEngine.Object> _loadedAssets = new();
 
         //ez
-        private static AssetLoader monoscripts = new AssetLoader(Properties.Resources.ultratelephone2_monoscripts);
-        private static AssetLoader backupLoader = new AssetLoader(Properties.Resources.telephone2_assets_all);
+        //private static AssetLoader monoscripts = new AssetLoader(Properties.Resources.ultratelephone2_monoscripts);
+        //private static AssetLoader backupLoader = new AssetLoader(Properties.Resources.telephone2_assets_all);
 
         public static T GetAsset<T>(string assetName) where T : UnityEngine.Object
         {
-            return backupLoader.GetAsset<T>(assetName);
+            //return backupLoader.GetAsset<T>(assetName);
 
             if (_loadedAssets.ContainsKey(assetName))
             {
