@@ -5,7 +5,7 @@ using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.zelzmiy;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
 /// <summary>
 /// suggestion #314: from:bobot, "add consumable estrogen burger" <br/>
