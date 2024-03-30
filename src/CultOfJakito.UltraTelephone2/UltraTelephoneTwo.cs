@@ -58,8 +58,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         InitializeObjects();
 
-        InGameCheck.OnLevelChanged += DoThing;
         InGameCheck.OnLevelChanged += OnSceneLoaded;
+        AutoSaveUpdate();
     }
 
     private void InitializeObjects()
@@ -102,16 +102,14 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         ChaosManager.BeginEffects();
     }
 
-    private void DoThing(string level)
+    private void AutoSaveUpdate()
     {
-        if (!InGameCheck.InLevel())
-        {
-            return;
-        }
+        if(UT2SaveData.IsDirty)
+            UT2SaveData.Save();
 
-        InGameCheck.OnLevelChanged -= DoThing;
-        ModalDialogue.ShowSimple("ULTRATELEPHONE", "ULTRA TELEPHONE", _ => { }, "No?", "FUCK NO");
+        Invoke(nameof(AutoSaveUpdate), 5f);
     }
+
 
     private static int PersonalizationLevelToSeed(PersonalizationLevel level)
     {

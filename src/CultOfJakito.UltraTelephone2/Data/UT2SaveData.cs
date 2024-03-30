@@ -9,7 +9,14 @@ namespace CultOfJakito.UltraTelephone2.Data;
 public static class UT2SaveData
 {
     private static Ut2SaveData s_saveData;
+
     private static string SaveDataPath => Path.Combine(UT2Paths.DataFolder, "saveData.json");
+
+    public static bool IsDirty { get; private set; }
+    public static void MarkDirty()
+    {
+        IsDirty = true;
+    }
 
     public static Ut2SaveData SaveData
     {
@@ -50,9 +57,7 @@ public static class UT2SaveData
     public static void Save()
     {
         if (s_saveData == null)
-        {
             return;
-        }
 
         if (!Directory.Exists(Path.GetDirectoryName(SaveDataPath)))
         {
@@ -61,6 +66,7 @@ public static class UT2SaveData
 
         string json = JsonConvert.SerializeObject(s_saveData, Formatting.Indented);
         File.WriteAllText(SaveDataPath, json);
+        IsDirty = false;
         Debug.Log("Saved UT2 data");
     }
 }

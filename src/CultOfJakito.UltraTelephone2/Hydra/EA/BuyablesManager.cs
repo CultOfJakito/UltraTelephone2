@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
                 BuyableID = buyable.GetBuyableID(),
                 TimeOfPurchase = DateTime.Now.Ticks
             });
-            UT2SaveData.Save();
+            UT2SaveData.MarkDirty();
         }
 
     }

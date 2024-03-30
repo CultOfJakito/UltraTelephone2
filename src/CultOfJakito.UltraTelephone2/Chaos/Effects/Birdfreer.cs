@@ -79,6 +79,8 @@ namespace UltraTelephone.Hydra
                 Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
                 spawnPos += randomOffset * 2.1f;
                 GameObject newbird = GameObject.Instantiate<GameObject>(freeBird, spawnPos, Quaternion.identity);
+                newbird.AddComponent<FreedBird>();
+
                 activeBirds.Add(newbird);
             }
         }
@@ -92,7 +94,7 @@ namespace UltraTelephone.Hydra
             currentBirdAmount = random.Range(minBirdAmount.Value, maxBirdAmount.Value);
         }
 
-        public override int GetEffectCost() => 1;
+        public override int GetEffectCost() => 3;
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     }
 

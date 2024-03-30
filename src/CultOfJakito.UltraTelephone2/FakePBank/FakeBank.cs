@@ -17,7 +17,7 @@ public static class FakeBank
     {
         Initialize();
         UT2SaveData.SaveData.FakePAmount += amount;
-        UT2SaveData.Save();
+        UT2SaveData.MarkDirty();
         OnMoneyChanged?.Invoke(amount);
     }
 
@@ -27,7 +27,7 @@ public static class FakeBank
         long lastP = UT2SaveData.SaveData.FakePAmount;
         long difference = amount - lastP;
         UT2SaveData.SaveData.FakePAmount = amount;
-        UT2SaveData.Save();
+        UT2SaveData.MarkDirty();
         OnMoneyChanged?.Invoke(difference);
     }
 
