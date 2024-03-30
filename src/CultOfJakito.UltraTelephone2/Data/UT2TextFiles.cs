@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Data
 {
     public static class UT2TextFiles
     {
-        [Configgable("General", "Reload Text Files")]
+        [Configgable("Extras/Advanced", "Reload Text Files")]
         private static ConfigButton s_reloadFiles = new ConfigButton(ReloadFiles, "Reload Text Files");
 
         public static TextListFile S_BossBarPrefixesFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "bossBar.prefixes.txt"), Properties.Resources.bossBar_prefixes);
@@ -17,6 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Data
         public static TextListFile S_SplashTextsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "splashes.txt"), Properties.Resources.splashes);
         public static TextListFile S_CantReadWordsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "cantReadWords.txt"), Properties.Resources.cantReadWords);
         public static TextListFile S_PonderPrompts { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "ponder.txt"), Properties.Resources.ponder);
+        public static TextListFile S_ShiteTipsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "shiteTips.txt"), Properties.Resources.shiteTips);
 
         public static void ReloadFiles()
         {
@@ -25,6 +26,7 @@ namespace CultOfJakito.UltraTelephone2.Data
             S_SplashTextsFile.Load();
             S_CantReadWordsFile.Load();
             S_PonderPrompts.Load();
+            S_ShiteTipsFile.Load();
         }
     }
 }

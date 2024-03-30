@@ -66,6 +66,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///Cringe
         ///Super
         ///Gay
+        ///Aromantic
         ///ULTRA
         ///Pro
         ///Hyper
@@ -103,7 +104,28 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///PSYCHO
         ///BADASS
         ///GLISTENING
-        ///BURNING.
+        ///BURNING
+        ///Sir.
+        ///Upside-Down
+        ///Confused
+        ///Listless
+        ///Generous
+        ///Blocky
+        ///Round
+        ///Enraged
+        ///Angry
+        ///Rude
+        ///Rotund
+        ///Caffeinated
+        ///Combustable
+        ///Menacing
+        ///Fast
+        ///Heroic
+        ///Fair
+        ///Epic
+        ///Legendary
+        ///Odd
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bossBar_prefixes {
             get {
@@ -125,6 +147,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///IX
         ///X
         ///PHD
+        ///M.D
         ///FROM OHIO
         ///WITH RIZZ
         ///JR.
@@ -137,7 +160,35 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///PRIME
         ///THE FIFTH
         ///HELLS GUARDIAN
-        ///SWAG MASTER.
+        ///SWAG MASTER
+        ///The Everlasting
+        ///The Desolate
+        ///The Destroyer
+        ///The Hungry
+        ///:3
+        ///The Squeamish
+        ///The Tired
+        ///The Broken
+        ///The Cold
+        ///The Abstracted
+        ///B.A
+        ///B.Sc
+        ///M.A
+        ///M.L.A. 
+        ///M.F.A. 
+        ///M.S.W. 
+        ///M.L.
+        ///B.Tech
+        ///B.Ed
+        ///Monarch
+        ///DD
+        ///OFM
+        ///CSV
+        ///The Incomplete
+        ///The Rushed
+        ///The Anointed
+        ///The Revived
+        ///Estranged.
         /// </summary>
         internal static string bossBar_suffixes {
             get {
@@ -192,9 +243,19 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] hydra {
+        internal static byte[] catalog_wbp_hash {
             get {
-                object obj = ResourceManager.GetObject("hydra", resourceCulture);
+                object obj = ResourceManager.GetObject("catalog_wbp_hash", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] catalog_wbp_json {
+            get {
+                object obj = ResourceManager.GetObject("catalog_wbp_json", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -217,6 +278,25 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         internal static string ponder {
             get {
                 return ResourceManager.GetString("ponder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] shader_unitybuiltinshaders {
+            get {
+                object obj = ResourceManager.GetObject("shader_unitybuiltinshaders", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string shiteTips {
+            get {
+                return ResourceManager.GetString("shiteTips", resourceCulture);
             }
         }
         
@@ -256,9 +336,9 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] TelephoneMod {
+        internal static byte[] telephone2_assets_all {
             get {
-                object obj = ResourceManager.GetObject("TelephoneMod", resourceCulture);
+                object obj = ResourceManager.GetObject("telephone2_assets_all", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -266,9 +346,9 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] zed {
+        internal static byte[] telephone2_scenes_all {
             get {
-                object obj = ResourceManager.GetObject("zed", resourceCulture);
+                object obj = ResourceManager.GetObject("telephone2_scenes_all", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -276,9 +356,9 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] zelzmiy {
+        internal static byte[] ultratelephone2_monoscripts {
             get {
-                object obj = ResourceManager.GetObject("zelzmiy", resourceCulture);
+                object obj = ResourceManager.GetObject("ultratelephone2_monoscripts", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -6,6 +6,8 @@ using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Hydra;
+using CultOfJakito.UltraTelephone2.Hydra.EA;
+using CultOfJakito.UltraTelephone2.LevelInjection;
 using CultOfJakito.UltraTelephone2.Util;
 using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
@@ -39,15 +41,20 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
         Patches.PatchAll();
 
+
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
+
+        //UT2Assets.ValidateAssetIntegrity();
         UT2Paths.EnsureFolders();
-        UT2Assets.ForceLoad();
+        AddressableManager.LoadCatalog();
+        UT2SaveData.Load();
 
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
+
 
         InitializeObjects();
 
@@ -57,9 +64,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void InitializeObjects()
     {
+        gameObject.AddComponent<LevelInjectionManager>();
+
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
-        HerobrineManager.Init();
+        HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
+        BuyablesManager.Load();
+
         GameEvents.OnPlayerHurt += (e) =>
         {
             if(e.Damage > 10)
@@ -69,7 +80,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         };
     }
 
-  
+
     private void OnSceneLoaded(string name)
     {
         if(GeneralSettings.Personalization.Value == PersonalizationLevel.ULTRAPERSONALIZED)
@@ -107,16 +118,16 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             default:
             case PersonalizationLevel.None:
                 return 0;
+            case PersonalizationLevel.Personalized:
+                return UniRandom.StringToSeed(Environment.UserName);
             case PersonalizationLevel.NotMuch:
                 return (int)DateTime.Now.DayOfWeek;
             case PersonalizationLevel.Some:
                 return DateTime.Now.Day;
             case PersonalizationLevel.More:
-                return (int)DateTime.Now.Hour;
-            case PersonalizationLevel.Personalized:
-                return Environment.UserName.GetHashCode();
+                return DateTime.Now.Hour^(DateTime.Now.Minute%20);
             case PersonalizationLevel.ULTRAPERSONALIZED:
-                return (int)DateTime.Now.Ticks^Environment.UserName.GetHashCode();
+                return (int)DateTime.Now.Ticks^UniRandom.StringToSeed(Environment.UserName);
         }
     }
 }
@@ -124,9 +135,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 public enum PersonalizationLevel
 {
     None,
+    Personalized,
     NotMuch,
     Some,
     More,
-    Personalized,
     ULTRAPERSONALIZED,
 }

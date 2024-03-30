@@ -1,6 +1,6 @@
 using System.Reflection;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Resources;
+using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -13,14 +13,10 @@ public class MinecraftBookPatch
 {
     [Configgable("Patches", "Minecraft Book")]
     private static ConfigToggle s_enabled = new(true);
+    private static Sprite s_minecraftBookSprite;
 
-    private static Sprite? minecraftBookSprite;
     public static void Init()
     {
-        Texture2D texture = new Texture2D(146, 180);
-        texture.LoadImage(Resource1.book);
-        texture.filterMode = FilterMode.Point;
-        minecraftBookSprite = Sprite.Create(texture, new Rect(0, 0, 146, 180), new Vector2(0.5f, 0.5f));
         SceneManager.sceneLoaded += Apply;
     }
 
@@ -50,13 +46,15 @@ public class MinecraftBookPatch
         if (scanningStuff == null)
             return;
 
+        s_minecraftBookSprite ??= UT2Assets.GetAsset<Sprite>("Assets/Telephone 2/MC Book/book.png");
+
         Image img = GetReadingPanel(scanningStuff).GetComponent<Image>();
         img.rectTransform.SetAnchor(AnchorPresets.MiddleCenter, 0, 0);
         img.rectTransform.SetPivot(PivotPresets.MiddleCenter);
         img.rectTransform.sizeDelta = new Vector2(146 * 3f, 180 * 3f);
-        img.sprite = minecraftBookSprite;
+        img.sprite = s_minecraftBookSprite;
         img.color = new Color(1, 1, 1, 1f);
-        img.rectTransform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0f);
+        img.rectTransform.GetChild(0).GetComponent<Image>().color = Color.clear;
 
         RectTransform panel = img.rectTransform.GetChild(0).GetComponent<RectTransform>();
         panel.SetAnchor(AnchorPresets.StretchAll);
