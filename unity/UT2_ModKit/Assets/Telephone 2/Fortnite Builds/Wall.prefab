@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7717883512812057601}
   - component: {fileID: 4444068044443387727}
+  - component: {fileID: -4529225414846412914}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -52,6 +53,51 @@ MonoBehaviour:
   - {fileID: 8097958557586507210}
   - {fileID: 5819197346103088371}
   - {fileID: 6418175502656997216}
+  <BuildType>k__BackingField: 0
+--- !u!114 &-4529225414846412914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265406410409746669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 0
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 1d9fa574f363f7145a5e2b89504f4571
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 1
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &5189466171458481995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114,6 +160,61 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
+--- !u!114 &3927248343924303486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869384084212971868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 0
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -4529225414846412914}
+          m_MethodName: Break
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &2714412002959920297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,6 +277,61 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
+--- !u!114 &8975524544551385217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2293964274053117123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 0
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -4529225414846412914}
+          m_MethodName: Break
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &8491361484935067769
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -238,6 +394,61 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
+--- !u!114 &2733032310524527334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952399853338271751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 0
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -4529225414846412914}
+          m_MethodName: Break
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &4490034901543847673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -300,6 +511,61 @@ MonoBehaviour:
   EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
   EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
+--- !u!114 &6071923669886079097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8832750543749719193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 0
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -4529225414846412914}
+          m_MethodName: Break
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1374905805195856274
 PrefabInstance:
   m_ObjectHideFlags: 0

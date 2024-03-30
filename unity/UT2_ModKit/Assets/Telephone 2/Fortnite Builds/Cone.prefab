@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592210751235610817}
   - component: {fileID: -3245142354802639878}
+  - component: {fileID: -6509342219832726475}
   m_Layer: 0
   m_Name: Cone
   m_TagString: Untagged
@@ -45,6 +46,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Edits: []
+  <BuildType>k__BackingField: 3
+--- !u!114 &-6509342219832726475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229423541578630611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 1d9fa574f363f7145a5e2b89504f4571
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 1
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!64 &2623428710872901952
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -89,6 +135,61 @@ MonoBehaviour:
     onActivate:
       m_PersistentCalls:
         m_Calls: []
+    onDisActivate:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8267646260979120064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7494053456220475786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eba9c2ad214f54cb2cc64ba60aec35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unbreakable: 0
+  weak: 0
+  precisionOnly: 0
+  interrupt: 0
+  breakOnThrown: 0
+  playerOnly: 1
+  accurateExplosionsOnly: 0
+  forceGroundSlammable: 0
+  breakParticle: {fileID: 0}
+  breakParticleFallback:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  particleAtBoundsCenter: 0
+  customPositionRotation: {fileID: 0}
+  crate: 0
+  bounceHealth: 0
+  crateCoin: {fileID: 0}
+  coinAmount: 0
+  protectorCrate: 0
+  activateOnBreak: []
+  destroyOnBreak: []
+  destroyEvent:
+    toActivateObjects: []
+    toDisActivateObjects: []
+    onActivate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -6509342219832726475}
+          m_MethodName: Break
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onDisActivate:
       m_PersistentCalls:
         m_Calls: []
