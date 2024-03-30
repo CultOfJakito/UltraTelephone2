@@ -231,9 +231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6777575206366996201}
+  - component: {fileID: 6144343728704175190}
   - component: {fileID: 6144343728704175185}
   - component: {fileID: 6144343728704175184}
-  - component: {fileID: 5340844223051299339}
   m_Layer: 22
   m_Name: ZedPlushie
   m_TagString: Untagged
@@ -256,6 +256,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6144343728704175190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144343728704175187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1746343821, guid: 22a518edc504da4428ab6dc527428eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _faces:
+  - {fileID: 2800000, guid: 11708b3e5d0ae2d449ebb22d7650fabe, type: 3}
+  - {fileID: 2800000, guid: 8746577e76de6024facfd77172c70cdf, type: 3}
+  - {fileID: 2800000, guid: c7caf178801c58b4daf7441ca768db95, type: 3}
+  - {fileID: 2800000, guid: 2e4f5a6b38c8e824f9650a491bfad4bd, type: 3}
+  - {fileID: 2800000, guid: 62aa72e18fe323047913e2f8fd56f593, type: 3}
+  - {fileID: 2800000, guid: e2133a3c9377a2b4baf87dec2df492b6, type: 3}
+  - {fileID: 2800000, guid: e05b45028d7cbd24b9b6a6f5956745ce, type: 3}
+  - {fileID: 2800000, guid: 90256ba2f3b40c84f8c82244a54857f0, type: 3}
+  _screenMaterial: {fileID: 2100000, guid: 4f0e2124415307a49a1907d2188a3cdf, type: 2}
 --- !u!114 &6144343728704175185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +306,7 @@ MonoBehaviour:
     onActivate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6144343728704175190}
           m_MethodName: ChangeFace
           m_Mode: 1
           m_Arguments:
@@ -304,7 +326,7 @@ MonoBehaviour:
     onActivate:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6144343728704175190}
           m_MethodName: ChangeFace
           m_Mode: 1
           m_Arguments:
@@ -334,20 +356,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5340844223051299339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6144343728704175187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1746343821, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _faces: []
-  _screenMaterial: {fileID: 0}
 --- !u!1 &6442657925880438642
 GameObject:
   m_ObjectHideFlags: 0
