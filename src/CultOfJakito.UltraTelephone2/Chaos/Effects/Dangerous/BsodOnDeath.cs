@@ -14,7 +14,15 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
         [Configgable("Chaos/Effects/Dangerous", "BSOD On Death")]
         private static ConfigToggle s_enabled = new ConfigToggle(false);
 
+        private static uint[] s_errors =
+        {
+            0xAD105, //adios
+            0xDECEA5ED, //decreased
+            0xBA5ED, //based
+            0xF0CCAC1A, //foccacia
+        };
         private bool s_effectActive = false;
+        private UniRandom _rng;
 
         [DllImport("ntdll.dll")]
         private static extern uint RtlAdjustPrivilege(
@@ -40,6 +48,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
                 return;
 
             s_effectActive = true;
+            _rng = random;
             GameEvents.OnPlayerDeath += BSOD;
         }
 
@@ -56,10 +65,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            HudMessageReceiver.Instance.SendHudMessage("bsod on death needs admin :3");
             RtlAdjustPrivilege(19, true, false, out _);
-            NtRaiseHardError(0xC000008E, 0, 0, IntPtr.Zero, 6, out uint _);
-            // 0xC000008E = float divide by 0
+            NtRaiseHardError(_rng.SelectRandom(s_errors), 0, 0, IntPtr.Zero, 6, out uint _);
         }
 
         protected override void OnDestroy()
