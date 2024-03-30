@@ -34,6 +34,9 @@
     <Reference Include="Configgy">
       <HintPath>libs\Other\Configgy.dll</HintPath>
     </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>libs\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
     <Reference Include="RudeLevelScripts.Essentials">
       <HintPath>libs\Other\RudeLevelScripts.Essentials.dll</HintPath>
     </Reference>
