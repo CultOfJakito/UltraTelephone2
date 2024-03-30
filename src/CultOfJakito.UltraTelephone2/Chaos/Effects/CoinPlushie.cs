@@ -28,8 +28,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             Console.WriteLine("Starting Coin Plushies");
             _plushiePrefabs ??= new List<GameObject>();
             {
-                UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab");
-                UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab");
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab");
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab");
             };
 
             s_random = random;
