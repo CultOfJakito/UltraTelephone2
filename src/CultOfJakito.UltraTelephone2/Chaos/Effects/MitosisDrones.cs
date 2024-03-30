@@ -31,12 +31,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         {
             return 6;
         }
-
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        private void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(Drone), nameof(Drone.Start)), HarmonyPostfix]
         private static void OnDroneStart(Drone __instance)

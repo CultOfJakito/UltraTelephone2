@@ -50,12 +50,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                 instance.ShowPopUp();
         }
 
-        public override void Dispose()
+        private void OnDestroy()
         {
             s_effectActive = false;
             GameEvents.OnPlayerRespawn -= OnPlayerRespawn;
-            base.Dispose();
         }
+
 
         private void ShowPopUp()
         {

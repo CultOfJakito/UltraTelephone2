@@ -46,5 +46,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 }
             }
         }
+        private void OnDestroy() => s_effectActive = false;
     }
 }

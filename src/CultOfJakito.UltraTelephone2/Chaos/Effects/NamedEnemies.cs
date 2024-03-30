@@ -80,11 +80,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return 1;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        private void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(SeasonalHats), nameof(SeasonalHats.Start)), HarmonyPostfix]
         private static void OnEnemySpawned(SeasonalHats __instance)

@@ -27,11 +27,8 @@ public class InvertMomentumCoins : ChaosEffect
         __instance.gameObject.AddComponent<CoinMomentumInverter>();
     }
 
-    public override void Dispose()
-    {
-        s_currentlyActive = false;
-        base.Dispose();
-    }
+    private void OnDestroy() => s_currentlyActive = false;
+
 }
 
 public class CoinMomentumInverter : MonoBehaviour
