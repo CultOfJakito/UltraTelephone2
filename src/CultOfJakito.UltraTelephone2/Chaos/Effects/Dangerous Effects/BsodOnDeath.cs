@@ -20,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
-            if (!DangerousEffectsEnabled.value)
+            if (!DangerousEffectsEnabled.Value)
                 return;
 
            s_effectActive = true;
@@ -33,7 +33,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         public static void BSOD()
         {
             // second check because im nervous :pleading:
-            if (!DangerousEffectsEnabled.value)
+            if (!DangerousEffectsEnabled.Value)
                 return;
 
             if (!s_enabled.Value || !s_effectActive)
