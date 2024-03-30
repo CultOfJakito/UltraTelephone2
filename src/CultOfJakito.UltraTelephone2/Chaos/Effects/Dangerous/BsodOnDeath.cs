@@ -1,10 +1,11 @@
-﻿using Configgy;
+﻿using System.Runtime.InteropServices;
+using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
 using static CultOfJakito.UltraTelephone2.GeneralSettings;
 
-namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous_Effects
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
 {
     [RegisterChaosEffect]
     [HarmonyPatch]
@@ -14,6 +15,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous_Effects
         private static ConfigToggle s_enabled = new ConfigToggle(false);
 
         private bool s_effectActive = false;
+
+        [DllImport("ntdll.dll", SetLastError = true)]
+        private static extern void RtlSetProcessIsCritical(UInt32 v1, UInt32 v2, UInt32 v3);
 
         public override void BeginEffect(UniRandom random)
         {
@@ -37,7 +41,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous_Effects
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            System.Diagnostics.Process.GetProcessesByName("csrss")[0].Kill();
+            HudMessageReceiver.Instance.SendHudMessage("bsod on death needs admin :3");
+            System.Diagnostics.Process.EnterDebugMode();
+            RtlSetProcessIsCritical(1, 0, 0);
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
 
         protected override void OnDestroy()
