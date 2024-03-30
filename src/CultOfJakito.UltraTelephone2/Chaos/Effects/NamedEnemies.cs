@@ -27,7 +27,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static List<string> GetNamePool()
         {
-            if (s_useSteamFriends.Value && s_steamConnected && s_steamFriendNames != null)
+            if (s_useSteamFriends.Value && s_steamConnected && s_steamFriendNames != null && s_steamFriendNames.Count > 0)
             {
                 return s_steamFriendNames;
             }
