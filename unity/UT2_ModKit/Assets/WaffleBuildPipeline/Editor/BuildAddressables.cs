@@ -94,6 +94,8 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
+            RefreshGroups();
+
 			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
             Settings.groups.RemoveAll(commonGroups.Contains);
 
@@ -106,9 +108,7 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
             }
 
             Settings.groups.AddRange(commonGroups);
-            EditorUtility.SetDirty(Settings);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            RefreshGroups();
 		}
 
 		private static void SetCorrectValuesForSettings()
@@ -163,6 +163,17 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 
 			SetCorrectValuesForSchema(groupSchema);
 		}
+
+
+        private static void RefreshGroups()
+        {
+            string assetPath = "Assets/AddressableAssetsData/AddressableAssetSettings.asset";
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            AddressableAssetSettingsDefaultObject.Settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>(assetPath);
+            EditorUtility.SetDirty(Settings);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
 
 		// TundraEditor: Core/Editor/TundraInit.cs
 		// thanks pitr i stole this completely ;3
