@@ -28,7 +28,7 @@ namespace UltraTelephone.Hydra
         [HarmonyPatch(typeof(CanvasController), nameof(CanvasController.Awake)), HarmonyPostfix]
         private static void CreateJumpscare()
         {
-            if (!s_enabled.value || instance != null)
+            if (!s_enabled.Value || instance != null)
             {
                 return;
             }

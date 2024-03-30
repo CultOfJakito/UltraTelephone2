@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Audio;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CultOfJakito.UltraTelephone2.Assets;
@@ -17,6 +18,8 @@ public static class UkPrefabs
     public static UKAsset<Material> BubbleMaterial { get; private set; } = new("Assets/Materials/Sprites/Bubble.mat");
     public static UKAsset<AudioClip> BubbleLoopClip { get; private set; } = new("Assets/Sounds/Environment/WaterBubblesLoop.wav");
     public static UKAsset<Sprite> WhiteUI { get; private set; } = new("Assets/Textures/WhiteUI.png");
+    public static AudioMixerGroup MainMixer => AudioMixerController.Instance.allSound.outputAudioMixerGroup;
+    public static UKAsset<GameObject> MannequinEnemy { get; private set; } = new ("Assets/Prefabs/Enemies/Mannequin.prefab");
 }
 
 public class UKAsset<T> where T : UnityEngine.Object

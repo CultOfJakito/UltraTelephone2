@@ -2,6 +2,7 @@
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
+using static System.Net.WebRequestMethods;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 
@@ -22,8 +23,19 @@ public class OpenUrlOnDeath : ChaosEffect
         CreateGoogleSearchUrl("how to get better at ultrakill"),
         CreateGoogleSearchUrl("suicide hotline"),
         CreateGoogleSearchUrl("suicide hotline free download"),
+        CreateGoogleSearchUrl("hot robots in my area"),
+        CreateGoogleSearchUrl("minecraft speedbridge tutorial"),
+        CreateGoogleSearchUrl("brutwurst recepie"),
+        CreateGoogleSearchUrl("how to write a good job resume and cover letter"),
+        CreateGoogleSearchUrl("\"not for public release\" filetype:pdf site:s3.amazonaws.com"), // leaked CIA documents
+        //"https://twitter.com/prezoh/status/1569535221707448320", // debating on weather to include this one or not but it's pretty funny
+        "https://en.wikipedia.org/wiki/Special:Random", // random wikipedia page
         "https://youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw", // herbmessiah ultrakill guides
-        "https://store.steampowered.com/app/1890950/REAVER/"
+        "https://www.youtube.com/watch?v=nMJExYjDjtI", // you're alone in the lab at night because the product is still impure (a chemistry playlist)
+        "https://www.youtube.com/watch?v=SZdf_6cBE-o&list=PLKBRHzyVsSQMJ76Pwc1quZTcHyhqegGTs", // calculus tutorial playlist
+        "https://outrightinternational.org/take-action/give", // charity lol 
+        "https://store.steampowered.com/app/1890950/REAVER/",
+        "https://store.steampowered.com/app/1313140/Cult_of_the_Lamb/"
     ];
 
 

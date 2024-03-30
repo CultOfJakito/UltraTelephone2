@@ -2,6 +2,7 @@
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
 using CultOfJakito.UltraTelephone2.LevelInjection;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -123,11 +124,11 @@ namespace CultOfJakito.UltraTelephone2.Hydra.EA
             button = instancedBarricade.GetComponentInChildren<Button>(true);
             button.onClick.AddListener(Buy);
 
-            barricade = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Transform>("Barricade").gameObject;
+            barricade = instancedBarricade.transform.LocateComponentInChildren<Transform>("Barricade").gameObject;
 
-            costText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Cost");
-            levelNameText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_LevelName");
-            purchaseDescriptionText = instancedBarricade.transform.LocateObjectButItActuallyFuckingWorks<Text>("Text_Description");
+            costText = instancedBarricade.transform.LocateComponentInChildren<Text>("Text_Cost");
+            levelNameText = instancedBarricade.transform.LocateComponentInChildren<Text>("Text_LevelName");
+            purchaseDescriptionText = instancedBarricade.transform.LocateComponentInChildren<Text>("Text_Description");
 
             bool isBought = BuyablesManager.IsBought(GetBuyableID());
 

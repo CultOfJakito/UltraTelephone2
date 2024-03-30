@@ -15,15 +15,18 @@ public class LagEffect : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     private Coroutine _lagRoutine;
+    private UniRandom _random;
 
     public override void BeginEffect(UniRandom random)
     {
+        _random = random;
         _lagRoutine = StartCoroutine(Lag());
     }
 
     public override void Dispose()
     {
         StopCoroutine(_lagRoutine);
+        base.Dispose();
     }
 
     public override int GetEffectCost() => 5;
@@ -33,11 +36,11 @@ public class LagEffect : ChaosEffect
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(2.5f, 7.5f));
+            yield return new WaitForSecondsRealtime(_random.Range(2.5f, 7.5f));
 
             float timer = 0;
-            float timerLength = UnityEngine.Random.Range(0.25f, 0.5f);
-            bool fasterOrSlower = UnityEngine.Random.value > 0.5f;
+            float timerLength = _random.Range(0.25f, 0.5f);
+            bool fasterOrSlower = _random.Chance(0.5f);
 
             while (timer < timerLength)
             {
@@ -45,7 +48,7 @@ public class LagEffect : ChaosEffect
 
                 if (Time.timeScale != 0)
                 {
-                    Time.timeScale = fasterOrSlower ? UnityEngine.Random.Range(0.25f, 0.5f) : UnityEngine.Random.Range(1.5f, 2f);
+                    Time.timeScale = fasterOrSlower ? _random.Range(0.25f, 0.5f) : _random.Range(1.5f, 2f);
                 }
 
                 yield return null;
