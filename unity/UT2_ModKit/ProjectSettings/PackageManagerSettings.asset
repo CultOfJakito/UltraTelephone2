@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Scopes:
     - com.vertx
     m_IsDefault: 0
-  m_UserSelectedRegistryName: 
+  m_UserSelectedRegistryName: OpenUPM
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:
     m_ErrorMessage: 

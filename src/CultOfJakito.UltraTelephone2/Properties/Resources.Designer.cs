@@ -261,27 +261,6 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hydraxous
-        ///Waffle
-        ///Zelzmiy
-        ///Teamdoodz
-        ///ZedDev
-        ///Glitchy
-        ///Agent Of Nyarlathotep
-        ///JAKITO
-        ///Hakita
-        ///PITR
-        ///Heckteck
-        ///Action Dawg
-        ///.
-        /// </summary>
-        internal static string enemyNames {
-            get {
-                return ResourceManager.GetString("enemyNames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
         ///101110010000101101011101101010110
         ///Weeeeeeeeeeeeeeeee
@@ -313,20 +292,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Did you know you can shoot enemies to hurt them
-        ///Hit the boss until its health bar is empty to win
-        ///You can also dodge attacks by moving out of the way
-        ///You can also use the dodge button to dodge attacks
-        ///Press the shoot button to shoot enemies
-        ///You can also use the shoot button to shoot enemies
-        ///If you run out of health, you will lose the game
-        ///If your health reaches zero, you lose
-        ///Dont let the boss hit you
-        ///Dont lose
-        ///Dont get hit by enemies
-        ///Your weapons do damage
-        ///Use your weapons to defeat enemies
-        ///Us [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string shiteTips {
             get {

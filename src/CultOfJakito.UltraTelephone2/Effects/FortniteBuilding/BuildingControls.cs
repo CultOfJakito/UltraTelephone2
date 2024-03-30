@@ -68,6 +68,11 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             }
         }
 
+        if (!_currentlyBuilding)
+        {
+            return;
+        }
+
         foreach (KeyValuePair<KeyCode, BuildTypes> keyAndBuild in s_keyToType)
         {
             if (Input.GetKeyDown(keyAndBuild.Key))

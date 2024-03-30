@@ -60,13 +60,7 @@ internal static class RandomExtensions
             source.spatialBlend = 1f;
 
         source.outputAudioMixerGroup = UkPrefabs.MainMixer;
-
-        //this makes the sound louder for some reason.
-        source.rolloffMode = AudioRolloffMode.Linear;
-        source.minDistance = 15f;
-        source.maxDistance = 65f;
         source.Play();
-
 
         if(!keepSource)
             UnityEngine.Object.Destroy(go, clip.length);

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:unity/UT2_ModKit/Assets/AddressableAssetsData/AssetGroupTemplates.meta
+guid: fd2fc61eb28ca1e4f97ec9f2ded2fb85
+========
 guid: 6d310f97ae9e54e4cbe0e5daa3f5000a
+>>>>>>>> origin/waffle:unity/UT2_ModKit/Assets/WaffleBuildPipeline/Editor.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

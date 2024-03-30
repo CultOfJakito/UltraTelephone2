@@ -77,15 +77,14 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 		private static void BuildContentFast()
 		{
 			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
-            foreach (AddressableAssetGroup group in commonGroups)
-            {
-                group.GetSchema<BundledAssetGroupSchema>().IncludeInBuild = false;
-            }
+            Settings.groups.RemoveAll(commonGroups.Contains);
+
 			AddressableAssetSettings.BuildPlayerContent();
-            foreach (AddressableAssetGroup group in commonGroups)
-            {
-                group.GetSchema<BundledAssetGroupSchema>().IncludeInBuild = true;
-            }
+
+            Settings.groups.AddRange(commonGroups);
+            EditorUtility.SetDirty(Settings);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 		}
 
 		private static void SetCorrectValuesForSettings()

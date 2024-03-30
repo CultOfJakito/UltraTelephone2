@@ -9,11 +9,6 @@
             seedModifiers = new List<int>();
         }
 
-        public SeedBuilder Reverse()
-        {
-            seedModifiers.Reverse();
-            return this;
-        }
 
         public SeedBuilder WithSeed(int seedModifier)
         {
