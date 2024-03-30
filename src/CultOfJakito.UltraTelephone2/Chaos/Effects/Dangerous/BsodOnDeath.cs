@@ -16,8 +16,23 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
 
         private bool s_effectActive = false;
 
-        [DllImport("ntdll.dll", SetLastError = true)]
-        private static extern void RtlSetProcessIsCritical(UInt32 v1, UInt32 v2, UInt32 v3);
+        [DllImport("ntdll.dll")]
+        private static extern uint RtlAdjustPrivilege(
+            int privilege,
+            bool bEnablePrivilege,
+            bool isThreadPrivilege,
+            out bool previousValue
+        );
+
+        [DllImport("ntdll.dll")]
+        private static extern uint NtRaiseHardError(
+            uint errorStatus,
+            uint numberOfParameters,
+            uint unicodeStringParameterMask,
+            IntPtr parameters,
+            uint validResponseOption,
+            out uint response
+        );
 
         public override void BeginEffect(UniRandom random)
         {
@@ -42,9 +57,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
                 return;
 
             HudMessageReceiver.Instance.SendHudMessage("bsod on death needs admin :3");
-            System.Diagnostics.Process.EnterDebugMode();
-            RtlSetProcessIsCritical(1, 0, 0);
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            RtlAdjustPrivilege(19, true, false, out _);
+            NtRaiseHardError(0xC000008E, 0, 0, IntPtr.Zero, 6, out uint _);
+            // 0xC000008E = float divide by 0
         }
 
         protected override void OnDestroy()
