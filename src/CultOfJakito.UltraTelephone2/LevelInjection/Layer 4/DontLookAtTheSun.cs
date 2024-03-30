@@ -41,7 +41,6 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_4_2
             if (levelName == "Level 4-4")
                 return true;
 
-
             return false;
         }
 

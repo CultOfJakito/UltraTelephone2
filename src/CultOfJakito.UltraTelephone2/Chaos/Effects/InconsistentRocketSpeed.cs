@@ -11,18 +11,20 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Inconsistent Rocket Speed")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Speed Range")]
-        private static ConfigInputField<float> s_speedRangeMin = new ConfigInputField<float>(0.1f, (v) =>
+        [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Slow Rocket Speed")]
+        private static ConfigInputField<float> s_slowRocketSpeed = new ConfigInputField<float>(0.1f, (v) =>
         {
-            return v <= s_speedRangeMax.Value;
+            return v <= s_fastRocketSpeed.Value;
         });
 
-        [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Speed Range")]
-        private static ConfigInputField<float> s_speedRangeMax = new ConfigInputField<float>(100f, (v) =>
+        [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Fast Rocket Speed")]
+        private static ConfigInputField<float> s_fastRocketSpeed = new ConfigInputField<float>(100f, (v) =>
         {
-            return v >= s_speedRangeMin.Value;
+            return v >= s_slowRocketSpeed.Value;
         });
 
+        [Configgable("Chaos/Effects/Inconsistent Rocket Speed", "Speed Variance")]
+        private static ConfigInputField<float> s_speedVarianceMultiplier = new ConfigInputField<float>(10f);
 
         private static bool s_effectActive = false;
         private static UniRandom s_rng;
@@ -35,12 +37,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-        public override int GetEffectCost()
-        {
-            return 5;
-        }
+        public override int GetEffectCost() => 5;
 
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
 
         [HarmonyPatch(typeof(Grenade), nameof(Grenade.Start)), HarmonyPostfix]
@@ -52,7 +51,16 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (!__instance.rocket)
                 return;
 
-            __instance.rocketSpeed = s_rng.Range(s_speedRangeMin.Value, s_speedRangeMax.Value);
+            float variance = s_rng.Float() * s_speedVarianceMultiplier.Value;
+            float speed = 0f;
+
+            //Fast rocket
+            if (s_rng.Bool())
+                speed = s_fastRocketSpeed.Value + variance; 
+            else //Slow rocket
+                speed = s_slowRocketSpeed.Value + variance;
+
+            __instance.rocketSpeed = speed;
         }
     }
 }

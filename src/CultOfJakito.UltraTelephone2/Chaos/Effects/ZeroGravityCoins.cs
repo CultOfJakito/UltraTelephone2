@@ -37,6 +37,6 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             return 2;
         }
 
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
     }
 }

@@ -48,6 +48,8 @@ public class WindowDanceEffect : ChaosEffect
         StopCoroutine(_movementRoutine);
     }
 
+    protected override void OnDestroy() { }
+
     public override int GetEffectCost() => 10;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx);
 

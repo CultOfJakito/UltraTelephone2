@@ -10,12 +10,12 @@ namespace CultOfJakito.UltraTelephone2.Effects.BouncyCannonball;
 public class CannonballBounceEffect : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Bouncy Cannonball")]
-    public static ConfigToggle Enabled = new(true);
+    private static ConfigToggle s_enabled = new(true);
 
     private static bool s_currentlyActive;
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
 
 
@@ -32,6 +32,8 @@ public class CannonballBounceEffect : ChaosEffect
 
     [HarmonyPrefix, HarmonyPatch(typeof(Cannonball), nameof(Cannonball.Break))]
     public static bool Break(Cannonball __instance) => !s_currentlyActive || __instance.GetComponent<BouncyCannonball>().RemainingTime <= 0;
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }
 
 

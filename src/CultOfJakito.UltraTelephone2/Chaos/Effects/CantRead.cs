@@ -35,7 +35,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return 2;
         }
 
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
 
         [HarmonyPatch(typeof(ScanningStuff), nameof(ScanningStuff.ScanBook)), HarmonyPrefix]

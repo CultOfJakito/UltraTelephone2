@@ -25,7 +25,7 @@ public class BuildingEffect : ChaosEffect
         Destroy(NewMovement.Instance.gameObject.GetComponent<BuildingControls>());
     }
 
-    private void OnDestroy() => CurrentlyActive = false;
+    protected override void OnDestroy() => CurrentlyActive = false;
 
 
     public override int GetEffectCost() => 3;

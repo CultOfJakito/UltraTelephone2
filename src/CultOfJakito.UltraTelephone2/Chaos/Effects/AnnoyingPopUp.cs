@@ -50,7 +50,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
                 instance.ShowPopUp();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             s_effectActive = false;
             GameEvents.OnPlayerRespawn -= OnPlayerRespawn;
@@ -395,8 +395,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return _randomDialogueEvent;
         }
 
-        public static void OkDialogue(string title, string message, string option = "Ok", Action onClick = null) =>
+        public static void OkDialogue(string title, string message, string option = "Ok", Action onClick = null)
+        {
+            if (!s_effectActive)
+                return;
+
             ModalDialogue.ShowDialogue(new ModalDialogueEvent { Message = message, Title = title, Options = new DialogueBoxOption[] { new() { Color = s_orange, Name = option, OnClick = onClick } } });
+        }
     }
 
 }

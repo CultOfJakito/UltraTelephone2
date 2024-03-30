@@ -24,7 +24,7 @@ public class GooglyEyesEffect : ChaosEffect
     }
 
     public override int GetEffectCost() => 1;
-    private void OnDestroy() => s_effectActive = false;
+    protected override void OnDestroy() => s_effectActive = false;
 
     [HarmonyPatch(typeof(SeasonalHats), "Start"), HarmonyPostfix]
     private static void OnSeasonalHatStart(SeasonalHats __instance)
@@ -791,14 +791,6 @@ public class GooglyEyesEffect : ChaosEffect
         eye4.transform.localScale = Vector3.one * 0.4335901f;
     }
 
-    private static void ApplyGooglyEyes_Centaur(EnemyIdentifier __instance)
-    {
-        SeasonalHats hat = __instance.GetComponentInChildren<SeasonalHats>(true);
-        if (hat == null)
-            return;
-
-        
-    }
 
     private static void ApplyGooglyEyes_Rodent(EnemyIdentifier __instance)
     {
@@ -873,9 +865,6 @@ public class GooglyEyesEffect : ChaosEffect
         eye4.transform.localPosition = new Vector3(-0.099f, 0.193f, 0.157f);
         eye4.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         eye4.transform.localScale = Vector3.one * 0.47694499f;
-
-
-
     }
 }
 

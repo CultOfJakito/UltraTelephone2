@@ -3,6 +3,7 @@ using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Hydra
 {
@@ -50,6 +51,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
                     new DialogueBoxOption()
                     {
                         Name = button,
+                        Color = Color.red,
                         OnClick = () =>
                         {
                             if(livesLeft > 0)
@@ -62,7 +64,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             });
         }
 
-        private void OnDestroy() => GameEvents.OnPlayerDeath -= OnPlayerDeath;
+        protected override void OnDestroy() => GameEvents.OnPlayerDeath -= OnPlayerDeath;
 
     }
 }

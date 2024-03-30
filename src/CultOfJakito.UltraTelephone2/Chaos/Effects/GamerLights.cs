@@ -107,7 +107,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return 1;
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             s_enabled.OnValueChanged -= OnEnabledChanged;
         }

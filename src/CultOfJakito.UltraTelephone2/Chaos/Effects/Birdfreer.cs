@@ -32,6 +32,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             base.Dispose();
         }
 
+        protected override void OnDestroy() {}
+
         private void KillAll()
         {
             for(int i = 0; i < activeBirds.Count; i++)

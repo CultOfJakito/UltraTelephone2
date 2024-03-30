@@ -2,6 +2,7 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
@@ -20,7 +21,11 @@ public class ChaosManager : MonoBehaviour, IDisposable
     public void BeginEffects()
     {
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
-        int seed = UltraTelephoneTwo.Instance.Random.Seed ^ UniRandom.StringToSeed(SceneHelper.CurrentScene);
+        int seed = new SeedBuilder()
+            .WithGlobalSeed()
+            .WithSceneName()
+            .GetSeed();
+
         UniRandom random = new UniRandom(seed);
         _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, 32);
 
@@ -82,7 +87,6 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     private IEnumerable<IChaosEffect> GetChaosEffects()
     {
-        //TODO this fails to clean up monobehaviour types
         List<IChaosEffect> chaosEffects = new();
 
         foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())

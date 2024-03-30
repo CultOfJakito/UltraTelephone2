@@ -27,7 +27,7 @@ public class InvertMomentumCoins : ChaosEffect
         __instance.gameObject.AddComponent<CoinMomentumInverter>();
     }
 
-    private void OnDestroy() => s_currentlyActive = false;
+    protected override void OnDestroy() => s_currentlyActive = false;
 
 }
 

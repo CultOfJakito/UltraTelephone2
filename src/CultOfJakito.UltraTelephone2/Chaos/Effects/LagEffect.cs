@@ -56,4 +56,10 @@ public class LagEffect : ChaosEffect
             yield return null;
         }
     }
+
+    protected override void OnDestroy()
+    {
+        Time.timeScale = 1;
+        GameStateManager.Instance.EvaluateState();
+    }
 }

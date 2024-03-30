@@ -2,7 +2,6 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
@@ -19,11 +18,12 @@ public class TerminalVelocity : ChaosEffect
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
 
-    [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Update)), HarmonyPostfix]
+    [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.FixedUpdate)), HarmonyPostfix]
     public static void SpeedLimit(NewMovement __instance)
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
+
         if (__instance.rb.velocity.y < -1)
         {
             Vector3 currentVelocity = __instance.rb.velocity;
@@ -31,4 +31,6 @@ public class TerminalVelocity : ChaosEffect
             __instance.rb.velocity = currentVelocity;
         }
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

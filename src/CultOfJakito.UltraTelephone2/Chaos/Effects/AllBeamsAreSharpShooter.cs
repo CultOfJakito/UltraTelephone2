@@ -29,7 +29,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         {
             return 3;
         }
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(RevolverBeam), "Start"), HarmonyPrefix]
         public static void OnStart(RevolverBeam __instance)

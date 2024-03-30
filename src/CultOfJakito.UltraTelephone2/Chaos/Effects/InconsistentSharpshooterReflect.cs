@@ -35,7 +35,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return 3;
         }
 
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(RevolverBeam), "RicochetAimAssist"), HarmonyPrefix]
         public static bool OnRicochetAimAssist(RevolverBeam __instance)

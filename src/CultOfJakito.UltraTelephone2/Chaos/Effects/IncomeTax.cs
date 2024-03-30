@@ -1,6 +1,7 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
@@ -24,15 +25,29 @@ public class IncomeTax : ChaosEffect
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
-        float afterTax = points * 0.7f;
-        points = (int)afterTax;
+
+        float tax = points * 0.3f;
+
+        //Round up >:3c
+        int taxAmount = Mathf.CeilToInt(tax);
+
+        s_taxAmountBuffer = taxAmount;
+        points = Mathf.Max(0, points - taxAmount);
     }
+
+    private static int s_taxAmountBuffer;
 
     [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.PointsShow)), HarmonyPostfix]
     public static void TaxDisplay(FinalRank __instance)
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
-        __instance.pointsText.text += "<color=red>(Income Tax -30%)</color>";
+
+        if (s_taxAmountBuffer <= 0)
+            return;
+
+        __instance.pointsText.text += $"<color=red>(Income Tax 30%) -{s_taxAmountBuffer}</color>";
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }
