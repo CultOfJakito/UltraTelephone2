@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Effects.Lag;
 [RegisterChaosEffect]
 public class LagEffect : ChaosEffect
 {
-    [Configgable("Chaos Effects", "Lag")]
+    [Configgable("Chaos/Effects", "Lag")]
     private static ConfigToggle s_enabled = new(true);
 
     private Coroutine _lagRoutine;

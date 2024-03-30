@@ -71,6 +71,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
 
+        GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
+
         GameEvents.OnPlayerHurt += (e) =>
         {
             if(e.Damage > 10)

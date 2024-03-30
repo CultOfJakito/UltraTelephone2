@@ -61,6 +61,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 mitosis.TimeToMitosis = s_mitosisSpeed.Value;
                 mitosis.MitosisDelay = s_mitosisSpeed.Value;
                 mitosis.MaxGeneration = s_mitosisMax.Value;
+                mitosis.onClone = (clone) =>
+                {
+                    if(clone.TryGetComponent<EnemyIdentifier>(out EnemyIdentifier eid))
+                    {
+                        eid.dontCountAsKills = true;
+                    }
+                };
             }
         }
     }
@@ -72,6 +79,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         public float TimeToMitosis;
         public float MitosisDelay;
 
+        public Action<GameObject> onClone;
         public Func<bool> shouldKeepDuping;
 
         private void Update()
@@ -94,6 +102,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             TimeToMitosis = MitosisDelay;
             GameObject clone = GameObject.Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
             clone.GetComponent<MitosisObject>().Generation = Generation + 1;
+            onClone?.Invoke(clone);
         }
     }
 }

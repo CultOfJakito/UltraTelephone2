@@ -19,5 +19,12 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static GameObject MoneyHUD => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/MoneyHUD.prefab");
         public static AudioClip ImBlueBreak => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Music/ImBlueBreak.wav");
         public static AudioClip ImBlueCalm => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Music/ImBlueCalm.wav");
+        public static GameObject Coin => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoin.prefab");
+        public static GameObject CoinBlue => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinBlue.prefab");
+        public static GameObject CoinRed => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinRed.prefab");
+        public static GameObject CoinYellow => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinYellow.prefab");
+        public static GameObject CoinBlack => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinBlack.prefab");
+        public static GameObject CoinDiamond => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinDiamond.prefab");
+        public static GameObject CoinCollectFX => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinFX.prefab");
     }
 }

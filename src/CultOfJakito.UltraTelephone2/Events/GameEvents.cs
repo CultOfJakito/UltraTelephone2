@@ -42,5 +42,11 @@ namespace CultOfJakito.UltraTelephone2.Events
         /// </summary>
         public static Action<LevelStateChangeEvent> OnLevelStateChange;
 
+        /// <summary>
+        /// Invoked when an enemy dies... obviously.
+        /// </summary>
+        public static Action<EnemyDeathEvent> OnEnemyDeath;
+
+
     }
 }
