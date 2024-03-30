@@ -11,6 +11,10 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_5_1
         [Configgable("Patches/Level", "Im Blue Da Ba Dee")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
+        //So like... the actual music used here I "remixed" a bit and aren't technically the songs.
+        //However, the original songs are copyrighted as far as I know and I don't know if the mixes are transformative enough
+        //to be considered fair use. So I'm just going to be safe and include into the copyrighted toggle. womp womp :/
+
         public void OnLevelLoaded(string sceneName)
         {
             if (sceneName != "Level 5-1" || !GeneralSettings.EnableCopyrightedMusic.Value || !s_enabled.Value)

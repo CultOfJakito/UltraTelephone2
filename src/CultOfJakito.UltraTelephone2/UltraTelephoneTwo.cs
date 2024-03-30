@@ -116,6 +116,12 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         Invoke(nameof(AutoSaveUpdate), 5f);
     }
 
+    private void OnApplicationQuit()
+    {
+        //Make sure to save on quit so we don't lose data!
+        UT2SaveData.Save();
+    }
+
 
     private static int PersonalizationLevelToSeed(PersonalizationLevel level)
     {
