@@ -16,19 +16,9 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: ce56d4963c4f2b64785e2a1de92aff07
-  m_SerializeEntries:
-  - m_GUID: fcb92580bc324c64b83631f6b22cd33f
-    m_Address: Assets/zelzmiy/Dev plushies/Plushie Prefabs/HydraDevPlushie.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 37407c0f1871c204f85b3ecaa32bc38a
-    m_Address: Assets/zelzmiy/Dev plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 14590ee4dc22c994cac25396cf4a7631, type: 2}
+  m_Settings: {fileID: 11400000, guid: 2a337ff27534e164b86034852d6c1576, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: 9e26a2defee378e489cf801805e2cecc, type: 2}

@@ -24,7 +24,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             _plushiePrefabs ??= new List<GameObject>()
             {
                 UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab"),
-                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab")
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/Waffle Plushie.prefab")
             };
             Console.WriteLine("plushie count " + _plushiePrefabs.Count);
             s_random = random;

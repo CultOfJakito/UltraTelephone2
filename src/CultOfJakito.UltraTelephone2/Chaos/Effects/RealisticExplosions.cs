@@ -34,4 +34,6 @@ public class RealisticExplosions : ChaosEffect
             return;
         __instance.GetComponent<AudioSource>().PlayOneShot(Sound);
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

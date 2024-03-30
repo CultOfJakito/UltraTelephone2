@@ -32,4 +32,6 @@ public class KnuckleBlasterRecoil : ChaosEffect
 
         NewMovement.instance.rb.velocity = currentVelocity;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }
