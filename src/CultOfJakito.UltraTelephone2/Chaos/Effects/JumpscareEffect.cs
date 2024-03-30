@@ -1,10 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.Jumpscare;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
 [RegisterChaosEffect]
 [HarmonyPatch]

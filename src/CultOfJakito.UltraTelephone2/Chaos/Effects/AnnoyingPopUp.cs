@@ -1,6 +1,5 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
@@ -8,7 +7,7 @@ using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
 
     [HarmonyPatch]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.MovingWindow;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MovingWindow;
 
 public abstract class MovementMode
 {

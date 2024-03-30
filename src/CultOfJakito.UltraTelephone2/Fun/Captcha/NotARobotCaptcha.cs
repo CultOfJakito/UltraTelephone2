@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;

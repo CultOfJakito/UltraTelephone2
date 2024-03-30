@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.Lag;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
 [RegisterChaosEffect]
 public class LagEffect : ChaosEffect

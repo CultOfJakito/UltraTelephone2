@@ -1,7 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
     public class AltMarksmanOnly : ChaosEffect

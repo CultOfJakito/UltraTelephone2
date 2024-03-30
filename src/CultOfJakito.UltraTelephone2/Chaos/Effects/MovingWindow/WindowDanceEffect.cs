@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.MovingWindow;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MovingWindow;
 
 [RegisterChaosEffect]
 public class WindowDanceEffect : ChaosEffect
