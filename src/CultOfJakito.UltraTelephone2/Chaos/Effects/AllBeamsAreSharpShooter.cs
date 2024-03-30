@@ -27,10 +27,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-        public override int GetEffectCost()
-        {
-            return 3;
-        }
+        public override int GetEffectCost() => 5;
 
         public override void Dispose()
         {

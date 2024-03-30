@@ -18,6 +18,7 @@ namespace CultOfJakito.UltraTelephone2.Data
         public static TextListFile S_CantReadWordsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "cantReadWords.txt"), Properties.Resources.cantReadWords);
         public static TextListFile S_PonderPrompts { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "ponder.txt"), Properties.Resources.ponder);
         public static TextListFile S_ShiteTipsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "shiteTips.txt"), Properties.Resources.shiteTips);
+        public static TextListFile S_EnemyNames { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "enemyNames.txt"), Properties.Resources.enemyNames);
 
         public static void ReloadFiles()
         {
@@ -27,6 +28,7 @@ namespace CultOfJakito.UltraTelephone2.Data
             S_CantReadWordsFile.Load();
             S_PonderPrompts.Load();
             S_ShiteTipsFile.Load();
+            S_EnemyNames.Load();
         }
     }
 }

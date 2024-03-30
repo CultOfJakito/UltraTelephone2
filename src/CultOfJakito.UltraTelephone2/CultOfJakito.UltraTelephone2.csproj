@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -33,6 +33,9 @@
     </Reference>
     <Reference Include="Configgy">
       <HintPath>libs\Other\Configgy.dll</HintPath>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>libs\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
     </Reference>
     <Reference Include="RudeLevelScripts.Essentials">
       <HintPath>libs\Other\RudeLevelScripts.Essentials.dll</HintPath>
@@ -302,6 +305,7 @@
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
     <Folder Include="Hydra\Chaos\" />
+    <Folder Include="UI\" />
   </ItemGroup>
 
   <ItemGroup>

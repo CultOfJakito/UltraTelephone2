@@ -14,7 +14,10 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static Texture2D RoachCarving => UT2Assets.GetAsset<Texture2D>("Assets/Telephone 2/Misc/Textures/roachcarving.png");
         public static GameObject BuyLevelAccessBarricade => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/BuyLevelAccess.prefab");
         public static GameObject OutOfOrderShopSign => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/OutOfOrderShopSign.prefab");
+        public static AudioClip SplatSound => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/CartoonSplat.ogg");
+        public static GameObject Nametag => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Nametag.prefab");
 
-        //Make money counter
+        public static AudioClip ImBlueBreak => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Music/ImBlueBreak.wav");
+        public static AudioClip ImBlueCalm => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Music/ImBlueCalm.wav");
     }
 }
