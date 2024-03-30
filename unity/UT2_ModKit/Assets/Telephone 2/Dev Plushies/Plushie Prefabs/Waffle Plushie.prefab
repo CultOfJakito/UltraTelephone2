@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3303236653282516803}
   - component: {fileID: 3911042923469473291}
   - component: {fileID: 989326245986083044}
-  m_Layer: 0
+  - component: {fileID: 3061951341269165908}
+  m_Layer: 22
   m_Name: Waffle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3061951341269165908
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842494724442041275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6259490703757726414, guid: 50d4bef7734da8d41a1fe52027f2a190, type: 3}
 --- !u!1 &4731860317792263929
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +106,7 @@ GameObject:
   - component: {fileID: 5288148910727649857}
   - component: {fileID: 8690525510686715026}
   - component: {fileID: 5201050418929184280}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +199,7 @@ GameObject:
   - component: {fileID: 7781330524235736074}
   - component: {fileID: 8335048454208092259}
   - component: {fileID: 5666959880435055146}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Butter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,8 +279,8 @@ GameObject:
   - component: {fileID: 5201050418262402789}
   - component: {fileID: 5201050418262402787}
   - component: {fileID: 5201050418262402786}
-  - component: {fileID: 4529327961422813380}
-  m_Layer: 0
+  - component: {fileID: 4397976118767966905}
+  m_Layer: 22
   m_Name: Waffle Plushie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4966553522647620520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8705003, y: 1.3139552, z: 1.3894926}
+  m_LocalPosition: {x: -0.8705003, y: 1.25, z: 1.3894926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7781330524235736074}
@@ -381,7 +396,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4966553522647620520}
   serializedVersion: 2
-  m_Mass: 20
+  m_Mass: 1
   m_Drag: 0.1
   m_AngularDrag: 0.2
   m_UseGravity: 1
@@ -408,8 +423,8 @@ MonoBehaviour:
   gradual: 0
   gradualSpeed: 0
   off: 0
---- !u!135 &4529327961422813380
-SphereCollider:
+--- !u!65 &4397976118767966905
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -419,5 +434,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1, y: 0.48664987, z: 1}
+  m_Center: {x: 0, y: 0.25667506, z: 0}

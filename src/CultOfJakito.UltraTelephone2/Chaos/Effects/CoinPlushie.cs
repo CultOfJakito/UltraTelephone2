@@ -44,8 +44,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 return;
 
             // 10% plushy chance
-            if (s_random.Chance(0.9f))
-                return;
+            //if (s_random.Chance(0.9f))
+            //    return;
 
             GameObject plushie = s_random.SelectRandomList(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
