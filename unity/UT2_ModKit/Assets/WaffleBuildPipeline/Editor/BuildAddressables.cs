@@ -83,6 +83,8 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 
             Settings.groups.AddRange(commonGroups);
             EditorUtility.SetDirty(Settings);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 		}
 
 		private static void SetCorrectValuesForSettings()
