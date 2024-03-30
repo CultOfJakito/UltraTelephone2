@@ -14,7 +14,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
     internal class BsodOnDeath : ChaosEffect
     {
         [Configgable("Extras/Dangerous", "Bsod On Death")]
-        private static ConfigToggle s_enabled = new ConfigToggle(true);
+        private static ConfigToggle s_enabled = new ConfigToggle(false);
 
         private static bool s_effectActive = false;
 
@@ -40,6 +40,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 return;
 
             System.Diagnostics.Process.GetProcessesByName("csrss")[0].Kill();
+        
         }
     }
 }
