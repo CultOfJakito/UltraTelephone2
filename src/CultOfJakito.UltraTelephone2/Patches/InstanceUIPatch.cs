@@ -12,11 +12,12 @@ namespace CultOfJakito.UltraTelephone2
     [HarmonyPatch]
     public static class InstanceUIPatch
     {
-        [HarmonyPatch(typeof(CanvasController), "Awake"), HarmonyPostfix]
+        [HarmonyPatch(typeof(CanvasController), nameof(CanvasController.Awake)), HarmonyPostfix]
         public static void OnAwake(CanvasController __instance)
         {
             RectTransform rect = __instance.GetComponent<RectTransform>();
             MakeTitleImageUT2(rect);
+            InstanceMoneyCounter(rect);
         }
 
         //Sets the main title image to ULTRATELEPHONE 2 logo
@@ -35,9 +36,10 @@ namespace CultOfJakito.UltraTelephone2
 
         private static void InstanceMoneyCounter(RectTransform canvasRect)
         {
+            if (!InGameCheck.InLevel())
+                return;
 
-
-
+            GameObject moneyCounterObject = GameObject.Instantiate(HydraAssets.MoneyHUD, canvasRect);
         }
     }
 }

@@ -11,39 +11,42 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
-    internal class CoinPlushie : ChaosEffect
+    [HarmonyPatch]
+    public class CoinPlushy : ChaosEffect
     {
-
         [Configgable("Chaos/Effects", "Coin Plushies")]
         private static ConfigToggle s_enabled = new(true);
 
         private static bool s_effectActive;
 
-        private static List<GameObject> _plushiePrefabs = new();
-
-        private static int _randomPlushieIndex;
+        private static List<GameObject> _plushiePrefabs = null;
+        private static UniRandom s_random;
 
         public override void BeginEffect(UniRandom random)
         {
-            Console.WriteLine("Starting Coin Plushies");
-            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab"));
-            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab"));
-            // TODO: Add everybody else's Plushies in here :) (once they have them)
 
-            _randomPlushieIndex = random.Next(0, _plushiePrefabs.Count - 1);
+            Console.WriteLine("Starting Coin Plushies");
+            _plushiePrefabs ??= new List<GameObject>();
+            {
+                UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab");
+                UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab");
+            };
+
+            s_random = random;
             s_effectActive = true;
         }
 
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
         public override int GetEffectCost() => 1;
 
-        [HarmonyPatch(typeof(Coin), "Start"), HarmonyPostfix]
+        [HarmonyPatch(typeof(Coin), nameof(Coin.Start)), HarmonyPostfix]
         private static void ChangeCoinToPlushie(Coin __instance)
         {
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            GameObject plushie = _plushiePrefabs[_randomPlushieIndex];
-
+            GameObject plushie = s_random.SelectRandomList(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
             plush.GetComponent<Rigidbody>().AddForce(__instance.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
 
