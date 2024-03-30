@@ -71,6 +71,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         BuyablesManager.Load();
 
         GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
+        GameEvents.OnEnemyDeath += (v) =>
+        {
+            if(Random.Chance(0.05f))
+            {
+                AnnoyingPopUp.PopUp();
+            }
+        };
 
         GameEvents.OnPlayerHurt += (e) =>
         {

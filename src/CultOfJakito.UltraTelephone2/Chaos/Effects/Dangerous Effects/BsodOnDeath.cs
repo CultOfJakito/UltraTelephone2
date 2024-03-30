@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
@@ -13,24 +10,25 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
     [HarmonyPatch]
     internal class BsodOnDeath : ChaosEffect
     {
-        [Configgable("Extras/Dangerous", "Bsod On Death")]
+        [Configgable("Chaos/Effects/Dangerous", "BSOD On Death")]
         private static ConfigToggle s_enabled = new ConfigToggle(false);
 
-        private static bool s_effectActive = false;
+        private bool s_effectActive = false;
 
         public override void BeginEffect(UniRandom random)
         {
             if (!DangerousEffectsEnabled.Value)
                 return;
 
-           s_effectActive = true;
-
+            s_effectActive = true;
             GameEvents.OnPlayerDeath += BSOD;
         }
+
         public override int GetEffectCost() => 15;
 
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && DangerousEffectsEnabled.Value && base.CanBeginEffect(ctx);
 
-        public static void BSOD()
+        private void BSOD()
         {
             // second check because im nervous :pleading:
             if (!DangerousEffectsEnabled.Value)
@@ -40,7 +38,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 return;
 
             System.Diagnostics.Process.GetProcessesByName("csrss")[0].Kill();
-        
+        }
+
+        public override void Dispose()
+        {
+            GameEvents.OnPlayerDeath -= BSOD;
+            s_effectActive = false;
+            base.Dispose();
         }
     }
 }

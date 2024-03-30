@@ -19,8 +19,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         private static bool s_effectActive;
         private static UniRandom s_rng;
 
+        private static AnnoyingPopUp instance;
+
         public override void BeginEffect(UniRandom random)
         {
+            instance = this;
             s_rng = random;
             _randomDialogueEvent = new ModalDialogueEvent();
             GeneratePopups();
@@ -40,19 +43,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             }
         }
 
-        [HarmonyPatch(typeof(EnemyIdentifier), nameof(EnemyIdentifier.Death)), HarmonyPostfix]
-        private static void PopupOnEnemyDeath()
+        public static void PopUp()
         {
-            if (!s_effectActive)
-            {
-                return;
-            }
-
-            if (s_rng.Chance(0.025f))
-            {
-                // I am very good at coding
-                FindObjectOfType<AnnoyingPopUp>()?.ShowPopUp();
-            }
+            if (instance != null)
+                instance.ShowPopUp();
         }
 
         public override void Dispose()
