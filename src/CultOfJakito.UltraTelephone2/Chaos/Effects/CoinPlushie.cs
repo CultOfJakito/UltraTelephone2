@@ -24,6 +24,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
+
             Console.WriteLine("Starting Coin Plushies");
             _plushiePrefabs ??= new List<GameObject>();
             {
@@ -31,8 +32,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab");
             };
 
+            s_random = random;
             s_effectActive = true;
         }
+
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost() => 1;
 
