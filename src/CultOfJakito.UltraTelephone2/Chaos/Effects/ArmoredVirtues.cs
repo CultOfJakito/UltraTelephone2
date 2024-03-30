@@ -26,7 +26,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return 3;
         }
 
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(Drone), "Start"), HarmonyPostfix]
         private static void OnDroneStart(Drone __instance)

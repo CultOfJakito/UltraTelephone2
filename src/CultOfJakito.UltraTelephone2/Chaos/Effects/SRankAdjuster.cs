@@ -29,4 +29,6 @@ public class SRankAdjuster : ChaosEffect
         __instance.rankScore -= 1;
         __instance.timeRanks[3] = (int)__instance.seconds - 10;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

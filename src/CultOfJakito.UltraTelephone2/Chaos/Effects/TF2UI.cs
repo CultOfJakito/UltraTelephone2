@@ -21,7 +21,7 @@ public class TF2UI : ChaosEffect
     public override void BeginEffect(UniRandom random)
     {
         s_currentlyActive = true;
-        s_sprite = UT2Assets.GetAsset<Sprite>("Assets/Telephone 2/Textures/v1viewmodel.png");
+        s_sprite ??= UT2Assets.GetAsset<Sprite>("Assets/Telephone 2/Textures/v1viewmodel.png");
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
@@ -31,9 +31,10 @@ public class TF2UI : ChaosEffect
     public static void Patch(ref Sprite icon)
     {
         if (!s_currentlyActive)
-        {
             return;
-        }
+
         icon = s_sprite;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

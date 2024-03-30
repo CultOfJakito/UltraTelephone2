@@ -61,5 +61,5 @@ internal class HRTBurger : ChaosEffect
         }
     }
 
-    private void OnDestroy() => s_effectActive = false;
+    protected override void OnDestroy() => s_effectActive = false;
 }

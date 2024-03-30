@@ -16,7 +16,7 @@ public class RandomDashVelocity : ChaosEffect
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 3;
 
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Dodge)), HarmonyPostfix]
     public static void SpeedLimit(NewMovement __instance)
@@ -25,4 +25,6 @@ public class RandomDashVelocity : ChaosEffect
             return;
         __instance.rb.velocity *= Random.Range(0.5f, 5f);
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

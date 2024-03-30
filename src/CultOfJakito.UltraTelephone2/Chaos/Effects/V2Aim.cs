@@ -22,6 +22,9 @@ public class V2Aim : ChaosEffect
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
+
         __instance.predictAmount = 0.2f;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

@@ -58,5 +58,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             Destroy(__instance.gameObject);
 
         }
+
+        protected override void OnDestroy() => s_effectActive = false;
     }
 }

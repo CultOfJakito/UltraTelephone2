@@ -12,18 +12,18 @@ public class HotSkulls : ChaosEffect
     [Configgable("Chaos/Effects", "Hot Skulls")]
     private static ConfigToggle s_enabled = new(true);
 
-    private static bool s_currentlyActive;
+    private static bool s_effectActive;
 
     private static float s_timeSinceLastTick;
 
-    public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
+    public override void BeginEffect(UniRandom random) => s_effectActive = true;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
 
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Update)), HarmonyPostfix]
     public static void ItBurns(NewMovement __instance)
     {
-        if (!s_currentlyActive && !s_enabled.Value)
+        if (!s_effectActive && !s_enabled.Value)
             return;
 
         s_timeSinceLastTick += Time.deltaTime;
@@ -40,4 +40,6 @@ public class HotSkulls : ChaosEffect
             s_timeSinceLastTick = 0;
         }
     }
+
+    protected override void OnDestroy() => s_effectActive = false;
 }

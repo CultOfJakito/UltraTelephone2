@@ -20,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Zed
 
         public override int GetEffectCost() => 1;
 
-        private void OnDestroy() => s_currentlyActive = false;
+        protected override void OnDestroy() => s_currentlyActive = false;
 
         [HarmonyPostfix, HarmonyPatch(typeof(Grenade), nameof(Grenade.PlayerRideStart))]
         public static void Riding(Grenade __instance)

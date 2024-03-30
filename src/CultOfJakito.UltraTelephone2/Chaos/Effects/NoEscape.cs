@@ -20,9 +20,7 @@ public class NoEscape : ChaosEffect
     {
         Transform pauseMenuTf = CanvasController.Instance.transform.Find("PauseMenu");
         if (pauseMenuTf == null)
-        {
             return;
-        }
 
         pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Quit Mission")?.gameObject.SetActive(false);
         pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Restart Mission")?.gameObject.SetActive(false);
@@ -46,4 +44,6 @@ public class NoEscape : ChaosEffect
             _ => base.CanBeginEffect(ctx)
         };
     }
+
+    protected override void OnDestroy() { }
 }

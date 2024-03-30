@@ -17,14 +17,17 @@ public class RecyclableVirtueBeam : ChaosEffect
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 3;
 
     [HarmonyPatch(typeof(VirtueInsignia), nameof(VirtueInsignia.Update)), HarmonyPostfix]
     public static void BeamExtension(VirtueInsignia __instance)
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
+
         __instance.explosionLength = 100f;
         __instance.hasHitTarget = false;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

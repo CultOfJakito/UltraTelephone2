@@ -26,7 +26,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         {
             return 2;
         }
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(Zombie), nameof(Zombie.Start)), HarmonyPostfix]
         private static void OnDroneStart(Zombie __instance)

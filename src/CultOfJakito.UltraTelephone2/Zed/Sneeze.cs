@@ -51,5 +51,7 @@ public class Sneeze : ChaosEffect
         // Thanos snap the map
     }
 
+    protected override void OnDestroy() { }
+
     public override int GetEffectCost() => 1;
 }

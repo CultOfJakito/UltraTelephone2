@@ -35,4 +35,6 @@ public class WeaponWheelSpin : ChaosEffect
         //Console.print($"{currentRotation.x}, {currentRotation.y},{currentRotation.z}");
         //transform.rotation = currentRotation;
     }
+
+    protected override void OnDestroy() => s_currentlyActive = false;
 }

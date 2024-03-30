@@ -75,7 +75,7 @@ public class OpenUrlOnDeath : ChaosEffect
     public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_openUrlOnDeath.Value;
     public override int GetEffectCost() => 1;
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         GameEvents.OnPlayerDeath -= OnPlayerDied;
     }

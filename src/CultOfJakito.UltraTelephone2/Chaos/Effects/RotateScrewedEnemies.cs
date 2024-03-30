@@ -23,7 +23,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             s_effectActive = true;
         }
 
-        public override int GetEffectCost() => 1;
+        public override int GetEffectCost() => 2;
 
         [HarmonyPatch(typeof(Harpoon), nameof(Harpoon.Update))]
         [HarmonyPostfix]
@@ -46,6 +46,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 }
             }
         }
-        private void OnDestroy() => s_effectActive = false;
+        protected override void OnDestroy() => s_effectActive = false;
     }
 }

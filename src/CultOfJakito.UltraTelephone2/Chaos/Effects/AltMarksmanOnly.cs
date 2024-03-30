@@ -68,7 +68,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             base.Dispose();
         }
 
-
+        protected override void OnDestroy() { }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
