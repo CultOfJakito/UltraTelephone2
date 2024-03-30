@@ -5,6 +5,7 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,6 +75,17 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
             string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandom(splashPhrases.ToArray());
 
+            //Dev detected!!
+            if(SteamClient.IsValid && SteamClient.IsLoggedOn)
+            {
+                for (int i=0;i<SteamController.BuiltInVerifiedSteamIds.Length;i++)
+                {
+                    if(SteamClient.SteamId.Value == SteamController.BuiltInVerifiedSteamIds[i])
+                    {
+                        phrase = "A Complete and Utter Destruction of your game. With Love, -CoJ";
+                    }
+                }
+            }
 
             for (int i = 0; i < splashTexts.Length; i++)
             {
@@ -86,8 +98,6 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
             ++seedOffset;
         }
-
-
     }
 
     public class SplashTextBouncer : MonoBehaviour
