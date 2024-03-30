@@ -46,6 +46,8 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     private List<IChaosEffect> activatedEffects;
 
+    public List<IChaosEffect> GetActiveEffects() => new(activatedEffects);
+
     private bool _levelBegan;
     private ChaosSessionContext _ctx;
 

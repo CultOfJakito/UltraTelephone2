@@ -22,7 +22,7 @@ namespace CultOfJakito.UltraTelephone2.UI
 
         private void FakeBank_OnMoneyChanged(long obj)
         {
-            climbingText.SetTargetValue(obj);
+            climbingText.SetTargetValue(FakeBank.GetCurrentMoney());
         }
 
         private void OnDestroy()

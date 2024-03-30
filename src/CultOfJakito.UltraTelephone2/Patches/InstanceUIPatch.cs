@@ -36,7 +36,7 @@ namespace CultOfJakito.UltraTelephone2
 
         private static void InstanceMoneyCounter(RectTransform canvasRect)
         {
-            if (!InGameCheck.InLevel())
+            if (SceneHelper.CurrentScene == "Main Menu")
                 return;
 
             GameObject moneyCounterObject = GameObject.Instantiate(HydraAssets.MoneyHUD, canvasRect);

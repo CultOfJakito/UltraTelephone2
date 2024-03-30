@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Effects.MovingWindow;
 [RegisterChaosEffect]
 public class WindowDanceEffect : ChaosEffect
 {
-    [Configgable("Chaos Effects", "Window Dancing")]
+    [Configgable("Chaos/Effects", "Window Dancing")]
     private static ConfigToggle s_enabled = new(true);
 
     private static Type[] s_effectTypes =

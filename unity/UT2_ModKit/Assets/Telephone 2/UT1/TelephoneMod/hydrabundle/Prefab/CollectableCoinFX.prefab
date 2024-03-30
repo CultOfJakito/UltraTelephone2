@@ -4778,7 +4778,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7967dc6505b8d8444a59bc7a35fa59d3, type: 2}
-  - {fileID: 2100000, guid: 7967dc6505b8d8444a59bc7a35fa59d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4831,6 +4830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5367235538116681153}
+  - component: {fileID: 39891321509020263}
   m_Layer: 0
   m_Name: CollectableCoinFX
   m_TagString: Untagged
@@ -4853,6 +4853,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39891321509020263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367235538116681152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c430053810d8d1048bc4d7fb17338dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAudioLength: 0
+  time: 2
+  randomizer: 0
+  affectedByNoCooldowns: 0
 --- !u!1 &6269037990077479744
 GameObject:
   m_ObjectHideFlags: 0
@@ -9620,8 +9636,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f8343a0099f28541bd74bcc9c846cbd, type: 2}
-  - {fileID: 2100000, guid: 8cd2ca51f25ce5647a72e961728e2f27, type: 2}
+  - {fileID: 2100000, guid: 2d995b9a9933a454a93adcf7766398e3, type: 2}
+  - {fileID: 2100000, guid: 2d995b9a9933a454a93adcf7766398e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9707,7 +9723,8 @@ AudioSource:
   m_GameObject: {fileID: 7639753682754822481}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 822df8dc4092fe2418c2b4ea9a12c446,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 33dede6c02aedcc4caa8d7e6f7a73689, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -9718,8 +9735,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 10
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -9754,7 +9771,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

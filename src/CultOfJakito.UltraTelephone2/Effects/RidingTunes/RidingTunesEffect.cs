@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Zed
     [HarmonyPatch]
     public class RidingTunes : ChaosEffect
     {
-        [Configgable("Chaos Effects", "Rocket Riding Music")]
+        [Configgable("Chaos/Effects", "Rocket Riding Music")]
         private static ConfigToggle s_enabled = new(true);
 
         private static bool s_currentlyActive = false;

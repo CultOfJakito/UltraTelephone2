@@ -20,7 +20,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
-
             Console.WriteLine("Starting Coin Plushies");
             _plushiePrefabs ??= new List<GameObject>()
             {

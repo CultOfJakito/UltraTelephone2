@@ -50,7 +50,7 @@ namespace CultOfJakito.UltraTelephone2.UI
                 }
 
                 string text = (toString == null) ? currentValue.ToString("000") : toString.Invoke(currentValue);
-                TextObj.text = currentValue.ToString("000");
+                TextObj.text = text;
             }
         }
 
