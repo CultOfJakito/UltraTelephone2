@@ -13,7 +13,7 @@ public class RealisticExplosions : ChaosEffect
     [Configgable("Chaos/Effects", "Realistic Explosions")]
     private static ConfigToggle s_enabled = new(true);
 
-    private static bool s_currentlyActive;
+    private static bool s_effectActive;
 
     private static float s_timeSinceLastTick;
 
@@ -21,7 +21,7 @@ public class RealisticExplosions : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
-        s_currentlyActive = true;
+        s_effectActive = true;
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
@@ -30,8 +30,10 @@ public class RealisticExplosions : ChaosEffect
     [HarmonyPatch(typeof(Explosion), nameof(Explosion.Start)), HarmonyPostfix]
     public static void SoundReplacement(Explosion __instance)
     {
-        if (!s_currentlyActive && !s_enabled.Value)
+        if (!s_effectActive && !s_enabled.Value)
             return;
         __instance.GetComponent<AudioSource>().PlayOneShot(Sound);
     }
+
+    protected override void OnDestroy() => s_effectActive = false;
 }
