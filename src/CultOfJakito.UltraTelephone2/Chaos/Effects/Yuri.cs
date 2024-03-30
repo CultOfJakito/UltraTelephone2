@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;

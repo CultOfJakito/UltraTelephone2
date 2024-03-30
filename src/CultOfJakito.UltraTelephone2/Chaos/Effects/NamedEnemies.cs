@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Hydra;
 using HarmonyLib;
 using Steamworks;
 using UnityEngine;

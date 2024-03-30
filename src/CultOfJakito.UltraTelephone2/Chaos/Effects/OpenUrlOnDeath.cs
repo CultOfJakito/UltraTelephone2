@@ -2,7 +2,6 @@
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using UnityEngine;
-using static System.Net.WebRequestMethods;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
 

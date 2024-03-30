@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Assets;
+﻿using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Util;
-using HarmonyLib;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_5_1

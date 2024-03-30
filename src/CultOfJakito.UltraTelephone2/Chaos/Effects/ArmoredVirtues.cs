@@ -1,11 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [HarmonyPatch]
     [RegisterChaosEffect]

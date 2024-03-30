@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Hydra.FakePBank;
-using TMPro;
+﻿using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.UI
