@@ -32,7 +32,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
             int seed = globalSeed ^ UniRandom.StringToSeed(position.ToString()) ^ sceneSeed;
 
             UniRandom rng = new UniRandom(seed);
-            tmp.text = rng.SelectRandomList(tips);
+            tmp.text = rng.SelectRandom(tips);
         }
     }
 }

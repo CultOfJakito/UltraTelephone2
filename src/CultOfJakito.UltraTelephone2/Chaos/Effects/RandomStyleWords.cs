@@ -37,7 +37,7 @@ public class RandomStyleWords : ChaosEffect
             .GetSeed();
 
         UniRandom rng = new UniRandom(seed);
-        __result = rng.SelectRandomList(wordlist);
+        __result = rng.SelectRandom(wordlist);
     }
 
     protected override void OnDestroy() => s_currentlyActive = false;

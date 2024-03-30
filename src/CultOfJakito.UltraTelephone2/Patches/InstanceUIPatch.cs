@@ -37,5 +37,10 @@ namespace CultOfJakito.UltraTelephone2
 
             GameObject moneyCounterObject = GameObject.Instantiate(HydraAssets.MoneyHUD, canvasRect);
         }
+
+        private static void InstanceCaptcha(RectTransform canvasRect)
+        {
+            GameObject captchaObject = GameObject.Instantiate(HydraAssets.CaptchaManager, canvasRect);
+        }
     }
 }

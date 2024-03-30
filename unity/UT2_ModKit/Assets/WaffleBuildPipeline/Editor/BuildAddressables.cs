@@ -70,16 +70,40 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 
 		private static void BuildContent()
 		{
-			AddressableAssetSettings.BuildPlayerContent();
-		}
+            if (Settings == null)
+            {
+                Debug.LogError("Settings is null!!");
+                return;
+            }
+            //ol
+
+            AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
+
+            if (!string.IsNullOrEmpty(result.Error))
+            {
+                throw new System.Exception(result.Error);
+            }
+        }
 
 		// removes common groups (which take ages) but their needed assets are put in your bundles, increasing size
 		private static void BuildContentFast()
 		{
+            if(Settings == null)
+            {
+                Debug.LogError("Settings is null!!");
+                return;
+            }
+
 			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
             Settings.groups.RemoveAll(commonGroups.Contains);
 
-			AddressableAssetSettings.BuildPlayerContent();
+            AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
+
+            if (!string.IsNullOrEmpty(result.Error))
+            {
+                Debug.LogError(result.Error);
+                return;
+            }
 
             Settings.groups.AddRange(commonGroups);
             EditorUtility.SetDirty(Settings);

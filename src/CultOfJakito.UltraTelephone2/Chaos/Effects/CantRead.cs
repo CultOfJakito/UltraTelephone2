@@ -66,7 +66,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
                 for (int i = 0; i < words; i++)
                 {
-                    sb.Append(s_rng.SelectRandomList(s_illegebleWords));
+                    sb.Append(s_rng.SelectRandom(s_illegebleWords));
                     sb.Append(' ');
                 }
 

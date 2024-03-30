@@ -220,7 +220,7 @@ public class UniRandom : System.Random
         return default(T);
     }
 
-    public T SelectRandom<T>(params T[] values)
+    public T SelectRandomFromSet<T>(params T[] values)
     {
         if (values.Length == 0)
             return default(T);
@@ -228,10 +228,10 @@ public class UniRandom : System.Random
         return values[this.Next(0, values.Length)];
     }
 
-    public T SelectRandomList<T>(IEnumerable<T> values)
-    {
-        return this.SelectRandom(values.ToArray());
-    }
+    //public T SelectRandom<T>(IEnumerable<T> values)
+    //{
+    //    return this.SelectRandomWeighted(values, _ => 1);
+    //}
 
     public T SelectRandomWeighted<T>(IEnumerable<T> values, Func<T, int> weightSelector)
     {

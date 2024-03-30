@@ -39,10 +39,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             UniRandom rng = new UniRandom(seed);
 
             if (rng.Chance(s_prefixChance.Value))
-                name = rng.SelectRandomList(s_prefixes) + " " + name;
+                name = rng.SelectRandom(s_prefixes) + " " + name;
 
             if (rng.Chance(s_suffixChance.Value))
-                name = name + " " + rng.SelectRandomList(s_suffixes);
+                name = name + " " + rng.SelectRandom(s_suffixes);
 
             return name;
         }

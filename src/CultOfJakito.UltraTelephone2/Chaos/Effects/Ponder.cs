@@ -30,7 +30,7 @@ public class Ponder : ChaosEffect
     {
         if (e.IsPlaying)
         {
-            HudMessageReceiver.Instance.SendHudMessage(rng.SelectRandomList(_prompts));
+            HudMessageReceiver.Instance.SendHudMessage(rng.SelectRandom(_prompts));
         }
     }
 

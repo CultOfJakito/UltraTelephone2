@@ -70,7 +70,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
             if (splashTexts == null)
                 return;
 
-            string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandom(splashPhrases.ToArray());
+            string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandomFromSet(splashPhrases.ToArray());
 
             //Dev detected!!
             if (SteamClient.IsValid && SteamClient.IsLoggedOn)

@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (s_random.Chance(0.9f))
                 return;
 
-            GameObject plushie = s_random.SelectRandomList(_plushiePrefabs);
+            GameObject plushie = s_random.SelectRandom(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
             plush.GetComponent<Rigidbody>().AddForce(
                 CameraController.instance.transform.forward * 20 + Vector3.up * 15f + (NewMovement.Instance.ridingRocket ?

@@ -70,7 +70,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static string GetRandomName()
         {
-            string name = s_rng.SelectRandomList(GetNamePool());
+            string name = s_rng.SelectRandom(GetNamePool());
             name = SillyNames.SillifyName(name);
             return name;
         }
