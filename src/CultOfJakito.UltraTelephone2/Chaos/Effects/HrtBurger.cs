@@ -61,9 +61,5 @@ internal class HRTBurger : ChaosEffect
         }
     }
 
-    public override void Dispose()
-    {
-        s_effectActive = false;
-        base.Dispose();
-    }
+    private void OnDestroy() => s_effectActive = false;
 }

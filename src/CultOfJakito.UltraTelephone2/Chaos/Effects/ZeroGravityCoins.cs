@@ -34,13 +34,9 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         public override int GetEffectCost()
         {
-            return 1;
+            return 2;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        private void OnDestroy() => s_effectActive = false;
     }
 }

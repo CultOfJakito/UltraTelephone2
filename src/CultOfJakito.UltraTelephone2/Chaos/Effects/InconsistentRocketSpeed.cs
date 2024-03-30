@@ -40,11 +40,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return 5;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        private void OnDestroy() => s_effectActive = false;
+
 
         [HarmonyPatch(typeof(Grenade), nameof(Grenade.Start)), HarmonyPostfix]
         private static void OnStart(Grenade __instance)

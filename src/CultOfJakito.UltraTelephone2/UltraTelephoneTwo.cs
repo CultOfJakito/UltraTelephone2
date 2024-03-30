@@ -75,7 +75,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         {
             if(Random.Chance(0.05f))
             {
-                AnnoyingPopUp.PopUp();
+                AnnoyingPopUp.OkDialogue("Nice Job!", "Good job killing that enemy!");
             }
         };
 
@@ -114,6 +114,12 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             UT2SaveData.Save();
 
         Invoke(nameof(AutoSaveUpdate), 5f);
+    }
+
+    private void OnApplicationQuit()
+    {
+        //Make sure to save on quit so we don't lose data!
+        UT2SaveData.Save();
     }
 
 

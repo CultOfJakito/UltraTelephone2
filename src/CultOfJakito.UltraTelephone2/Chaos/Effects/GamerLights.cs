@@ -107,10 +107,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return 1;
         }
 
-        public override void Dispose()
+        private void OnDestroy()
         {
             s_enabled.OnValueChanged -= OnEnabledChanged;
-            base.Dispose();
         }
 
         private HashSet<int> lightsChecked = new HashSet<int>();

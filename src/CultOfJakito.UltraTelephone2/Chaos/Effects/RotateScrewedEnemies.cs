@@ -42,9 +42,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                     __instance.transform.Rotate(Vector3.forward, -14400f * Time.deltaTime);
                     Vector3 vec = new();
                     vec = Vector3.forward;
-                    __instance.target.eid.transform.Rotate(vec, s_rotationAmount.value * Time.deltaTime);
+                    __instance.target.eid.transform.Rotate(vec, s_rotationAmount.Value * Time.deltaTime);
                 }
             }
         }
+        private void OnDestroy() => s_effectActive = false;
     }
 }

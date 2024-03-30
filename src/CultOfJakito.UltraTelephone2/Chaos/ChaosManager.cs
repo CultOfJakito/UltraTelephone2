@@ -121,7 +121,13 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     public void Dispose()
     {
-        if(activatedEffects != null)
+        DisposeEffects();
+        Destroy(this);
+    }
+
+    private void DisposeEffects()
+    {
+        if (activatedEffects != null)
         {
             for (int i = 0; i < activatedEffects.Count; i++)
             {
@@ -134,7 +140,12 @@ public class ChaosManager : MonoBehaviour, IDisposable
             }
         }
 
-        Destroy(this);
+        activatedEffects = null;
+    }
+
+    private void OnDestory()
+    {
+        DisposeEffects();
     }
 }
 

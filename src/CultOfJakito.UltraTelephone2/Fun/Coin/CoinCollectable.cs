@@ -109,16 +109,16 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             if (rand.Chance(0.90f))
                 return CoinType.Normal;
 
-            if (rand.Chance(0.0001f))
+            if (rand.Chance(0.001f))
                 return CoinType.Diamond;
 
-            if (rand.Chance(0.01f))
+            if (rand.Chance(0.05f))
                 return CoinType.Black;
 
-            if (rand.Chance(0.1f))
+            if (rand.Chance(0.2f))
                 return CoinType.Yellow;
 
-            if (rand.Chance(0.3f))
+            if (rand.Chance(0.35f))
                 return CoinType.Red;
 
             return CoinType.Blue;
@@ -164,7 +164,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
             Vector3 force = rand.UnitSphere();
             force.y = 2.34f;
-            force = force.normalized * 15f;
+            force = force.normalized * 17f;
             coin.rb.velocity = force;
         }
 
@@ -183,7 +183,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             Vector3 point = enemyDeath.Enemy.transform.position;
             point.y += 0.75f;
 
-            int coinsToDrop = rand.Range(1, 6);
+            int coinsToDrop = rand.Range(2, 10);
 
             for (int i = 0; i < coinsToDrop; i++)
             {

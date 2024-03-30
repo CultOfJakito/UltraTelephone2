@@ -22,12 +22,8 @@ public class JumpscareEffect : ChaosEffect
         s_effectActive = true;
     }
 
-    public override int GetEffectCost() => 5;
-    public override void Dispose()
-    {
-        s_effectActive = false;
-        base.Dispose();
-    }
+    public override int GetEffectCost() => 2;
+    private void OnDestroy() => s_effectActive = false;
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
