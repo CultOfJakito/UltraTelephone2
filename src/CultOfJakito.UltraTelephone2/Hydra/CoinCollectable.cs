@@ -62,6 +62,9 @@ namespace CultOfJakito.UltraTelephone2.Hydra
         private static CoinCollectable NewCoin(GameObject coinObj)
         {
             coinObj.transform.localScale = Vector3.one * 0.6f;
+            CapsuleCollider capsule = coinObj.GetComponent<CapsuleCollider>();
+            capsule.radius *= 1.7f;
+
             CoinCollectable coin = coinObj.AddComponent<CoinCollectable>();
             coin.rb = coin.gameObject.AddComponent<Rigidbody>();
             coin.rb.constraints = RigidbodyConstraints.FreezeRotation;
