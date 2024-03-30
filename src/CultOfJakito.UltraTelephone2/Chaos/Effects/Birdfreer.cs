@@ -1,11 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace UltraTelephone.Hydra
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [RegisterChaosEffect]
     public class BirdFreer : ChaosEffect

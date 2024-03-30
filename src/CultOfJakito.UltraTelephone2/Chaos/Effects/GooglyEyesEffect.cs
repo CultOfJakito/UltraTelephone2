@@ -5,7 +5,7 @@ using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra;
+namespace CultOfJakito.UltraTelephone2.Chaos;
 
 [RegisterChaosEffect]
 [HarmonyPatch]

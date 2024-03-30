@@ -1,5 +1,4 @@
-﻿using BepInEx;
-using CultOfJakito.UltraTelephone2.Hydra.EA;
+﻿using CultOfJakito.UltraTelephone2.Fun.EA;
 using CultOfJakito.UltraTelephone2.Util;
 using Newtonsoft.Json;
 using UnityEngine;

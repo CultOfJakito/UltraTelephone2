@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CultOfJakito.UltraTelephone2.Events
+﻿namespace CultOfJakito.UltraTelephone2.Events
 {
     public class PlayerRespawnEvent : PlayerEvent
     {

@@ -1,10 +1,9 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
-using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [RegisterChaosEffect]
     public class GamerLights : ChaosEffect

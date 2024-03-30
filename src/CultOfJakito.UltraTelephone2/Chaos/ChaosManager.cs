@@ -14,6 +14,9 @@ public class ChaosManager : MonoBehaviour, IDisposable
         return v > 0;
     });
 
+    [Configgable("Extras/Advanced", "Panic Button")]
+    private static ConfigKeybind s_panicButton = new ConfigKeybind(KeyCode.P);
+
     public void BeginEffects()
     {
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
@@ -53,6 +56,12 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && s_panicButton.WasPeformed())
+        {
+            Dispose();
+            return;
+        }
+
         if (_levelBegan)
         {
             if (InGameCheck.PlayingLevel())
