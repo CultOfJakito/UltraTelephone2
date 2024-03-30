@@ -23,6 +23,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             s_effectActive = true;
         }
 
+        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
         public override int GetEffectCost() => 2;
 
         [HarmonyPatch(typeof(Harpoon), nameof(Harpoon.Update))]

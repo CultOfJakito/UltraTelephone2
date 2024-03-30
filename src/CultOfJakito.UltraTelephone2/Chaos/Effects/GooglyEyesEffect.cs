@@ -26,6 +26,8 @@ public class GooglyEyesEffect : ChaosEffect
     public override int GetEffectCost() => 1;
     protected override void OnDestroy() => s_effectActive = false;
 
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
     [HarmonyPatch(typeof(SeasonalHats), "Start"), HarmonyPostfix]
     private static void OnSeasonalHatStart(SeasonalHats __instance)
     {

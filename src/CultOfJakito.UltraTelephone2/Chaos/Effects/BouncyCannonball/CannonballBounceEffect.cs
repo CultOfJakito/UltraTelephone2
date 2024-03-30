@@ -22,10 +22,8 @@ public class CannonballBounceEffect : ChaosEffect
     [HarmonyPrefix, HarmonyPatch(typeof(Cannonball), nameof(Cannonball.Start))]
     public static void Start(Cannonball __instance)
     {
-        if (!s_currentlyActive)
-        {
+        if (!s_currentlyActive || !s_enabled.Value)
             return;
-        }
 
         BouncyCannonball cb = __instance.gameObject.AddComponent<BouncyCannonball>();
     }
