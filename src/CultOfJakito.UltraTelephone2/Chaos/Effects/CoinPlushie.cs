@@ -11,7 +11,7 @@ using UnityEngine;
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
-    internal class CoinPlushy : ChaosEffect
+    internal class CoinPlushie : ChaosEffect
     {
 
         [Configgable("Chaos/Effects", "Coin Plushies")]
@@ -26,8 +26,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         public override void BeginEffect(UniRandom random)
         {
             Console.WriteLine("Starting Coin Plushies");
-            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab"));
-            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab"));
+            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab"));
+            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab"));
             // TODO: Add everybody else's Plushies in here :) (once they have them)
 
             _randomPlushieIndex = random.Next(0, _plushiePrefabs.Count - 1);
