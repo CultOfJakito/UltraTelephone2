@@ -19,17 +19,17 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static bool s_effectActive;
 
-        private static List<GameObject> _plushiePrefabs = new()
-        {
-            UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab"),
-            UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab"),
-            // TODO: Add everybody else's Plushies in here :) (once they have them)
-        };
+        private static List<GameObject> _plushiePrefabs = new();
 
         private static int _randomPlushieIndex;
 
         public override void BeginEffect(UniRandom random)
         {
+            Console.WriteLine("Starting Coin Plushies");
+            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("zelzmiy Niko Plush.prefab"));
+            _plushiePrefabs.Add(UT2Assets.GetAsset<GameObject>("HydraDevPlushie.prefab"));
+            // TODO: Add everybody else's Plushies in here :) (once they have them)
+
             _randomPlushieIndex = random.Next(0, _plushiePrefabs.Count - 1);
             s_effectActive = true;
         }
