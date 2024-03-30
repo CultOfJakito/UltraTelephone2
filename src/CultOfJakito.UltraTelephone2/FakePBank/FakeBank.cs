@@ -5,6 +5,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.FakePBank;
 public static class FakeBank
 {
     private static bool s_initialized;
+    public static event Action<long> OnMoneyChanged;
 
     public static long GetCurrentMoney()
     {
@@ -17,13 +18,17 @@ public static class FakeBank
         Initialize();
         UT2SaveData.SaveData.FakePAmount += amount;
         UT2SaveData.Save();
+        OnMoneyChanged?.Invoke(amount);
     }
 
     public static void SetMoney(long amount)
     {
         Initialize();
+        long lastP = UT2SaveData.SaveData.FakePAmount;
+        long difference = amount - lastP;
         UT2SaveData.SaveData.FakePAmount = amount;
         UT2SaveData.Save();
+        OnMoneyChanged?.Invoke(difference);
     }
 
     private static void Initialize()

@@ -305,7 +305,6 @@
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
     <Folder Include="Hydra\Chaos\" />
-    <Folder Include="UI\" />
   </ItemGroup>
 
   <ItemGroup>

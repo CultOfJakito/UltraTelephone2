@@ -54,26 +54,17 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             if (s_jumbleTextInstead.Value)
             {
                 string copy = text;
+                List<string> words = new List<string>(copy.Split(' '));
 
-                List<char> chars = new List<char>(copy.Where(x => x != ' '));
-                chars.Shuffle(s_rng);
-                int charIndex = 0;
-                StringBuilder sb = new StringBuilder();
-
-                for (int i = 0; i < copy.Length; i++)
+                for (int i = 0; i < words.Count; i++)
                 {
-                    if (copy[i] == ' ')
-                    {
-                        sb.Append(' ');
-                    }
-                    else
-                    {
-                        sb.Append(chars[charIndex]);
-                        charIndex++;
-                    }
+                    string word = words[i];
+                    char[] chars = s_rng.Shuffle(word.ToCharArray()).ToArray();
+                    words[i] = new string(chars);
                 }
 
-                text = sb.ToString();
+                copy = string.Join(" ", words);
+                text = copy;
             }
             else
             {

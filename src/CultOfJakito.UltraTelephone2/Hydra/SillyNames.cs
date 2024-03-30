@@ -43,10 +43,10 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             UniRandom rng = new UniRandom(seed);
 
             if(rng.Chance(s_prefixChance.Value))
-                name = rng.SelectRandomList(s_prefixes).ToUpper() + " " + name;
+                name = rng.SelectRandomList(s_prefixes) + " " + name;
 
             if(rng.Chance(s_suffixChance.Value))
-                name = name + " " + rng.SelectRandomList(s_suffixes).ToUpper();
+                name = name + " " + rng.SelectRandomList(s_suffixes);
 
             return name;
         }
@@ -58,7 +58,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
                 return;
 
             string bossName = __instance.bossName;
-            __instance.bossName = SillifyName(bossName);
+            __instance.bossName = SillifyName(bossName).ToUpper();
         }
 
         public override void BeginEffect(UniRandom random)
