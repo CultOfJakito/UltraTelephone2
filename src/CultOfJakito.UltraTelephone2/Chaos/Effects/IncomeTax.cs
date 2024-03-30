@@ -33,6 +33,6 @@ public class IncomeTax : ChaosEffect
     {
         if (!s_currentlyActive && !s_enabled.Value)
             return;
-        __instance.pointsText.text += "<color=red>(-30%)</color>";
+        __instance.pointsText.text += "<color=red>(Income Tax -30%)</color>";
     }
 }
