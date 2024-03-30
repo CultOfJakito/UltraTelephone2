@@ -3,7 +3,6 @@ using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 

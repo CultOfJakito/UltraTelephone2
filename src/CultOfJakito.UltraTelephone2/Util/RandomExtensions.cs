@@ -73,4 +73,15 @@ internal static class RandomExtensions
 
         return source;
     }
+
+    public static void ConfigureForUltrakill(this AudioSource source)
+    {
+        source.spatialBlend = 1f;
+
+        source.outputAudioMixerGroup = UkPrefabs.MainMixer;
+
+        source.rolloffMode = AudioRolloffMode.Linear;
+        source.minDistance = 15f;
+        source.maxDistance = 65f;
+    }
 }
