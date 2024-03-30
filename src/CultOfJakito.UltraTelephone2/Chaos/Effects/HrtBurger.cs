@@ -1,6 +1,5 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
@@ -62,9 +61,5 @@ internal class HRTBurger : ChaosEffect
         }
     }
 
-    public override void Dispose()
-    {
-        s_effectActive = false;
-        base.Dispose();
-    }
+    protected override void OnDestroy() => s_effectActive = false;
 }

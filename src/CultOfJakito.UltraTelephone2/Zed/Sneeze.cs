@@ -1,15 +1,13 @@
-using CultOfJakito.UltraTelephone2.Chaos;
-using UnityEngine;
 using System.Collections;
-using HarmonyLib;
-using UnityEngine.Events;
-using CultOfJakito.UltraTelephone2.DependencyInjection;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Chaos;
+using HarmonyLib;
+using UnityEngine;
 
 //[RegisterChaosEffect]
 public class Sneeze : ChaosEffect
 {
-    [Configgable("Chaos/Effects", "Sneeze")]
+    //[Configgable("Chaos/Effects", "Sneeze")]
     private static ConfigToggle s_enabled = new(true);
 
     public override void BeginEffect(UniRandom random)
@@ -52,6 +50,8 @@ public class Sneeze : ChaosEffect
     {
         // Thanos snap the map
     }
+
+    protected override void OnDestroy() { }
 
     public override int GetEffectCost() => 1;
 }

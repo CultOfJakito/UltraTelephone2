@@ -1,10 +1,9 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Chaos;
-using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [RegisterChaosEffect]
     public class GamerLights : ChaosEffect
@@ -108,10 +107,9 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             return 1;
         }
 
-        public override void Dispose()
+        protected override void OnDestroy()
         {
             s_enabled.OnValueChanged -= OnEnabledChanged;
-            base.Dispose();
         }
 
         private HashSet<int> lightsChecked = new HashSet<int>();

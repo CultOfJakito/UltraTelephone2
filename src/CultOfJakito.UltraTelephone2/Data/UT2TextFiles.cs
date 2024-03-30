@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Util;
-using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Data
 {
@@ -18,6 +14,8 @@ namespace CultOfJakito.UltraTelephone2.Data
         public static TextListFile S_CantReadWordsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "cantReadWords.txt"), Properties.Resources.cantReadWords);
         public static TextListFile S_PonderPrompts { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "ponder.txt"), Properties.Resources.ponder);
         public static TextListFile S_ShiteTipsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "shiteTips.txt"), Properties.Resources.shiteTips);
+        public static TextListFile S_EnemyNames { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "enemyNames.txt"), Properties.Resources.enemyNames);
+        public static TextListFile S_WordList10k { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "wordlist.10000.txt"), Properties.Resources.wordlist_10000);
 
         public static void ReloadFiles()
         {
@@ -27,6 +25,8 @@ namespace CultOfJakito.UltraTelephone2.Data
             S_CantReadWordsFile.Load();
             S_PonderPrompts.Load();
             S_ShiteTipsFile.Load();
+            S_EnemyNames.Load();
+            S_WordList10k.Load();
         }
     }
 }

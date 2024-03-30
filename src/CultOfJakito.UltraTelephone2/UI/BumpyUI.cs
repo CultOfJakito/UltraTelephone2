@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.UI
 {

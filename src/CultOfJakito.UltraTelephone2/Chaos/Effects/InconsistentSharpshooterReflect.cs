@@ -1,10 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
@@ -36,12 +35,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             return 3;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
-
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(RevolverBeam), "RicochetAimAssist"), HarmonyPrefix]
         public static bool OnRicochetAimAssist(RevolverBeam __instance)

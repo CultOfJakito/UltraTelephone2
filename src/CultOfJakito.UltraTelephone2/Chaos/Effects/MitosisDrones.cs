@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
-using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Data;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Hydra;
 using HarmonyLib;
-using Steamworks;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
@@ -38,12 +31,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         {
             return 6;
         }
-
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        protected override void OnDestroy() => s_effectActive = false;
 
         [HarmonyPatch(typeof(Drone), nameof(Drone.Start)), HarmonyPostfix]
         private static void OnDroneStart(Drone __instance)
@@ -65,6 +53,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 mitosis.TimeToMitosis = s_mitosisSpeed.Value;
                 mitosis.MitosisDelay = s_mitosisSpeed.Value;
                 mitosis.MaxGeneration = s_mitosisMax.Value;
+                mitosis.onClone = (clone) =>
+                {
+                    if(clone.TryGetComponent<EnemyIdentifier>(out EnemyIdentifier eid))
+                    {
+                        eid.dontCountAsKills = true;
+                    }
+                };
             }
         }
     }
@@ -76,6 +71,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         public float TimeToMitosis;
         public float MitosisDelay;
 
+        public Action<GameObject> onClone;
         public Func<bool> shouldKeepDuping;
 
         private void Update()
@@ -98,6 +94,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             TimeToMitosis = MitosisDelay;
             GameObject clone = GameObject.Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
             clone.GetComponent<MitosisObject>().Generation = Generation + 1;
+            onClone?.Invoke(clone);
         }
     }
 }

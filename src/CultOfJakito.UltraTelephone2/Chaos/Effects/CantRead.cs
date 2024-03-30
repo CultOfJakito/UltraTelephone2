@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
-using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
@@ -39,11 +35,8 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
             return 2;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
+        protected override void OnDestroy() => s_effectActive = false;
+
 
         [HarmonyPatch(typeof(ScanningStuff), nameof(ScanningStuff.ScanBook)), HarmonyPrefix]
         private static void OnScanBook(ScanningStuff __instance, ref string text)
@@ -73,7 +66,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra.Chaos
 
                 for (int i = 0; i < words; i++)
                 {
-                    sb.Append(s_rng.SelectRandomList(s_illegebleWords));
+                    sb.Append(s_rng.SelectRandom(s_illegebleWords));
                     sb.Append(' ');
                 }
 

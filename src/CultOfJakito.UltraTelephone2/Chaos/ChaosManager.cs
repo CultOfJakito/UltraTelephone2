@@ -2,6 +2,7 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos;
@@ -14,12 +15,19 @@ public class ChaosManager : MonoBehaviour, IDisposable
         return v > 0;
     });
 
+    [Configgable("Extras/Advanced", "Panic Button")]
+    private static ConfigKeybind s_panicButton = new ConfigKeybind(KeyCode.P);
+
     public void BeginEffects()
     {
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
-        int seed = UltraTelephoneTwo.Instance.Random.Seed ^ UniRandom.StringToSeed(SceneHelper.CurrentScene);
+        int seed = new SeedBuilder()
+            .WithGlobalSeed()
+            .WithSceneName()
+            .GetSeed();
+
         UniRandom random = new UniRandom(seed);
-        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, 32);
+        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
         {
@@ -46,11 +54,19 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     private List<IChaosEffect> activatedEffects;
 
+    public List<IChaosEffect> GetActiveEffects() => new(activatedEffects);
+
     private bool _levelBegan;
     private ChaosSessionContext _ctx;
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && s_panicButton.WasPeformed())
+        {
+            Dispose();
+            return;
+        }
+
         if (_levelBegan)
         {
             if (InGameCheck.PlayingLevel())
@@ -71,7 +87,6 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     private IEnumerable<IChaosEffect> GetChaosEffects()
     {
-        //TODO this fails to clean up monobehaviour types
         List<IChaosEffect> chaosEffects = new();
 
         foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
@@ -110,7 +125,13 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     public void Dispose()
     {
-        if(activatedEffects != null)
+        DisposeEffects();
+        Destroy(this);
+    }
+
+    private void DisposeEffects()
+    {
+        if (activatedEffects != null)
         {
             for (int i = 0; i < activatedEffects.Count; i++)
             {
@@ -123,7 +144,12 @@ public class ChaosManager : MonoBehaviour, IDisposable
             }
         }
 
-        Destroy(this);
+        activatedEffects = null;
+    }
+
+    private void OnDestory()
+    {
+        DisposeEffects();
     }
 }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Util
 {
@@ -51,7 +47,7 @@ namespace CultOfJakito.UltraTelephone2.Util
         public static Texture2D RandomTextureFromCache(UniRandom random)
         {
             if (cachedTextures.Length > 0)
-                return random.SelectRandom(cachedTextures);
+                return random.SelectRandomFromSet(cachedTextures);
 
             return null;
         }

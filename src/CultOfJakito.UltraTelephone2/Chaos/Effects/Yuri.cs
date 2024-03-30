@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
@@ -63,5 +59,9 @@ internal class Yuri : ChaosEffect
         bg.color = Color.white;
     }
 
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
     public override int GetEffectCost() => 1;
+
+    protected override void OnDestroy() => s_effectActive = false;
 }

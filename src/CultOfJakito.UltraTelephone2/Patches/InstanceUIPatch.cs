@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Assets;
+﻿using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
-using UltraTelephone.Hydra;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,10 +32,15 @@ namespace CultOfJakito.UltraTelephone2
 
         private static void InstanceMoneyCounter(RectTransform canvasRect)
         {
-            if (!InGameCheck.InLevel())
+            if (SceneHelper.CurrentScene == "Main Menu")
                 return;
 
             GameObject moneyCounterObject = GameObject.Instantiate(HydraAssets.MoneyHUD, canvasRect);
+        }
+
+        private static void InstanceCaptcha(RectTransform canvasRect)
+        {
+            GameObject captchaObject = GameObject.Instantiate(HydraAssets.CaptchaManager, canvasRect);
         }
     }
 }

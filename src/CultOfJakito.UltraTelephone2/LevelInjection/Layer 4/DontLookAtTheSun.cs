@@ -41,7 +41,6 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_4_2
             if (levelName == "Level 4-4")
                 return true;
 
-
             return false;
         }
 
@@ -158,11 +157,11 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_4_2
             float angle = Vector3.Angle(-toSun.normalized, lookDir.normalized);
 
             //not facing sun
-            if (angle > cam.fieldOfView * 0.35f)
+            if (angle > cam.fieldOfView * 0.2f)
                 return;
 
             float sunScaleY = sun.localScale.y;
-            float castOffsetRadius = sunScaleY * 0.35f;
+            float castOffsetRadius = sunScaleY * 0.2f;
 
             Vector3 nextCastPos = sunPos + (Vector3.up * castOffsetRadius);
             Vector3 toPlayer = camPos - nextCastPos;

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
@@ -29,12 +25,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             s_effectActive = true;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
-
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost() => 1;
@@ -55,5 +45,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             Instantiate(s_oreo, __instance.transform);
         }
+
+        protected override void OnDestroy() => s_effectActive = false;
+
     }
 }

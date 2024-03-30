@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 
-namespace CultOfJakito.UltraTelephone2.Hydra
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
-    //[RegisterChaosEffect]
+    [RegisterChaosEffect]
     public class AltMarksmanOnly : ChaosEffect
     {
         [Configgable("Chaos/Effects", "Alt Marksman Only")]
@@ -71,6 +67,8 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             ResetLoadout();
             base.Dispose();
         }
+
+        protected override void OnDestroy() { }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {

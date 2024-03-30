@@ -10,4 +10,6 @@ public abstract class ChaosEffect : MonoBehaviour, IChaosEffect, IDisposable
     public abstract int GetEffectCost();
 
     public virtual void Dispose() => Destroy(this);
+
+    protected abstract void OnDestroy();
 }

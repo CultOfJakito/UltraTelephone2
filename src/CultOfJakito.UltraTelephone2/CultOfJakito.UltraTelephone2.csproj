@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -304,7 +304,6 @@
     <Content Include="libs\Managed\Vertx.Debugging.Runtime.dll" />
     <Content Include="libs\Other\AngryLevelLoader.dll" />
     <Content Include="libs\Other\Configgy.dll" />
-    <Folder Include="Hydra\Chaos\" />
   </ItemGroup>
 
   <ItemGroup>

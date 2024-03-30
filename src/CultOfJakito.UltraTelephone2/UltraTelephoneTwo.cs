@@ -5,13 +5,14 @@ using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
-using CultOfJakito.UltraTelephone2.Hydra;
-using CultOfJakito.UltraTelephone2.Hydra.EA;
+using CultOfJakito.UltraTelephone2.Fun;
+using CultOfJakito.UltraTelephone2.Fun.Coin;
+using CultOfJakito.UltraTelephone2.Fun.EA;
+using CultOfJakito.UltraTelephone2.Fun.Herobrine;
 using CultOfJakito.UltraTelephone2.LevelInjection;
+using CultOfJakito.UltraTelephone2.Patches;
 using CultOfJakito.UltraTelephone2.Util;
-using CultOfJakito.UltraTelephone2.Zed;
 using HarmonyLib;
-using UltraTelephone.Hydra;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2;
@@ -39,8 +40,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         InGameCheck.Init();
 
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
-        Patches.PatchAll();
-
 
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
         Random = new UniRandom(globalSeed);
@@ -58,8 +57,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         InitializeObjects();
 
-        InGameCheck.OnLevelChanged += DoThing;
         InGameCheck.OnLevelChanged += OnSceneLoaded;
+        AutoSaveUpdate();
     }
 
     private void InitializeObjects()
@@ -70,6 +69,15 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
+
+        GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
+        GameEvents.OnEnemyDeath += (v) =>
+        {
+            if(Random.Chance(0.05f))
+            {
+                AnnoyingPopUp.OkDialogue("Nice Job!", "Good job killing that enemy!");
+            }
+        };
 
         GameEvents.OnPlayerHurt += (e) =>
         {
@@ -100,16 +108,20 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         ChaosManager.BeginEffects();
     }
 
-    private void DoThing(string level)
+    private void AutoSaveUpdate()
     {
-        if (!InGameCheck.InLevel())
-        {
-            return;
-        }
+        if(UT2SaveData.IsDirty)
+            UT2SaveData.Save();
 
-        InGameCheck.OnLevelChanged -= DoThing;
-        ModalDialogue.ShowSimple("ULTRATELEPHONE", "ULTRA TELEPHONE", _ => { }, "No?", "FUCK NO");
+        Invoke(nameof(AutoSaveUpdate), 5f);
     }
+
+    private void OnApplicationQuit()
+    {
+        //Make sure to save on quit so we don't lose data!
+        UT2SaveData.Save();
+    }
+
 
     private static int PersonalizationLevelToSeed(PersonalizationLevel level)
     {

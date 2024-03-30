@@ -1,11 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace UltraTelephone.Hydra
+namespace CultOfJakito.UltraTelephone2.Chaos
 {
     [RegisterChaosEffect]
     public class BirdFreer : ChaosEffect
@@ -19,7 +17,6 @@ namespace UltraTelephone.Hydra
         [Configgable("Chaos/Effects/Freebird")]
         private static ConfigInputField<int> maxBirdAmount = new ConfigInputField<int>(18, (v) => { return v >= 1 && v >= minBirdAmount.Value; });
 
-        private static bool s_effectActive;
         private GameObject freeBird;
 
         private List<GameObject> activeBirds = new List<GameObject>();
@@ -29,13 +26,13 @@ namespace UltraTelephone.Hydra
 
         private float timeTillNextBird = 0.0f;
 
-
         public override void Dispose()
         {
             KillAll();
-            s_effectActive = false;
             base.Dispose();
         }
+
+        protected override void OnDestroy() {}
 
         private void KillAll()
         {
@@ -52,11 +49,6 @@ namespace UltraTelephone.Hydra
 
         private void Update()
         {
-            if (!s_effectActive)
-            {
-                return;
-            }
-
             if(timeTillNextBird > 0f)
             {
                 timeTillNextBird = Mathf.Max(0f, timeTillNextBird - Time.deltaTime);
@@ -79,6 +71,8 @@ namespace UltraTelephone.Hydra
                 Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
                 spawnPos += randomOffset * 2.1f;
                 GameObject newbird = GameObject.Instantiate<GameObject>(freeBird, spawnPos, Quaternion.identity);
+                newbird.AddComponent<FreedBird>();
+
                 activeBirds.Add(newbird);
             }
         }
@@ -88,11 +82,10 @@ namespace UltraTelephone.Hydra
             if(freeBird == null)
                 freeBird = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/FreeBird.prefab");
 
-            s_effectActive = true;
             currentBirdAmount = random.Range(minBirdAmount.Value, maxBirdAmount.Value);
         }
 
-        public override int GetEffectCost() => 1;
+        public override int GetEffectCost() => 3;
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     }
 
