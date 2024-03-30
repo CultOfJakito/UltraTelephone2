@@ -21,7 +21,7 @@ public class RandomDashVelocity : ChaosEffect
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Dodge)), HarmonyPostfix]
     public static void SpeedLimit(NewMovement __instance)
     {
-        if (!s_currentlyActive && !s_enabled.Value)
+        if (!s_currentlyActive || !s_enabled.Value)
             return;
         __instance.rb.velocity *= Random.Range(0.5f, 5f);
     }

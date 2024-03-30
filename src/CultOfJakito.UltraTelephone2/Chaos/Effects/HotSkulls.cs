@@ -23,7 +23,7 @@ public class HotSkulls : ChaosEffect
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Update)), HarmonyPostfix]
     public static void ItBurns(NewMovement __instance)
     {
-        if (!s_effectActive && !s_enabled.Value)
+        if (!s_effectActive || !s_enabled.Value)
             return;
 
         s_timeSinceLastTick += Time.deltaTime;

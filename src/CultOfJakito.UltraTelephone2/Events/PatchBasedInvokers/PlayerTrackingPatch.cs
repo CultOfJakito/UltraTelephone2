@@ -1,5 +1,6 @@
 ﻿using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2
 {
@@ -97,5 +98,29 @@ namespace CultOfJakito.UltraTelephone2
         [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.Restart))]
         [HarmonyPrefix]
         public static void Prefix() => s_diedToRespawn = NewMovement.Instance.hp <= 0;
+
+        [HarmonyPatch(typeof(PlayerActivator), nameof(PlayerActivator.OnTriggerEnter)), HarmonyPrefix]
+        private static void OnPreActivated(PlayerActivator __instance, Collider other, out bool __state)
+        {
+            __state = false;
+
+            if (!other.CompareTag("Player"))
+                return;
+
+            if (__instance.activated)
+                return;
+
+            __state = true;
+        }
+
+        [HarmonyPatch(typeof(PlayerActivator), nameof(PlayerActivator.OnTriggerEnter)), HarmonyPostfix]
+        private static void OnPostActivated(PlayerActivator __instance, Collider other, bool __state)
+        {
+            //Player was activated.
+            if(__state)
+            {
+                GameEvents.OnPlayerActivated?.Invoke(new PlayerActivatedEvent(SceneHelper.CurrentScene, NewMovement.instance));
+            }
+        }
     }
 }

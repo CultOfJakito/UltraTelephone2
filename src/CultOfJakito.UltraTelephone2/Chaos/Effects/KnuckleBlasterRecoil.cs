@@ -23,7 +23,7 @@ public class KnuckleBlasterRecoil : ChaosEffect
     [HarmonyPatch(typeof(Punch), nameof(Punch.BlastCheck)), HarmonyPostfix]
     public static void BeamExtension()
     {
-        if (!s_effectActive && !s_enabled.Value)
+        if (!s_effectActive || !s_enabled.Value)
             return;
 
         Vector3 currentVelocity = NewMovement.Instance.rb.velocity;

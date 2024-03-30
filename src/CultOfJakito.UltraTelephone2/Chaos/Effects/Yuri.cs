@@ -59,6 +59,8 @@ internal class Yuri : ChaosEffect
         bg.color = Color.white;
     }
 
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
     public override int GetEffectCost() => 1;
 
     protected override void OnDestroy() => s_effectActive = false;
