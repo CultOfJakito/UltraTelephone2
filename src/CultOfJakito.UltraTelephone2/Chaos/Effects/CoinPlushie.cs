@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
@@ -26,12 +22,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         {
 
             Console.WriteLine("Starting Coin Plushies");
-            _plushiePrefabs ??= new List<GameObject>();
+            _plushiePrefabs ??= new List<GameObject>()
             {
-                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab");
-                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab");
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab")
             };
-
+            Console.WriteLine("plushie count " + _plushiePrefabs.Count);
             s_random = random;
             s_effectActive = true;
         }
@@ -46,11 +42,22 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
+            // 10% plushy chance
+            if (s_random.Chance(0.9f))
+                return;
+
             GameObject plushie = s_random.SelectRandomList(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
-            plush.GetComponent<Rigidbody>().AddForce(__instance.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
+            plush.GetComponent<Rigidbody>().AddForce(
+                CameraController.instance.transform.forward * 20 + Vector3.up * 15f + (NewMovement.Instance.ridingRocket ?
+                NewMovement.Instance.ridingRocket.rb.velocity :
+                NewMovement.Instance.rb.velocity) + Vector3.zero,
+                ForceMode.VelocityChange);
+
+            Console.WriteLine(__instance.GetComponent<Rigidbody>().velocity);
 
             Destroy(__instance.gameObject);
+
         }
     }
 }
