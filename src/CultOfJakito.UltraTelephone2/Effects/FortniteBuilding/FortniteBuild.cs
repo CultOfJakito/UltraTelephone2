@@ -6,6 +6,7 @@ public class FortniteBuild : MonoBehaviour
 {
     public const KeyCode EditBind = KeyCode.G;
     public BuildChunk[] Edits;
+    [field: SerializeField] public BuildTypes BuildType { get; private set; }
     private bool _editing;
 
     private void Update()
@@ -40,9 +41,22 @@ public class FortniteBuild : MonoBehaviour
 
     public void StopEditing()
     {
+        bool hasEnabledChunks = false;
+
         foreach (BuildChunk chunk in Edits)
         {
             chunk.StopEditing();
+            hasEnabledChunks = hasEnabledChunks || chunk.Enabled;
         }
+
+        if (Edits.Length != 0 && !hasEnabledChunks)
+        {
+            GetComponent<Breakable>().Break();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        BuildingControls.Instance.RemoveBuildFromList(this);
     }
 }

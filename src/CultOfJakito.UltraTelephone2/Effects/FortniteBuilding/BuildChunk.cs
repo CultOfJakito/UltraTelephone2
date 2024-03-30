@@ -8,7 +8,7 @@ public class BuildChunk : MonoBehaviour
     public Material EditEnabledMaterial;
     public Material EditDisabledMaterial;
     private Renderer _renderer;
-    private bool _enabled;
+    public bool Enabled { get; private set; } = true;
     private bool _editing = false;
     private bool _editedInThisLook = false;
 
@@ -20,20 +20,20 @@ public class BuildChunk : MonoBehaviour
     public void StartEditing()
     {
         gameObject.SetActive(true);
-        _renderer.material = _enabled ? EditEnabledMaterial : EditDisabledMaterial;
+        _renderer.material = Enabled ? EditEnabledMaterial : EditDisabledMaterial;
         _editing = true;
     }
 
     public void StopEditing()
     {
-        gameObject.SetActive(_enabled);
+        gameObject.SetActive(Enabled);
         _renderer.material = DefaultMaterial;
         _editing = false;
     }
 
     public void RefreshEditingMaterial()
     {
-        _renderer.material = _enabled ? EditEnabledMaterial : EditDisabledMaterial;
+        _renderer.material = Enabled ? EditEnabledMaterial : EditDisabledMaterial;
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class BuildChunk : MonoBehaviour
                 return;
             }
 
-            _enabled = !_enabled;
+            Enabled = !Enabled;
             _editedInThisLook = true;
             RefreshEditingMaterial();
         }

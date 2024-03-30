@@ -193,7 +193,7 @@
       "url": "https://packages.unity.com"
     },
     "com.vertx.debugging": {
-      "version": "2.3.0",
+      "version": "2.1.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
