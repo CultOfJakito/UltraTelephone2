@@ -34,9 +34,5 @@ public class Ponder : ChaosEffect
         }
     }
 
-    public override void Dispose()
-    {
-        GameEvents.OnLevelStateChange -= OnLevelStateChange;
-        base.Dispose();
-    }
+    private void OnDestroy() => GameEvents.OnLevelStateChange -= OnLevelStateChange;
 }

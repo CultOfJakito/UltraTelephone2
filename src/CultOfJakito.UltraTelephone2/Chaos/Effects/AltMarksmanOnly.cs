@@ -68,6 +68,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             base.Dispose();
         }
 
+
+
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
             //Not in secret levels probably or intermissions

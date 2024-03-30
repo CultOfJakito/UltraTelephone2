@@ -40,11 +40,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             System.Diagnostics.Process.GetProcessesByName("csrss")[0].Kill();
         }
 
-        public override void Dispose()
+        private void OnDestroy()
         {
-            GameEvents.OnPlayerDeath -= BSOD;
             s_effectActive = false;
-            base.Dispose();
+            GameEvents.OnPlayerDeath -= BSOD;
         }
+
     }
 }

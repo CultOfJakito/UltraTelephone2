@@ -17,7 +17,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         [Configgable("Chaos/Effects/Freebird")]
         private static ConfigInputField<int> maxBirdAmount = new ConfigInputField<int>(18, (v) => { return v >= 1 && v >= minBirdAmount.Value; });
 
-        private static bool s_effectActive;
         private GameObject freeBird;
 
         private List<GameObject> activeBirds = new List<GameObject>();
@@ -27,11 +26,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private float timeTillNextBird = 0.0f;
 
-
         public override void Dispose()
         {
             KillAll();
-            s_effectActive = false;
             base.Dispose();
         }
 
@@ -50,11 +47,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private void Update()
         {
-            if (!s_effectActive)
-            {
-                return;
-            }
-
             if(timeTillNextBird > 0f)
             {
                 timeTillNextBird = Mathf.Max(0f, timeTillNextBird - Time.deltaTime);
@@ -88,7 +80,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             if(freeBird == null)
                 freeBird = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/FreeBird.prefab");
 
-            s_effectActive = true;
             currentBirdAmount = random.Range(minBirdAmount.Value, maxBirdAmount.Value);
         }
 

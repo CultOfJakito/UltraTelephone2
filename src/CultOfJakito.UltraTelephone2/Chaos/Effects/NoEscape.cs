@@ -29,7 +29,7 @@ public class NoEscape : ChaosEffect
         pauseMenuTf.transform.GetComponentsInChildren<Button>().FirstOrDefault(x => x.name == "Restart Checkpoint")?.gameObject.SetActive(false);
     }
 
-    public override int GetEffectCost() => 4;
+    public override int GetEffectCost() => 5;
 
     public override bool CanBeginEffect(ChaosSessionContext ctx)
     {

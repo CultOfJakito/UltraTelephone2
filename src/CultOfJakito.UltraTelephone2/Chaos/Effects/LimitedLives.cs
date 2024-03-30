@@ -62,10 +62,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
             });
         }
 
-        public override void Dispose()
-        {
-            GameEvents.OnPlayerDeath -= OnPlayerDeath;
-            base.Dispose();
-        }
+        private void OnDestroy() => GameEvents.OnPlayerDeath -= OnPlayerDeath;
+
     }
 }

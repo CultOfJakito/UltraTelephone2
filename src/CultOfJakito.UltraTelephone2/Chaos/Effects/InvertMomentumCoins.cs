@@ -10,24 +10,25 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 public class InvertMomentumCoins : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Inverted Coin Momentum")]
-    public static ConfigToggle Enabled = new(true);
+    private static ConfigToggle s_enabled = new(true);
 
     private static bool s_currentlyActive;
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+    public override int GetEffectCost() => 4;
 
     [HarmonyPostfix, HarmonyPatch(typeof(Coin), nameof(Coin.Start))]
     public static void Patch(Coin __instance)
     {
-        if (!s_currentlyActive)
-        {
+        if (!s_currentlyActive && !s_enabled.Value)
             return;
-        }
 
         __instance.gameObject.AddComponent<CoinMomentumInverter>();
     }
+
+    private void OnDestroy() => s_currentlyActive = false;
+
 }
 
 public class CoinMomentumInverter : MonoBehaviour

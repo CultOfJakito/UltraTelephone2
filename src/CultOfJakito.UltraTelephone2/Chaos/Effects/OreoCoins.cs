@@ -25,12 +25,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             s_effectActive = true;
         }
 
-        public override void Dispose()
-        {
-            s_effectActive = false;
-            base.Dispose();
-        }
-
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override int GetEffectCost() => 1;
@@ -51,5 +45,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             Instantiate(s_oreo, __instance.transform);
         }
+
+        private void OnDestroy() => s_effectActive = false;
+
     }
 }

@@ -25,6 +25,9 @@ public class BuildingEffect : ChaosEffect
         Destroy(NewMovement.Instance.gameObject.GetComponent<BuildingControls>());
     }
 
+    private void OnDestroy() => CurrentlyActive = false;
+
+
     public override int GetEffectCost() => 3;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 }
