@@ -75,7 +75,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         {
             if(Random.Chance(0.05f))
             {
-                AnnoyingPopUp.PopUp();
+                AnnoyingPopUp.OkDialogue("Nice Job!", "Good job killing that enemy!");
             }
         };
 

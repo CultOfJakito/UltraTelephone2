@@ -22,7 +22,7 @@ public class JumpscareEffect : ChaosEffect
         s_effectActive = true;
     }
 
-    public override int GetEffectCost() => 5;
+    public override int GetEffectCost() => 2;
     public override void Dispose()
     {
         s_effectActive = false;

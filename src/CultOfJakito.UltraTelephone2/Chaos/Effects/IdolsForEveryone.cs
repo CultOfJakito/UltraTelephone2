@@ -73,7 +73,7 @@ public class IdolsForEveryone : ChaosEffect
         });
     }
 
-    public override int GetEffectCost() => 5;
+    public override int GetEffectCost() => 8;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     private void OnDestroy() => s_effectActive = false;
 }

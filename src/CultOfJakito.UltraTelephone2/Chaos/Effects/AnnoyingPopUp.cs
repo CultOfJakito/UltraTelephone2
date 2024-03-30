@@ -1,6 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;
@@ -380,7 +381,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         private ModalDialogueEvent CreateRandomized()
         {
             int options = s_rng.Next(1, 4);
-            _randomDialogueEvent.Message = s_rng.SelectRandom(s_messages);
+            if (s_rng.Bool())
+                _randomDialogueEvent.Message = s_rng.SelectRandom(s_messages);
+            else
+                _randomDialogueEvent.Message = s_rng.SelectRandomList(UT2TextFiles.S_ShiteTipsFile.TextList);
             _randomDialogueEvent.Title = s_rng.SelectRandom(s_titles);
             _randomDialogueEvent.Options = new DialogueBoxOption[options];
             for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)
