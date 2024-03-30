@@ -14,8 +14,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
     internal class RotateScrewedEnemies : ChaosEffect
     {
 
-        [Configgable("Chaos/Effects", "Rotate with Screwdriver")]
+        [Configgable("Chaos/Effects/Rotate Screwdriver", "Rotate with Screwdriver")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
+
+        [Configgable("Chaos/Effects/Rotate Screwdriver", "Rotation Amount")]
+        private static ConfigInputField<int> s_rotationAmount = new(14400);
 
         private static bool s_effectActive = false;
 
@@ -41,6 +44,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 if (__instance.drilling)
                 {
                     __instance.transform.Rotate(Vector3.forward, -14400f * Time.deltaTime);
+                    Vector3 vec = new();
+                    vec = Vector3.forward;
+                    __instance.target.eid.transform.Rotate(vec, s_rotationAmount.value * Time.deltaTime);
                 }
             }
         }
