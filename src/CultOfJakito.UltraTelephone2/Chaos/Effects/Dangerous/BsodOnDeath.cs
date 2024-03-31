@@ -15,18 +15,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
         [Configgable("Chaos/Effects/Dangerous", "BSOD On Death")]
         private static ConfigToggle s_enabled = new ConfigToggle(false);
 
-        private static uint[] s_errors =
-        {
-            0x000AD105, //adios
-            0xDECEA5ED, //decreased
-            0x000BA5ED, //based
-            0xF0CACC1A, //foccacia
-            0x0FA1AFE1, //falafel
-            0x00C0FFEE, //coffee
-            0x00EEFF0C, //spent backwards is eefoc, which is funny because
-            0x000BA115, //i blame zelzmiy for these two
-            0x000B00B5, //the second one in question
-        };
         private bool s_effectActive = false;
         private UniRandom _rng;
 
@@ -71,9 +59,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            Debug.Log("Attempting bsod o7");
             RtlAdjustPrivilege(19, true, false, out _);
-            NtRaiseHardError(_rng.SelectRandom(s_errors), 0, 0, IntPtr.Zero, 6, out uint _);
+            NtRaiseHardError(0xC000008E, 0, 0, IntPtr.Zero, 6, out uint _);
         }
 
         protected override void OnDestroy()
