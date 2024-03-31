@@ -28,6 +28,8 @@ internal class Yuri : ChaosEffect
         s_effectActive = true;
     }
 
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
     [HarmonyPatch(typeof(ShopZone), nameof(ShopZone.Start)), HarmonyPostfix]
     public static void AddYuriToShop(ShopZone __instance)
     {
