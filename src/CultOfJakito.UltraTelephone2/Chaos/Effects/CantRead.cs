@@ -30,10 +30,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-        public override int GetEffectCost()
-        {
-            return 2;
-        }
+        public override int GetEffectCost() => 1;
 
         protected override void OnDestroy() => s_effectActive = false;
 

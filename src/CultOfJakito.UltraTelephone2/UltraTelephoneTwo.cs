@@ -54,7 +54,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
 
-
         InitializeObjects();
 
         InGameCheck.OnLevelChanged += OnSceneLoaded;
@@ -65,6 +64,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     {
         gameObject.AddComponent<LevelInjectionManager>();
 
+        AlterFriendAvatars.Load();
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues

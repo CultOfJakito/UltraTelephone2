@@ -25,5 +25,8 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static GameObject CoinDiamond => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinDiamond.prefab");
         public static GameObject CoinCollectFX => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/UT1/TelephoneMod/hydrabundle/Prefab/CollectableCoinFX.prefab");
         public static GameObject CaptchaManager => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/CaptchaManager.prefab");
+
+        public static GameObject HoneyBunModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/HoneyBun/honeybun.fbx");
+        public static GameObject RocketFishModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/RocketFish/rocketfish.fbx");
     }
 }

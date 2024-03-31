@@ -37,10 +37,30 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player"))
+            if (other.CompareTag("Player"))
+            {
+                Collected();
+                return;
+            }
+
+            if(other.TryGetComponent<HurtZone>(out HurtZone _))
+                Dispose();
+
+            if(other.TryGetComponent<OutOfBounds>(out OutOfBounds __))
+                Dispose();
+
+            if(other.TryGetComponent<DeathZone>(out DeathZone ___))
+                Dispose();
+        }
+
+        private bool destroyed;
+        private void Dispose()
+        {
+            if (destroyed)
                 return;
 
-            Collected();
+            destroyed = true;
+            GameObject.Destroy(gameObject);
         }
 
         private void Collected()
@@ -51,7 +71,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             if (specialCoin)
                 RandomCoinAtPoint(transform.position);
 
-            Destroy(gameObject);
+            Dispose();
         }
 
         private static PhysicMaterial mildlyBouncy;

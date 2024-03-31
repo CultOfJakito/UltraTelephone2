@@ -30,9 +30,16 @@ public class RealisticExplosions : ChaosEffect
     [HarmonyPatch(typeof(Explosion), nameof(Explosion.Start)), HarmonyPostfix]
     public static void SoundReplacement(Explosion __instance)
     {
-        if (!s_effectActive && !s_enabled.Value)
+        if (!s_effectActive || !s_enabled.Value)
             return;
-        __instance.GetComponent<AudioSource>().PlayOneShot(Sound);
+
+        AudioSource source = __instance.GetComponentInChildren<AudioSource>();
+
+        if(source != null)
+        {
+            source.clip = Sound;
+            source.Play();
+        }
     }
 
     protected override void OnDestroy() => s_effectActive = false;

@@ -14,6 +14,7 @@ namespace CultOfJakito.UltraTelephone2
             RectTransform rect = __instance.GetComponent<RectTransform>();
             MakeTitleImageUT2(rect);
             InstanceMoneyCounter(rect);
+            InstanceCaptcha(rect);
         }
 
         //Sets the main title image to ULTRATELEPHONE 2 logo

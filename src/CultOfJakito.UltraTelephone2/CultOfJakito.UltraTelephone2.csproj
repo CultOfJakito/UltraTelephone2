@@ -310,4 +310,8 @@
     <None Remove="libs\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\ProfilePictures\" />
+  </ItemGroup>
+
 </Project>

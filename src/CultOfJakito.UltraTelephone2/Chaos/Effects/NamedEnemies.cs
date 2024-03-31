@@ -85,6 +85,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         [HarmonyPatch(typeof(SeasonalHats), nameof(SeasonalHats.Start)), HarmonyPostfix]
         private static void OnEnemySpawned(SeasonalHats __instance)
         {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
             EnemyIdentifier enemy = __instance.GetComponentInParent<EnemyIdentifier>();
             if (enemy == null) //only do this on enemies.
                 return;
