@@ -13,6 +13,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
     {
         public ClimbingText climbingText;
 
+        public bool ValidateBetAmount = true;
+
         public long BetAmount { get; private set; }
         private long lastBetAmount;
         private bool locked;
@@ -44,8 +46,17 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (locked)
                 return;
 
-            long newBet = Math.Min(CasinoManager.Instance.Chips, Math.Max(0L, BetAmount + amount));
-            BetAmount = newBet;
+            if(ValidateBetAmount)
+            {
+                long newBet = Math.Min(CasinoManager.Instance.Chips, Math.Max(0L, BetAmount + amount));
+                BetAmount = newBet;
+            }
+            else
+            {
+                BetAmount = Math.Max(0L, BetAmount + amount);
+            }
+
+            
             UpdateBetText();
         }
 
@@ -54,8 +65,16 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (locked)
                 return;
 
-            long newBet = Math.Min(CasinoManager.Instance.Chips, Math.Max(0L, (long)(BetAmount * multiplier)));
-            BetAmount = newBet;
+            if (ValidateBetAmount)
+            {
+                long newBet = Math.Min(CasinoManager.Instance.Chips, Math.Max(0L, (long)(BetAmount * multiplier)));
+                BetAmount = newBet;
+            }
+            else
+            {
+                BetAmount = Math.Max(0L, (long)(BetAmount * multiplier));
+            }
+
             UpdateBetText();
         }
 
@@ -88,8 +107,16 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (locked)
                 return;
 
-            long newBet = Math.Min(CasinoManager.Instance.Chips, lastBetAmount);
-            BetAmount = newBet;
+            if (ValidateBetAmount)
+            {
+                long newBet = Math.Min(CasinoManager.Instance.Chips, lastBetAmount);
+                BetAmount = newBet;
+            }
+            else
+            {
+                BetAmount = lastBetAmount;
+            }
+            
             UpdateBetText();
         }
     }
