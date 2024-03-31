@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 public class OpenUrlOnDeath : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Open URL On Death")]
-    private static ConfigToggle s_openUrlOnDeath = new(true);
+    private static ConfigToggle s_enabled = new(true);
 
     private static readonly string[] s_urlPool =
     [
@@ -57,6 +57,9 @@ public class OpenUrlOnDeath : ChaosEffect
 
     private void OnPlayerDied()
     {
+        if (!s_enabled.Value)
+            return;
+
         if (_random.Float() <= _chance)
         {
             if (_urlPool.Count <= 0)
@@ -72,8 +75,8 @@ public class OpenUrlOnDeath : ChaosEffect
         }
     }
 
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_openUrlOnDeath.Value;
-    public override int GetEffectCost() => 1;
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => base.CanBeginEffect(ctx) && s_enabled.Value;
+    public override int GetEffectCost() => 2;
 
     protected override void OnDestroy()
     {

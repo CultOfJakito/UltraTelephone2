@@ -1,9 +1,10 @@
 ﻿using CultOfJakito.UltraTelephone2.Assets;
+using Steamworks;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2;
 
-internal static class RandomExtensions
+internal static class Utility
 {
     public static void ForEach<T>(this IEnumerable<T> col, Action<T> action)
     {
@@ -83,5 +84,24 @@ internal static class RandomExtensions
         source.rolloffMode = AudioRolloffMode.Linear;
         source.minDistance = 15f;
         source.maxDistance = 65f;
+    }
+
+    /// <summary>
+    /// Shorthand check for Hakita and Pitr :3c
+    /// </summary>
+    /// <returns></returns>
+    public static bool UserIsDeveloper()
+    {
+        if (!SteamClient.IsValid || !SteamClient.IsLoggedOn)
+            return false;
+
+        ulong steamId = SteamClient.SteamId.Value;
+        for (int i = 0; i < SteamController.BuiltInVerifiedSteamIds.Length; i++)
+        {
+            if (steamId == SteamController.BuiltInVerifiedSteamIds[i])
+                return true;
+        }
+
+        return false;
     }
 }

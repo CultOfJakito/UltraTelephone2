@@ -9,9 +9,10 @@ using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Patches
 {
+    [HarmonyPatch]
     public static class IncomeTaxPatch
     {
-        [Configgable("Patch", "Taxes")]
+        [Configgable("Patches", "Taxes")]
         private static ConfigToggle s_enabled = new(true);
 
 
@@ -21,7 +22,9 @@ namespace CultOfJakito.UltraTelephone2.Patches
             if (!s_enabled.Value)
                 return;
 
-            float tax = points * 0.3f;
+            float taxRate = (Utility.UserIsDeveloper()) ? 0.15f : 0.3f;
+
+            float tax = points * taxRate;
 
             //Round up >:3c
             int taxAmount = Mathf.CeilToInt(tax);
@@ -41,7 +44,22 @@ namespace CultOfJakito.UltraTelephone2.Patches
             if (s_taxAmountBuffer <= 0)
                 return;
 
-            __instance.pointsText.text += $"<color=red>Income Tax [30%] - {FakeBank.FormatMoney(s_taxAmountBuffer)}</color>";
+            string rate = Utility.UserIsDeveloper() ? "15%" : "30%";
+            StringBuilder sb = new();
+            sb.Append("<color=red>Income Tax [");
+            sb.Append(rate);
+            sb.Append("] ");
+
+            if (Utility.UserIsDeveloper())
+            {
+                sb.Append("<color=yellow>(DEV RATE)</color> ");
+            }
+
+            sb.Append("- ");
+            sb.Append(FakeBank.FormatMoney(s_taxAmountBuffer));
+            sb.Append("</color>\n");
+
+            __instance.pointsText.text += sb.ToString();
         }
     }
 }

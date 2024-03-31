@@ -30,9 +30,16 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private ConfigBuilder _config;
     public static UltraTelephoneTwo Instance { get; private set; }
 
+    const int MAX_LOG_LINES = 100;
+    public static List<string> LogBuffer;
+
     private void Awake()
     {
         Instance = this;
+
+        LogBuffer = new List<string>();
+        Application.logMessageReceived += Application_logMessageReceived;
+
 
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -54,10 +61,18 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
 
+
         InitializeObjects();
 
         InGameCheck.OnLevelChanged += OnSceneLoaded;
         AutoSaveUpdate();
+    }
+
+    private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
+    {
+        LogBuffer.Insert(0, condition);
+        if (LogBuffer.Count > MAX_LOG_LINES)
+            LogBuffer.RemoveAt(LogBuffer.Count - 1);
     }
 
     private void InitializeObjects()

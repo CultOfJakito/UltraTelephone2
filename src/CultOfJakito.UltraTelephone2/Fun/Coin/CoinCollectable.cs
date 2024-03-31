@@ -17,6 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
         public bool specialCoin;
 
         private float lifeTime = 10f;
+        public bool isCollectable = true;
 
         private void Start()
         {
@@ -37,7 +38,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && isCollectable)
             {
                 Collected();
                 return;
@@ -171,7 +172,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             return coin;
         }
 
-        public static void RandomCoinAtPoint(Vector3 point, UniRandom rand = null)
+        public static CoinCollectable RandomCoinAtPoint(Vector3 point, UniRandom rand = null)
         {
             rand ??= UniRandom.CreateFullRandom();
 
@@ -186,6 +187,23 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             force.y = 2.34f;
             force = force.normalized * 17f;
             coin.rb.velocity = force;
+
+            return coin;
+        }
+
+        public static CoinCollectable ThrowRandomCoin(Vector3 point, Vector3 velocity, UniRandom rand = null)
+        {
+            rand ??= UniRandom.CreateFullRandom();
+
+            CoinType type = RollRarity(rand);
+            long value = GetValue(type);
+            CoinCollectable coin = CreateCoin(value, type);
+
+            coin.specialCoin = type == CoinType.Normal && rand.Chance(0.05f);
+            coin.transform.position = point + new Vector3(rand.Range(-0.2f, 0.2f), 0, rand.Range(-0.2f, 0.2f));
+            coin.rb.velocity = velocity;
+
+            return coin;
         }
 
         public static void OnEnemyDeath(EnemyDeathEvent enemyDeath)

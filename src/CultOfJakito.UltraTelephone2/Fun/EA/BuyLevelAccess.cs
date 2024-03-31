@@ -80,7 +80,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.EA
 
             if (levelNumbers.Count > 0)
             {
-                long newCost = 10L;
+                long newCost = 100L;
                 foreach (int cost in levelNumbers)
                 {
                     newCost *= cost * 10;

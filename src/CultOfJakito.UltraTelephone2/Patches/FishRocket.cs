@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
     [HarmonyPatch]
     public static class FishRocket
     {
-        [Configgable("Patches", "Honey Bun Grenades")]
+        [Configgable("Patches", "Fish Rocket")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         [HarmonyPatch(typeof(Grenade), nameof(Grenade.Start)), HarmonyPostfix]
