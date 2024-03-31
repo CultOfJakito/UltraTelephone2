@@ -29,7 +29,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override int GetEffectCost()
         {
-            return 6;
+            return 4;
         }
         protected override void OnDestroy() => s_effectActive = false;
 

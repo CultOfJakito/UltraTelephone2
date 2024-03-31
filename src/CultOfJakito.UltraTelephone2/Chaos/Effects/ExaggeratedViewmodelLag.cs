@@ -62,7 +62,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return 1;
         }
 
-   
+
         protected override void OnDestroy() {}
     }
 
@@ -93,7 +93,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         UniRandom rng;
 
-        private float maxViewmodelDistance = 0.2f;
+        private float maxViewmodelDistance = 0.5f;
 
         private void Awake()
         {

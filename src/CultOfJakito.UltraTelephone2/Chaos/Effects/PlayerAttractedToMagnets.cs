@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Hydra;
 using HarmonyLib;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
-    [RegisterChaosEffect]
+    // [RegisterChaosEffect]
     public class PlayerAttractedToMagnets : ChaosEffect
     {
         private static bool s_effectActive;

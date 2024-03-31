@@ -26,7 +26,7 @@ public class LagEffect : ChaosEffect
         base.Dispose();
     }
 
-    public override int GetEffectCost() => 5;
+    public override int GetEffectCost() => 2;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
     private IEnumerator Lag()

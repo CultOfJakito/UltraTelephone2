@@ -43,14 +43,13 @@ public class IdolsForEveryone : ChaosEffect
             return;
         }
 
-        if(__instance.enemyType == EnemyType.V2 && SceneHelper.CurrentScene == "Level 1-4")
-        {
-            //TODO spawn the idol in the correct location instead of softlocking the game
-            return;
-        }
-
         Vector3 pos = __instance.transform.position;
         Transform parent = __instance.transform.parent;
+
+        if(__instance.enemyType == EnemyType.V2 && SceneHelper.CurrentScene == "Level 1-4")
+        {
+            pos = new Vector3(0, -21.4022f, 625.0509f);
+        }
 
         if (parent == null)
         {

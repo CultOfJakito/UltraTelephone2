@@ -77,6 +77,7 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
             }
             //ol
 
+            FixFastBuildErrors();
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
 
             if (!string.IsNullOrEmpty(result.Error))
@@ -94,6 +95,7 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
+            FixFastBuildErrors();
             RefreshGroups();
 
 			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
@@ -110,6 +112,34 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
             Settings.groups.AddRange(commonGroups);
             RefreshGroups();
 		}
+
+        // awful hack but yeah
+        private static void FixFastBuildErrors()
+        {
+            string assetPath = "Assets/AddressableAssetsData/{0}.asset";
+
+            if (!Settings.groups.Contains(null))
+            {
+                return;
+            }
+
+            Debug.Log("A group is missing !!!!");
+            Settings.groups.RemoveAll(null);
+
+            foreach (string commonGroup in s_commonGroupNames)
+            {
+                if (Settings.groups.Any(group => group.name == commonGroup))
+                {
+                    Debug.Log($"{commonGroup} exists");
+                    return;
+                }
+
+                Debug.Log($"Adding {commonGroup}!");
+                Settings.groups.Add(AssetDatabase.LoadAssetAtPath<AddressableAssetGroup>(string.Format(assetPath, commonGroup)));
+            }
+
+            RefreshGroups();
+        }
 
 		private static void SetCorrectValuesForSettings()
 		{

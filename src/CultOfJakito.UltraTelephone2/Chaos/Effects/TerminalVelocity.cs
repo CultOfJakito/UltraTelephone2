@@ -20,6 +20,7 @@ public class TerminalVelocity : ChaosEffect
         //Defer activation until the player lands. Otherwise you have to wait like literally 2 mins to land.
         GameEvents.OnPlayerActivated += EnableEffect;
     }
+
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 3;
 

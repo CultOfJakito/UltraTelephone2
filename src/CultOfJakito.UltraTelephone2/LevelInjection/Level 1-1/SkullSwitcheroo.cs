@@ -55,7 +55,7 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_1_1
                 .FirstOrDefault(x => x.name == "Cube"
             && x.transform.HasParentalPath(blueOriginAltarPath)
             && x.transform.TryGetComponent<ItemPlaceZone>(out ItemPlaceZone ipz)
-            && ipz.acceptedItemType == ItemType.SkullBlue).transform.parent;
+            && ipz.acceptedItemType == ItemType.SkullBlue)?.transform.parent;
 
             if (blueAltar == null)
             {
@@ -84,7 +84,7 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Level_1_1
                 .FirstOrDefault(x => x.name == "Cube"
             && x.transform.HasParentalPath(redOriginAltarPath)
             && x.transform.TryGetComponent<ItemPlaceZone>(out ItemPlaceZone ipz)
-            && ipz.acceptedItemType == ItemType.SkullRed).transform.parent;
+            && ipz.acceptedItemType == ItemType.SkullRed)?.transform.parent;
 
             if (redAltar == null)
             {

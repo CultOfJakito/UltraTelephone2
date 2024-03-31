@@ -79,6 +79,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return s_enabled.Value && base.CanBeginEffect(ctx);
         }
 
-        public override int GetEffectCost() => 10;
+        public override int GetEffectCost() => 6;
     }
 }

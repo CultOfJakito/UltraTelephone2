@@ -35,6 +35,11 @@ public class DoorStuck : ChaosEffect
             return;
         }
 
+        if (s_random.Chance(0.2f))
+        {
+            return;
+        }
+
         jammer = __instance.gameObject.AddComponent<DoorJammer>();
         jammer.Door = __instance;
         jammer.JamOnOpen = true;
@@ -52,6 +57,11 @@ public class DoorStuck : ChaosEffect
         }
 
         if (__instance.TryGetComponent(out DoorJammer jammer))
+        {
+            return;
+        }
+
+        if (s_random.Chance(0.2f))
         {
             return;
         }

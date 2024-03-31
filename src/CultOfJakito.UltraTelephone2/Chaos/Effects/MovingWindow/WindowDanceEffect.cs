@@ -95,6 +95,8 @@ public class WindowDanceEffect : ChaosEffect
                 cumulativeMovement -= toMove;
 
                 Vector2Int targetPos = currentWindowPoint + toMove;
+                targetPos.x = Mathf.Clamp(targetPos.x, 0, Screen.currentResolution.width - _resolution.x);
+                targetPos.y = Mathf.Clamp(targetPos.y, 0, Screen.currentResolution.height - _resolution.y);
                 SetWindowPos(_currentWindowHandle.Value, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
 
                 timer += Time.unscaledDeltaTime;
