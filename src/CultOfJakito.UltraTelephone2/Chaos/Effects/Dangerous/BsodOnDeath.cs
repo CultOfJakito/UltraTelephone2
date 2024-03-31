@@ -52,7 +52,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous
 
         private void BSOD()
         {
-            // second check because im nervous :pleading:
+            // second check because im nervous 🥺
             if (!DangerousEffectsEnabled.Value)
                 return;
 
