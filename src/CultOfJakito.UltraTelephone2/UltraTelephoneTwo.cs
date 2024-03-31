@@ -9,6 +9,7 @@ using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Fun;
 using CultOfJakito.UltraTelephone2.Fun.Coin;
 using CultOfJakito.UltraTelephone2.Fun.EA;
+using CultOfJakito.UltraTelephone2.Fun.Glungus;
 using CultOfJakito.UltraTelephone2.Fun.Herobrine;
 using CultOfJakito.UltraTelephone2.LevelInjection;
 using CultOfJakito.UltraTelephone2.Patches;
@@ -93,6 +94,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
 
+
         GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
         GameEvents.OnEnemyDeath += (v) =>
         {
@@ -123,6 +125,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         GameObject chaosManagerObject = new("UT2 Chaos Manager");
         ChaosManager = chaosManagerObject.AddComponent<ChaosManager>();
         ChaosManager.BeginEffects();
+
+        GameObject glungusManager = new("UT2 Glungus Manager");
+        glungusManager.AddComponent<GlungusManager>();
     }
 
     const string casino = "Assets/Telephone 2/Scenes/CASINO.unity";
