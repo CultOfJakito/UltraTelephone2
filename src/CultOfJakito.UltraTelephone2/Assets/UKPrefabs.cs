@@ -20,6 +20,8 @@ public static class UkPrefabs
     public static UKAsset<Sprite> WhiteUI { get; private set; } = new("Assets/Textures/WhiteUI.png");
     public static AudioMixerGroup MainMixer => AudioMixerController.Instance.allSound.outputAudioMixerGroup;
     public static UKAsset<GameObject> MannequinEnemy { get; private set; } = new ("Assets/Prefabs/Enemies/Mannequin.prefab");
+
+    public static UKAsset<AudioClip> ThroatDrone { get; private set; } = new("Assets/Music/Drones/Throat Drone.ogg");
 }
 
 public class UKAsset<T> where T : UnityEngine.Object
