@@ -1,5 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
         private static ConfigToggle s_enemiesDropCoinsOnDeath = new ConfigToggle(true);
 
         private MeshRenderer meshRenderer;
+        private CoinType type;
         public long Value = 1;
         public Rigidbody rb;
         public bool specialCoin;
@@ -47,10 +50,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             if(other.TryGetComponent<HurtZone>(out HurtZone _))
                 Dispose();
 
-            if(other.TryGetComponent<OutOfBounds>(out OutOfBounds __))
+            if(other.TryGetComponent<OutOfBounds>(out OutOfBounds _))
                 Dispose();
 
-            if(other.TryGetComponent<DeathZone>(out DeathZone ___))
+            if(other.TryGetComponent<DeathZone>(out DeathZone _))
                 Dispose();
         }
 
@@ -72,12 +75,15 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             if (specialCoin)
                 RandomCoinAtPoint(transform.position);
 
+            if (type == CoinType.Ring)
+                CurrencyChaos.InvokeRingCollected();
+
             Dispose();
         }
 
         private static PhysicMaterial mildlyBouncy;
 
-        private static CoinCollectable NewCoin(GameObject coinObj)
+        private static CoinCollectable NewCoin(GameObject coinObj, CoinType coinType)
         {
             coinObj.transform.localScale = Vector3.one * 0.6f;
             CapsuleCollider capsule = coinObj.GetComponent<CapsuleCollider>();
@@ -103,6 +109,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
             rigidCollider.material = mildlyBouncy;
 
+            coin.type = coinType;
+
             return coin;
         }
 
@@ -120,6 +128,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                     return 100000;
                 case CoinType.Diamond:
                     return 10000000;
+                case CoinType.Ring:
+                    return 0;
                 default:
                     return 30;
             }
@@ -127,6 +137,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
         public static CoinType RollRarity(UniRandom rand)
         {
+            if (CurrencyChaos.EffectActive)
+                if (rand.Chance(0.50f))
+                    return CoinType.Ring;
+
             if (rand.Chance(0.90f))
                 return CoinType.Normal;
 
@@ -159,6 +173,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                     return HydraAssets.CoinBlack;
                 case CoinType.Diamond:
                     return HydraAssets.CoinDiamond;
+                case CoinType.Ring:
+                    return UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Currencies/Rings/RingCoin.prefab");
                 default:
                     return HydraAssets.Coin;
             }
@@ -167,7 +183,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
         public static CoinCollectable CreateCoin(long value, CoinType type)
         {
             GameObject obj = Instantiate(GetCoinPrefab(type));
-            CoinCollectable coin = NewCoin(obj);
+            CoinCollectable coin = NewCoin(obj, type);
             coin.Value = value;
             return coin;
         }
@@ -237,6 +253,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
     public enum CoinType
     {
+        Ring,
         Normal,
         Blue,
         Red,
