@@ -12,13 +12,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 [HarmonyPatch]
 public class BallerInsurrection : ChaosEffect
 {
-    [Configgable("Chaos/Effects", "Realistic Explosions")]
+    [Configgable("Chaos/Effects", "Ultraballin")]
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_effectActive;
-
-    private static float s_timeSinceLastTick;
-
     private static GameObject Ball => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Basketball/Basketball.prefab");
 
     public override void BeginEffect(UniRandom random)
@@ -30,7 +27,7 @@ public class BallerInsurrection : ChaosEffect
     public override int GetEffectCost() => 1;
 
     [HarmonyPatch(typeof(Sisyphus), nameof(Sisyphus.Start)), HarmonyPostfix]
-    public static void SoundReplacement(Sisyphus __instance)
+    public static void BallReplacement(Sisyphus __instance)
     {
         if (!s_effectActive || !s_enabled.Value)
             return;
