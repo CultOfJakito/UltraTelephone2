@@ -727,6 +727,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             {
                 Vector3 ppos = herobrine.GetTargetPosition();
 
+                herobrine.LookAt(ppos);
                 herobrine.SmoothRotateHeadToFace(ppos);
 
                 herobrine.animator.SetFloat("Crouching", down ? 1 : 0);
