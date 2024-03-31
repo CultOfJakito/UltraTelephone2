@@ -17,7 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
 
 
         [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.AddPoints)), HarmonyPrefix]
-        public static void Tax(ref int points)
+        public static void Tax(FinalRank __instance, ref int points)
         {
             if (!s_enabled.Value)
                 return;
@@ -28,22 +28,13 @@ namespace CultOfJakito.UltraTelephone2.Patches
 
             //Round up >:3c
             int taxAmount = Mathf.CeilToInt(tax);
+            __instance.extraInfo.text += GetTaxInfoString(taxAmount);
 
-            s_taxAmountBuffer = taxAmount;
             points = Mathf.Max(0, points - taxAmount);
         }
 
-        private static int s_taxAmountBuffer;
-
-        [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.PointsShow)), HarmonyPostfix]
-        public static void TaxDisplay(FinalRank __instance)
+        private static string GetTaxInfoString(int taxes)
         {
-            if (!s_enabled.Value)
-                return;
-
-            if (s_taxAmountBuffer <= 0)
-                return;
-
             string rate = Utility.UserIsDeveloper() ? "15%" : "30%";
             StringBuilder sb = new();
             sb.Append("<color=red>Income Tax [");
@@ -56,10 +47,11 @@ namespace CultOfJakito.UltraTelephone2.Patches
             }
 
             sb.Append("- ");
-            sb.Append(FakeBank.FormatMoney(s_taxAmountBuffer));
+            sb.Append(FakeBank.FormatMoney(taxes));
             sb.Append("</color>\n");
 
-            __instance.pointsText.text += sb.ToString();
+           return sb.ToString();
+
         }
     }
 }

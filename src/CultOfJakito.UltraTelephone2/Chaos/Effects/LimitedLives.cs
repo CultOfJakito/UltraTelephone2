@@ -30,7 +30,7 @@ namespace CultOfJakito.UltraTelephone2.Hydra
 
         public override int GetEffectCost()
         {
-            return 1;
+            return 3;
         }
 
         private int livesLeft;
@@ -58,13 +58,18 @@ namespace CultOfJakito.UltraTelephone2.Hydra
                                 return;
 
                             SceneHelper.LoadScene("Main Menu");
+                            livesLeft = s_lives.Value;
                         }
                     }
                 }
             });
         }
 
-        protected override void OnDestroy() => GameEvents.OnPlayerDeath -= OnPlayerDeath;
+        protected override void OnDestroy()
+        {
+            GameEvents.OnPlayerDeath -= OnPlayerDeath;
+            livesLeft = s_lives.Value;
+        }
 
     }
 }

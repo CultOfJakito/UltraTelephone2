@@ -28,5 +28,8 @@ namespace CultOfJakito.UltraTelephone2.Assets
 
         public static GameObject HoneyBunModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/HoneyBun/honeybun.fbx");
         public static GameObject RocketFishModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/RocketFish/rocketfish.fbx");
+
+        public static Texture2D HideousKojimaTexture => UT2Assets.GetAsset<Texture2D>("Assets/Telephone 2/Textures/HideousKojima/hideouskojima_0.png");
+        public static Texture2D HideousKojimaEnragedTexture => UT2Assets.GetAsset<Texture2D>("Assets/Telephone 2/Textures/HideousKojima/hideouskojima_1.png");
     }
 }
