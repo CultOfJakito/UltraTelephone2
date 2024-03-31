@@ -56,8 +56,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2352074736465218530}
-  - component: {fileID: 2352074736465218528}
   - component: {fileID: 2352074736465218529}
+  - component: {fileID: 8849782819986417702}
   m_Layer: 0
   m_Name: Herobrine
   m_TagString: Untagged
@@ -80,28 +80,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2352074736465218528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2352074736465218531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1062864050, guid: 470a48c400d86ea469d9de0a0c08f80d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2352074736680078124}
-  head: {fileID: 2924665454475535351}
-  centerMass: {fileID: 2352074735645739240}
-  agent: {fileID: 2352074736465218529}
-  allVisuals: {fileID: 2352074736984182420}
-  skinnedMeshRenderer: {fileID: 3297485266984729481}
-  audibleSource: {fileID: 0}
-  positionSource: {fileID: 0}
-  lookSpeed: 40
-  CurrentStateDebugText: 
 --- !u!195 &2352074736465218529
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -124,6 +102,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8849782819986417702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2352074736465218531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -539672068, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2352074736680078124}
+  head: {fileID: 2924665454475535351}
+  centerMass: {fileID: 2352074735645739240}
+  agent: {fileID: 2352074736465218529}
+  allVisuals: {fileID: 2352074736984182420}
+  skinnedMeshRenderer: {fileID: 3297485266984729481}
+  audibleSource: {fileID: 0}
+  positionSource: {fileID: 0}
+  lookSpeed: 0
+  CurrentStateDebugText: 
 --- !u!1 &2352074736984182420
 GameObject:
   m_ObjectHideFlags: 0

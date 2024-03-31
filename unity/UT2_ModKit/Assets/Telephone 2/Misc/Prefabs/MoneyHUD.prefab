@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6504806525415690944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1666954892, guid: 22a518edc504da4428ab6dc527428eca, type: 3}
+  m_Script: {fileID: 1666954892, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   climbingText: {fileID: 6504806525441794939}
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6504806525441794935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 990560633, guid: 22a518edc504da4428ab6dc527428eca, type: 3}
+  m_Script: {fileID: 990560633, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   climbSpeed: 0.35

@@ -13,10 +13,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
         [SerializeField] private GameObject allVisuals;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
-        [SerializeField] private AudioSource audibleSource;
-        [SerializeField] private AudioSource positionSource;
 
-        public float lookSpeed = 40f;
+        private float lookSpeed = 180f;
 
         [Configgable("Fun/Herobrine", "Herobrine Frequency Upperbound")]
         private static ConfigInputField<float> herobrineFrequencyUpperBound = new ConfigInputField<float>(30f, (v) => v > 0f && v >= herobrineFrequencyLowerBound.Value);

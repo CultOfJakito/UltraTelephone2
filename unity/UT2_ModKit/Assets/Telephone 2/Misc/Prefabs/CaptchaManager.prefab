@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5134378971005112347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 884821571, guid: 22a518edc504da4428ab6dc527428eca, type: 3}
+  m_Script: {fileID: 884821571, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggleButton: {fileID: 5134378972206909613}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5134378971133536429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 824901299, guid: 22a518edc504da4428ab6dc527428eca, type: 3}
+  m_Script: {fileID: 824901299, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CaptchaMainContainer: {fileID: 5134378970731805194}
