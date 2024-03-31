@@ -211,6 +211,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             if (!s_enemiesDropCoinsOnDeath.Value)
                 return;
 
+            //Don't count as kills so no coins are dropped
+            if(enemyDeath.Enemy.dontCountAsKills)
+                return;
+
             UniRandom rand = UniRandom.CreateFullRandom();
 
             if (rand.Chance(0.01f))

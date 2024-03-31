@@ -262,18 +262,18 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             switch (CurrentSide)
             {
                 case 0:
-                case 5:
+                case 4:
                     return SlotMachineSymbol.Coin;
                 case 1:
                 case 6:
-                    return SlotMachineSymbol.Maurice;
+                    return SlotMachineSymbol.Skull;
                 case 2:
                 case 7:
                     return SlotMachineSymbol.Heckteck;
                 case 3:
                 case 8:
-                    return SlotMachineSymbol.Skull;
-                case 4:
+                    return SlotMachineSymbol.Maurice;
+                case 5:
                     return SlotMachineSymbol.GoldenP;
             }
 
@@ -289,8 +289,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public void OffsetRotation(float amount)
         {
             rotation += amount;
-            if (rotation >= 360f)
-                rotation -= 360f;
+
+            if(Mathf.Abs(rotation) > 360f)
+                rotation = rotation % 360f;
 
             transform.localRotation = Quaternion.Euler(0, 0f, rotation);
             UpdateCurrentSide();
@@ -299,8 +300,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public void SetRotation(float amount)
         {
             rotation = amount;
-            if (rotation >= 360f)
-                rotation -= 360f;
+            if (Mathf.Abs(rotation) > 360f)
+                rotation = rotation % 360f;
+
 
             transform.localRotation = Quaternion.Euler(0, 0f, rotation);
             UpdateCurrentSide();
@@ -308,14 +310,22 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void UpdateCurrentSide()
         {
-            CurrentSide = Mathf.RoundToInt(rotation / ((float)360 / (float)SIDE_COUNT)) % SIDE_COUNT;
+            CurrentSide = Mathf.RoundToInt(rotation / (SliceAngle())) % SIDE_COUNT;
+        }
+
+
+        private float SliceAngle()
+        {
+            return 360f / (float)SIDE_COUNT;
         }
 
         public void OffsetSide(int offset)
         {
-            rotation += offset * ((float)360 / (float)SIDE_COUNT);
-            if (rotation >= 360f)
-                rotation -= 360f;
+            rotation += offset * (SliceAngle());
+
+            if (Mathf.Abs(rotation) > 360f)
+                rotation = rotation % 360f;
+
 
             transform.localRotation = Quaternion.Euler(0, 0f, rotation);
             UpdateCurrentSide();
@@ -337,7 +347,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         {
             if (spinning)
             {
-                OffsetRotation(SPIN_SPEED * Time.deltaTime);
+                //minus to spin the other way
+                OffsetRotation(-(SPIN_SPEED * Time.deltaTime));
             }
         }
     }
