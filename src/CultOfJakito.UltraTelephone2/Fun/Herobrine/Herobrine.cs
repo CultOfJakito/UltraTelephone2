@@ -214,6 +214,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
         public void LookInDirection(Vector3 direction)
         {
+            if (direction == Vector3.zero)
+                return;
+
             head.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
             UpdateBodyRotation();
         }
@@ -728,7 +731,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 Vector3 ppos = herobrine.GetTargetPosition();
 
                 herobrine.LookAt(ppos);
-                herobrine.SmoothRotateHeadToFace(ppos);
 
                 herobrine.animator.SetFloat("Crouching", down ? 1 : 0);
             }
