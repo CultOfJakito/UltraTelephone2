@@ -17,7 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
 
 
         [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.AddPoints)), HarmonyPrefix]
-        public static void Tax(FinalRank __instance, ref int points)
+        public static void TaxDeduct(FinalRank __instance, ref int points)
         {
             if (!s_enabled.Value)
                 return;
@@ -28,30 +28,37 @@ namespace CultOfJakito.UltraTelephone2.Patches
 
             //Round up >:3c
             int taxAmount = Mathf.CeilToInt(tax);
-            __instance.extraInfo.text += GetTaxInfoString(taxAmount);
-
+            s_taxesTakenBuffer += taxAmount;
             points = Mathf.Max(0, points - taxAmount);
+        }
+
+        static int s_taxesTakenBuffer = 0;
+
+        [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.Appear)), HarmonyPostfix]
+        public static void TaxAppear(FinalRank __instance)
+        {
+            if (!s_enabled.Value)
+                return;
+
+            if (s_taxesTakenBuffer <= 0)
+                return;
+
+            int taxTaken = s_taxesTakenBuffer;
+            s_taxesTakenBuffer = 0;
+
+            __instance.extraInfo.text += GetTaxInfoString(taxTaken);
         }
 
         private static string GetTaxInfoString(int taxes)
         {
             string rate = Utility.UserIsDeveloper() ? "15%" : "30%";
             StringBuilder sb = new();
-            sb.Append("<color=red>Income Tax [");
-            sb.Append(rate);
-            sb.Append("] ");
-
-            if (Utility.UserIsDeveloper())
-            {
-                sb.Append("<color=yellow>(DEV RATE)</color> ");
-            }
-
-            sb.Append("- ");
+            sb.Append("<color=red>- ");
             sb.Append(FakeBank.FormatMoney(taxes));
-            sb.Append("</color>\n");
-
-           return sb.ToString();
-
+            sb.Append(" TAXES [");
+            sb.Append(rate);
+            sb.Append("]</color>\n");
+            return sb.ToString();
         }
     }
 }

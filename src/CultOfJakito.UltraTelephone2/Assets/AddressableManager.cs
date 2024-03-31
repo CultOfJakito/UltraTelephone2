@@ -25,6 +25,7 @@ public static class AddressableManager
         try
         {
             SceneHelper.LoadScene(path);
+            SceneHelper.CurrentScene = Path.GetFileNameWithoutExtension(path);
         }
         catch (Exception ex)
         {
