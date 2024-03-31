@@ -40,6 +40,14 @@ public class ChaosManager : MonoBehaviour, IDisposable
             {
                 _ctx.Add(possibleEffect);
             }
+            else
+            {
+                if(typeof(MonoBehaviour).IsAssignableFrom(possibleEffect.GetType()))
+                {
+                    //destroy the effect if it is a monobehaviour since it should not be used
+                    Destroy(possibleEffect as MonoBehaviour);
+                }
+            }
         }
 
         Debug.Log("Chaos started");

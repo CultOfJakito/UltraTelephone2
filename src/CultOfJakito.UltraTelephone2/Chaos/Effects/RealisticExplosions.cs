@@ -26,7 +26,7 @@ public class RealisticExplosions : ChaosEffect
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 3;
 
     [HarmonyPatch(typeof(ExplosionController), nameof(ExplosionController.Start)), HarmonyPostfix]
     public static void SoundReplacement(Explosion __instance)
