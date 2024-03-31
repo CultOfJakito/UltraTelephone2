@@ -43,18 +43,6 @@ namespace CultOfJakito.UltraTelephone2.Assets
 
             if (!Directory.Exists(UT2Paths.InternalAssetsFolder))
                 Directory.CreateDirectory(UT2Paths.InternalAssetsFolder);
-
-            ValidateAssets(UT2Paths.InternalAssetsFolder);
-        }
-
-        internal static void ValidateAssets(string folder)
-        {
-            CheckFile(Path.Combine(folder,"catalog_wbp.hash"), Properties.Resources.catalog_wbp_hash);
-            CheckFile(Path.Combine(folder,"catalog_wbp.json"), Properties.Resources.catalog_wbp_json);
-            CheckFile(Path.Combine(folder,"shader_unitybuiltinshaders.bundle"), Properties.Resources.shader_unitybuiltinshaders);
-            CheckFile(Path.Combine(folder,"telephone2_assets_all.bundle"), Properties.Resources.telephone2_assets_all);
-            CheckFile(Path.Combine(folder,"telephone2_scenes_all.bundle"), Properties.Resources.telephone2_scenes_all);
-            CheckFile(Path.Combine(folder,"ultratelephone2_monoscripts.bundle"), Properties.Resources.ultratelephone2_monoscripts);
         }
 
         //Check the assets existence

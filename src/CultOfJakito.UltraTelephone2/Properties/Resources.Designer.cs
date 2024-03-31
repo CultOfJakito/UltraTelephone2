@@ -10,8 +10,8 @@
 
 namespace CultOfJakito.UltraTelephone2.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace CultOfJakito.UltraTelephone2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -69,7 +69,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -79,7 +79,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -89,7 +89,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mega
         ///Based
@@ -162,7 +162,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to THE MAN
         ///(FINAL FORM)
@@ -204,9 +204,9 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///B.A
         ///B.Sc
         ///M.A
-        ///M.L.A. 
-        ///M.F.A. 
-        ///M.S.W. 
+        ///M.L.A.
+        ///M.F.A.
+        ///M.S.W.
         ///M.L.
         ///B.Tech
         ///B.Ed
@@ -225,7 +225,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to when
         ///you
@@ -271,7 +271,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("cantReadWords", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -281,7 +281,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -291,7 +291,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -301,7 +301,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -311,7 +311,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hydraxous
         ///Waffle
@@ -332,7 +332,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("enemyNames", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -342,7 +342,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -352,7 +352,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -362,7 +362,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -372,7 +372,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -382,7 +382,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
         ///101110010000101101011101101010110
@@ -403,7 +403,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("ponder", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -413,7 +413,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -423,7 +423,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -433,7 +433,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -443,7 +443,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Did you know you can shoot enemies to hurt them
         ///Hit the boss until its health bar is empty to win
@@ -465,7 +465,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("shiteTips", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Totally tubular
         ///Better than UltraTelephone!
@@ -498,7 +498,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("splashes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -508,7 +508,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -518,7 +518,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -528,7 +528,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -538,7 +538,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -548,7 +548,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -558,7 +558,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to a
         ///aa
