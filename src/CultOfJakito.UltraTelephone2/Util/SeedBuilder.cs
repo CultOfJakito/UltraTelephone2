@@ -1,4 +1,6 @@
-﻿namespace CultOfJakito.UltraTelephone2.Util
+﻿using UnityEngine;
+
+namespace CultOfJakito.UltraTelephone2.Util
 {
     public class SeedBuilder
     {
@@ -24,6 +26,14 @@
         public SeedBuilder WithSeed(string seedModifier)
         {
             seedModifiers.Add(UniRandom.StringToSeed(seedModifier));
+            return this;
+        }
+
+        public SeedBuilder WithSeed(Vector3 position)
+        {
+            seedModifiers.Add(Mathf.RoundToInt(position.x*10f));
+            seedModifiers.Add(Mathf.RoundToInt(position.y*10f));
+            seedModifiers.Add(Mathf.RoundToInt(position.z*10f));
             return this;
         }
 

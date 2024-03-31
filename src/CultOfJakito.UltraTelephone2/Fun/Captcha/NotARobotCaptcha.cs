@@ -20,6 +20,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Captcha
         {
             checkMark.SetActive(false);
             loadingCircle.SetActive(false);
+            Animator anim = loadingCircle.GetComponent<Animator>();
+            if(anim != null)
+            {
+                //make the animation work when timescale is 0
+                anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
             toggleButton.onClick.AddListener(Button_OnClick);
             toggleButton.interactable = true;
             gameObject.SetActive(true);

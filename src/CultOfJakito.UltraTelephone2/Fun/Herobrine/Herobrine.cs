@@ -13,10 +13,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
         [SerializeField] private GameObject allVisuals;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
 
-        [SerializeField] private AudioSource audibleSource;
-        [SerializeField] private AudioSource positionSource;
 
-        public float lookSpeed = 40f;
+        private float lookSpeed = 180f;
 
         [Configgable("Fun/Herobrine", "Herobrine Frequency Upperbound")]
         private static ConfigInputField<float> herobrineFrequencyUpperBound = new ConfigInputField<float>(30f, (v) => v > 0f && v >= herobrineFrequencyLowerBound.Value);
@@ -108,7 +106,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             if (target == null)
                 return false;
 
-            Vector3 toHead = head.position - target.position;
+            Vector3 toHead = head.position - GetTargetPosition();
             Vector3 targetLookDir = target.forward;
 
             if (Vector3.Dot(toHead.normalized, targetLookDir.normalized) <= 0f)
@@ -116,7 +114,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             float expectedDist = toHead.magnitude;
 
-            if (!Physics.Raycast(target.position, toHead, out RaycastHit hit, expectedDist, LayerMaskDefaults.Get(LMD.Environment)))
+            if (!Physics.Raycast(GetTargetPosition(), toHead, out RaycastHit hit, expectedDist, LayerMaskDefaults.Get(LMD.Environment)))
                 return true;
 
             float errorMargin = 1f;
@@ -129,7 +127,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             if (target == null)
                 return 0f;
 
-            Vector3 toHerobrine = head.position - target.position;
+            Vector3 toHerobrine = head.position - GetTargetPosition();
             Vector3 lookDirection = target.forward;
 
             return Vector3.Dot(lookDirection, toHerobrine.normalized);
@@ -140,12 +138,20 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             if (target == null)
                 return 0f;
 
-            Vector3 toTarget = target.position - head.position;
+            Vector3 toTarget = GetTargetPosition() - head.position;
 
             if (XZ)
                 toTarget.y = 0f;
 
             return toTarget.magnitude;
+        }
+
+        public Vector3 GetTargetPosition()
+        {
+            if(target == null)
+                return transform.position;
+
+            return target.position;
         }
 
         public void UpdateBodyRotation()
@@ -208,6 +214,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
         public void LookInDirection(Vector3 direction)
         {
+            if (direction == Vector3.zero)
+                return;
+
             head.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
             UpdateBodyRotation();
         }
@@ -221,7 +230,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             for (int i = 0; i < attempts; i++)
             {
-                Vector3 targetPos = target.position;
+                Vector3 targetPos = GetTargetPosition();
 
                 Vector3 randomOffset = UnityEngine.Random.insideUnitSphere * range;
 
@@ -431,7 +440,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 float lateralDist = herobrine.GetTargetDistance(true);
                 bool lineOfSight = herobrine.TargetHasLineOfSight();
-                Vector3 playerPos = herobrine.target.position;
+                Vector3 playerPos = herobrine.GetTargetPosition();
 
                 if (herobrine.GetTargetVisionDot() > 0.9f && lateralDist > 20f && lineOfSight)
                 {
@@ -469,7 +478,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             public override void UpdateAnimation(Herobrine herobrine)
             {
-                Vector3 playerPos = herobrine.target.position;
+                Vector3 playerPos = herobrine.GetTargetPosition();
                 herobrine.LookAt(playerPos);
 
                 herobrine.animator.SetFloat("Floating", 0);
@@ -504,7 +513,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 herobrine.allVisuals.SetActive(true);
                 currentAlpha = 0f;
 
-                Vector3 ppos = herobrine.target.position;
+                Vector3 ppos = herobrine.GetTargetPosition();
                 Vector3 pLook = herobrine.target.forward;
 
                 Vector3 relativeSpawnDirection = -pLook;
@@ -518,6 +527,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             public override void UpdateState(Herobrine herobrine)
             {
+                if(herobrine.target == null)
+                {
+                    herobrine.NextState();
+                    return;
+                }
+
                 if (playSoundTimer > 0.0f)
                 {
                     playSoundTimer -= Time.deltaTime;
@@ -538,7 +553,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                     return;
                 }
 
-                Vector3 ppos = herobrine.target.position;
+                Vector3 ppos = herobrine.GetTargetPosition();
                 Vector3 pLook = herobrine.target.forward;
 
                 Vector3 relativeSpawnDirection = -pLook;
@@ -580,7 +595,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 if (Vector3.Dot(pLook, Vector3.up) > 0.6f) //target not looking directly up
                     return false;
 
-                Vector3 ppos = herobrine.target.position;
+                Vector3 ppos = herobrine.GetTargetPosition();
 
 
                 Vector3 relativeSpawnDirection = -pLook;
@@ -592,7 +607,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 Vector3 toSpawnPos = spawnPosition - ppos;
 
 
-                if (Physics.Raycast(herobrine.target.position, toSpawnPos, toSpawnPos.magnitude + 2f, LayerMaskDefaults.Get(LMD.Environment))) //we have space
+                if (Physics.Raycast(herobrine.GetTargetPosition(), toSpawnPos, toSpawnPos.magnitude + 2f, LayerMaskDefaults.Get(LMD.Environment))) //we have space
                     return false;
 
 
@@ -625,7 +640,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             public override void UpdateState(Herobrine herobrine)
             {
 
-                Vector3 playerPos = herobrine.target.position;
+                Vector3 playerPos = herobrine.GetTargetPosition();
                 Vector3 brinePos = herobrine.transform.position;
 
                 Vector3 awayDir = brinePos - playerPos;
@@ -713,9 +728,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             public override void UpdateAnimation(Herobrine herobrine)
             {
-                Vector3 ppos = herobrine.target.position;
+                Vector3 ppos = herobrine.GetTargetPosition();
 
-                herobrine.SmoothRotateHeadToFace(ppos);
+                herobrine.LookAt(ppos);
 
                 herobrine.animator.SetFloat("Crouching", down ? 1 : 0);
             }
@@ -763,7 +778,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 float lateralDist = herobrine.GetTargetDistance(true);
                 bool lineOfSight = herobrine.TargetHasLineOfSight();
-                Vector3 playerPos = herobrine.target.position;
+                Vector3 playerPos = herobrine.GetTargetPosition();
 
                 if (herobrine.GetTargetVisionDot() > 0.75f && lineOfSight)
                 {
@@ -837,7 +852,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             {
                 herobrine.SetAlpha(interval);
 
-                Vector3 playerPos = herobrine.target.position;
+                Vector3 playerPos = herobrine.GetTargetPosition();
                 Vector3 lookDir = herobrine.target.forward;
 
                 lookDir.y = 0f;
@@ -891,7 +906,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                     return;
                 }
 
-                Vector3 playerPosition = herobrine.target.position;
+                Vector3 playerPosition = herobrine.GetTargetPosition();
 
                 Vector3 pos = herobrine.head.position;
 
@@ -923,7 +938,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 if (herobrine.target != null)
                 {
-                    ppos = herobrine.target.position;
+                    ppos = herobrine.GetTargetPosition();
                 }
 
                 herobrine.SmoothRotateHeadToFace(ppos);

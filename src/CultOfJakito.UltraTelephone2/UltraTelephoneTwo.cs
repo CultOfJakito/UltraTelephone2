@@ -31,9 +31,16 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private ConfigBuilder _config;
     public static UltraTelephoneTwo Instance { get; private set; }
 
+    const int MAX_LOG_LINES = 100;
+    public static List<string> LogBuffer;
+
     private void Awake()
     {
         Instance = this;
+
+        LogBuffer = new List<string>();
+        Application.logMessageReceived += Application_logMessageReceived;
+
 
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -43,6 +50,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
 
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
+
+        if(DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+        {
+            Debug.LogWarning("Happy April Fools! UT2 Seed is 69 for the day!!");
+            globalSeed = 69;
+        }
+
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
@@ -62,10 +76,18 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         AutoSaveUpdate();
     }
 
+    private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
+    {
+        LogBuffer.Insert(0, condition);
+        if (LogBuffer.Count > MAX_LOG_LINES)
+            LogBuffer.RemoveAt(LogBuffer.Count - 1);
+    }
+
     private void InitializeObjects()
     {
         gameObject.AddComponent<LevelInjectionManager>();
 
+        AlterFriendAvatars.Load();
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
@@ -80,13 +102,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             }
         };
 
-        GameEvents.OnPlayerHurt += (e) =>
-        {
-            if(e.Damage > 10)
-            {
-                Jumpscare.Scare();
-            }
-        };
+       
     }
 
 
@@ -107,6 +123,17 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         GameObject chaosManagerObject = new("UT2 Chaos Manager");
         ChaosManager = chaosManagerObject.AddComponent<ChaosManager>();
         ChaosManager.BeginEffects();
+    }
+
+    const string casino = "Assets/Telephone 2/Scenes/CASINO.unity";
+
+    private void Update()
+    {
+
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            AddressableManager.LoadSceneUnsanitzed(casino);
+        }
     }
 
     private void AutoSaveUpdate()

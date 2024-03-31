@@ -20,13 +20,14 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
-            Console.WriteLine("Starting Coin Plushies");
             _plushiePrefabs ??= new List<GameObject>()
             {
-                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/zelzmiy Niko Plush.prefab"),
-                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab")
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/ZelzmiyDevPlushie.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/HydraDevPlushie.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/WaffleDevPlushie.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/ZedDevPlushie.prefab"),
+                UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/GlitchyDevPlushie.prefab"),
             };
-            Console.WriteLine("plushie count " + _plushiePrefabs.Count);
             s_random = random;
             s_effectActive = true;
         }
@@ -41,9 +42,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            // 10% plushy chance
-            if (s_random.Chance(0.9f))
-                return;
+            // 30% plushy chance
+            if (s_random.Chance(0.7f))
+               return;
 
             GameObject plushie = s_random.SelectRandom(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);

@@ -23,6 +23,62 @@ namespace CultOfJakito.UltraTelephone2.Util
             behaviour.StartCoroutine(DoAfterTimeFixedUpdateCoroutine(length, action));
         }
 
+        public static void Lerp(this MonoBehaviour behaviour, float length, Action<float> t)
+        {
+            behaviour.StartCoroutine(LerpCoroutine(length, t));
+        }
+
+        public static void LerpUnscaled(this MonoBehaviour behaviour, float length, Action<float> t)
+        {
+            behaviour.StartCoroutine(LerpUnscaledCoroutine(length, t));
+        }
+
+        public static void LerpFixedUpdate(this MonoBehaviour behaviour, float length, Action<float> t)
+        {
+            behaviour.StartCoroutine(LerpFixedUpdateCoroutine(length, t));
+        }
+
+
+        private static IEnumerator LerpCoroutine(float length, Action<float> t)
+        {
+            float timer = length;
+            t?.Invoke(0f);
+            while(timer > 0f)
+            {
+                t?.Invoke(1f - timer / length);
+                yield return new WaitForEndOfFrame();
+                timer = Mathf.Max(0f, timer - Time.deltaTime);
+            }
+            t?.Invoke(1f);
+        }
+
+        private static IEnumerator LerpUnscaledCoroutine(float length, Action<float> t)
+        {
+            float timer = length;
+            t?.Invoke(0f);
+            while(timer > 0f)
+            {
+                t?.Invoke(1f - timer / length);
+                yield return new WaitForEndOfFrame();
+                timer = Mathf.Max(0f, timer - Time.unscaledDeltaTime);
+            }
+            t?.Invoke(1f);
+        }
+
+
+        private static IEnumerator LerpFixedUpdateCoroutine(float length, Action<float> t)
+        {
+            float timer = length;
+            t?.Invoke(0f);
+            while(timer > 0f)
+            {
+                t?.Invoke(1f - timer / length);
+                yield return new WaitForFixedUpdate();
+                timer = Mathf.Max(0f, timer - Time.fixedDeltaTime);
+            }
+            t?.Invoke(1f);
+        }
+
         private static IEnumerator DoAfterTimeCoroutine(float length, Action action)
         {
             float timer = length;

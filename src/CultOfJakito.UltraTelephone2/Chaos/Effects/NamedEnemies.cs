@@ -27,7 +27,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static List<string> GetNamePool()
         {
-            if (s_useSteamFriends.Value && s_steamConnected && s_steamFriendNames != null)
+            if (s_useSteamFriends.Value && s_steamConnected && s_steamFriendNames != null && s_steamFriendNames.Count > 0)
             {
                 return s_steamFriendNames;
             }
@@ -85,6 +85,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         [HarmonyPatch(typeof(SeasonalHats), nameof(SeasonalHats.Start)), HarmonyPostfix]
         private static void OnEnemySpawned(SeasonalHats __instance)
         {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
             EnemyIdentifier enemy = __instance.GetComponentInParent<EnemyIdentifier>();
             if (enemy == null) //only do this on enemies.
                 return;

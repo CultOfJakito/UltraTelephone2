@@ -3,6 +3,7 @@ using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
+using Console = GameConsole.Console;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
@@ -27,12 +28,21 @@ public class RealisticExplosions : ChaosEffect
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
 
-    [HarmonyPatch(typeof(Explosion), nameof(Explosion.Start)), HarmonyPostfix]
+    [HarmonyPatch(typeof(ExplosionController), nameof(ExplosionController.Start)), HarmonyPostfix]
     public static void SoundReplacement(Explosion __instance)
     {
-        if (!s_effectActive && !s_enabled.Value)
+        if (!s_effectActive || !s_enabled.Value)
             return;
-        __instance.GetComponent<AudioSource>().PlayOneShot(Sound);
+
+        AudioSource source = __instance.GetComponent<AudioSource>();
+
+        if(source != null)
+        {
+            source.dopplerLevel = 0;
+            source.clip = Sound;
+            source.Play();
+        }
+        else Console.print("Source Not Found");
     }
 
     protected override void OnDestroy() => s_effectActive = false;

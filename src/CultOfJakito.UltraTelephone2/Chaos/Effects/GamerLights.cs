@@ -1,4 +1,6 @@
 ﻿using Configgy;
+using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
@@ -99,7 +101,22 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             }
         }
 
-        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+        public override bool CanBeginEffect(ChaosSessionContext ctx)
+        {
+            if (!s_enabled.Value || !base.CanBeginEffect(ctx))
+                return false;
+
+            if (ctx.ContainsEffect<LightsOut>())
+                return false;
+
+            if (ctx.ContainsEffect<QuietMountain>())
+                return false;
+
+            return true;
+        }
+        
+
+
 
         public override int GetEffectCost()
         {
@@ -164,6 +181,67 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             currentColor = newColor;
             Light.color = currentColor;
         }
+
+        public Color Color
+        {
+            get
+            {
+                if (Light == null)
+                    return currentColor;
+
+                return Light.color;
+            }
+
+            set
+            {
+                if (Light == null)
+                    return;
+
+                currentColor = value;
+                targetColor = value;
+                Light.color = value;
+            }
+        }
+
+        public float Intensity
+        {
+            get
+            {
+                if (Light == null)
+                    return 0f;
+
+                return Light.intensity;
+            }
+
+            set
+            {
+                if (Light == null)
+                    return;
+
+                Light.intensity = value;
+            }
+        }
+
+        public float Range
+        {
+            get
+            {
+                if (Light == null)
+                    return 0f;
+
+                return Light.range;
+            }
+
+            set
+            {
+                if (Light == null)
+                    return;
+
+                Light.range = value;
+            }
+        }
+
+
 
         public void Reset()
         {

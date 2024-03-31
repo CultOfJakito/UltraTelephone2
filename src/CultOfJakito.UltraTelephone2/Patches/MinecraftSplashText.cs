@@ -72,17 +72,8 @@ namespace CultOfJakito.UltraTelephone2.Patches
 
             string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandomFromSet(splashPhrases.ToArray());
 
-            //Dev detected!!
-            if (SteamClient.IsValid && SteamClient.IsLoggedOn)
-            {
-                for (int i = 0; i < SteamController.BuiltInVerifiedSteamIds.Length; i++)
-                {
-                    if (SteamClient.SteamId.Value == SteamController.BuiltInVerifiedSteamIds[i])
-                    {
-                        phrase = "A Complete and Utter Destruction of your game. With Love, -CoJ";
-                    }
-                }
-            }
+            if (Utility.UserIsDeveloper())
+                phrase = "A Complete and Utter Destruction of your game. With Love, -CoJ";
 
             for (int i = 0; i < splashTexts.Length; i++)
             {

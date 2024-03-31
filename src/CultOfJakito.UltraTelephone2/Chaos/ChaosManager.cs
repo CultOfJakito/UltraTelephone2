@@ -175,5 +175,7 @@ public class ChaosSessionContext
 
     public List<IChaosEffect> GetCurrentSelection() => new(_selection);
 
+    public bool ContainsEffect<T>() where T : IChaosEffect => _selection.Any(x => x.GetType() == typeof(T));
+
     public void ClearSelection() => _selection.Clear();
 }

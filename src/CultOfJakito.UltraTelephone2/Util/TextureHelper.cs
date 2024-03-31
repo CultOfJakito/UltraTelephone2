@@ -5,6 +5,7 @@ namespace CultOfJakito.UltraTelephone2.Util
     public static class TextureHelper
     {
         private static Texture2D[] cachedTextures = new Texture2D[0];
+        private static Dictionary<string, Texture2D> cachedTextureMap = new Dictionary<string, Texture2D>();
 
         private static bool initialized = false;
 
@@ -16,6 +17,13 @@ namespace CultOfJakito.UltraTelephone2.Util
         public static bool TryLoadTexture(string path, out Texture2D tex)
         {
             tex = null;
+
+            if (cachedTextureMap.ContainsKey(path))
+            {
+                tex = cachedTextureMap[path];
+                return true;
+            }
+
             if (!File.Exists(path))
             {
                 Debug.LogError("UT2: Invalid texture path: " + path);
@@ -41,6 +49,7 @@ namespace CultOfJakito.UltraTelephone2.Util
                 return false;
             }
 
+            cachedTextureMap[path] = tex;
             return true;
         }
 
@@ -69,12 +78,12 @@ namespace CultOfJakito.UltraTelephone2.Util
             cachedTextures = null;
         }
 
-        private static Texture2D[] FindTextures(string folderPath)
+        public static Texture2D[] FindTextures(string folderPath)
         {
             if(!Directory.Exists(folderPath))
             {
                 Debug.LogError("UT2: Invalid folder path: " + folderPath);
-                return new Texture2D[0];
+                return Array.Empty<Texture2D>();
             }
 
             List<Texture2D> newTextures = new List<Texture2D>();
