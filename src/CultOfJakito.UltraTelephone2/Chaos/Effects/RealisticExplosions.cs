@@ -38,6 +38,7 @@ public class RealisticExplosions : ChaosEffect
 
         if(source != null)
         {
+            source.dopplerLevel = 0;
             source.clip = Sound;
             source.Play();
         }
