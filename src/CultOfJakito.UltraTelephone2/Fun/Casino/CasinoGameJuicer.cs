@@ -42,8 +42,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 music.Stop();
                 MusicManager.Instance.ForceStartMusic();
             }
-
-
         }
 
         public void BigWin()
@@ -84,6 +82,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             EndGame();
         }
+
+        private int lightIndex = 0;
+        private float timeUntilNextLight = 0f;
+        private float lightChangeInterval = 0.3f;
 
         private void Update()
         {

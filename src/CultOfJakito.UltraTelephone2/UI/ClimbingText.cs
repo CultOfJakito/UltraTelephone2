@@ -49,9 +49,14 @@ namespace CultOfJakito.UltraTelephone2.UI
                         tickSource.Play();
                 }
 
-                string text = (toString == null) ? currentValue.ToString("000") : toString.Invoke(currentValue);
-                TextObj.text = text;
+                UpdateText();
             }
+        }
+
+        public void UpdateText()
+        {
+            string text = (toString == null) ? currentValue.ToString("000") : toString.Invoke(currentValue);
+            TextObj.text = text;
         }
 
         public void SetTargetValue(long value)

@@ -60,5 +60,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             Chips = 0;
             ChipsBought -= profit;
         }
+
+        public static string FormatChips(long chips)
+        {
+            return $"{FakeBank.FormatMoney(chips)} <color=blue>C</color>";
+        }
     }
 }
