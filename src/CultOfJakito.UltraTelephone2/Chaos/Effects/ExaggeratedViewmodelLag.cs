@@ -73,13 +73,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         NewMovement player;
 
         [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Max Viewmodel Distance")]
-        private static ConfigInputField<float> s_maxViewmodelDistance = new ConfigInputField<float>(0.2f);
+        private static ConfigInputField<float> s_maxViewmodelDistance = new ConfigInputField<float>(3f);
 
         [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel Distance Randomness")]
         private static ConfigInputField<float> s_maxDistanceRandomness = new ConfigInputField<float>(0.15f);
 
         [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Velocity Divisor")]
-        private static ConfigInputField<float> s_velocityDivisor = new ConfigInputField<float>(350f, (v) =>
+        private static ConfigInputField<float> s_velocityDivisor = new ConfigInputField<float>(150f, (v) =>
         {
             //No dividing by zero!!!
             return v > 0f;
@@ -89,7 +89,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         private static ConfigInputField<float> s_velocityDirectionMultiplier = new ConfigInputField<float>(-1f);
 
         [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel speed")]
-        private static ConfigInputField<float> s_viewmodelSpeed = new ConfigInputField<float>(15f);
+        private static ConfigInputField<float> s_viewmodelSpeed = new ConfigInputField<float>(19f);
 
         UniRandom rng;
 

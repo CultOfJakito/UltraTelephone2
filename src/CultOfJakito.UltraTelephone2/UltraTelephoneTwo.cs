@@ -49,6 +49,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         new Harmony(Info.Metadata.GUID).PatchAll(Assembly.GetExecutingAssembly());
 
         int globalSeed = PersonalizationLevelToSeed(GeneralSettings.Personalization.Value);
+
+        if(DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+        {
+            Debug.LogWarning("Happy April Fools! UT2 Seed is 69 for the day!!");
+            globalSeed = 69;
+        }
+
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
@@ -94,13 +101,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             }
         };
 
-        GameEvents.OnPlayerHurt += (e) =>
-        {
-            if(e.Damage > 10)
-            {
-                Jumpscare.Scare();
-            }
-        };
+       
     }
 
 
