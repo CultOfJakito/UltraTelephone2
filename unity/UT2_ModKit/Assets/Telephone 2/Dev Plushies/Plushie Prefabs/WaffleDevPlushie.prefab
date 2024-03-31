@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 5201050418262402786}
   - component: {fileID: 4397976118767966905}
   m_Layer: 22
-  m_Name: Waffle Plushie
+  m_Name: WaffleDevPlushie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

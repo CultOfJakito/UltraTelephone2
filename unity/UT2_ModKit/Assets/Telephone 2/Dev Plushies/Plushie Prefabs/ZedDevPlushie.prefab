@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 1281022807460405809}
   - component: {fileID: 7076429556452990878}
   m_Layer: 22
-  m_Name: ZedPlushie
+  m_Name: ZedDevPlushie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   pickedUp: 0
   reverseTransformSettings: 0
   putDownPosition: {x: 0, y: 0, z: 0}
-  putDownRotation: {x: 0, y: 0, z: 0}
+  putDownRotation: {x: 0, y: 115, z: 90}
   putDownScale: {x: 1, y: 1, z: 1}
   pickUpSound: {fileID: 1673117908876384, guid: c509881da2714e84c9808a6a3e99441a,
     type: 3}
