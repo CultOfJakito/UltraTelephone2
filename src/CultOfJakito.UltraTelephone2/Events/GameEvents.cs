@@ -1,4 +1,5 @@
-﻿namespace CultOfJakito.UltraTelephone2.Events
+﻿
+namespace CultOfJakito.UltraTelephone2.Events
 {
     public static class GameEvents
     {
@@ -26,6 +27,12 @@
         /// Invoked when anti-hp is given
         /// </summary>
         public static Action<PlayerAntiHealEvent> OnPlayerAntiHeal;
+
+
+        /// <summary>
+        /// Invoked when the player activates after touching the ground in first room.
+        /// </summary>
+        public static Action<PlayerActivatedEvent> OnPlayerActivated;
 
         /// <summary>
         /// Invoked after the player parries something.

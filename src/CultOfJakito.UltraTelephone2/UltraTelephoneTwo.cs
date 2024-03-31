@@ -30,9 +30,16 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private ConfigBuilder _config;
     public static UltraTelephoneTwo Instance { get; private set; }
 
+    const int MAX_LOG_LINES = 100;
+    public static List<string> LogBuffer;
+
     private void Awake()
     {
         Instance = this;
+
+        LogBuffer = new List<string>();
+        Application.logMessageReceived += Application_logMessageReceived;
+
 
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -61,10 +68,18 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         AutoSaveUpdate();
     }
 
+    private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
+    {
+        LogBuffer.Insert(0, condition);
+        if (LogBuffer.Count > MAX_LOG_LINES)
+            LogBuffer.RemoveAt(LogBuffer.Count - 1);
+    }
+
     private void InitializeObjects()
     {
         gameObject.AddComponent<LevelInjectionManager>();
 
+        AlterFriendAvatars.Load();
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues

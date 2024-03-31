@@ -21,7 +21,7 @@ public class InvertMomentumCoins : ChaosEffect
     [HarmonyPostfix, HarmonyPatch(typeof(Coin), nameof(Coin.Start))]
     public static void Patch(Coin __instance)
     {
-        if (!s_currentlyActive && !s_enabled.Value)
+        if (!s_currentlyActive || !s_enabled.Value)
             return;
 
         __instance.gameObject.AddComponent<CoinMomentumInverter>();

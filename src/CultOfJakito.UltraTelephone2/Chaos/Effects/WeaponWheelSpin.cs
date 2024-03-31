@@ -11,21 +11,19 @@ namespace CultOfJakito.UltraTelephone2.Effects.WeaponWheelSpin;
 public class WeaponWheelSpin : ChaosEffect
 {
     [Configgable("Chaos/Effects", "Spin Weapon Wheel")]
-    public static ConfigToggle Enabled = new(true);
+    public static ConfigToggle s_enabled = new(true);
 
-    private static bool s_currentlyActive;
+    private static bool s_effectActive;
 
-    public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => Enabled.Value && base.CanBeginEffect(ctx);
+    public override void BeginEffect(UniRandom random) => s_effectActive = true;
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 1;
 
     [HarmonyPrefix, HarmonyPatch(typeof(WeaponWheel), nameof(WeaponWheel.Update))]
     public static void Patch(WeaponWheel __instance)
     {
-        if (!s_currentlyActive)
-        {
+        if (!s_effectActive || !s_enabled.Value)
             return;
-        }
 
         var transform = __instance.transform;
         transform.Rotate(new Vector3(0, 0, 540 * Time.deltaTime));
@@ -36,5 +34,5 @@ public class WeaponWheelSpin : ChaosEffect
         //transform.rotation = currentRotation;
     }
 
-    protected override void OnDestroy() => s_currentlyActive = false;
+    protected override void OnDestroy() => s_effectActive = false;
 }

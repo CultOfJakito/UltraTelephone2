@@ -59,7 +59,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private void ShowPopUp()
         {
-            ModalDialogueEvent dialogue = s_rng.Chance(0.25f) ? s_rng.SelectRandom(_dialogueBuilders).Invoke() : CreateRandomized();
+            ModalDialogueEvent dialogue = s_rng.Chance(0.25f) ? s_rng.SelectRandomFromSet(_dialogueBuilders).Invoke() : CreateRandomized();
             ModalDialogue.ShowDialogue(dialogue);
         }
 
@@ -170,12 +170,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         {
             if (s_rng.Chance(0.1f))
             {
-                return s_rng.SelectRandom(_evilOptions);
+                return s_rng.SelectRandomFromSet(_evilOptions);
             }
 
             return new DialogueBoxOption
             {
-                Name = s_rng.SelectRandom(s_optionNames),
+                Name = s_rng.SelectRandomFromSet(s_optionNames),
                 Color = s_orange,
                 OnClick = () =>
                 {
@@ -382,10 +382,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         {
             int options = s_rng.Next(1, 4);
             if (s_rng.Bool())
-                _randomDialogueEvent.Message = s_rng.SelectRandom(s_messages);
+                _randomDialogueEvent.Message = s_rng.SelectRandomFromSet(s_messages);
             else
-                _randomDialogueEvent.Message = s_rng.SelectRandomList(UT2TextFiles.S_ShiteTipsFile.TextList);
-            _randomDialogueEvent.Title = s_rng.SelectRandom(s_titles);
+                _randomDialogueEvent.Message = s_rng.SelectRandom(UT2TextFiles.S_ShiteTipsFile.TextList);
+            _randomDialogueEvent.Title = s_rng.SelectRandomFromSet(s_titles);
             _randomDialogueEvent.Options = new DialogueBoxOption[options];
             for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)
             {

@@ -14,6 +14,7 @@ namespace CultOfJakito.UltraTelephone2
             RectTransform rect = __instance.GetComponent<RectTransform>();
             MakeTitleImageUT2(rect);
             InstanceMoneyCounter(rect);
+            InstanceCaptcha(rect);
         }
 
         //Sets the main title image to ULTRATELEPHONE 2 logo
@@ -36,6 +37,11 @@ namespace CultOfJakito.UltraTelephone2
                 return;
 
             GameObject moneyCounterObject = GameObject.Instantiate(HydraAssets.MoneyHUD, canvasRect);
+        }
+
+        private static void InstanceCaptcha(RectTransform canvasRect)
+        {
+            GameObject captchaObject = GameObject.Instantiate(HydraAssets.CaptchaManager, canvasRect);
         }
     }
 }
