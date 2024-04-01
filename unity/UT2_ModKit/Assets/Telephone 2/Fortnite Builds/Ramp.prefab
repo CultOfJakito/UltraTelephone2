@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6461596270190657959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1641418709, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Script: {fileID: -902707324, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Edits: []
@@ -64,10 +64,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 0
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 1d9fa574f363f7145a5e2b89504f4571
@@ -75,7 +73,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 1
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -121,24 +118,6 @@ MonoBehaviour:
   nonSolid: 1
   oneTime: 0
   targets: []
-  onIndoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
-  onOutdoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &7107785932142372267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,10 +257,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 1
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 
@@ -289,7 +266,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 0
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}

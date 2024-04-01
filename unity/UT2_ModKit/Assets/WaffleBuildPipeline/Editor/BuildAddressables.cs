@@ -95,8 +95,9 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
-			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
+			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group?.name)));
             Settings.groups.RemoveAll(commonGroups.Contains);
+            FixFastBuildErrors();
             RefreshGroups();
 
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);

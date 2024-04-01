@@ -16,6 +16,7 @@ public class BuildingEffect : ChaosEffect
     {
         CurrentlyActive = true;
         NewMovement.Instance.gameObject.AddComponent<BuildingControls>();
+        BuildingHud.Create();
     }
 
     public override void Dispose()

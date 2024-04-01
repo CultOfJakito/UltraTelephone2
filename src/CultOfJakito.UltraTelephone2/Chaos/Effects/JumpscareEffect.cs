@@ -31,7 +31,7 @@ public class JumpscareEffect : ChaosEffect
             Fun.Jumpscare.Scare(true);
     }
 
-    public override int GetEffectCost() => 2;
+    public override int GetEffectCost() => 1;
     protected override void OnDestroy()
     {
         GameEvents.OnPlayerHurt -= OnPlayerHurt;
@@ -45,9 +45,9 @@ public class JumpscareEffect : ChaosEffect
         if (!s_effectActive)
             return;
 
-        if (Input.GetMouseButtonDown(0) && _random.Chance(0.025f))
+        if (Input.GetMouseButtonDown(0) && _random.Chance(0.1f))
         {
-            Fun.Jumpscare.Scare(true);
+            Jumpscare.Scare(true);
         }
     }
 }

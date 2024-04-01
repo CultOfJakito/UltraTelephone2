@@ -28,24 +28,6 @@ MonoBehaviour:
   nonSolid: 0
   oneTime: 0
   targets: []
-  onIndoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
-  onOutdoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &2320813429242511948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,12 +37,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040979028292683496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1069557110, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Script: {fileID: -1281545673, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMaterial: {fileID: 2100000, guid: b6f9b1d069c641d4490fbb663211f712, type: 2}
-  EditEnabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6, type: 2}
-  EditDisabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994,
+  EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
+  EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
 --- !u!114 &3366903324990907663
 MonoBehaviour:
@@ -107,10 +89,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 1
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 
@@ -118,7 +98,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 0
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -155,8 +134,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4606524599065287654}
-  - component: {fileID: -7681246932100750830}
   - component: {fileID: -3991407268204393891}
+  - component: {fileID: 1786732119180934842}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -182,24 +161,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7681246932100750830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2484325080073150976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1641418709, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Edits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  <BuildType>k__BackingField: 1
 --- !u!114 &-3991407268204393891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,10 +177,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 0
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 1d9fa574f363f7145a5e2b89504f4571
@@ -227,7 +186,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 1
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -244,6 +202,24 @@ MonoBehaviour:
     onDisActivate:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &1786732119180934842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484325080073150976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -902707324, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Edits:
+  - {fileID: 2064981765194963846}
+  - {fileID: 2320813429242511948}
+  - {fileID: 2064981765194963846}
+  - {fileID: 1106352577305237707}
+  <BuildType>k__BackingField: 1
 --- !u!65 &586220107579264394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -273,10 +249,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 1
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 
@@ -284,7 +258,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 0
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -321,12 +294,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2489927495605510540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1069557110, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Script: {fileID: -1281545673, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMaterial: {fileID: 2100000, guid: b6f9b1d069c641d4490fbb663211f712, type: 2}
-  EditEnabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6, type: 2}
-  EditDisabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994,
+  EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
+  EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
 --- !u!114 &5539618259215349456
 MonoBehaviour:
@@ -343,24 +316,6 @@ MonoBehaviour:
   nonSolid: 0
   oneTime: 0
   targets: []
-  onIndoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
-  onOutdoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &8035995404576274399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,12 +367,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6094386863672383504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1069557110, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Script: {fileID: -1281545673, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMaterial: {fileID: 2100000, guid: b6f9b1d069c641d4490fbb663211f712, type: 2}
-  EditEnabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6, type: 2}
-  EditDisabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994,
+  EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
+  EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
 --- !u!114 &1158323663033298028
 MonoBehaviour:
@@ -463,24 +418,6 @@ MonoBehaviour:
   nonSolid: 0
   oneTime: 0
   targets: []
-  onIndoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
-  onOutdoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &5059656048828461791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,10 +434,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 1
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 
@@ -508,7 +443,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 0
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -587,12 +521,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8471867928514134333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1069557110, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
+  m_Script: {fileID: -1281545673, guid: ec68151ce2e0d414a834e24d769f47d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMaterial: {fileID: 2100000, guid: b6f9b1d069c641d4490fbb663211f712, type: 2}
-  EditEnabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6, type: 2}
-  EditDisabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994,
+  EditEnabledMaterial: {fileID: 2100000, guid: a0af4c06e9a68744bb58f1f5036ed994, type: 2}
+  EditDisabledMaterial: {fileID: 2100000, guid: aafd8c83c8751a44db9896d754065bc6,
     type: 2}
 --- !u!114 &4810719477084986240
 MonoBehaviour:
@@ -610,10 +544,8 @@ MonoBehaviour:
   weak: 0
   precisionOnly: 0
   interrupt: 0
-  breakOnThrown: 0
   playerOnly: 1
   accurateExplosionsOnly: 0
-  forceGroundSlammable: 0
   breakParticle: {fileID: 0}
   breakParticleFallback:
     m_AssetGUID: 
@@ -621,7 +553,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   particleAtBoundsCenter: 0
-  customPositionRotation: {fileID: 0}
   crate: 0
   bounceHealth: 0
   crateCoin: {fileID: 0}
@@ -664,24 +595,6 @@ MonoBehaviour:
   nonSolid: 0
   oneTime: 0
   targets: []
-  onIndoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
-  onOutdoors:
-    toActivateObjects: []
-    toDisActivateObjects: []
-    onActivate:
-      m_PersistentCalls:
-        m_Calls: []
-    onDisActivate:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1001 &1194133731013917625
 PrefabInstance:
   m_ObjectHideFlags: 0
