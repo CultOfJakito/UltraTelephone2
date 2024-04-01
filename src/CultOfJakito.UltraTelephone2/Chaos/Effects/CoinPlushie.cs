@@ -1,6 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Fun;
 using HarmonyLib;
 using UnityEngine;
 
@@ -53,7 +54,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 NewMovement.Instance.ridingRocket.rb.velocity :
                 NewMovement.Instance.rb.velocity) + Vector3.zero,
                 ForceMode.VelocityChange);
-
+            if (plush.name.Contains("Glitchy"))
+            {
+                plush.AddComponent<GlitchyPlush>();
+            }
             Console.WriteLine(__instance.GetComponent<Rigidbody>().velocity);
 
             Destroy(__instance.gameObject);
