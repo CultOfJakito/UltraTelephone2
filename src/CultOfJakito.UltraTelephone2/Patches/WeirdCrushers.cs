@@ -25,8 +25,6 @@ namespace CultOfJakito.UltraTelephone2.Patches
                 .WithSceneName()
                 .WithSeed(__instance.transform.position));
 
-            //Minimum return time needed to be able to extend fully
-
             if(random.Chance(0.2f))
             {
                 if(!__instance.TryGetComponent<MegaAssholeCrusher>(out MegaAssholeCrusher _))
@@ -38,11 +36,11 @@ namespace CultOfJakito.UltraTelephone2.Patches
             {
                 __instance.RandomizePiston(random);
             }
-
         }
 
         public static void RandomizePiston(this Piston __instance, UniRandom random)
         {
+            //Minimum return time needed to be able to extend fully
             const float minReturnTime = 0.18f;
 
             //Fast return or slow return

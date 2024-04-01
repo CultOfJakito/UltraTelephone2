@@ -10,6 +10,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public SlotMachineReel[] reels;
         public Animator leverAnimator;
         public Animator lightsAnimator;
+        public BetController betController;
 
         public Transform coinFountainLocation;
         public ScreenZone screenZone;
@@ -31,7 +32,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private SlotMachineState state = SlotMachineState.Idle;
 
-        public long bet;
+        private long bet;
 
         private void Awake()
         {
@@ -48,11 +49,17 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (state != SlotMachineState.Idle)
                 return;
 
+            betController.SetLocked(true);
+            bet = betController.BetAmount;
+
             //Disable the buttons.
             buttons.SetActive(false);
             screenZone.UpdatePlayerState(false);
             leverAnimator.Play("PullLever", 0, 0f);
-            lightsAnimator.Play("Playing", 0, 0f);
+
+            if(lightsAnimator)
+                lightsAnimator.Play("Playing", 0, 0f);
+
             StartSpinning();
         }
 
@@ -146,7 +153,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void PlayerWon()
         {
-            lightsAnimator.Play("Winner", 0, 0f);
+            if (lightsAnimator)
+                lightsAnimator.Play("Winner", 0, 0f);
 
             switch (winningSymbol)
             {
@@ -188,6 +196,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                         jackpotAudioSource.Play();
                     break;
             }
+
             bet = 0;
         }
 
@@ -203,7 +212,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void PlayerLost()
         {
-            lightsAnimator.Play("Loser", 0, 0f);
+            if (lightsAnimator)
+                lightsAnimator.Play("Loser", 0, 0f);
 
             //Boo womp
             if (loseAudioSource != null)
@@ -213,12 +223,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         private void ResetMachine()
         {
             buttons.SetActive(true);
+            betController.ResetBet();
+            betController.SetLocked(false);
         }
-
-      
-
-
-    
     }
 
     public enum SlotMachineState

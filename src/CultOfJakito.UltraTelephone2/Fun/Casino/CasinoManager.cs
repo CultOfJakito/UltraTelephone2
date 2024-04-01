@@ -30,6 +30,18 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 FakeBank.AddMoney(-addition);
         }
 
+        public void SellChips(long amount)
+        {
+            if (amount <= 0)
+                return;
+
+            long subtraction = Math.Min(Chips, amount);
+            Chips -= subtraction;
+
+            if(subtraction != 0)
+                FakeBank.AddMoney(subtraction);
+        }
+
         public bool CanAmbush()
         {
             long profit = Chips - ChipsBought;
@@ -59,6 +71,11 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             FakeBank.AddMoney(Chips);
             Chips = 0;
             ChipsBought -= profit;
+        }
+
+        public static string FormatChips(long chips)
+        {
+            return $"{FakeBank.FormatMoney(chips)} <color=blue>C</color>";
         }
     }
 }
