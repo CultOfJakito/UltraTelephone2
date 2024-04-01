@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
     {
         public long Winnings;
         public long Losings;
-        public long Chips;
+        public long Chips { get; private set; }
 
         public long ChipsBought;
         private bool ambushActive;
@@ -29,6 +29,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             if(addition != 0)
                 FakeBank.AddMoney(-addition);
+
+            OnChipsChanged?.Invoke(Chips);
         }
 
         public void SellChips(long amount)
@@ -41,6 +43,18 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             if(subtraction != 0)
                 FakeBank.AddMoney(subtraction);
+        }
+
+        public void AddChips(long amount)
+        {
+            Chips += amount;
+            OnChipsChanged?.Invoke(Chips);
+        }
+
+        public void SetChips (long amount)
+        {
+            Chips = amount;
+            OnChipsChanged?.Invoke(Chips);
         }
 
         public bool CanAmbush()

@@ -69,7 +69,17 @@ public class SlightlyShrinkTerminal : ChaosEffect
         s_effectActive = true;
     }
 
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+    public override bool CanBeginEffect(ChaosSessionContext ctx)
+    {
+        if (!s_enabled.Value || !base.CanBeginEffect(ctx))
+            return false;
+
+        //This will break the casino
+        if (ctx.LevelName == "CASINO")
+            return false;
+
+        return true;
+    }
     public override int GetEffectCost() => 1;
     protected override void OnDestroy() => s_effectActive = false;
 }

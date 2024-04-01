@@ -29,7 +29,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
         UniRandom random = new UniRandom(seed);
         _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
 
-        foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
+        foreach (IChaosEffect possibleEffect in GetChaosEffects().ShuffleIEnumerable(random))
         {
             if (_ctx.GetAvailableBudget() == 0)
             {

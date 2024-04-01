@@ -25,6 +25,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         UniRandom random;
         UniRandom trueRandom;
 
+        public AudioSource winSource;
+        public AudioSource loseSource;
+        public AudioSource jackpotSource;
+
         private bool isPlaying;
 
         private List<Transform> triggerRoots;
@@ -48,10 +52,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 possiblePositions.Add(triggers[i].transform.parent.position);
             }
 
-            random.Shuffle(possiblePositions);
-            for (int i = 0; i < triggers.Length; i++)
+
+            int index = 0;
+            foreach (var trigger in random.Shuffle(triggerRoots))
             {
-                triggerRoots[i].position = possiblePositions[i];
+                trigger.transform.position = possiblePositions[index];
+                ++index;
             }
 
         }
@@ -65,11 +71,17 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (bet <= 0)
                 return;
 
+            CasinoManager.Instance.AddChips(-bet);
             isPlaying = true;
             betController.SetLocked(true);
 
             ball.transform.position = ballpoint.position;
             ball.SetActive(true);
+
+            for (int i = 0; i < triggers.Length; i++)
+            {
+                triggers[i].gameObject.SetActive(false);
+            }
 
             //Toss the ball in a random direction
             trueRandom ??= UniRandom.CreateFullRandom();
@@ -114,27 +126,32 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 //JACKPOT!!!
                 if (type == 2)
                 {
+                    if(jackpotSource)
+                        jackpotSource.Play();
+
                     //win 10x
                     long winnings = bet * 10;
                     CasinoManager.Instance.Winnings += winnings;
-                    CasinoManager.Instance.Chips += winnings;
-                    //jackpot fanfare
+                    CasinoManager.Instance.AddChips(winnings);
                 }
                 else
                 {
+                    if(winSource)
+                        winSource.Play();
+
                     long winnings = bet * 2;
                     //Win 2x
                     CasinoManager.Instance.Winnings += winnings;
-                    CasinoManager.Instance.Chips += winnings;
-                    //win fanfare
+                    CasinoManager.Instance.AddChips(winnings);
                 }
             }
             else
             {
-                //YOU LOSE
-                //Lose fanfare   
+                if(loseSource)
+                    loseSource.Play();
             }
 
+            bet = 0;
             this.DoAfterTime(1f, ResetMachine);
         }
 
