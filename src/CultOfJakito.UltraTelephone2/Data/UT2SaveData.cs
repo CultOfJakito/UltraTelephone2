@@ -88,4 +88,13 @@ public class Ut2SaveData
     public int Gunpowder;
     public int Fish;
     public int Plushies;
+    //ultramarket coins
+    public int SteelCoin;
+    public int BronzeCoin;
+    public int BrassCoin;
+    public int SilverCoin;
+    public int GoldCoin;
+    public int PlatinumCoin;
+    public int ULTRAiteCoin;
+
 }

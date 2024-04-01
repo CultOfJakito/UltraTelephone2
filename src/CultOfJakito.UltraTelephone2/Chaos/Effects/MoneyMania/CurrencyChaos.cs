@@ -5,11 +5,12 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
+using HarmonyLib;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
 {
-
+    [HarmonyPatch]
     [RegisterChaosEffect]
     internal class CurrencyChaos : ChaosEffect
     {
@@ -53,7 +54,22 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Rings++;
+            UT2SaveData.MarkDirty();
         }
+
+        private HashSet<EnemyType> _machines =
+            [
+                EnemyType.Drone,
+                EnemyType.Streetcleaner,
+                EnemyType.Swordsmachine,
+                EnemyType.Mindflayer,
+                EnemyType.Turret,
+                EnemyType.Gutterman,
+                EnemyType.Guttertank,
+                EnemyType.V2,
+                EnemyType.V2Second,
+                EnemyType.Centaur,
+            ];
 
         private void CollectBlood(EnemyDeathEvent deathEvent)
         {
@@ -61,9 +77,58 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Blood += s_random.Next(5, 80);
+
+            if (_machines.Contains(deathEvent.Enemy.enemyType))
+            {
+                if (deathEvent.Enemy.enemyType == EnemyType.Centaur)
+                {
+                    UT2SaveData.SaveData.MetalScraps += s_random.Next(40, 280);
+                    UT2SaveData.MarkDirty();
+                    return;
+                }
+
+                UT2SaveData.SaveData.MetalScraps += s_random.Next(1, 4);
+            }
+
+            UT2SaveData.MarkDirty();
         }
 
         // Patches
 
+        [HarmonyPatch(typeof(FishingRodWeapon), nameof(FishingRodWeapon.FishCaughtAndGrabbed))]
+        private static void CatchFish(FishingRodWeapon __instance)
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
+            UT2SaveData.SaveData.Fish++;
+            UT2SaveData.MarkDirty();
+        }
+
+        [HarmonyPatch(typeof(ItemIdentifier), nameof(ItemIdentifier.PickUp))]
+        private static void PickUpPlushie(ItemIdentifier __instance)
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
+            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen)
+                return;
+
+            UT2SaveData.SaveData.Plushies++;
+            UT2SaveData.MarkDirty();
+        }
+
+        [HarmonyPatch(typeof(ItemIdentifier), nameof(ItemIdentifier.PutDown))]
+        private static void PutDownPlushie(ItemIdentifier __instance)
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
+            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen)
+                return;
+
+            UT2SaveData.SaveData.Plushies--;
+            UT2SaveData.MarkDirty();
+        }
     }
 }
