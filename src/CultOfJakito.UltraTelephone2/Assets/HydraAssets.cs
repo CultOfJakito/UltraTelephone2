@@ -37,5 +37,7 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static GameObject StickyHandModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/StickyHand/stickyhand.fbx");
         public static Material StickyHandMaterial => UT2Assets.GetAsset<Material>("Assets/Telephone 2/Misc/Prefabs/StickyHand/stickyHandmat.mat");
         public static GameObject StickyHandClink => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/StickyHand/StickyHandClink.prefab");
+
+        public static GameObject Cheb => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Cheb/CHEB.prefab");
     }
 }
