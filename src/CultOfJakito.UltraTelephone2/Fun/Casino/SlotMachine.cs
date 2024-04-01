@@ -130,7 +130,9 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             for (int i = 0; i < reels.Length; i++)
             {
                 symbols[i] = reels[i].GetSymbol();
+                Debug.Log(symbols[i]);
             }
+
 
             float delay = 1.2f;
 
@@ -344,6 +346,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public void Lock()
         {
             spinning = false;
+            UpdateCurrentSide();
             rotation = CurrentSide * ((float)360/(float)SIDE_COUNT);
             SetRotation(rotation);
         }

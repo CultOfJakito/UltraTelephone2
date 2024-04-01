@@ -21,14 +21,21 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public GameObject buttons;
         public Transform ballpoint;
 
-        public GameObject[] triggers;
-
+        public PlinkoMachineTrigger[] triggers;
+        UniRandom random;
         private bool isPlaying;
 
         private void Start()
         {
+            random = new UniRandom(new SeedBuilder().WithGlobalSeed().WithSeed("PLINKO!!").WithSceneName().WithSeed(2));
             rb = ball.GetComponent<Rigidbody>();
             ball.name = BALL_NAME;
+            triggers = GetComponentsInChildren<PlinkoMachineTrigger>(true);
+            for (int i = 0; i < triggers.Length; i++)
+            {
+                triggers[i].Machine = this;
+                triggers[i].gameObject.SetActive(false);
+            }
         }
 
         public void Play()
@@ -36,12 +43,16 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (isPlaying)
                 return;
 
+            bet = betController.BetAmount;
+            if (bet <= 0)
+                return;
+
             isPlaying = true;
             betController.SetLocked(true);
-            bet = betController.BetAmount;
 
             ball.transform.position = ballpoint.position;
             ball.SetActive(true);
+            rb.velocity = random.UnitSphere() * 20f;
         }
 
 
@@ -61,8 +72,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         {
             for (int i = 0; i < triggers.Length; i++)
             {
-                triggers[i].SetActive(true);
+                triggers[i].gameObject.SetActive(true);
             }
+
+            this.DoAfterTime(2f, ResetMachine);
         }
 
         public void BallHitTrigger(int type)
@@ -100,24 +113,32 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public void ResetMachine()
         {
             bet = 0;
-            betController.SetLocked(false);
             ball.SetActive(false);
+
             for (int i = 0; i < triggers.Length; i++)
             {
-                triggers[i].SetActive(false);
+                triggers[i].gameObject.SetActive(false);
             }
+
             isPlaying = false;
             buttons.SetActive(true);
+            betController.ResetBet();
+            betController.SetLocked(false);
         }
 
     }
 
     public class PlinkoMachineTrigger : MonoBehaviour
     {
+        public PlinkoMachine Machine;
+        public int type = 0;
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.name != PlinkoMachine.BALL_NAME)
+                return;
 
+            Machine.BallHitTrigger(type);
         }
     }
 }
