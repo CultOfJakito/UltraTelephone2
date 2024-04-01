@@ -16,7 +16,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
     [RegisterChaosEffect]
     internal class CurrencyChaos : ChaosEffect
     {
-        [Configgable("Chaos/Effects/", "Currency Chaos")]
+        [Configgable("Chaos/Effects", "Currency Chaos")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         private static bool s_effectActive = false;
@@ -29,6 +29,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         public static event Action OnRingCollected;
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
         public override void BeginEffect(UniRandom random)
         {
 
@@ -36,9 +37,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
             s_random = random;
             OnRingCollected += CollectRing;
             GameEvents.OnEnemyDeath += CollectBlood;
-            _currencyUI = UT2Assets.GetAsset<GameObject>("");
+            _currencyUI = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Currencies/CurrencyHUD.prefab");
             _currencyUI = Instantiate(_currencyUI, CanvasController.instance.transform);
-
         }
         public override int GetEffectCost() => 5;
         protected override void OnDestroy()

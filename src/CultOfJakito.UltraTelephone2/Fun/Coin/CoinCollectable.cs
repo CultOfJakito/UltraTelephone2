@@ -47,13 +47,13 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                 return;
             }
 
-            if(other.TryGetComponent<HurtZone>(out HurtZone _))
+            if (other.TryGetComponent(out HurtZone _))
                 Dispose();
 
-            if(other.TryGetComponent<OutOfBounds>(out OutOfBounds _))
+            if (other.TryGetComponent(out OutOfBounds _))
                 Dispose();
 
-            if(other.TryGetComponent<DeathZone>(out DeathZone _))
+            if (other.TryGetComponent(out DeathZone _))
                 Dispose();
         }
 
@@ -138,8 +138,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
         public static CoinType RollRarity(UniRandom rand)
         {
             if (CurrencyChaos.EffectActive)
-                if (rand.Chance(0.50f))
+            {
+                if (rand.Chance(0.99f))
+                {
                     return CoinType.Ring;
+                }
+            }
 
             if (rand.Chance(0.90f))
                 return CoinType.Normal;
@@ -174,7 +178,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                 case CoinType.Diamond:
                     return HydraAssets.CoinDiamond;
                 case CoinType.Ring:
-                    return UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Currencies/Rings/RingCoin.prefab");
+                    return HydraAssets.CoinRing;
                 default:
                     return HydraAssets.Coin;
             }
@@ -182,6 +186,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
         public static CoinCollectable CreateCoin(long value, CoinType type)
         {
+            Console.WriteLine("Making a fucking coin!!");
             GameObject obj = Instantiate(GetCoinPrefab(type));
             CoinCollectable coin = NewCoin(obj, type);
             coin.Value = value;
@@ -228,7 +233,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                 return;
 
             //Don't count as kills so no coins are dropped
-            if(enemyDeath.Enemy.dontCountAsKills)
+            if (enemyDeath.Enemy.dontCountAsKills)
                 return;
 
             UniRandom rand = UniRandom.CreateFullRandom();

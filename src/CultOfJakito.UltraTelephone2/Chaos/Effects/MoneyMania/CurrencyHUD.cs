@@ -14,6 +14,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
         public void Start()
         {
             Instance = this;
+            UpdateAllCounters();
         }
 
         //CurrencyChaos
@@ -28,7 +29,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
 
         //yaya this can probably be some array and infinitely expandable but we have like no time finish this mod so im GO GO GOING!!
         //marketcoin counter
-        [SerializeField] private TMP_Text Steelounter;
+        [SerializeField] private TMP_Text SteelCoinCounter;
         [SerializeField] private TMP_Text BronzeCoinCounter;
         [SerializeField] private TMP_Text BrassCoinCounter;
         [SerializeField] private TMP_Text SilverCoinCounter;
@@ -36,42 +37,64 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
         [SerializeField] private TMP_Text PlatinumCoinCounter;
         [SerializeField] private TMP_Text UltraiteCoinCounter;
 
+        public void UpdateAllCounters()
+        {
+            UpdateRingsCounter();
+            UpdateVbucksCounter();
+            UpdateBloodCounter();
+            UpdateMetalScrapsCounter();
+            UpdateTrophiesCounter();
+            UpdateGunpowderCounter();
+            UpdateFishCounter();
+            UpdatePlushiesCounter();
+            UpdateMarketCoinCounter();
+        }
+
         public void UpdateRingsCounter()
         {
+            Console.WriteLine("Updating Ring Counter!");
             RingsCounter.text = UT2SaveData.SaveData.Rings.ToString();
         }
         public void UpdateVbucksCounter()
         {
+            Console.WriteLine("Updating Vbucks!");
             VbucksCounter.text = UT2SaveData.SaveData.Vbucks.ToString();
         }
         public void UpdateBloodCounter()
         {
+            Console.WriteLine("Updating Blood Counter!");
             BloodCounter.text = UT2SaveData.SaveData.Blood.ToString();
         }
         public void UpdateMetalScrapsCounter()
         {
+            Console.WriteLine("Updating Scrap Counter!");
             MetalScrapsCounter.text = UT2SaveData.SaveData.MetalScraps.ToString();
         }
         public void UpdateTrophiesCounter()
         {
+            Console.WriteLine("Updating Trophies Counter!");
             TrophiesCounter.text = UT2SaveData.SaveData.Trophies.ToString();
         }
         public void UpdateGunpowderCounter()
         {
+            Console.WriteLine("Updating Gunpowder Counter!");
             GunpowderCounter.text = UT2SaveData.SaveData.Gunpowder.ToString();
         }
         public void UpdateFishCounter()
         {
+            Console.WriteLine("Updating Fish Counter!");
             FishCounter.text = UT2SaveData.SaveData.Fish.ToString();
         }
         public void UpdatePlushiesCounter()
         {
+            Console.WriteLine("Updating Plushies Counter!");
             PlushiesCounter.text = UT2SaveData.SaveData.Plushies.ToString();
         }
 
         // im going to kill myself after this releases :pray:
         public void UpdateMarketCoinCounter()
         {
+            Console.WriteLine("Updating Coin Counter!");
             int coint = UT2SaveData.SaveData.MarketCoins;
 
             int ultraCoint = (int)Math.Floor(coint / 10000000d);
@@ -98,7 +121,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
             BronzeCoinCounter.text = bronzeCoint.ToString();
             coint -= bronzeCoint * 1000;
 
-            Steelounter.text = coint.ToString();
+            SteelCoinCounter.text = coint.ToString();
         }
     }
 

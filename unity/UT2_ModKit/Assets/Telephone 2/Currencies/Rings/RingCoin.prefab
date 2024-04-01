@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9112248113520584306}
   - component: {fileID: 5321828641994254807}
   - component: {fileID: 7943815095681932573}
-  - component: {fileID: 8790899049959211423}
   - component: {fileID: 8790899049959211420}
+  - component: {fileID: 811312463}
   m_Layer: 0
   m_Name: RingCoin
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8448442623872367816}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.5, y: -0.25, z: 37}
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children: []
@@ -81,20 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8790899049959211423
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448442623872367816}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.0066218246
-  m_Height: 0.013243649
-  m_Direction: 1
-  m_Center: {x: 0, y: -3.5040256e-18, z: 0.0009862955}
 --- !u!114 &8790899049959211420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +100,16 @@ MonoBehaviour:
   gradual: 0
   gradualSpeed: 0
   off: 0
+--- !u!65 &811312463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448442623872367816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.013243649, y: 0.013243649, z: 0.0015176376}
+  m_Center: {x: 0, y: -3.5040256e-18, z: 0.0009862955}
