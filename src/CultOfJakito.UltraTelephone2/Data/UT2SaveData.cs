@@ -80,14 +80,14 @@ public class Ut2SaveData
     public List<BuyableReceipt> purchases;
 
     //CurrencyChaos
-    public int Rings;
-    public int Gems;
-    public int Blood;
-    public int MetalScraps;
-    public int Trophies;
+    public int Rings; // 
+    public int Gems; 
+    public int Blood; //
+    public int MetalScraps; //
+    public int Trophies; 
     public int Gunpowder;
-    public int Fish;
-    public int Plushies;
+    public int Fish; //
+    public int Plushies; //
     //ultramarket coins
     public int SteelCoin;
     public int BronzeCoin;

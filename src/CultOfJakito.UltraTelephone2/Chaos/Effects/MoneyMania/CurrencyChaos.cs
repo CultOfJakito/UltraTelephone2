@@ -27,12 +27,14 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
         public override void BeginEffect(UniRandom random)
         {
-            // TODO: make ui elements for the currency types and instante them here
 
             s_effectActive = true;
             s_random = random;
             OnRingCollected += CollectRing;
             GameEvents.OnEnemyDeath += CollectBlood;
+
+            // TODO: make ui elements for the currency types and instante them here
+
         }
         public override int GetEffectCost() => 5;
         protected override void OnDestroy()
@@ -90,12 +92,15 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 UT2SaveData.SaveData.MetalScraps += s_random.Next(1, 4);
             }
 
+            // Todo: depedning on enemy killed, gain ultramarket coins
+
             UT2SaveData.MarkDirty();
         }
 
         // Patches
 
         [HarmonyPatch(typeof(FishingRodWeapon), nameof(FishingRodWeapon.FishCaughtAndGrabbed))]
+        [HarmonyPostfix]
         private static void CatchFish(FishingRodWeapon __instance)
         {
             if (!s_effectActive || !s_enabled.Value)
@@ -106,6 +111,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         }
 
         [HarmonyPatch(typeof(ItemIdentifier), nameof(ItemIdentifier.PickUp))]
+        [HarmonyPostfix]
         private static void PickUpPlushie(ItemIdentifier __instance)
         {
             if (!s_effectActive || !s_enabled.Value)
@@ -119,6 +125,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         }
 
         [HarmonyPatch(typeof(ItemIdentifier), nameof(ItemIdentifier.PutDown))]
+        [HarmonyPostfix]
         private static void PutDownPlushie(ItemIdentifier __instance)
         {
             if (!s_effectActive || !s_enabled.Value)
@@ -128,6 +135,17 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Plushies--;
+            UT2SaveData.MarkDirty();
+        }
+
+        [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.SendInfo))]
+        [HarmonyPostfix]
+        private static void GainLevelCompleteTrophy()
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
+            UT2SaveData.SaveData.Trophies++;
             UT2SaveData.MarkDirty();
         }
     }
