@@ -33,5 +33,12 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static Texture2D HideousKojimaTexture => UT2Assets.GetAsset<Texture2D>("Assets/Telephone 2/Textures/HideousKojima/hideouskojima_0.png");
         public static Texture2D HideousKojimaEnragedTexture => UT2Assets.GetAsset<Texture2D>("Assets/Telephone 2/Textures/HideousKojima/hideouskojima_1.png");
         public static GameObject Glungus => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Glungus/Glungus.prefab");
+
+        public static AudioClip MannequinSkitterNoise => UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/KrabsWalk.ogg");
+        public static GameObject StickyHandModel => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/StickyHand/stickyhand.fbx");
+        public static Material StickyHandMaterial => UT2Assets.GetAsset<Material>("Assets/Telephone 2/Misc/Prefabs/StickyHand/stickyHandmat.mat");
+        public static GameObject StickyHandClink => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/StickyHand/StickyHandClink.prefab");
+
+        public static GameObject Cheb => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Cheb/CHEB.prefab");
     }
 }

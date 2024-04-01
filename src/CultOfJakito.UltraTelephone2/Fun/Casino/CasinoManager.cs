@@ -11,12 +11,13 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
     {
         public long Winnings;
         public long Losings;
-        public long Chips;
+        public long Chips { get; private set; }
 
         public long ChipsBought;
         private bool ambushActive;
 
         public UltrakillEvent onAmbushStart;
+        public event Action<long> OnChipsChanged;
 
         public void BuyChips(long amount)
         {
@@ -28,6 +29,32 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             if(addition != 0)
                 FakeBank.AddMoney(-addition);
+
+            OnChipsChanged?.Invoke(Chips);
+        }
+
+        public void SellChips(long amount)
+        {
+            if (amount <= 0)
+                return;
+
+            long subtraction = Math.Min(Chips, amount);
+            Chips -= subtraction;
+
+            if(subtraction != 0)
+                FakeBank.AddMoney(subtraction);
+        }
+
+        public void AddChips(long amount)
+        {
+            Chips += amount;
+            OnChipsChanged?.Invoke(Chips);
+        }
+
+        public void SetChips (long amount)
+        {
+            Chips = amount;
+            OnChipsChanged?.Invoke(Chips);
         }
 
         public bool CanAmbush()
@@ -59,6 +86,11 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             FakeBank.AddMoney(Chips);
             Chips = 0;
             ChipsBought -= profit;
+        }
+
+        public static string FormatChips(long chips)
+        {
+            return $"{FakeBank.FormatMoney(chips)} <color=blue>C</color>";
         }
     }
 }

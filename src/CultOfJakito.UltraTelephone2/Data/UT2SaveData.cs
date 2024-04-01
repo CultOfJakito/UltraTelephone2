@@ -77,6 +77,8 @@ public class Ut2SaveData
     public long FakePAmount;
     public int LastRealPAmount;
 
+    public bool BeenToCasino;
+
     public List<BuyableReceipt> purchases;
 
     //CurrencyChaos

@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
+using System.Text;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Util;
@@ -18,6 +20,11 @@ public class ChaosManager : MonoBehaviour, IDisposable
     [Configgable("Extras/Advanced", "Panic Button")]
     private static ConfigKeybind s_panicButton = new ConfigKeybind(KeyCode.P);
 
+    [Configgable(displayName:"Chaos Enabled")]
+    private static ConfigToggle s_enabled = new ConfigToggle(true);
+
+    public static int ChaosBookHashCode { get; private set; }
+
     public void BeginEffects()
     {
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
@@ -29,7 +36,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
         UniRandom random = new UniRandom(seed);
         _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
 
-        foreach (IChaosEffect possibleEffect in GetChaosEffects().Shuffle(random))
+        foreach (IChaosEffect possibleEffect in GetChaosEffects().ShuffleIEnumerable(random))
         {
             if (_ctx.GetAvailableBudget() == 0)
             {
@@ -53,11 +60,27 @@ public class ChaosManager : MonoBehaviour, IDisposable
         Debug.Log("Chaos started");
         activatedEffects = _ctx.GetCurrentSelection();
 
+        StringBuilder effectlistString = new();
+
         foreach (IChaosEffect effect in activatedEffects)
         {
+            effectlistString.AppendLine(effect.GetType().Name);
             Debug.Log($"Beginning Effect: {effect.GetType().Name}");
             effect.BeginEffect(new UniRandom(random.Next()));
         }
+
+        if(random.Chance(0.2f))
+            DropChaosBook(effectlistString.ToString());
+    }
+
+    private void DropChaosBook(string bookText)
+    {
+        GameObject book = GameObject.Instantiate(UkPrefabs.Book.GetObject());
+        Readable readable = book.GetComponent<Readable>();
+        readable.content = bookText;
+        ChaosBookHashCode = readable.gameObject.GetHashCode();
+
+        book.transform.position = CameraController.Instance.transform.position;
     }
 
     private List<IChaosEffect> activatedEffects;

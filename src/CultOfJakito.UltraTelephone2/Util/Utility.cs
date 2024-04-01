@@ -16,7 +16,7 @@ internal static class Utility
 
     private static double Remap(double s, double a1, double a2, double b1, double b2) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 
-    public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, System.Random rng)
+    public static IEnumerable<T> ShuffleIEnumerable<T>(this IEnumerable<T> source, System.Random rng)
     {
         T[] elements = source.ToArray();
         for (int i = elements.Length - 1; i >= 0; i--)

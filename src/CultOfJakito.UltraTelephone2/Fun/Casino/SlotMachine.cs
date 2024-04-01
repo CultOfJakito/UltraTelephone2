@@ -1,4 +1,5 @@
-﻿using CultOfJakito.UltraTelephone2.Fun.Coin;
+﻿using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Fun.Coin;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public SlotMachineReel[] reels;
         public Animator leverAnimator;
         public Animator lightsAnimator;
+        public BetController betController;
 
         public Transform coinFountainLocation;
         public ScreenZone screenZone;
@@ -31,7 +33,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private SlotMachineState state = SlotMachineState.Idle;
 
-        public long bet;
+        private long bet;
 
         private void Awake()
         {
@@ -48,11 +50,21 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (state != SlotMachineState.Idle)
                 return;
 
+            bet = betController.BetAmount;
+
+            if (bet <= 0)
+                return;
+
+            betController.SetLocked(true);
+            CasinoManager.Instance.AddChips(-bet);
+
             //Disable the buttons.
             buttons.SetActive(false);
-            screenZone.UpdatePlayerState(false);
             leverAnimator.Play("PullLever", 0, 0f);
-            lightsAnimator.Play("Playing", 0, 0f);
+
+            if(lightsAnimator)
+                lightsAnimator.Play("Playing", 0, 0f);
+
             StartSpinning();
         }
 
@@ -83,10 +95,16 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             state = SlotMachineState.Stopping;
             int[] results = new int[reels.Length];
 
+            float totalDelay = 0f;
+
             for (int i = 0; i < reels.Length; i++)
             {
+                //cache index 
                 int index = i;
-                this.DoAfterTime(spinStopDelay * (i + 1), () =>
+                float localDelay = (spinStopDelay * (i + 1)) + random.Range(0f, 1f);
+                totalDelay += localDelay;
+
+                this.DoAfterTime(localDelay, () =>
                 {
                     reels[index].Lock();
                     results[index] = reels[index].CurrentSide;
@@ -100,96 +118,167 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                             reels[index].OffsetSide(1);
                             results[index] = reels[index].CurrentSide;
                         }
-
-                        //last reel
-                        this.DoAfterTime(0.5f, () =>
-                        {
-                            EvaluateResults();
-                        });
                     }
                 });
 
             }
-        }
 
-        private SlotMachineSymbol winningSymbol;
+            totalDelay += 0.25f;
 
-        private void EvaluateResults()
-        {
-            SlotMachineSymbol[] symbols = new SlotMachineSymbol[reels.Length];
-
-            for (int i = 0; i < reels.Length; i++)
+            this.DoAfterTime(totalDelay, () =>
             {
-                symbols[i] = reels[i].GetSymbol();
-            }
-
-            float delay = 1.2f;
-
-            if (symbols.Distinct().Count() == 1)
-            {
-                delay = 10f;
-                Debug.Log("WINNER");
-                winningSymbol = symbols[0];
-                PlayerWon();
-            }
-            else
-            {
-                Debug.Log("LOSER AHAHAHAHA");
-                PlayerLost();
-            }
-
-            this.DoAfterTime(delay, () =>
-            {
-                ResetMachine();
+                EvaluateResults();
             });
         }
 
-        private void PlayerWon()
+        private float winningsMultiplier;
+        private bool coinFountain;
+
+        private SlotMachineSymbol winningSymbol;
+        SlotMachineSymbol[] symbolsResults;
+
+        private Dictionary<SlotMachineSymbol, int> counts = new Dictionary<SlotMachineSymbol, int>();
+
+        private void EvaluateResults()
         {
-            lightsAnimator.Play("Winner", 0, 0f);
+            symbolsResults = new SlotMachineSymbol[reels.Length];
 
-            switch (winningSymbol)
+            counts.Clear();
+
+            counts.Add(SlotMachineSymbol.Coin, 0);
+            counts.Add(SlotMachineSymbol.Maurice, 0);
+            counts.Add(SlotMachineSymbol.Heckteck, 0);
+            counts.Add(SlotMachineSymbol.Skull, 0);
+            counts.Add(SlotMachineSymbol.GoldenP, 0);
+
+
+            for (int i = 0; i < reels.Length; i++)
             {
-                //Coin fountain
-                case SlotMachineSymbol.Coin:
-                    //1.25x bet and coin fountain
-                    CoinFountain();
-                    FakeBank.AddMoney((long)(bet * 1.25f));
-                    break;
+                symbolsResults[i] = reels[i].GetSymbol();
+                ++counts[symbolsResults[i]];
+                Debug.Log(symbolsResults[i]);
+            }
 
-                case SlotMachineSymbol.Maurice:
-                case SlotMachineSymbol.Heckteck:
-                case SlotMachineSymbol.Skull:
-                    FakeBank.AddMoney(bet * 2);
-                    break;
-
-                    //JACKPOT!!!
-                case SlotMachineSymbol.GoldenP:
-                    //10x bet and three coin fountains
-                    CoinFountain();
-                    CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(1,0,0);
-                    CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(-1,0,0);
-                    FakeBank.AddMoney(bet * 10);
-                    break;
+            //no win at all
+            if(symbolsResults.Distinct().Count() == 3)
+            {
+                PlayerLost();
+                return;
             }
 
 
-            switch (winningSymbol)
+            if (counts[SlotMachineSymbol.GoldenP] == 3)
             {
-                case SlotMachineSymbol.Coin:
-                case SlotMachineSymbol.Maurice:
-                case SlotMachineSymbol.Heckteck:
-                case SlotMachineSymbol.Skull:
-                    if (winAudioSource != null)
-                        winAudioSource.Play();
-                    break;
-                case SlotMachineSymbol.GoldenP:
-                    if (jackpotAudioSource != null)
-                        jackpotAudioSource.Play();
-                    break;
+                //JACKPOT!
+                if(jackpotAudioSource)
+                    jackpotAudioSource.Play();
+
+                CoinFountain();
+                CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(1, 0, 0);
+                CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(-1, 0, 0);
+                CasinoManager.Instance.AddChips(bet * 10);
+                bet = 0;
+                this.DoAfterTime(10f, ResetMachine);
+                return;
             }
-            bet = 0;
+
+
+            if (counts[SlotMachineSymbol.Coin] == 3)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CoinFountain();
+                CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(1, 0, 0);
+                CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(-1, 0, 0);
+                CasinoManager.Instance.AddChips((long)(bet * 1.7777));
+                bet = 0;
+
+                this.DoAfterTime(10f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.Maurice] == 3)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CasinoManager.Instance.AddChips(bet * 2);
+                bet = 0;
+                this.DoAfterTime(3f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.Heckteck] == 3)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CasinoManager.Instance.AddChips((long)(bet * 2.5));
+                bet = 0;
+                this.DoAfterTime(3f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.Skull] == 3)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CasinoManager.Instance.AddChips(bet * 3);
+
+                //Mind flayer :3
+                UkPrefabs.MindFlayer.LoadObjectAsync((a, g) =>
+                {
+
+                    if(a == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                    {
+                        GameObject.Instantiate(g, coinFountainLocation.position, Quaternion.identity);
+                    }
+                });
+
+                bet = 0;
+                this.DoAfterTime(10f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.GoldenP] == 2)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CasinoManager.Instance.AddChips(bet);
+                bet = 0;
+                this.DoAfterTime(3f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.Heckteck] == 2 || counts[SlotMachineSymbol.Maurice] == 2 || counts[SlotMachineSymbol.Skull] == 2)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CasinoManager.Instance.AddChips((long)(bet * 1.25f));
+                bet = 0;
+                this.DoAfterTime(3f, ResetMachine);
+                return;
+            }
+
+            if (counts[SlotMachineSymbol.Coin] == 2)
+            {
+                if (winAudioSource)
+                    winAudioSource.Play();
+
+                CoinFountain();
+                CasinoManager.Instance.AddChips(bet);
+                bet = 0;
+                this.DoAfterTime(2f, ResetMachine);
+                return;
+            }
+
+            PlayerLost();
         }
+
 
         private Transform CoinFountain()
         {
@@ -203,22 +292,24 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void PlayerLost()
         {
-            lightsAnimator.Play("Loser", 0, 0f);
+            if (lightsAnimator)
+                lightsAnimator.Play("Loser", 0, 0f);
 
             //Boo womp
             if (loseAudioSource != null)
                 loseAudioSource.Play();
+
+            bet = 0;
+            this.DoAfterTime(1.2f, ResetMachine);
         }
 
         private void ResetMachine()
         {
+            state = SlotMachineState.Idle;
             buttons.SetActive(true);
+            betController.ResetBet();
+            betController.SetLocked(false);
         }
-
-      
-
-
-    
     }
 
     public enum SlotMachineState
@@ -253,7 +344,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         const int SIDE_COUNT = 9;
         public int CurrentSide = 0;
 
-        const float SPIN_SPEED = 270f;
+        const float SPIN_SPEED = 960f;
         private bool spinning;
         float rotation;
 
@@ -310,7 +401,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void UpdateCurrentSide()
         {
-            CurrentSide = Mathf.RoundToInt(rotation / (SliceAngle())) % SIDE_COUNT;
+            CurrentSide = Mathf.RoundToInt(Mathf.Abs(rotation) / (SliceAngle())) % SIDE_COUNT;
         }
 
 
@@ -334,6 +425,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         public void Lock()
         {
             spinning = false;
+            UpdateCurrentSide();
             rotation = CurrentSide * ((float)360/(float)SIDE_COUNT);
             SetRotation(rotation);
         }

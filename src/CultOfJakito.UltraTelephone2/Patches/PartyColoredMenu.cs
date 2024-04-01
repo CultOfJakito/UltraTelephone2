@@ -35,6 +35,10 @@ namespace CultOfJakito.UltraTelephone2.Patches
             if (__instance.shopCanvas == null)
                 return;
 
+            //No casino, the colors are important for gameplay
+            if (SceneHelper.CurrentScene == "CASINO")
+                return;
+
             PartifyMenu(__instance.shopCanvas.GetComponent<RectTransform>());
         }
 

@@ -129,14 +129,13 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         glungusManager.AddComponent<GlungusManager>();
     }
 
-    const string casino = "Assets/Telephone 2/Scenes/CASINO.unity";
 
     private void Update()
     {
 
         if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha7))
         {
-            AddressableManager.LoadSceneUnsanitzed(casino);
+            AddressableManager.LoadSceneUnsanitzed(EnterCasinoPatch.CASINO_SCENE_NAME);
         }
     }
 

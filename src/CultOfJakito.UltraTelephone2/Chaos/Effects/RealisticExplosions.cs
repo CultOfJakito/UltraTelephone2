@@ -34,9 +34,13 @@ public class RealisticExplosions : ChaosEffect
         if (!s_effectActive || !s_enabled.Value)
             return;
 
+        //Dont do it for fire...
+        if (__instance.name.Contains("Fire"))
+            return;
+
         AudioSource source = __instance.GetComponent<AudioSource>();
 
-        if(source != null)
+        if(source != null && !source.loop)
         {
             source.dopplerLevel = 0;
             source.clip = Sound;
