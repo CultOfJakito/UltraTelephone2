@@ -118,14 +118,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                             reels[index].OffsetSide(1);
                             results[index] = reels[index].CurrentSide;
                         }
-
-                       
                     }
                 });
 
             }
 
-            totalDelay += 2f;
+            totalDelay += 0.25f;
 
             this.DoAfterTime(totalDelay, () =>
             {
@@ -274,7 +272,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 CoinFountain();
                 CasinoManager.Instance.AddChips(bet);
                 bet = 0;
-                this.DoAfterTime(3f, ResetMachine);
+                this.DoAfterTime(2f, ResetMachine);
                 return;
             }
 

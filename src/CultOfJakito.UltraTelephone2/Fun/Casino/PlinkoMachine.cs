@@ -40,6 +40,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             rb = ball.GetComponent<Rigidbody>();
             ball.name = BALL_NAME;
             triggers = GetComponentsInChildren<PlinkoMachineTrigger>(true);
+            ball.AddComponent<PlinkoBall>();
 
             triggerRoots = new List<Transform>();
             possiblePositions = new List<Vector3>();
@@ -74,6 +75,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             CasinoManager.Instance.AddChips(-bet);
             isPlaying = true;
             betController.SetLocked(true);
+            buttons.SetActive(false);
 
             ball.transform.position = ballpoint.position;
             ball.SetActive(true);
@@ -85,7 +87,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             //Toss the ball in a random direction
             trueRandom ??= UniRandom.CreateFullRandom();
-            rb.velocity = trueRandom.UnitSphere() * 20f;
+
+            Vector3 launch = trueRandom.UnitSphere() * 70f;
+            launch.y = Mathf.Abs(launch.y);
+            rb.velocity = launch;
         }
 
         public void SetBet(int type)
@@ -101,7 +106,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (!isPlaying)
                 return;
 
-            if(rb.velocity.magnitude > 0.1f)
+            if(rb.velocity.magnitude > 0.5f)
                 return;
 
             rb.velocity = Vector3.zero;
@@ -171,6 +176,57 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             betController.SetLocked(false);
         }
 
+    }
+
+    public class PlinkoBall : MonoBehaviour
+    {
+        private bool bouncing = true;
+        private UniRandom rand;
+        private Rigidbody rb;
+
+
+        private void Awake()
+        {
+            rand = UniRandom.CreateFullRandom();
+            rb = GetComponent<Rigidbody>();
+        }
+
+        private float timeLeft = 0.5f;
+        private float energy = 20f;
+
+        private void Update()
+        {
+            energy -= Time.deltaTime * 2.5f;
+            timeLeft -= Time.deltaTime;
+
+            if(timeLeft <= 0f)
+            {
+                bouncing = false;
+            }
+        }
+
+        private void OnEnable()
+        {
+            bouncing = true;
+            energy = 30f;
+            timeLeft = 5f;
+        }
+
+        private void OnCollisionEnter(Collision col)
+        {
+            if (!bouncing)
+                return;
+
+            Vector3 normal = col.GetContact(0).normal;
+            Vector3 reflect = Vector3.Reflect(rb.velocity.normalized, normal);
+            reflect.y = Mathf.Abs(reflect.y);
+            reflect.y += 0.12f;
+            reflect.x += rand.Range(-0.1f, 0.1f);
+            reflect.z += rand.Range(-0.1f, 0.1f);
+
+            rb.velocity = reflect * energy;
+
+        }
     }
 
     public class PlinkoMachineTrigger : MonoBehaviour

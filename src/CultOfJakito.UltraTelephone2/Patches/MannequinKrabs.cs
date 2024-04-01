@@ -20,7 +20,8 @@ namespace CultOfJakito.UltraTelephone2.Patches
             if (!s_enabled.Value)
                 return;
 
-            __instance.skitterSound.clip = HydraAssets.MannequinSkitterNoise; 
+            __instance.skitterSound.clip = HydraAssets.MannequinSkitterNoise;
+            __instance.skitterSound.dopplerLevel = 0;
         }
     }
 }
