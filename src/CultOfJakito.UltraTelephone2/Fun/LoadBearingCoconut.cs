@@ -14,9 +14,9 @@ namespace CultOfJakito.UltraTelephone2.Fun
         [Configgable("Fun", "Load Bearing Coconut")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-
-        private static string s_coconutPath => Path.Combine(UT2Paths.ModFolder, "load_bearing_coconut.png");
-
+        static FileSystemWatcher coconutwatcher;
+        private static string s_coconutPath => Path.Combine(UT2Paths.ModFolder, fileName);
+        private const string fileName = "load_bearing_coconut.png";
         public static void EnsureStability()
         {
             if (!s_enabled.Value)
@@ -24,7 +24,6 @@ namespace CultOfJakito.UltraTelephone2.Fun
 
             bool coconutExists = File.Exists(s_coconutPath);
 
-            //coconutwatcher = new FileSystemWatcher(UT2Paths.ModFolder, "");
 
             if (coconutExists)
             {
@@ -48,11 +47,15 @@ namespace CultOfJakito.UltraTelephone2.Fun
                     SceneManager.sceneLoaded += (scene, mode) =>
                     {
                         //Crash the game if the coconut is deleted from the main menu
-                        if (scene.name == "Main Menu")
+                        if (SceneHelper.CurrentScene == "Main Menu")
                         {
-                            Application.Quit();
+                            FileTamperedWith();
                         }
                     };
+                }
+                else
+                {
+                    EnableWatcher();
                 }
 
                 return;
@@ -63,6 +66,7 @@ namespace CultOfJakito.UltraTelephone2.Fun
                 File.WriteAllBytes(s_coconutPath, Properties.Resources.coconut);
                 UT2SaveData.SaveData.CoconutCreated = true;
                 UT2SaveData.MarkDirty();
+                EnableWatcher();
             }
             else
             {
@@ -73,20 +77,48 @@ namespace CultOfJakito.UltraTelephone2.Fun
                 SceneManager.sceneLoaded += (scene, mode) =>
                 {
                     //Crash the game if the coconut is deleted from the main menu
-                    if (scene.name == "Main Menu")
+                    if (SceneHelper.CurrentScene == "Main Menu")
                     {
-                        Application.Quit();
+                        FileTamperedWith();
                     }
                 };
 
             }
         }
 
-        static FileSystemWatcher coconutwatcher;
+        private static void EnableWatcher()
+        {
+            coconutwatcher = new FileSystemWatcher(UT2Paths.ModFolder, fileName);
+            coconutwatcher.Changed += (_, _) => FileTamperedWith();
+            coconutwatcher.Deleted += (_, _) => FileTamperedWith();
+            coconutwatcher.Renamed += (_, _) => FileTamperedWith();
+            coconutwatcher.EnableRaisingEvents = true;
+        }
 
-        //private static IEnumerator WatchCoconut()
-        //{
+        private static void FileTamperedWith()
+        {
+            if (!s_enabled.Value)
+                return;
 
-        //}
+            Debug.LogError("COCONUT TAMPERED WITH!!!.. GAME IS DESTABILIZING!");
+            ModalDialogue.ShowDialogue(new ModalDialogueEvent()
+            {
+                Title = "STABILITY COLLAPSE IMMINENT!",
+                Message = "The stability of the game has been compromised. The removal or tampering of the coconut has caused the game to become unstable. Please ensure the pure form of the coconut exists or your game will become destabilized.",
+                Options = new DialogueBoxOption[]
+                {
+                    new DialogueBoxOption()
+                    {
+                        Name = "I understand",
+                        Color = Color.red,
+                        OnClick = () =>
+                        {
+                            Application.Quit();
+                        }
+                    }
+                }
+            });
+        }
+
     }
 }
