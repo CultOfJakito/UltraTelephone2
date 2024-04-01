@@ -78,6 +78,7 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             if (Input.GetKeyDown(keyAndBuild.Key))
             {
                 _currentBuild = keyAndBuild.Value;
+                BuildingHud.Instance.SelectOutline(_currentBuild);
 
                 foreach (KeyValuePair<BuildTypes, GameObject> kvp in _typeToPreview)
                 {

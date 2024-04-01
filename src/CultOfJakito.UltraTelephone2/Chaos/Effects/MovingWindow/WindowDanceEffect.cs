@@ -58,7 +58,7 @@ public class WindowDanceEffect : ChaosEffect
         _wasFullscreen = Screen.fullScreen;
         _startRes = Screen.currentResolution;
         GetWindowRect(_currentWindowHandle.Value, ref _startRect);
-        _resolution = new Vector2Int(Screen.width / 3, Screen.height / 3); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
+        _resolution = new Vector2Int((int)(Screen.width / 2.5f), (int)(Screen.height / 2.5f)); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
         Screen.SetResolution(_resolution.x, _resolution.y, false);
     }
 
@@ -81,7 +81,6 @@ public class WindowDanceEffect : ChaosEffect
 
             MovementMode mode = Activator.CreateInstance(s_effectTypes[UnityEngine.Random.Range(0, s_effectTypes.Length)]) as MovementMode; //i cant think of a better way, reflection sucks :(
             Debug.Log($"Window dance starting of type {mode.GetType().Name}");
-            SetWindowPos(_currentWindowHandle.Value, 0, mode.StartPosition.x, mode.StartPosition.y, _resolution.x, _resolution.y, 5);
 
             while (timer < moveLength)
             {
