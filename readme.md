@@ -6,11 +6,14 @@ UltraCellularTelecommunicationsDeviceFacilitatingVocalInteractionOverConsiderabl
 
 The sequel to the incredibly popular [Ultratelephone](https://thunderstore.io/c/ultrakill/p/CultOfJakito/UltraTelephone/) mod.</br>
 Ultratelephone 2 is a collaborative mod by the [Cult of Jakito](https://github.com/CultOfJakito) designed to be a chaotic cacophony of funny mods for ultrakill.
-Nearly every aspect of this mod is customizeable! see the customizetion section below for how! every copy of UT2:UCTCDFVIOCDTWOWMTS is also personalized to the user :) and the level of customization can be changed in the settings!
 
-![image](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/e88eb889-0a85-450e-9d92-2e1ecedeefd5)  ![image](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/fe80f70f-582d-4ad3-9541-0fb3b6a39839)
+Nearly every aspect of this mod is customizeable! see the customizetion section below for how! 
+
+Every copy of UT2:UCTCDFVIOCDTWOWMTS is also personalized to the user :) and the level of customization can be changed in the settings!
 
 Note for streamers: It is reccomended to record your entire screen, rather than just the game window :)
+
+![image](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/e88eb889-0a85-450e-9d92-2e1ecedeefd5)  ![image](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/fe80f70f-582d-4ad3-9541-0fb3b6a39839)
 
 # Warning!
 **Photosensitivty:**<br>
@@ -42,6 +45,7 @@ Almost every aspect of this mod is customizeable!
 
 This mod has [Configgy](https://thunderstore.io/c/ultrakill/p/Hydraxous/Configgy/) as a dependency. 
 Locate the Configgy button in the main menu or in the pause menu to enable/disable features.
+
 ![Screenshot 2024-03-31 213057](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/c289c982-439b-4477-804b-5e6a0e96f3f2)
 ![Screenshot 2024-03-31 213146](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/d2aed774-89cf-4cb4-8698-a7bd42b664de)
 ![Screenshot 2024-03-31 213157](https://github.com/CultOfJakito/UltraTelephone2/assets/51797223/eeb07e9a-c5fa-4519-956c-c358a9b20bac)
