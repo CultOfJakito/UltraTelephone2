@@ -17,6 +17,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         private bool ambushActive;
 
         public UltrakillEvent onAmbushStart;
+        public event Action<long> OnChipsChanged;
 
         public void BuyChips(long amount)
         {

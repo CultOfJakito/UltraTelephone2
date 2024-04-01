@@ -27,7 +27,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
             __instance.clinkSparks = HydraAssets.StickyHandClink;
 
             //disable the renderer
-            __instance.hookModel.GetComponent<MeshRenderer>().enabled = false;
+            __instance.hookModel.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
             Transform hookPoint = __instance.hook;
 

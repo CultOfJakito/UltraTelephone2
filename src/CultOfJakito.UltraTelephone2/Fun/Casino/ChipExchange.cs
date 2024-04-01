@@ -38,6 +38,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         {
             climbingText.SetTargetValue(ChipBuffer);
             climbingText.toString = FakeBank.FormatMoney;
+            UpdateTexts();
         }
 
         public void SetLocked(bool locked)
@@ -96,7 +97,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         }
 
 
-        private void UpdateTexts()
+        public void UpdateTexts()
         {
             climbingText.SetTargetValue(ChipBuffer);
             climbingText.UpdateText();

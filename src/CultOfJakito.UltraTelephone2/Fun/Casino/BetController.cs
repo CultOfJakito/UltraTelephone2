@@ -33,6 +33,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                     return $"Bet: {CasinoManager.FormatChips(BetAmount)}";
                 }
             };
+
+            UpdateBetText();
         }
 
         public void SetLocked(bool locked)
@@ -79,7 +81,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         }
 
 
-        private void UpdateBetText()
+        public void UpdateBetText()
         {
             climbingText.SetTargetValue(BetAmount);
             climbingText.UpdateText();

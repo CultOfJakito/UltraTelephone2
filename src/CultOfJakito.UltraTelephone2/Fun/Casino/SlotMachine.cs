@@ -54,7 +54,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             //Disable the buttons.
             buttons.SetActive(false);
-            screenZone.UpdatePlayerState(false);
             leverAnimator.Play("PullLever", 0, 0f);
 
             if(lightsAnimator)
@@ -108,15 +107,18 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                             results[index] = reels[index].CurrentSide;
                         }
 
-                        //last reel
-                        this.DoAfterTime(0.5f, () =>
-                        {
-                            EvaluateResults();
-                        });
+                       
                     }
                 });
 
             }
+
+            float totalDelay = (spinStopDelay * reels.Length) + spinStopDelay;
+
+            this.DoAfterTime(totalDelay, () =>
+            {
+                EvaluateResults();
+            });
         }
 
         private SlotMachineSymbol winningSymbol;
@@ -222,6 +224,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void ResetMachine()
         {
+            state = SlotMachineState.Idle;
             buttons.SetActive(true);
             betController.ResetBet();
             betController.SetLocked(false);
@@ -260,7 +263,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
         const int SIDE_COUNT = 9;
         public int CurrentSide = 0;
 
-        const float SPIN_SPEED = 270f;
+        const float SPIN_SPEED = 740f;
         private bool spinning;
         float rotation;
 
