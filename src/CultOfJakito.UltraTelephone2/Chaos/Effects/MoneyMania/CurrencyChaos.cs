@@ -55,11 +55,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         }
 
         private void CollectRing()
-        {
-            // this check technically isn't needed, but in case i've screwed something up...
-            if (!s_effectActive || !s_enabled.Value)
-                return;
-
+        { 
             UT2SaveData.SaveData.Rings++;
             UT2SaveData.MarkDirty();
         }
