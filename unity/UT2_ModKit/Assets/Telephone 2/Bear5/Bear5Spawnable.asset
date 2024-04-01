@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1bd87848abf7c419e9d6e2263b3813, type: 3}
+  m_Name: Bear5Spawnable
+  m_EditorClassIdentifier: 
+  identifier: ut2.bear5
+  spawnableObjectType: 1
+  unlockableType: 0
+  sandboxOnly: 0
+  objectName: BEAR5
+  type: SO RETRO
+  description: ELON USK BEAR5 IS COMING
+  strategy: BEA R5
+  gameObject: {fileID: 2108822566749990937, guid: 76ded68732e53fc40b87656907e8ce9a,
+    type: 3}
+  preview: {fileID: 263545893209969392, guid: 2fe971c3c8516664d82d63c35b1bc77f, type: 3}
+  iconKey: ut2.icons.bear5
+  gridIcon: {fileID: 0}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  enemyType: 25
+  spawnableType: 0
+  armOffset: {x: 0, y: 0, z: 0}
+  armRotationOffset: {x: 0, y: 0, z: 0}
+  menuOffset: {x: 0, y: 0, z: 0}
+  spawnOffset: 0
+  isWater: 0
+  triggerOnly: 0
