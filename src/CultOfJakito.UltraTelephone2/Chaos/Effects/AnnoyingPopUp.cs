@@ -384,7 +384,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (s_rng.Bool())
                 _randomDialogueEvent.Message = s_rng.SelectRandomFromSet(s_messages);
             else
-                _randomDialogueEvent.Message = s_rng.SelectRandom(UT2TextFiles.S_ShiteTipsFile.TextList);
+                _randomDialogueEvent.Message = s_rng.SelectRandom(UT2TextFiles.ShiteTipsFile.TextList);
             _randomDialogueEvent.Title = s_rng.SelectRandomFromSet(s_titles);
             _randomDialogueEvent.Options = new DialogueBoxOption[options];
             for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)

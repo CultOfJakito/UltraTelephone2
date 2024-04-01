@@ -15,7 +15,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static bool s_effectActive = false;
 
-        private static List<string> s_illegebleWords => UT2TextFiles.S_CantReadWordsFile.TextList;
+        private static List<string> s_illegebleWords => UT2TextFiles.CantReadWordsFile.TextList;
 
         private static UniRandom s_rng;
 
