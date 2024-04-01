@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1633045117334031236
+--- !u!1 &904442938443619977
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6500056304349711236}
-  - component: {fileID: 4391354895112375172}
-  - component: {fileID: 3237806577387473796}
-  - component: {fileID: 5017534213251304324}
-  - component: {fileID: 6823363032610221194}
+  - component: {fileID: 5832817961679183497}
+  - component: {fileID: 3604989821588463241}
+  - component: {fileID: 429585190668983945}
+  - component: {fileID: 5061971779445159480}
   m_Layer: 0
-  m_Name: RingCoin
+  m_Name: coint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6500056304349711236
+--- !u!4 &5832817961679183497
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633045117334031236}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 471.2071, y: 398.0598, z: -731.6693}
-  m_LocalScale: {x: 80, y: 80, z: 80}
+  m_GameObject: {fileID: 904442938443619977}
+  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 120}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6500056304349711236}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4391354895112375172
+--- !u!33 &3604989821588463241
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633045117334031236}
+  m_GameObject: {fileID: 904442938443619977}
   m_Mesh: {fileID: -2124705421725058983, guid: 947b9f8005d788a449966ac82224d3a8, type: 3}
---- !u!23 &3237806577387473796
+--- !u!23 &429585190668983945
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633045117334031236}
+  m_GameObject: {fileID: 904442938443619977}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,26 +80,58 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5017534213251304324
-MonoBehaviour:
+--- !u!95 &5061971779445159480
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904442938443619977}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 162c0a242e21d4741bbc6a98ac6182bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1633045117334031236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6500056304349711236}
+  - component: {fileID: 5260064981337904037}
+  m_Layer: 0
+  m_Name: RingCoin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6500056304349711236
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633045117334031236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d480a340225f26345aadcf621af138d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinDirection: {x: 0, y: 1, z: 0}
-  speed: 60
-  inLateUpdate: 0
-  notRelative: 0
-  gradual: 0
-  gradualSpeed: 0
-  off: 0
---- !u!136 &6823363032610221194
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5832817961679183497}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5260064981337904037
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,9 +139,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633045117334031236}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.0066218246
-  m_Height: 0.0264873
+  m_Radius: 0.6
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: -3.5040256e-18, z: 0.0009862955}
+  m_Center: {x: 0, y: 0, z: 0.1}

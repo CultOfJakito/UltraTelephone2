@@ -139,10 +139,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
         {
             if (CurrencyChaos.EffectActive)
             {
-                if (rand.Chance(0.99f))
-                {
+                if (rand.Chance(0.50f))
                     return CoinType.Ring;
-                }
             }
 
             if (rand.Chance(0.90f))
