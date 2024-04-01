@@ -10,8 +10,8 @@
 
 namespace CultOfJakito.UltraTelephone2.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace CultOfJakito.UltraTelephone2.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,77 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 resourceCulture = value;
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _20230331_153754 {
+            get {
+                object obj = ResourceManager.GetObject("_20230331_153754", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _20230420_163631 {
+            get {
+                object obj = ResourceManager.GetObject("_20230420_163631", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] absoluteterror {
+            get {
+                object obj = ResourceManager.GetObject("absoluteterror", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] aetsesye {
+            get {
+                object obj = ResourceManager.GetObject("aetsesye", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] afarft {
+            get {
+                object obj = ResourceManager.GetObject("afarft", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] artworks_dgGS7o4DGuYHt1xX_IjeBqw_t500x500 {
+            get {
+                object obj = ResourceManager.GetObject("artworks_dgGS7o4DGuYHt1xX_IjeBqw_t500x500", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] artworks_VZ1hrrVnmieDgPfw_09eQow_t500x500 {
+            get {
+                object obj = ResourceManager.GetObject("artworks_VZ1hrrVnmieDgPfw_09eQow_t500x500", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -69,7 +139,57 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] aweaegasgere {
+            get {
+                object obj = ResourceManager.GetObject("aweaegasgere", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] awra35as4et5 {
+            get {
+                object obj = ResourceManager.GetObject("awra35as4et5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] badmove {
+            get {
+                object obj = ResourceManager.GetObject("badmove", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] baffled {
+            get {
+                object obj = ResourceManager.GetObject("baffled", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] bear5 {
+            get {
+                object obj = ResourceManager.GetObject("bear5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -79,7 +199,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Block_Creator_Glass {
+            get {
+                object obj = ResourceManager.GetObject("Block_Creator_Glass", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -89,7 +219,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] bone {
+            get {
+                object obj = ResourceManager.GetObject("bone", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Mega
         ///Based
@@ -162,7 +302,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_prefixes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to THE MAN
         ///(FINAL FORM)
@@ -204,9 +344,9 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         ///B.A
         ///B.Sc
         ///M.A
-        ///M.L.A.
-        ///M.F.A.
-        ///M.S.W.
+        ///M.L.A. 
+        ///M.F.A. 
+        ///M.S.W. 
         ///M.L.
         ///B.Tech
         ///B.Ed
@@ -225,7 +365,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("bossBar_suffixes", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] bro {
+            get {
+                object obj = ResourceManager.GetObject("bro", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to when
         ///you
@@ -271,27 +421,107 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("cantReadWords", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] catalog_wbp_hash {
+        internal static byte[] CatExperiencee {
             get {
-                object obj = ResourceManager.GetObject("catalog_wbp_hash", resourceCulture);
+                object obj = ResourceManager.GetObject("CatExperiencee", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] catalog_wbp_json {
+        internal static byte[] chartreused {
             get {
-                object obj = ResourceManager.GetObject("catalog_wbp_json", resourceCulture);
+                object obj = ResourceManager.GetObject("chartreused", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] chees1 {
+            get {
+                object obj = ResourceManager.GetObject("chees1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] coconut {
+            get {
+                object obj = ResourceManager.GetObject("coconut", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ComeHere {
+            get {
+                object obj = ResourceManager.GetObject("ComeHere", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] cover2__4_ {
+            get {
+                object obj = ResourceManager.GetObject("cover2__4_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] crydeath {
+            get {
+                object obj = ResourceManager.GetObject("crydeath", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DeathImage {
+            get {
+                object obj = ResourceManager.GetObject("DeathImage", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] dfgdth {
+            get {
+                object obj = ResourceManager.GetObject("dfgdth", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] dog_stare_zoom {
+            get {
+                object obj = ResourceManager.GetObject("dog_stare_zoom", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -301,7 +531,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -311,7 +541,57 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] drgd {
+            get {
+                object obj = ResourceManager.GetObject("drgd", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] drghdtfhftgiu {
+            get {
+                object obj = ResourceManager.GetObject("drghdtfhftgiu", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] dug {
+            get {
+                object obj = ResourceManager.GetObject("dug", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] dyftuftyuure {
+            get {
+                object obj = ResourceManager.GetObject("dyftuftyuure", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] earinfection {
+            get {
+                object obj = ResourceManager.GetObject("earinfection", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Hydraxous
         ///Waffle
@@ -332,7 +612,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("enemyNames", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -342,7 +622,87 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] F5GRMlEWUAAAiym {
+            get {
+                object obj = ResourceManager.GetObject("F5GRMlEWUAAAiym", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FbyFm47UcAEI1Cq {
+            get {
+                object obj = ResourceManager.GetObject("FbyFm47UcAEI1Cq", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FhOuLBjWIAwab1v {
+            get {
+                object obj = ResourceManager.GetObject("FhOuLBjWIAwab1v", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Fuel {
+            get {
+                object obj = ResourceManager.GetObject("Fuel", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FwM5Y36XoAEO7r8 {
+            get {
+                object obj = ResourceManager.GetObject("FwM5Y36XoAEO7r8", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Fx_3ZYsWcAIDlzG {
+            get {
+                object obj = ResourceManager.GetObject("Fx_3ZYsWcAIDlzG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gobrae {
+            get {
+                object obj = ResourceManager.GetObject("gobrae", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gorp {
+            get {
+                object obj = ResourceManager.GetObject("gorp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -352,7 +712,47 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] herobrine {
+            get {
+                object obj = ResourceManager.GetObject("herobrine", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] jnjhk {
+            get {
+                object obj = ResourceManager.GetObject("jnjhk", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kettamean {
+            get {
+                object obj = ResourceManager.GetObject("kettamean", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] maxresdefault__44_ {
+            get {
+                object obj = ResourceManager.GetObject("maxresdefault__44_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -362,7 +762,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ohdatsJudment {
+            get {
+                object obj = ResourceManager.GetObject("ohdatsJudment", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -372,7 +782,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -382,7 +792,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to If your legs get cut off, would it hurt?
         ///101110010000101101011101101010110
@@ -403,7 +813,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("ponder", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -413,7 +823,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] r {
+            get {
+                object obj = ResourceManager.GetObject("r", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -423,7 +843,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -433,17 +853,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] shader_unitybuiltinshaders {
+        internal static byte[] sergsrhds {
             get {
-                object obj = ResourceManager.GetObject("shader_unitybuiltinshaders", resourceCulture);
+                object obj = ResourceManager.GetObject("sergsrhds", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Did you know you can shoot enemies to hurt them
         ///Hit the boss until its health bar is empty to win
@@ -465,7 +885,57 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("shiteTips", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] skol {
+            get {
+                object obj = ResourceManager.GetObject("skol", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SmartSelect_20211116_174331 {
+            get {
+                object obj = ResourceManager.GetObject("SmartSelect_20211116_174331", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SmartSelect_20211125_164814 {
+            get {
+                object obj = ResourceManager.GetObject("SmartSelect_20211125_164814", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SmartSelect_s20210321_152814 {
+            get {
+                object obj = ResourceManager.GetObject("SmartSelect_s20210321_152814", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] soypoint {
+            get {
+                object obj = ResourceManager.GetObject("soypoint", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Totally tubular
         ///Better than UltraTelephone!
@@ -498,7 +968,7 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ResourceManager.GetString("splashes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -508,7 +978,17 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] stare {
+            get {
+                object obj = ResourceManager.GetObject("stare", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -518,27 +998,47 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] telephone2_assets_all {
+        internal static byte[] steamhappy1 {
             get {
-                object obj = ResourceManager.GetObject("telephone2_assets_all", resourceCulture);
+                object obj = ResourceManager.GetObject("steamhappy1", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] telephone2_scenes_all {
+        internal static byte[] Stinker {
             get {
-                object obj = ResourceManager.GetObject("telephone2_scenes_all", resourceCulture);
+                object obj = ResourceManager.GetObject("Stinker", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] t56f7yit657yf7t6fyiuk {
+            get {
+                object obj = ResourceManager.GetObject("t56f7yit657yf7t6fyiuk", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] tarwaee {
+            get {
+                object obj = ResourceManager.GetObject("tarwaee", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -548,17 +1048,27 @@ namespace CultOfJakito.UltraTelephone2.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ultratelephone2_monoscripts {
+        internal static byte[] unnamed__4_ {
             get {
-                object obj = ResourceManager.GetObject("ultratelephone2_monoscripts", resourceCulture);
+                object obj = ResourceManager.GetObject("unnamed__4_", resourceCulture);
                 return ((byte[])(obj));
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] vgvhure {
+            get {
+                object obj = ResourceManager.GetObject("vgvhure", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to a
         ///aa
@@ -619,6 +1129,16 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         internal static string wordlist_10000 {
             get {
                 return ResourceManager.GetString("wordlist.10000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] yeahlmao {
+            get {
+                object obj = ResourceManager.GetObject("yeahlmao", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

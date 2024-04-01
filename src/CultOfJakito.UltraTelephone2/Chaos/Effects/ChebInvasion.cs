@@ -6,7 +6,6 @@ using System.Text;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Hydra;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.AI;

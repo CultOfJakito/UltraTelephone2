@@ -118,56 +118,50 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="20230331_153754" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\20230331_153754.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="20230420_163631" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\20230420_163631.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="absoluteterror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\absoluteterror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\absoluteterror.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="aetsesye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\aetsesye.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\aetsesye.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="afarft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\afarft.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\afarft.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="artworks-dgGS7o4DGuYHt1xX-IjeBqw-t500x500" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\artworks-dgGS7o4DGuYHt1xX-IjeBqw-t500x500.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="artworks_dgGS7o4DGuYHt1xX_IjeBqw_t500x500" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\artworks-dgGS7o4DGuYHt1xX-IjeBqw-t500x500.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="artworks-VZ1hrrVnmieDgPfw-09eQow-t500x500" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\artworks-VZ1hrrVnmieDgPfw-09eQow-t500x500.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="artworks_VZ1hrrVnmieDgPfw_09eQow_t500x500" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\artworks-VZ1hrrVnmieDgPfw-09eQow-t500x500.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="awdjao" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\awdjao.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="aweaegasgere" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\aweaegasgere.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\aweaegasgere.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="awra35as4et5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\awra35as4et5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\awra35as4et5.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="badmove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\badmove.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\badmove.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="baffled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\baffled.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\baffled.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bear5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\bear5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\bear5.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bigassgloopy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\bigassgloopy.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Block Creator Glass" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\Block Creator Glass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Block_Creator_Glass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\Block Creator Glass.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="boi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\boi.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bone" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\bone.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\bone.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bossBar_prefixes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bossBar.prefixes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -176,40 +170,37 @@
     <value>..\Resources\bossBar.suffixes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="bro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\bro.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\bro.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cantReadWords" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cantReadWords.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="CatExperiencee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\CatExperiencee.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\CatExperiencee.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chartreused" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\chartreused.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\chartreused.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chees1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\chees1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\chees1.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="coconut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\coconut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\coconut.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ComeHere" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\ComeHere.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\ComeHere.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cover2 (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\cover2 (4).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cover2__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\cover2 (4).jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="crydeath" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\crydeath.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\crydeath.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="DeathImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\DeathImage.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\DeathImage.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dfgdth" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\dfgdth.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dog-stare-zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\dog-stare-zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\dfgdth.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dogstare0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\dogstare0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -217,20 +208,23 @@
   <data name="dogstare1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\dogstare1.jpeg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="dog_stare_zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\dog-stare-zoom.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="drgd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\drgd.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\drgd.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="drghdtfhftgiu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\drghdtfhftgiu.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\drghdtfhftgiu.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dug" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\dug.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\dug.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dyftuftyuure" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\dyftuftyuure.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\dyftuftyuure.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="earinfection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\earinfection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\earinfection.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="enemyNames" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\enemyNames.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -239,49 +233,49 @@
     <value>..\Resources\ProfilePictures\ermcat.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="F5GRMlEWUAAAiym" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\F5GRMlEWUAAAiym.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\F5GRMlEWUAAAiym.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FbyFm47UcAEI1Cq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\FbyFm47UcAEI1Cq.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\FbyFm47UcAEI1Cq.jpeg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FhOuLBjWIAwab1v" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\FhOuLBjWIAwab1v.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\FhOuLBjWIAwab1v.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Fuel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\Fuel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\Fuel.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FwM5Y36XoAEO7r8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\FwM5Y36XoAEO7r8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\FwM5Y36XoAEO7r8.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Fx-3ZYsWcAIDlzG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\Fx-3ZYsWcAIDlzG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Fx_3ZYsWcAIDlzG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\Fx-3ZYsWcAIDlzG.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gobrae" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\gobrae.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\gobrae.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gorp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\gorp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\gorp.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="hakitalightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\hakitalightning.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="herobrine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\herobrine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\herobrine.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="jnjhk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\jnjhk.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\jnjhk.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="kettamean" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\kettamean.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\kettamean.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="maxresdefault (44)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\maxresdefault (44).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="maxresdefault__44_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\maxresdefault (44).jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="monkscream" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\monkscream.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ohdatsJudment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\ohdatsJudment.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\ohdatsJudment.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="padrick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\padrick.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -296,7 +290,7 @@
     <value>..\Resources\ProfilePictures\pronounssoy.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="r" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\r.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\r.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="roachcarving" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\roachcarving.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -305,25 +299,25 @@
     <value>..\Resources\ProfilePictures\scientistshavediscovered.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="sergsrhds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\sergsrhds.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\sergsrhds.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="shiteTips" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shiteTips.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="skol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\skol.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\skol.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SmartSelect_20211116-174331" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\SmartSelect_20211116-174331.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SmartSelect_20211116_174331" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\SmartSelect_20211116-174331.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SmartSelect_20211125-164814" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\SmartSelect_20211125-164814.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SmartSelect_20211125_164814" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\SmartSelect_20211125-164814.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SmartSelect_s20210321-152814" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\SmartSelect_s20210321-152814.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SmartSelect_s20210321_152814" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\SmartSelect_s20210321-152814.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="soypoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\soypoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\soypoint.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="splashes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\splashes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -332,33 +326,42 @@
     <value>..\Resources\ProfilePictures\spongecry.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="stare" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\stare.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\stare.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="steamhappy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProfilePictures\steamhappy.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="steamhappy1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\steamhappy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\steamhappy.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Stinker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\Stinker.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\Stinker.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="t56f7yit657yf7t6fyiuk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\t56f7yit657yf7t6fyiuk.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\t56f7yit657yf7t6fyiuk.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tarwaee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\tarwaee.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\tarwaee.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="unnamed (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\unnamed (4).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="twodabloons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProfilePictures\twodabloons.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unnamed__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\unnamed (4).jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="vgvhure" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\vgvhure.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\vgvhure.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="wordlist.10000" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wordlist.10000.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="yeahlmao" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jumpscare\yeahlmao.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Jumpscare\yeahlmao.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_20230331_153754" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\20230331_153754.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_20230420_163631" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Jumpscare\20230420_163631.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

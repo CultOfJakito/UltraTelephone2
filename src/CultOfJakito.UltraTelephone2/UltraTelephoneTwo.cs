@@ -67,9 +67,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         AddressableManager.LoadCatalog();
         UT2SaveData.Load();
 
+        Jumpscare.ValidateFiles();
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
         AudioHelper.LoadClips(UT2Paths.AudioFolder);
-
 
         InitializeObjects();
 
@@ -86,6 +86,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void InitializeObjects()
     {
+        LoadBearingCoconut.EnsureStability();
+
         gameObject.AddComponent<LevelInjectionManager>();
 
         AlterFriendAvatars.Load();
@@ -93,7 +95,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
-
 
         GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
         GameEvents.OnEnemyDeath += (v) =>
