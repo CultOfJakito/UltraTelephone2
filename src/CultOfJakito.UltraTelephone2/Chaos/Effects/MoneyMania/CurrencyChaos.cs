@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
@@ -22,6 +24,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
 
         private static UniRandom s_random;
 
+        private GameObject _currencyUI;
+
         public static event Action OnRingCollected;
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
@@ -32,8 +36,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
             s_random = random;
             OnRingCollected += CollectRing;
             GameEvents.OnEnemyDeath += CollectBlood;
-
-            // TODO: make ui elements for the currency types and instante them here
+            _currencyUI = UT2Assets.GetAsset<GameObject>("");
+            _currencyUI = Instantiate(_currencyUI, CanvasController.instance.transform);
 
         }
         public override int GetEffectCost() => 5;
@@ -42,6 +46,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
             s_effectActive = false;
             OnRingCollected -= CollectRing;
             GameEvents.OnEnemyDeath -= CollectBlood;
+            Destroy(_currencyUI);
         }
 
         public static void InvokeRingCollected()
@@ -94,6 +99,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
 
             // Todo: depedning on enemy killed, gain ultramarket coins
 
+
+            CurrencyHUD.Instance.UpdateBloodCounter();
+            CurrencyHUD.Instance.UpdateMetalScrapsCounter();
+            CurrencyHUD.Instance.UpdateMarketCoinCounter();
+
             UT2SaveData.MarkDirty();
         }
 
@@ -107,6 +117,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Fish++;
+
+            CurrencyHUD.Instance.UpdateFishCounter();
+
             UT2SaveData.MarkDirty();
         }
 
@@ -121,6 +134,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Plushies++;
+
+            CurrencyHUD.Instance.UpdatePlushiesCounter();
+
             UT2SaveData.MarkDirty();
         }
 
@@ -135,6 +151,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Plushies--;
+
+            CurrencyHUD.Instance.UpdatePlushiesCounter();
+
             UT2SaveData.MarkDirty();
         }
 
@@ -146,10 +165,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Trophies++;
+
+            CurrencyHUD.Instance.UpdateTrophiesCounter();
+
             UT2SaveData.MarkDirty();
         }
 
-        [HarmonyPatch(typeof(Explosion), nameof(Explosion.Destroy))]
+        [HarmonyPatch(typeof(Explosion), nameof(Explosion.Start))]
         [HarmonyPostfix]
         private static void PickupGunpowder()
         {
@@ -157,6 +179,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 return;
 
             UT2SaveData.SaveData.Gunpowder++;
+
+            CurrencyHUD.Instance.UpdateGunpowderCounter();
+
             UT2SaveData.MarkDirty();
         }
     }

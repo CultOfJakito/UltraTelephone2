@@ -88,5 +88,5 @@ public class Ut2SaveData
     public int Gunpowder; 
     public int Fish; 
     public int Plushies; 
-    public int _marketCoin;
+    public int MarketCoins;
 }
