@@ -54,8 +54,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         if(DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
         {
-            Debug.LogWarning("Happy April Fools! UT2 Seed is 69 for the day!!");
-            globalSeed = 69;
+            Debug.LogWarning("Happy April Fools! UT2 Seed is 69^YOU for the day!!");
+            globalSeed = 69^UniRandom.StringToSeed(Environment.UserName);
         }
 
         Random = new UniRandom(globalSeed);

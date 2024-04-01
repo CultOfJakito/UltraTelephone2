@@ -1,4 +1,5 @@
-﻿using Configgy;
+﻿using System.Runtime.ExceptionServices;
+using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
@@ -33,8 +34,13 @@ public class TelephoneQuality : ChaosEffect
 
     protected override void OnDestroy()
     {
-        Destroy(_lp);
-        Destroy(CameraController.Instance.gameObject.GetComponent<AudioHighPassFilter>());
+        if(_lp != null)
+            Destroy(_lp);
+
+        AudioHighPassFilter hpf = CameraController.Instance.gameObject.GetComponentInChildren<AudioHighPassFilter>();
+        if (hpf != null)
+            Destroy(hpf);
+
         s_effectActive = false;
     }
 

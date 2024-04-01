@@ -25,7 +25,17 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             s_effectActive = true;
         }
 
-        public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+        public override bool CanBeginEffect(ChaosSessionContext ctx)
+        {
+            if (!s_enabled.Value || !base.CanBeginEffect(ctx))
+                return false;
+
+            //Fuck no.. actuallyt will crash the game...
+            if (ctx.ContainsEffect<IdolsForEveryone>())
+                return false;
+
+            return true;
+        }
 
         public override int GetEffectCost()
         {
