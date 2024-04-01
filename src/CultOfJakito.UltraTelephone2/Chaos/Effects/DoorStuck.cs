@@ -1,10 +1,9 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Hydra;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
 [RegisterChaosEffect]
 [HarmonyPatch]
@@ -36,6 +35,11 @@ public class DoorStuck : ChaosEffect
             return;
         }
 
+        if (s_random.Chance(0.2f))
+        {
+            return;
+        }
+
         jammer = __instance.gameObject.AddComponent<DoorJammer>();
         jammer.Door = __instance;
         jammer.JamOnOpen = true;
@@ -53,6 +57,11 @@ public class DoorStuck : ChaosEffect
         }
 
         if (__instance.TryGetComponent(out DoorJammer jammer))
+        {
+            return;
+        }
+
+        if (s_random.Chance(0.2f))
         {
             return;
         }

@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.MovingWindow;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MovingWindow;
 
 [RegisterChaosEffect]
 public class WindowDanceEffect : ChaosEffect
@@ -59,7 +58,7 @@ public class WindowDanceEffect : ChaosEffect
         _wasFullscreen = Screen.fullScreen;
         _startRes = Screen.currentResolution;
         GetWindowRect(_currentWindowHandle.Value, ref _startRect);
-        _resolution = new Vector2Int(Screen.width / 3, Screen.height / 3); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
+        _resolution = new Vector2Int((int)(Screen.width / 2.5f), (int)(Screen.height / 2.5f)); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
         Screen.SetResolution(_resolution.x, _resolution.y, false);
     }
 
@@ -82,7 +81,6 @@ public class WindowDanceEffect : ChaosEffect
 
             MovementMode mode = Activator.CreateInstance(s_effectTypes[UnityEngine.Random.Range(0, s_effectTypes.Length)]) as MovementMode; //i cant think of a better way, reflection sucks :(
             Debug.Log($"Window dance starting of type {mode.GetType().Name}");
-            SetWindowPos(_currentWindowHandle.Value, 0, mode.StartPosition.x, mode.StartPosition.y, _resolution.x, _resolution.y, 5);
 
             while (timer < moveLength)
             {
@@ -96,6 +94,8 @@ public class WindowDanceEffect : ChaosEffect
                 cumulativeMovement -= toMove;
 
                 Vector2Int targetPos = currentWindowPoint + toMove;
+                targetPos.x = Mathf.Clamp(targetPos.x, 0, Screen.currentResolution.width - _resolution.x);
+                targetPos.y = Mathf.Clamp(targetPos.y, 0, Screen.currentResolution.height - _resolution.y);
                 SetWindowPos(_currentWindowHandle.Value, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
 
                 timer += Time.unscaledDeltaTime;

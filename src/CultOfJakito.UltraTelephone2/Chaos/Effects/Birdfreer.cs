@@ -3,7 +3,7 @@ using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
     public class BirdFreer : ChaosEffect

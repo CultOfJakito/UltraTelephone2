@@ -19,7 +19,7 @@ public class RandomStyleWords : ChaosEffect
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 2;
 
     [HarmonyPostfix, HarmonyPatch(typeof(StyleHUD), nameof(StyleHUD.GetLocalizedName))]
     public static void Patch(ref string __result)

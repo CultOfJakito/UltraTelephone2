@@ -37,7 +37,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
-        public override int GetEffectCost() => 5;
+        public override int GetEffectCost() => 3;
 
         protected override void OnDestroy() => s_effectActive = false;
 
@@ -56,7 +56,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             //Fast rocket
             if (s_rng.Bool())
-                speed = s_fastRocketSpeed.Value + variance; 
+                speed = s_fastRocketSpeed.Value + variance;
             else //Slow rocket
                 speed = s_slowRocketSpeed.Value + variance;
 

@@ -3,7 +3,7 @@ using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
@@ -32,7 +32,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         public override int GetEffectCost()
         {
-            return 3;
+            return 2;
         }
 
         protected override void OnDestroy() => s_effectActive = false;
