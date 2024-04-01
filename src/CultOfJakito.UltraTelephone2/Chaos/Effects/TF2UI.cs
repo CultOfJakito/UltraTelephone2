@@ -27,12 +27,13 @@ public class TF2UI : ChaosEffect
     public override int GetEffectCost() => 1;
 
     [HarmonyPrefix, HarmonyPatch(typeof(WeaponHUD), nameof(WeaponHUD.UpdateImage))]
-    public static void Patch(ref Sprite icon)
+    public static void Patch(ref Sprite icon, ref Sprite glowIcon)
     {
         if (!s_currentlyActive)
             return;
 
         icon = s_sprite;
+        glowIcon = s_sprite;
     }
 
     protected override void OnDestroy() => s_currentlyActive = false;

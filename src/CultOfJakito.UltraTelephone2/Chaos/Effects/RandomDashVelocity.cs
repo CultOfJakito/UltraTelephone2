@@ -22,7 +22,7 @@ public class RandomDashVelocity : ChaosEffect
     }
 
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 4;
+    public override int GetEffectCost() => 3;
 
     [HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Dodge)), HarmonyPostfix]
     public static void SpeedLimit(NewMovement __instance)

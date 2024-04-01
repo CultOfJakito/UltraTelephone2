@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.BouncyCannonball;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.BouncyCannonball;
 
 public class BouncyCannonball : MonoBehaviour
 {

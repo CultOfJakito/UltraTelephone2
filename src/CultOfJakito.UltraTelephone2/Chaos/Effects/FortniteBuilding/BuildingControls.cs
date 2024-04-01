@@ -1,7 +1,7 @@
 ﻿using CultOfJakito.UltraTelephone2.Assets;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
 public class BuildingControls : MonoSingleton<BuildingControls>
 {
@@ -78,6 +78,7 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             if (Input.GetKeyDown(keyAndBuild.Key))
             {
                 _currentBuild = keyAndBuild.Value;
+                BuildingHud.Instance.SelectOutline(_currentBuild);
 
                 foreach (KeyValuePair<BuildTypes, GameObject> kvp in _typeToPreview)
                 {

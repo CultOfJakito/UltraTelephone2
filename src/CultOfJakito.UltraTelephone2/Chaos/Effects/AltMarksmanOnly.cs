@@ -1,7 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [RegisterChaosEffect]
     public class AltMarksmanOnly : ChaosEffect
@@ -79,6 +79,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             return s_enabled.Value && base.CanBeginEffect(ctx);
         }
 
-        public override int GetEffectCost() => 10;
+        public override int GetEffectCost() => 6;
     }
 }

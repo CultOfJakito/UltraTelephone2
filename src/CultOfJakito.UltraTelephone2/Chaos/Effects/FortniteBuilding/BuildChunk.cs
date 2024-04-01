@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
 public class BuildChunk : MonoBehaviour
 {

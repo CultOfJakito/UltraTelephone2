@@ -4,7 +4,7 @@ using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
