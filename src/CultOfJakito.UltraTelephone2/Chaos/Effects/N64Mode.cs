@@ -22,7 +22,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private static bool s_effectActive = false;
 
-        [HarmonyPatch(typeof(PostProcessV2_Handler), nameof(PostProcessV2_Handler.Fooled)), HarmonyPostfix]
+        [HarmonyPatch(typeof(PostProcessV2_Handler), nameof(PostProcessV2_Handler.Fooled)), HarmonyPrefix]
         private static bool OnFooled(PostProcessV2_Handler __instance)
         {
             if (!s_effectActive || !s_enabled.Value)
