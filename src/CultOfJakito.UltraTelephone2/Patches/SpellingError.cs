@@ -11,10 +11,10 @@ namespace CultOfJakito.UltraTelephone2.Patches
     [HarmonyPatch]
     public static class SpellingError
     {
-        [Configgable("Patches", "Spelling Error")]
+        //[Configgable("Patches", "Spelling Error")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-        [HarmonyPatch(typeof(TextMeshProUGUI), nameof(TextMeshProUGUI.OnEnable)), HarmonyPostfix]
+        //[HarmonyPatch(typeof(TextMeshProUGUI), nameof(TextMeshProUGUI.OnEnable)), HarmonyPostfix]
         private static void OnEnable(TextMeshProUGUI __instance)
         {
             if (!s_enabled.Value)
