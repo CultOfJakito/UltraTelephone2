@@ -23,7 +23,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         public PlinkoMachineTrigger[] triggers;
         UniRandom random;
+        UniRandom trueRandom;
+
         private bool isPlaying;
+
+        private List<Transform> triggerRoots;
+        private List<Vector3> possiblePositions;
 
         private void Start()
         {
@@ -31,11 +36,26 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             rb = ball.GetComponent<Rigidbody>();
             ball.name = BALL_NAME;
             triggers = GetComponentsInChildren<PlinkoMachineTrigger>(true);
+
+            triggerRoots = new List<Transform>();
+            possiblePositions = new List<Vector3>();
+
             for (int i = 0; i < triggers.Length; i++)
             {
                 triggers[i].Machine = this;
                 triggers[i].gameObject.SetActive(false);
+                triggerRoots.Add(triggers[i].transform.parent);
+                possiblePositions.Add(triggers[i].transform.parent.position);
             }
+
+            random.Shuffle(possiblePositions);
+            for (int i = 0; i < triggers.Length; i++)
+            {
+                triggerRoots[i].position = possiblePositions[i];
+            }
+
+
+
         }
 
         public void Play()
@@ -52,9 +72,19 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
             ball.transform.position = ballpoint.position;
             ball.SetActive(true);
-            rb.velocity = random.UnitSphere() * 20f;
+
+            //Toss the ball in a random direction
+            trueRandom ??= UniRandom.CreateFullRandom();
+            rb.velocity = trueRandom.UnitSphere() * 20f;
         }
 
+        public void SetBet(int type)
+        {
+            if (isPlaying)
+                return;
+
+            typeBet = type;
+        }
 
         private void Update()
         {
