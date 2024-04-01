@@ -148,5 +148,16 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
             UT2SaveData.SaveData.Trophies++;
             UT2SaveData.MarkDirty();
         }
+
+        [HarmonyPatch(typeof(Explosion), nameof(Explosion.Destroy))]
+        [HarmonyPostfix]
+        private static void PickupGunpowder()
+        {
+            if (!s_effectActive || !s_enabled.Value)
+                return;
+
+            UT2SaveData.SaveData.Gunpowder++;
+            UT2SaveData.MarkDirty();
+        }
     }
 }
