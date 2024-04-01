@@ -19,6 +19,8 @@ public sealed class Bear5IsComing : ChaosEffect
     private float _startTimer;
     private bool _hasSpawnedBear5;
 
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
+
     public override void BeginEffect(UniRandom random) {
         if(!s_enabled.Value)
         {
