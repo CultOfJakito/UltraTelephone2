@@ -33,9 +33,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
 
         [HarmonyPatch(typeof(ScanningStuff), nameof(ScanningStuff.ScanBook)), HarmonyPrefix]
-        private static void OnScanBook(ScanningStuff __instance, ref string text)
+        private static void OnScanBook(ScanningStuff __instance, ref string text, int instanceId)
         {
             if (!s_enabled.Value || !s_effectActive)
+                return;
+
+            if (instanceId == ChaosManager.ChaosBookHashCode)
                 return;
 
             int option = s_rng.Next(0, 3);

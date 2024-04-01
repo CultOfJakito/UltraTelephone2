@@ -40,7 +40,7 @@ public class RealisticExplosions : ChaosEffect
 
         AudioSource source = __instance.GetComponent<AudioSource>();
 
-        if(source != null)
+        if(source != null && !source.loop)
         {
             source.dopplerLevel = 0;
             source.clip = Sound;
