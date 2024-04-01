@@ -16,6 +16,7 @@ namespace CultOfJakito.UltraTelephone2.Data
         public static TextListFile ShiteTipsFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "shiteTips.txt"), Properties.Resources.shiteTips);
         public static TextListFile EnemyNamesFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "enemyNames.txt"), Properties.Resources.enemyNames);
         public static TextListFile WordList10kFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "wordlist.10000.txt"), Properties.Resources.wordlist_10000);
+        public static TextListFile WindowTitlesFile { get; private set; } = new TextListFile(Path.Combine(UT2Paths.TextFolder, "windowTitles.txt"), Properties.Resources.windowTitles);
 
         public static void ReloadFiles()
         {
@@ -27,6 +28,7 @@ namespace CultOfJakito.UltraTelephone2.Data
             ShiteTipsFile.Load();
             EnemyNamesFile.Load();
             WordList10kFile.Load();
+            WindowTitlesFile.Load();
         }
     }
 }

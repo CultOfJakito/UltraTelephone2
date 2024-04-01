@@ -1130,6 +1130,30 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ULTRAKILL
+        ///KILLULTRA
+        ///ULTRATELEPHONE
+        ///ULTRATELEPHONE???
+        ///Rednova Epic Adventure
+        ///57I67UY5YM-JNMTNzrYHUR5-IJN6E-4A
+        ///Welcome to ULTRAKILL OFFLINE
+        ///Also Try Doom!
+        ///Also Try g#!Z R GF#87r !#FG *RY @#$ NG*YZGYI U(H#$IB Y)!
+        ///Also Try Journey to Lavandaria!
+        ///Also Try Divine Delivery!
+        ///Also Try Rubicon!
+        ///Welcome to Ohio :skull:
+        ///Domain Expansion BEAR5
+        ///We Users. Appdata. Roaming.
+        ///.
+        /// </summary>
+        internal static string windowTitles {
+            get {
+                return ResourceManager.GetString("windowTitles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a
         ///aa
         ///aaa
