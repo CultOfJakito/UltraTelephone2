@@ -61,10 +61,20 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             if (_currentlyBuilding)
             {
                 GunControl.Instance.NoWeapon();
+
+                foreach (KeyValuePair<BuildTypes, GameObject> kvp in _typeToPreview)
+                {
+                    kvp.Value.SetActive(kvp.Key == _currentBuild);
+                }
             }
             else
             {
                 GunControl.Instance.YesWeapon();
+
+                foreach (GameObject preview in _typeToPreview.Values)
+                {
+                    preview.SetActive(false);
+                }
             }
         }
 
