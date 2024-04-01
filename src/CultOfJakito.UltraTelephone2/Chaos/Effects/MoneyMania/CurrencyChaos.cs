@@ -97,8 +97,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 UT2SaveData.SaveData.MetalScraps += s_random.Next(1, 4);
             }
 
-            // Todo: depedning on enemy killed, gain ultramarket coins
 
+            UT2SaveData.SaveData.MarketCoins += GetEnemyWorth(deathEvent.Enemy);
 
             CurrencyHUD.Instance.UpdateBloodCounter();
             CurrencyHUD.Instance.UpdateMetalScrapsCounter();
@@ -107,7 +107,54 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
             UT2SaveData.MarkDirty();
         }
 
-        // Patches
+        private static int GetEnemyWorth(EnemyIdentifier eid)
+        {
+            if (eid.dontCountAsKills)
+                return 0;
+
+            return eid.enemyType switch
+            {
+                EnemyType.Filth => 1,
+                EnemyType.MaliciousFace => 10,
+                EnemyType.Stray => 5,
+                EnemyType.Schism => 12,
+                EnemyType.Swordsmachine => 35,
+                EnemyType.Cerberus => 35,
+                EnemyType.Drone => 5,
+                EnemyType.Streetcleaner => 10,
+                EnemyType.CancerousRodent => 69,
+                EnemyType.VeryCancerousRodent => 420,
+                EnemyType.HideousMass => 250,
+                EnemyType.V2 => 1000,
+                EnemyType.Soldier => 15,
+                EnemyType.Mindflayer => 75,
+                EnemyType.Minos => 350,
+                EnemyType.Gabriel => 2500,
+                EnemyType.FleshPrison => 5000,
+                EnemyType.MinosPrime => 50000,
+                EnemyType.Virtue => 180,
+                EnemyType.Stalker => 20,
+                EnemyType.Mandalore => 6969,
+                EnemyType.Sisyphus => 550,
+                EnemyType.V2Second => 2500,
+                EnemyType.Turret => 150,
+                EnemyType.Idol => 100,
+                EnemyType.Ferryman => 1250,
+                EnemyType.Leviathan => 680,
+                EnemyType.GabrielSecond => 5000,
+                EnemyType.FleshPanopticon => 7500,
+                EnemyType.SisyphusPrime => 75000,
+                EnemyType.Mannequin => 60,
+                EnemyType.Minotaur => 2500,
+                EnemyType.BigJohnator => -10,
+                EnemyType.Gutterman => 80,
+                EnemyType.Guttertank => 80,
+                EnemyType.Centaur => 2000,
+                _ => 0,
+            };
+        }
+
+        #region patches
 
         [HarmonyPatch(typeof(FishingRodWeapon), nameof(FishingRodWeapon.FishCaughtAndGrabbed))]
         [HarmonyPostfix]
@@ -184,5 +231,6 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
 
             UT2SaveData.MarkDirty();
         }
+        #endregion
     }
 }
