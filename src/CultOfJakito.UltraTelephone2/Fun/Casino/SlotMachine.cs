@@ -160,19 +160,23 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
             if (lightsAnimator)
                 lightsAnimator.Play("Winner", 0, 0f);
 
+            long winnings = 0;
             switch (winningSymbol)
             {
                 //Coin fountain
                 case SlotMachineSymbol.Coin:
                     //1.25x bet and coin fountain
                     CoinFountain();
-                    FakeBank.AddMoney((long)(bet * 1.25f));
+
+                    winnings = (long)(bet * 1.25f);
+                    CasinoManager.Instance.Chips += winnings;
                     break;
 
                 case SlotMachineSymbol.Maurice:
                 case SlotMachineSymbol.Heckteck:
                 case SlotMachineSymbol.Skull:
-                    FakeBank.AddMoney(bet * 2);
+                    winnings = bet * 2;
+                    CasinoManager.Instance.Chips += winnings;
                     break;
 
                     //JACKPOT!!!
@@ -181,7 +185,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                     CoinFountain();
                     CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(1,0,0);
                     CoinFountain().transform.position = coinFountainLocation.position + coinFountainLocation.rotation * new Vector3(-1,0,0);
-                    FakeBank.AddMoney(bet * 10);
+                    winnings = bet * 10;
+                    CasinoManager.Instance.Chips += winnings;
                     break;
             }
 
@@ -322,7 +327,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
 
         private void UpdateCurrentSide()
         {
-            CurrentSide = Mathf.RoundToInt(rotation / (SliceAngle())) % SIDE_COUNT;
+            CurrentSide = Mathf.RoundToInt(Mathf.Abs(rotation) / (SliceAngle())) % SIDE_COUNT;
         }
 
 

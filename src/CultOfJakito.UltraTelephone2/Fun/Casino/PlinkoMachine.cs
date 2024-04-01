@@ -54,8 +54,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Casino
                 triggerRoots[i].position = possiblePositions[i];
             }
 
-
-
         }
 
         public void Play()
