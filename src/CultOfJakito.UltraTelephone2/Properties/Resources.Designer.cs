@@ -425,6 +425,26 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] catalog_wbp {
+            get {
+                object obj = ResourceManager.GetObject("catalog_wbp", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] catalog_wbp1 {
+            get {
+                object obj = ResourceManager.GetObject("catalog_wbp1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] CatExperiencee {
             get {
                 object obj = ResourceManager.GetObject("CatExperiencee", resourceCulture);
@@ -865,6 +885,16 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] shader_unitybuiltinshaders {
+            get {
+                object obj = ResourceManager.GetObject("shader_unitybuiltinshaders", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Did you know you can shoot enemies to hurt them
         ///Hit the boss until its health bar is empty to win
         ///You can also dodge attacks by moving out of the way
@@ -1042,9 +1072,39 @@ namespace CultOfJakito.UltraTelephone2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] telephone2_assets_all {
+            get {
+                object obj = ResourceManager.GetObject("telephone2_assets_all", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] telephone2_scenes_all {
+            get {
+                object obj = ResourceManager.GetObject("telephone2_scenes_all", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] twodabloons {
             get {
                 object obj = ResourceManager.GetObject("twodabloons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ultratelephone2_monoscripts {
+            get {
+                object obj = ResourceManager.GetObject("ultratelephone2_monoscripts", resourceCulture);
                 return ((byte[])(obj));
             }
         }

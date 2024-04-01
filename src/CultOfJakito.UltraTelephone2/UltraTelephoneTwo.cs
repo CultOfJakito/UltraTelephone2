@@ -61,6 +61,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
+        BackupSaveData.EnsureBackupExists();
 
         //UT2Assets.ValidateAssetIntegrity();
         UT2Paths.EnsureFolders();
@@ -69,7 +70,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Jumpscare.ValidateFiles();
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
-        AudioHelper.LoadClips(UT2Paths.AudioFolder);
+        //AudioHelper.LoadClips(UT2Paths.AudioFolder); Unused for now.
 
         InitializeObjects();
 

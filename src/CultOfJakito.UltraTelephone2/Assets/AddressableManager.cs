@@ -15,6 +15,7 @@ public static class AddressableManager
 
     public static void LoadCatalog()
     {
+        ValidateFiles();
         Addressables.LoadContentCatalogAsync(CatalogPath, false).WaitForCompletion();
     }
 
@@ -34,6 +35,28 @@ public static class AddressableManager
         }
 
         s_dontSanitizeScenes = false;
+    }
+
+    public static void ValidateFiles()
+    {
+        if(!Directory.Exists(AssetPath))
+            Directory.CreateDirectory(AssetPath);
+
+        //UNPACK THE BUILT-IN ASSETS
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.hash"), Properties.Resources.catalog_wbp);
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.json"), Properties.Resources.catalog_wbp1);
+        ValidateFile(Path.Combine(AssetPath, "shader_unitybuiltinshaders.bundle"), Properties.Resources.shader_unitybuiltinshaders);
+        ValidateFile(Path.Combine(AssetPath, "telephone2_assets_all.bundle"), Properties.Resources.telephone2_assets_all);
+        ValidateFile(Path.Combine(AssetPath, "telephone2_scenes_all.bundle"), Properties.Resources.telephone2_scenes_all);
+        ValidateFile(Path.Combine(AssetPath, "ultratelephone2_monoscripts.bundle"), Properties.Resources.ultratelephone2_monoscripts);
+    }
+
+    private static void ValidateFile(string filePath, byte[] data)
+    {
+        if (File.Exists(filePath))
+            return;
+
+        File.WriteAllBytes(filePath, data);
     }
 
     [HarmonyPatch(typeof(SceneHelper), nameof(SceneHelper.SanitizeLevelPath)), HarmonyPrefix]
