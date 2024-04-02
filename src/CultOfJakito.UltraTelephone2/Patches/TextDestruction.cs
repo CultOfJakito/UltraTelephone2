@@ -1,4 +1,5 @@
-﻿using CultOfJakito.UltraTelephone2.Assets;
+﻿using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,11 @@ namespace CultOfJakito.UltraTelephone2.Patches;
 [HarmonyPatch]
 public class TextDestruction
 {
+    [Configgable("Patches/Text Destruction", "Font Changer")]
+    private static bool s_fontChangeEnabled = true;
+    [Configgable("Patches/Text Destruction", "Uwufier")]
+    private static bool s_uwufierEnabled = true;
+
     private static Font[] s_fonts =
     {
         UT2Assets.GetAsset<Font>("Assets/Telephone 2/Fonts/ComicSans.ttf"),
@@ -35,7 +41,32 @@ public class TextDestruction
         InGameCheck.OnLevelChanged += s => s_checkedTexts.Clear();
     }
 
-    private static string Uwufy(string str) => str.ToLower().Replace("r", "w").Replace("l", "w").Replace("<cowow", "<color") + (s_rand.Chance(0.25f) ? " :3" : string.Empty);
+    private static string Uwufy(string str)
+    {
+        string result = string.Empty;
+        bool inTag = false;
+
+        foreach (char character in str)
+        {
+            if (!inTag)
+            {
+                result += character.ToString().ToLower() is "r" or "l" ? 'w' : character;
+                if (character == '<')
+                {
+                    inTag = true;
+                }
+                continue;
+            }
+
+            result += character;
+            if (character == '>')
+            {
+                inTag = false;
+            }
+        }
+
+        return result.ToLower() + (s_rand.Chance(0.25f) ? " " + s_rand.SelectRandom([":3", ";3", "^_^", ">_<", ">//<"]) : string.Empty);
+    }
 
     [HarmonyPatch(typeof(TextMeshProUGUI), nameof(TextMeshProUGUI.OnEnable)), HarmonyPostfix]
     private static void SwapTmp(TextMeshProUGUI __instance)
@@ -45,12 +76,13 @@ public class TextDestruction
             return;
         }
 
-        if (s_rand.Chance(0.25f))
+        if (s_rand.Chance(0.25f) && s_fontChangeEnabled)
         {
             __instance.font = s_rand.SelectRandom(s_tmpFonts);
+            __instance.enableWordWrapping = true;
         }
 
-        if (s_rand.Chance(0.25f))
+        if (s_rand.Chance(0.25f) && s_uwufierEnabled)
         {
             __instance.text = Uwufy(__instance.text);
         }
@@ -66,12 +98,13 @@ public class TextDestruction
             return;
         }
 
-        if (s_rand.Chance(0.25f))
+        if (s_rand.Chance(0.25f) && s_fontChangeEnabled)
         {
             __instance.font = s_rand.SelectRandom(s_fonts);
+            __instance.resizeTextForBestFit = true;
         }
 
-        if (s_rand.Chance(0.25f))
+        if (s_rand.Chance(0.25f) && s_uwufierEnabled)
         {
             __instance.text = Uwufy(__instance.text);
         }

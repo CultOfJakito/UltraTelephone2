@@ -15,10 +15,6 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static T GetAsset<T>(string assetName) where T : UnityEngine.Object
         {
             //return backupLoader.GetAsset<T>(assetName);
-            if (!AddressableManager.LoadedCatalog)
-            {
-                AddressableManager.LoadCatalog();
-            }
 
             if (_loadedAssets.ContainsKey(assetName))
             {

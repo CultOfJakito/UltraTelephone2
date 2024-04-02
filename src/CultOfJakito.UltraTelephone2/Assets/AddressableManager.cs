@@ -56,10 +56,17 @@ public static class AddressableManager
 
     private static void ValidateFile(string filePath, byte[] data)
     {
-        if (File.Exists(filePath) && File.ReadAllBytes(filePath) == data)
-            return;
+        try
+        {
+            if (File.Exists(filePath) && File.ReadAllBytes(filePath) == data)
+                return;
 
-        File.WriteAllBytes(filePath, data);
+            File.WriteAllBytes(filePath, data);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Validate file exception!! " + ex);
+        }
     }
 
     [HarmonyPatch(typeof(SceneHelper), nameof(SceneHelper.SanitizeLevelPath)), HarmonyPrefix]

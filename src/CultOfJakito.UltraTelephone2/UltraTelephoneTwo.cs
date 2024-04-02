@@ -39,10 +39,10 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private void Awake()
     {
         Instance = this;
+        AddressableManager.LoadCatalog();
 
         LogBuffer = new List<string>();
         Application.logMessageReceived += Application_logMessageReceived;
-
 
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -66,7 +66,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         //UT2Assets.ValidateAssetIntegrity();
         UT2Paths.EnsureFolders();
-        AddressableManager.LoadCatalog();
         UT2SaveData.Load();
 
         Jumpscare.ValidateFiles();

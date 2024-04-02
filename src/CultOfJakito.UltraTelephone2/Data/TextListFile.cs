@@ -17,23 +17,32 @@ namespace CultOfJakito.UltraTelephone2.Data
 
         public void Load()
         {
+            Debug.Log("loading tlf " + Path);
             if (!File.Exists(Path))
             {
+                Debug.Log("doesnt exist, setting to dt");
                 File.WriteAllText(Path, DefaultText);
                 TextList = LinesToList(DefaultText);
+                Debug.Log("worked and ret");
                 return;
             }
 
             try
             {
+                Debug.Log("reading from file");
                 TextList = ReadFromFile(Path);
-                if(TextList == null)
+                if (TextList == null)
+                {
                     TextList = LinesToList(DefaultText);
+                    Debug.Log("null read, dt");
+                }
             }
             catch (Exception ex)
             {
+                Debug.Log("exception!");
                 Debug.LogException(ex);
                 TextList = LinesToList(DefaultText);
+                Debug.Log("set to dt, reting");
                 return;
             }
         }
