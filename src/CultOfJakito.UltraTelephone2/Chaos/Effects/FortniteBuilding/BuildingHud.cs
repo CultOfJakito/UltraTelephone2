@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 public class BuildingHud : MonoSingleton<BuildingHud>
 {
     public Image[] Outlines;
+    public TMP_Text[] BuildBindTexts;
+    public TMP_Text SwitchText;
 
     public static void Create()
     {

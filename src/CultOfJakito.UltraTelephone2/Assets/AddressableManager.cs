@@ -13,10 +13,13 @@ public static class AddressableManager
     public static string ModDataPath => Path.Combine(UT2Paths.InternalAssetsFolder, "data.json");
     public static string AssetPath => UT2Paths.InternalAssetsFolder;
 
+    public static bool LoadedCatalog { get; private set; }
+
     public static void LoadCatalog()
     {
         ValidateFiles();
         Addressables.LoadContentCatalogAsync(CatalogPath, false).WaitForCompletion();
+        LoadedCatalog = true;
     }
 
     public static void LoadSceneUnsanitzed(string path)
@@ -53,7 +56,7 @@ public static class AddressableManager
 
     private static void ValidateFile(string filePath, byte[] data)
     {
-        if (File.Exists(filePath))
+        if (File.Exists(filePath) && File.ReadAllBytes(filePath) == data)
             return;
 
         File.WriteAllBytes(filePath, data);

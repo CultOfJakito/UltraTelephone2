@@ -21,6 +21,7 @@ namespace CultOfJakito.UltraTelephone2;
 
 [BepInDependency("Hydraxous.ULTRAKILL.Configgy")]
 [BepInPlugin(MOD_GUID, MOD_NAME, VERSION)]
+[HarmonyPatch]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
     public const string VERSION = "1.0.0";
@@ -70,6 +71,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         Jumpscare.ValidateFiles();
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
+        TextDestruction.Initialize();
         //AudioHelper.LoadClips(UT2Paths.AudioFolder); Unused for now.
 
         InitializeObjects();
@@ -106,7 +108,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             }
         };
 
-       
+
     }
 
 
@@ -175,6 +177,14 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             case PersonalizationLevel.ULTRAPERSONALIZED:
                 return (int)DateTime.Now.Ticks^UniRandom.StringToSeed(Environment.UserName);
         }
+    }
+
+    [HarmonyPatch(typeof(LeaderboardController), nameof(LeaderboardController.SubmitCyberGrindScore))]
+    [HarmonyPatch(typeof(LeaderboardController), nameof(LeaderboardController.SubmitLevelScore))]
+    [HarmonyPrefix]
+    public static bool DisableCg()
+    {
+        return false;
     }
 }
 

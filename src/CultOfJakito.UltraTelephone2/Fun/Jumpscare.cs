@@ -137,7 +137,7 @@ namespace CultOfJakito.UltraTelephone2.Fun
                 instance.DoScare(force);
         }
 
-        public void DoScare(bool force = false)
+        public void DoScare(bool force = false, bool dontRepeat = false)
         {
             Debug.Log($"Doscare: {running} {force}");
             if (running && !force)
@@ -149,11 +149,22 @@ namespace CultOfJakito.UltraTelephone2.Fun
             {
                 image.sprite = TextureToSprite(currentTexture);
                 StartCoroutine(FlashImage());
+
+                if (!dontRepeat && rand.Chance(0.2f))
+                {
+                    StartCoroutine(RepeatJumpscare());
+                }
             }
             else
             {
                 running = false;
             }
+        }
+
+        private IEnumerator RepeatJumpscare()
+        {
+            yield return new WaitForSeconds(rand.Range(0.2f, 0.5f));
+            DoScare(true);
         }
 
         public static void ScareWithTexture(Texture2D texture, bool force)
@@ -170,7 +181,6 @@ namespace CultOfJakito.UltraTelephone2.Fun
             instance.running = true;
             instance.StopAllCoroutines();
             instance.SetNewTexture(texture);
-
             if (instance.image != null)
             {
                 instance.image.sprite = instance.TextureToSprite(instance.currentTexture);

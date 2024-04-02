@@ -60,7 +60,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         {
             ModalDialogueEvent dialogue = s_rng.Chance(0.25f) ? s_rng.SelectRandomFromSet(_dialogueBuilders).Invoke() : CreateRandomized();
             ModalDialogue.ShowDialogue(dialogue);
-            UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/winxperror.mp3").PlaySound(CameraController.Instance.transform.position);
+            UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/winxperror.mp3").PlaySound(CameraController.Instance.transform.position).ignoreListenerPause = true;
         }
 
         private DialogueBoxOption[] _evilOptions;

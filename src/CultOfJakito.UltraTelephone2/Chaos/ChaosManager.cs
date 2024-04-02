@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 public class ChaosManager : MonoBehaviour, IDisposable
 {
     [Configgable(displayName:"Chaos Budget")]
-    private static ConfigInputField<int> _chaosBudget = new ConfigInputField<int>(50, (v) =>
+    private static ConfigInputField<int> s_chaosBudget = new ConfigInputField<int>(50, (v) =>
     {
         return v > 0;
     });
@@ -34,7 +34,7 @@ public class ChaosManager : MonoBehaviour, IDisposable
             .GetSeed();
 
         UniRandom random = new UniRandom(seed);
-        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
+        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, s_chaosBudget.Value);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().ShuffleIEnumerable(random))
         {

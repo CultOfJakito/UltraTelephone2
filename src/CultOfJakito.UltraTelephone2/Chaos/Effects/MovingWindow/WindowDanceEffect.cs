@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MovingWindow;
@@ -20,9 +21,7 @@ public class WindowDanceEffect : ChaosEffect
 
     private Coroutine _movementRoutine;
     private IntPtr? _currentWindowHandle;
-    private Resolution _startRes;
     private Rect _startRect;
-    private bool _wasFullscreen;
     private Vector2Int _resolution;
 
     [DllImport("user32.dll", EntryPoint = "SetWindowPos")] private static extern bool SetWindowPos(IntPtr hwnd, int hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
@@ -47,25 +46,27 @@ public class WindowDanceEffect : ChaosEffect
         StopCoroutine(_movementRoutine);
     }
 
-    protected override void OnDestroy() { }
+    protected override void OnDestroy()
+    {
+        ResolutionFuckeryUtils.ResetToDefault();
+    }
 
     public override int GetEffectCost() => 10;
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx);
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx) && !ctx.ContainsEffect<ResolutionSwitcher>();
 
     private void StartMoving()
     {
         _currentWindowHandle ??= FindWindow(null, Application.productName);
-        _wasFullscreen = Screen.fullScreen;
-        _startRes = Screen.currentResolution;
         GetWindowRect(_currentWindowHandle.Value, ref _startRect);
-        _resolution = new Vector2Int((int)(Screen.width / 2.5f), (int)(Screen.height / 2.5f)); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
+        Vector2 resDecimal = (Vector2)ResolutionFuckeryUtils.StandardResolution / 2.5f;
+        _resolution = new Vector2Int((int)resDecimal.x, (int)resDecimal.y);
         Screen.SetResolution(_resolution.x, _resolution.y, false);
     }
 
     private void StopMoving()
     {
         SetWindowPos(_currentWindowHandle.Value, 0, _startRect.Left, _startRect.Top, _startRect.Right - _startRect.Left, _startRect.Bottom - _startRect.Top, 5);
-        Screen.SetResolution(_startRes.width, _startRes.height, _wasFullscreen);
+        ResolutionFuckeryUtils.ResetToDefault();
     }
 
     private IEnumerator WindowMovement()
