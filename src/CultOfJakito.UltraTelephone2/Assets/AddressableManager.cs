@@ -46,8 +46,8 @@ public static class AddressableManager
             Directory.CreateDirectory(AssetPath);
 
         //UNPACK THE BUILT-IN ASSETS
-        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.hash"), Properties.Resources.catalog_wbp);
-        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.json"), Properties.Resources.catalog_wbp1);
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.hash"), Properties.Resources.catalog_wbp_hash);
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.json"), Properties.Resources.catalog_wbp);
         ValidateFile(Path.Combine(AssetPath, "shader_unitybuiltinshaders.bundle"), Properties.Resources.shader_unitybuiltinshaders);
         ValidateFile(Path.Combine(AssetPath, "telephone2_assets_all.bundle"), Properties.Resources.telephone2_assets_all);
         ValidateFile(Path.Combine(AssetPath, "telephone2_scenes_all.bundle"), Properties.Resources.telephone2_scenes_all);
