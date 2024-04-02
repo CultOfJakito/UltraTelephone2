@@ -9,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 public class Ponder : ChaosEffect
 {
     // Guys please add more prompts, my brain isn't made for that
-    private static List<string> _prompts => UT2TextFiles.S_PonderPrompts.TextList;
+    private static List<string> _prompts => UT2TextFiles.PonderPromptsFile.TextList;
 
     [Configgable("Chaos/Effects", "Enabled Pondering")]
     public static ConfigToggle Enabled = new(true);

@@ -370,6 +370,9 @@
   <data name="vgvhure" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Jumpscare\vgvhure.PNG;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="windowTitles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\windowTitles.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="wordlist.10000" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wordlist.10000.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>

@@ -109,6 +109,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         };
 
 
+        GameEvents.OnLevelStateChange += _ => RandomWindowTitle.Reroll();
+        RandomWindowTitle.Reroll();
     }
 
 

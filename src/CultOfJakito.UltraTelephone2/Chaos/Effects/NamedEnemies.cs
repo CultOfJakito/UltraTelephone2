@@ -32,7 +32,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 return s_steamFriendNames;
             }
 
-            return UT2TextFiles.S_EnemyNames.TextList;
+            return UT2TextFiles.EnemyNamesFile.TextList;
         }
 
         public override void BeginEffect(UniRandom random)
