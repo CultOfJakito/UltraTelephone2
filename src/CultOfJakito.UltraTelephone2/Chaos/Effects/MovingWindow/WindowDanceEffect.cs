@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Fun;
 using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 
@@ -20,7 +21,6 @@ public class WindowDanceEffect : ChaosEffect
     };
 
     private Coroutine _movementRoutine;
-    private IntPtr? _currentWindowHandle;
     private Rect _startRect;
     private Vector2Int _resolution;
 
@@ -56,8 +56,7 @@ public class WindowDanceEffect : ChaosEffect
 
     private void StartMoving()
     {
-        _currentWindowHandle ??= FindWindow(null, Application.productName);
-        GetWindowRect(_currentWindowHandle.Value, ref _startRect);
+        GetWindowRect(RandomWindowTitle.WindowHandle, ref _startRect);
         Vector2 resDecimal = (Vector2)ResolutionFuckeryUtils.StandardResolution / 2.5f;
         _resolution = new Vector2Int((int)resDecimal.x, (int)resDecimal.y);
         Screen.SetResolution(_resolution.x, _resolution.y, false);
@@ -65,7 +64,7 @@ public class WindowDanceEffect : ChaosEffect
 
     private void StopMoving()
     {
-        SetWindowPos(_currentWindowHandle.Value, 0, _startRect.Left, _startRect.Top, _startRect.Right - _startRect.Left, _startRect.Bottom - _startRect.Top, 5);
+        SetWindowPos(RandomWindowTitle.WindowHandle, 0, _startRect.Left, _startRect.Top, _startRect.Right - _startRect.Left, _startRect.Bottom - _startRect.Top, 5);
         ResolutionFuckeryUtils.ResetToDefault();
     }
 
@@ -86,7 +85,7 @@ public class WindowDanceEffect : ChaosEffect
             while (timer < moveLength)
             {
                 Rect rect = new();
-                GetWindowRect(_currentWindowHandle.Value, ref rect);
+                GetWindowRect(RandomWindowTitle.WindowHandle, ref rect);
 
                 Vector2Int currentWindowPoint = new(rect.Left, rect.Top);
                 cumulativeMovement += mode.Move(_resolution, currentWindowPoint) * Time.unscaledDeltaTime;
@@ -95,9 +94,10 @@ public class WindowDanceEffect : ChaosEffect
                 cumulativeMovement -= toMove;
 
                 Vector2Int targetPos = currentWindowPoint + toMove;
+                Debug.Log($"window at {currentWindowPoint} moving to {targetPos} by {toMove}");
                 targetPos.x = Mathf.Clamp(targetPos.x, 0, Screen.currentResolution.width - _resolution.x);
                 targetPos.y = Mathf.Clamp(targetPos.y, 0, Screen.currentResolution.height - _resolution.y);
-                SetWindowPos(_currentWindowHandle.Value, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
+                SetWindowPos(RandomWindowTitle.WindowHandle, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
 
                 timer += Time.unscaledDeltaTime;
                 yield return null;

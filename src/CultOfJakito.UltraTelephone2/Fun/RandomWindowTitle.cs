@@ -17,23 +17,23 @@ public static class RandomWindowTitle
     [Configgable("Fun", "Random Window Title")]
     private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-    private static nint _windowHandle;
+    public static nint WindowHandle { get; private set; }
 
     public static void Reroll()
     {
-        if(_windowHandle == IntPtr.Zero)
+        if(WindowHandle == IntPtr.Zero)
         {
-            _windowHandle = FindWindow(null, "ULTRAKILL");
+            WindowHandle = FindWindow(null, "ULTRAKILL");
         }
 
         if(!s_enabled.Value)
         {
-            SetWindowText(_windowHandle, "ULTRAKILL");
+            SetWindowText(WindowHandle, "ULTRAKILL");
             return;
         }
 
         string text = UT2TextFiles.WindowTitlesFile.TextList[UnityEngine.Random.Range(0, UT2TextFiles.WindowTitlesFile.TextList.Count)];
 
-        SetWindowText(_windowHandle, text);
+        SetWindowText(WindowHandle, text);
     }
 }
