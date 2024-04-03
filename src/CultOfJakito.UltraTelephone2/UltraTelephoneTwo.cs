@@ -24,7 +24,7 @@ namespace CultOfJakito.UltraTelephone2;
 [HarmonyPatch]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
-    public const string VERSION = "1.0.0";
+    public const string VERSION = "1.1.0";
     public const string MOD_NAME = "UltraTelephone2";
     public const string MOD_GUID = "CultOfJakito.UltraTelephone2";
     public ChaosManager ChaosManager { get; private set; }

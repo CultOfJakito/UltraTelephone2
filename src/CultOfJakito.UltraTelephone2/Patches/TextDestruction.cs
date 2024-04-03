@@ -11,9 +11,9 @@ namespace CultOfJakito.UltraTelephone2.Patches;
 public class TextDestruction
 {
     [Configgable("Patches/Text Destruction", "Font Changer")]
-    private static bool s_fontChangeEnabled = true;
+    private static ConfigToggle s_fontChangeEnabled = new(true);
     [Configgable("Patches/Text Destruction", "Uwufier")]
-    private static bool s_uwufierEnabled = true;
+    private static ConfigToggle s_uwufierEnabled = new(true);
 
     private static Font[] s_fonts =
     {
@@ -34,11 +34,12 @@ public class TextDestruction
     };
 
     private static List<UnityEngine.Object> s_checkedTexts = new();
-    private static UniRandom s_rand = UniRandom.SessionNext();
+    private static UniRandom s_rand;
 
     public static void Initialize()
     {
-        InGameCheck.OnLevelChanged += s => s_checkedTexts.Clear();
+        s_rand = UniRandom.SessionNext();
+        InGameCheck.OnLevelChanged += _ => s_checkedTexts.Clear();
     }
 
     private static string Uwufy(string str)
@@ -76,13 +77,13 @@ public class TextDestruction
             return;
         }
 
-        if (s_rand.Chance(0.25f) && s_fontChangeEnabled)
+        if (s_rand.Chance(0.25f) && s_fontChangeEnabled.Value)
         {
             __instance.font = s_rand.SelectRandom(s_tmpFonts);
             __instance.enableWordWrapping = true;
         }
 
-        if (s_rand.Chance(0.25f) && s_uwufierEnabled)
+        if (s_rand.Chance(0.25f) && s_uwufierEnabled.Value)
         {
             __instance.text = Uwufy(__instance.text);
         }
@@ -98,13 +99,13 @@ public class TextDestruction
             return;
         }
 
-        if (s_rand.Chance(0.25f) && s_fontChangeEnabled)
+        if (s_rand.Chance(0.25f) && s_fontChangeEnabled.Value)
         {
             __instance.font = s_rand.SelectRandom(s_fonts);
             __instance.resizeTextForBestFit = true;
         }
 
-        if (s_rand.Chance(0.25f) && s_uwufierEnabled)
+        if (s_rand.Chance(0.25f) && s_uwufierEnabled.Value)
         {
             __instance.text = Uwufy(__instance.text);
         }

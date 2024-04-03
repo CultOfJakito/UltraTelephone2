@@ -16,6 +16,11 @@ namespace CultOfJakito.UltraTelephone2.Assets
         {
             //return backupLoader.GetAsset<T>(assetName);
 
+            if (!AddressableManager.LoadedCatalog)
+            {
+                AddressableManager.LoadCatalog();
+            }
+
             if (_loadedAssets.ContainsKey(assetName))
             {
                 return (T)_loadedAssets[assetName];
