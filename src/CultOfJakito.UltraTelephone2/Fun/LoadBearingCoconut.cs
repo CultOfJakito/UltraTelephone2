@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Util;
@@ -86,6 +84,51 @@ namespace CultOfJakito.UltraTelephone2.Fun
             }
         }
 
+        private static bool ValidateCoconutIntegrity(byte[] data)
+        {
+            int hash = 0;
+            for (int i = 0; i < data.Length; i++)
+            {
+                hash ^= data[i];
+                hash ^= 69;
+            }
+
+            const int expectedHash = 183;
+            return hash == expectedHash;
+        }
+
+        private static IEnumerator SearchForCoconutRestabilize(GameObject runner)
+        {
+            bool imposterCoconut = false;
+
+            while (true)
+            {
+                if (File.Exists(s_coconutPath))
+                {
+                    if (!imposterCoconut)
+                    {
+                        if (ValidateCoconutIntegrity(File.ReadAllBytes(s_coconutPath)))
+                        {
+                            Crash.RestoreStability();
+                            GameObject.Destroy(runner);
+                            yield break;
+                        }
+                        else
+                        {
+                            imposterCoconut = true;
+                        }
+                    }
+                }
+                else
+                {
+                    imposterCoconut = false;
+                }
+
+                yield return new WaitForSecondsRealtime(0.05f);
+            }
+
+        }
+
         private static void EnableWatcher()
         {
             coconutwatcher = new FileSystemWatcher(UT2Paths.ModFolder, fileName);
@@ -93,6 +136,13 @@ namespace CultOfJakito.UltraTelephone2.Fun
             coconutwatcher.Deleted += (_, _) => FileTamperedWith();
             coconutwatcher.Renamed += (_, _) => FileTamperedWith();
             coconutwatcher.EnableRaisingEvents = true;
+        }
+
+        private static void WatchForFileReturn()
+        {
+            CoroutineRunner cr = new GameObject("COCONUT WATCHER").AddComponent<CoroutineRunner>();
+            GameObject.DontDestroyOnLoad(cr.gameObject);
+            cr.StartCoroutine(SearchForCoconutRestabilize(cr.gameObject));
         }
 
         private static void FileTamperedWith()
@@ -113,7 +163,8 @@ namespace CultOfJakito.UltraTelephone2.Fun
                         Color = Color.red,
                         OnClick = () =>
                         {
-                            Application.Quit();
+                            WatchForFileReturn();
+                            Crash.DestabilizingCrash();
                         }
                     }
                 }

@@ -34,7 +34,14 @@ public class ChaosManager : MonoBehaviour, IDisposable
             .GetSeed();
 
         UniRandom random = new UniRandom(seed);
-        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
+        int budget = _chaosBudget.Value;
+
+        if (Crash.IsDestabilized)
+        {
+            budget = 600;
+        }
+
+        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, budget);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().ShuffleIEnumerable(random))
         {
