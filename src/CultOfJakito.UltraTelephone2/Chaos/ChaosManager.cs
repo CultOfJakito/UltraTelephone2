@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 public class ChaosManager : MonoBehaviour, IDisposable
 {
     [Configgable(displayName:"Chaos Budget")]
-    private static ConfigInputField<int> _chaosBudget = new ConfigInputField<int>(32, (v) =>
+    private static ConfigInputField<int> s_chaosBudget = new ConfigInputField<int>(60, (v) =>
     {
         return v > 0;
     });

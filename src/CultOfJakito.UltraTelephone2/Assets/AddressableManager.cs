@@ -13,10 +13,13 @@ public static class AddressableManager
     public static string ModDataPath => Path.Combine(UT2Paths.InternalAssetsFolder, "data.json");
     public static string AssetPath => UT2Paths.InternalAssetsFolder;
 
+    public static bool LoadedCatalog { get; private set; }
+
     public static void LoadCatalog()
     {
         ValidateFiles();
         Addressables.LoadContentCatalogAsync(CatalogPath, false).WaitForCompletion();
+        LoadedCatalog = true;
     }
 
     public static void LoadSceneUnsanitzed(string path)
@@ -43,8 +46,8 @@ public static class AddressableManager
             Directory.CreateDirectory(AssetPath);
 
         //UNPACK THE BUILT-IN ASSETS
-        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.hash"), Properties.Resources.catalog_wbp);
-        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.json"), Properties.Resources.catalog_wbp1);
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.hash"), Properties.Resources.catalog_wbp_hash);
+        ValidateFile(Path.Combine(AssetPath, "catalog_wbp.json"), Properties.Resources.catalog_wbp);
         ValidateFile(Path.Combine(AssetPath, "shader_unitybuiltinshaders.bundle"), Properties.Resources.shader_unitybuiltinshaders);
         ValidateFile(Path.Combine(AssetPath, "telephone2_assets_all.bundle"), Properties.Resources.telephone2_assets_all);
         ValidateFile(Path.Combine(AssetPath, "telephone2_scenes_all.bundle"), Properties.Resources.telephone2_scenes_all);
@@ -53,10 +56,17 @@ public static class AddressableManager
 
     private static void ValidateFile(string filePath, byte[] data)
     {
-        if (File.Exists(filePath))
-            return;
+        try
+        {
+            if (File.Exists(filePath) && File.ReadAllBytes(filePath) == data)
+                return;
 
-        File.WriteAllBytes(filePath, data);
+            File.WriteAllBytes(filePath, data);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Validate file exception!! " + ex);
+        }
     }
 
     [HarmonyPatch(typeof(SceneHelper), nameof(SceneHelper.SanitizeLevelPath)), HarmonyPrefix]

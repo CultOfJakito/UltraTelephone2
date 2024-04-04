@@ -1,6 +1,7 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
@@ -8,7 +9,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 [RegisterChaosEffect]
 public class BuildingEffect : ChaosEffect
 {
-    [Configgable("Chaos/Effects", "Fortnite Building")]
+    [Configgable("Chaos/Effects/Fortnite Building", "Fortnite Building")]
     private static ConfigToggle s_enabled = new(true);
     public static bool CurrentlyActive { get; private set; }
 

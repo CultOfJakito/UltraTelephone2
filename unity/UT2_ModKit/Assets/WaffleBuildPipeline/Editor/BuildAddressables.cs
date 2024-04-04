@@ -77,7 +77,6 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
             }
             //ol
 
-            FixFastBuildErrors();
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
 
             if (!string.IsNullOrEmpty(result.Error))
@@ -95,9 +94,7 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
-			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group?.name)));
-            Settings.groups.RemoveAll(commonGroups.Contains);
-            FixFastBuildErrors();
+            Settings.groups.RemoveAll(group => group != null && s_commonGroupNames.Contains(group.name));
             RefreshGroups();
 
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
@@ -108,26 +105,26 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
-            Settings.groups.AddRange(commonGroups);
-            FixFastBuildErrors();
+            AddMissingCommon();
 		}
 
         // awful hack but yeah
-        private static void FixFastBuildErrors()
+        private static void AddMissingCommon()
         {
-            string assetPath = "Assets/AddressableAssetsData/{0}.asset";
+            string assetPath = "Assets/AddressableAssetsData/AssetGroups/{0}.asset";
 
-            if (!Settings.groups.Contains(null))
+            if (Settings.groups.All(group => group != null)) //.contains doesnt use the == overload, so .contains(null) is false when destroyed
             {
+                Debug.Log("No null groups !!! Yippee!!");
                 return;
             }
 
             Debug.Log("A group is missing !!!!");
-            Settings.groups.RemoveAll(null);
+            Settings.groups.RemoveAll(group => group == null);
 
             foreach (string commonGroup in s_commonGroupNames)
             {
-                if (Settings.groups.Any(group => group.name == commonGroup))
+                if (Settings.groups.Any(group => group != null && group.name == commonGroup))
                 {
                     Debug.Log($"{commonGroup} exists");
                     return;
