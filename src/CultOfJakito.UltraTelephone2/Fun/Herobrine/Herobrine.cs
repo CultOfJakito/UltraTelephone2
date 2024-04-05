@@ -1,4 +1,6 @@
 ﻿using Configgy;
+using CultOfJakito.UltraTelephone2.Events;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +14,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private GameObject allVisuals;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-
 
         private float lookSpeed = 180f;
 
@@ -41,11 +42,18 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
         private Flee flee = new Flee();
 
         public string CurrentStateDebugText;
+        public float Anger = 0f;
 
+        public static bool MoreFrequentHerobrine;
 
         private void Start()
         {
             SwitchState(defaultState);
+            GameEvents.OnPlayerDeath += OnPlayerDeath;
+        }
+        private void OnPlayerDeath()
+        {
+            Anger *= 0.5f;
         }
 
         private void Update()
@@ -251,14 +259,22 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             return false;
         }
 
+        private bool debugEnabled;
+
         private void OnGUI()
         {
-            //debug
-            return;
+            if(!debugEnabled)
+                return;
+
             //GUI.skin.box.fontSize = 35;
             //GUI.skin.box.normal.textColor = Color.white;
             //GUI.skin.box.alignment = TextAnchor.UpperLeft;
             //GUILayout.Box(CurrentStateDebugText);
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.OnPlayerDeath -= OnPlayerDeath;
         }
 
         public class HerobrineState
@@ -325,6 +341,10 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             public override void EnterState(Herobrine herobrine)
             {
                 lurkDelayRange = new Vector2(herobrineFrequencyLowerBound.Value, herobrineFrequencyUpperBound.Value);
+
+                if (Herobrine.MoreFrequentHerobrine)
+                    lurkDelayRange = Vector2.Scale(lurkDelayRange, new Vector2(0.33f, 0.33f));
+
                 torments = new HerobrineState[]
                 {
                     herobrine.stalk,
@@ -540,7 +560,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 else if (!playedSound)
                 {
                     playedSound = true;
-                    Debug.Log("HB Laugh");
                     //herobrine.MakeNoise(herobrine.transform.position);
                 }
 
@@ -549,6 +568,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 if (herobrine.GetTargetVisionDot() > 0.6f)
                 {
+                    herobrine.Anger += 2f;
                     herobrine.SwitchState(herobrine.flyingFlee);
                     return;
                 }
@@ -708,6 +728,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 if (herobrine.GetTargetDistance() < 7f)
                 {
+                    herobrine.Anger += 3.5f;
                     herobrine.NextState();
                     return;
                 }
@@ -782,8 +803,11 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 if (herobrine.GetTargetVisionDot() > 0.75f && lineOfSight)
                 {
+                    herobrine.LookInDirection(playerPos-herobrine.head.transform.position);
+
                     if (UnityEngine.Random.value > 0.60f)
                     {
+                        herobrine.Anger += 1f;
                         herobrine.SwitchState(herobrine.fadeAway);
                         return;
                     }
@@ -793,6 +817,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 if (lateralDist < followDistance && lineOfSight)
                 {
                     //PlayLaugh
+                    herobrine.LookInDirection(playerPos - herobrine.head.transform.position);
                     movement = Mathf.MoveTowards(movement, 0f, Time.deltaTime * 3f);
                     herobrine.agent.SetDestination(herobrine.transform.position);
                     herobrine.stateBuffer = herobrine.lurk;
@@ -803,6 +828,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 {
                     movement = Mathf.MoveTowards(movement, 1f, Time.deltaTime * 3f);
                     herobrine.agent.SetDestination(playerPos);
+                    herobrine.LookInDirection(herobrine.agent.desiredVelocity);
                 }
             }
 
@@ -817,11 +843,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
         public class Exterminate : HerobrineState
         {
-            float length = 1.5f;
+            float length = 1.4f;
             float timer;
 
             float startDistance = 10f;
             Vector3 headOffset;
+            bool killNextFrame;
 
             public override void EnterState(Herobrine herobrine)
             {
@@ -834,16 +861,31 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             public override void UpdateState(Herobrine herobrine)
             {
+                if (killNextFrame)
+                {
+                    Crash.Freeze();
+                    return;
+                }
+
                 timer = Mathf.Max(0, timer);
                 interval = 1 - timer / length;
 
                 if (timer == 0)
                 {
                     Debug.Log("Killed by herobrine.");
-                    Application.Quit();
+
+                    //Turn off all the lights.
+                    foreach (var light in FindObjectsOfType<Light>())
+                    {
+                        UnityEngine.Object.Destroy(light);
+                    }
+
+                    killNextFrame = true;
+                    return;
                 }
 
-                timer -= Time.deltaTime;
+
+                timer -= Time.unscaledDeltaTime;
             }
 
             float interval = 0f;
@@ -859,11 +901,13 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 Vector3 targetPosition = playerPos + lookDir.normalized * (startDistance * (1 - interval));
                 targetPosition += headOffset;
+                targetPosition += herobrine.target.rotation * (Vector3.forward);
 
                 herobrine.transform.position = targetPosition;
                 herobrine.transform.rotation = Quaternion.LookRotation(-lookDir, Vector3.up);
                 herobrine.LookInDirection(-lookDir);
 
+                herobrine.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
                 herobrine.animator.SetFloat("Floating", 0f);
                 herobrine.animator.SetFloat("Speed", 1f);
                 herobrine.animator.SetFloat("Crouching", 0f);
@@ -871,7 +915,8 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
             public override bool GetStateConditional(Herobrine herobrine)
             {
-                return UnityEngine.Random.value > 0.95f;
+                float angerClamped = Mathf.Clamp(herobrine.Anger, 0, 100);
+                return UnityEngine.Random.value < angerClamped/100f;
             }
 
         }
@@ -881,10 +926,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
             Vector3 startPos;
             Vector3 runDirection;
             bool groundFlee;
-            float runSpeed;
-
-            float downSpeed;
-
             float fleeDelay = 5f;
             float fleeTimer;
 
@@ -912,7 +953,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 runDirection = pos - playerPosition;
                 runDirection.y = 0f;
-                runDirection.Normalize();
+                runDirection = runDirection.normalized;
             }
 
             public override void UpdateState(Herobrine herobrine)
@@ -943,12 +984,12 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
 
                 herobrine.SmoothRotateHeadToFace(ppos);
 
-                Vector3 moveDelta = Vector3.down * downSpeed * Time.deltaTime;
+                Vector3 moveDelta = Vector3.down * (herobrine.agent.speed*0.3f) * Time.deltaTime;
                 herobrine.transform.position += moveDelta;
 
                 Vector3 currentPos = herobrine.transform.position;
 
-                float verticalMoveDistance = currentPos.y - startPos.y;
+                float verticalMoveDistance = Mathf.Abs(currentPos.y - startPos.y);
                 float distanceFromFeetToHead = (herobrine.head.position - currentPos).magnitude;
 
                 bool nextState = verticalMoveDistance > distanceFromFeetToHead;
@@ -968,7 +1009,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Herobrine
                 herobrine.LookInDirection(runDirection);
                 herobrine.transform.rotation = Quaternion.LookRotation(runDirection);
 
-                Vector3 moveDelta = herobrine.transform.forward * runSpeed * Time.deltaTime;
+                Vector3 moveDelta = herobrine.transform.forward * herobrine.agent.speed * Time.deltaTime;
 
                 if (Physics.Raycast(herobrine.head.position, herobrine.head.forward, out RaycastHit hit, 20f, LayerMaskDefaults.Get(LMD.Environment)))
                 {

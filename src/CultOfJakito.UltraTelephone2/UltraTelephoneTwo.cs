@@ -121,6 +121,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             Random = UniRandom.CreateFullRandom();
         }
 
+        CantRead.IgnoreBookGameObjectHashes.Clear();
+
         if (!InGameCheck.InLevel())
         {
             return;

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using CultOfJakito.UltraTelephone2.Data;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Util;
 
 namespace CultOfJakito.UltraTelephone2.Fun;
 
@@ -32,8 +33,12 @@ public static class RandomWindowTitle
             return;
         }
 
-        string text = UT2TextFiles.WindowTitlesFile.TextList[UnityEngine.Random.Range(0, UT2TextFiles.WindowTitlesFile.TextList.Count)];
+        UniRandom random = new UniRandom(new SeedBuilder()
+            .WithGlobalSeed()
+            .WithSceneName()
+            .WithSeed(nameof(RandomWindowTitle)));
 
+        string text = random.SelectRandom(UT2TextFiles.WindowTitlesFile.TextList);
         SetWindowText(WindowHandle, text);
     }
 }

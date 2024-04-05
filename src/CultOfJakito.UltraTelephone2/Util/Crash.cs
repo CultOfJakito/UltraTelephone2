@@ -4,6 +4,7 @@ using System.Collections;
 using System.Text;
 using UnityEngine;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Data;
 
 namespace CultOfJakito.UltraTelephone2.Util
 {
@@ -51,6 +52,10 @@ namespace CultOfJakito.UltraTelephone2.Util
 
         public static void Freeze()
         {
+            //Save and crash
+            if(UT2SaveData.IsDirty)
+                UT2SaveData.Save();
+
             while (true) { }
         }
 
