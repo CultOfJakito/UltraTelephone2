@@ -42,21 +42,23 @@ public class ResolutionSwitcher : ChaosEffect
 
     private IEnumerator Lag()
     {
-        yield return new WaitForSecondsRealtime(_random.Range(10, 60));
+        yield return new WaitForSeconds(_random.Range(10, 60));
 
-        while (true)
+        while (true && s_enabled.Value)
         {
             for (int i = 0; i < _random.Range(1, 5); i++)
             {
                 Vector2Int oldRes = ResolutionFuckeryUtils.StandardResolution;
                 Screen.SetResolution(UnityEngine.Random.Range(oldRes.x / 2, oldRes.x), UnityEngine.Random.Range(oldRes.y / 2, oldRes.y), FullScreenMode.ExclusiveFullScreen);
-                yield return new WaitForSecondsRealtime(_random.Range(2f, 5f));
+                yield return new WaitForSeconds(_random.Range(2f, 5f));
             }
 
-            yield return new WaitForSecondsRealtime(_random.Range(2f, 5f));
+            yield return new WaitForSeconds(_random.Range(2f, 5f));
             ResolutionFuckeryUtils.ResetToDefault();
-            yield return new WaitForSecondsRealtime(_random.Range(20f, 45f));
+            yield return new WaitForSeconds(_random.Range(20f, 45f));
         }
+
+        ResolutionFuckeryUtils.ResetToDefault();
     }
 
     protected override void OnDestroy()

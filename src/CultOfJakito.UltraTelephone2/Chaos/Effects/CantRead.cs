@@ -31,6 +31,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         protected override void OnDestroy() => s_effectActive = false;
 
+        public static HashSet<int> IgnoreBookGameObjectHashes = new HashSet<int>();
+
 
         [HarmonyPatch(typeof(ScanningStuff), nameof(ScanningStuff.ScanBook)), HarmonyPrefix]
         private static void OnScanBook(ScanningStuff __instance, ref string text, int instanceId)
@@ -38,7 +40,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            if (instanceId == ChaosManager.ChaosBookHashCode)
+            if (IgnoreBookGameObjectHashes.Contains(instanceId))
                 return;
 
             int option = s_rng.Next(0, 3);

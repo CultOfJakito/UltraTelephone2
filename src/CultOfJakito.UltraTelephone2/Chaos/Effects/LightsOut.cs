@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Fun.Herobrine;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
@@ -14,10 +19,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         private static ConfigToggle s_enabled = new ConfigToggle(true);
 
         private List<GamerLight> instances = new List<GamerLight>();
+        private UniRandom random;
 
         private Light flashLight;
         public override void BeginEffect(UniRandom random)
         {
+            this.random = random;
             s_enabled.OnValueChanged += OnEnabledChanged;
             effectActive = true;
 
@@ -26,6 +33,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             flashLight.range = 30f;
             flashLight.spotAngle = 80f;
             flashLight.intensity = 2f;
+
+            Herobrine.MoreFrequentHerobrine = true;
 
             SlowTickGetLights();
         }
@@ -49,6 +58,29 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private void SlowTickGetLights()
         {
+            if(random.Chance(0.035f))
+            {
+                HudMessageReceiver.Instance.SendHudMessage("Something wicked this way comes....");
+
+                if (random.Bool())
+                {
+                    if(NavUtils.TryGetRandomPointOnNavMesh(out NavMeshHit hit))
+                    {
+                        GameObject wickedObj = GameObject.Instantiate(UkPrefabs.SomethingWicked.GetObject(), hit.position, Quaternion.identity);
+                        string randomName = random.SelectRandom(UT2TextFiles.EnemyNamesFile.TextList);
+                        Transform patrolPoint = new GameObject($"{randomName}'s Patrol Point").transform;
+                        patrolPoint.transform.position = hit.position;
+                        wickedObj.name = $"WICKED ({randomName})";
+
+                        //Fix the error where the wicked doesn't have a patrol points
+                        Wicked wicked = wickedObj.GetComponent<Wicked>();
+                        Transform playerTF = CameraController.Instance.transform;
+                        wicked.patrolPoints = new Transform[1] { patrolPoint };
+                        wicked.targetPoint = playerTF;
+                    }
+                }
+            }
+
             Light[] lights = UnityEngine.Resources.FindObjectsOfTypeAll<Light>();
             for (int i = 0; i < lights.Length; i++)
                 ProcessLight(lights[i]);
@@ -96,6 +128,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         protected override void OnDestroy()
         {
+            Herobrine.MoreFrequentHerobrine = false;
             s_enabled.OnValueChanged -= OnEnabledChanged;
         }
 

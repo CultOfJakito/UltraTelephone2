@@ -91,6 +91,9 @@ public class UniRandom : System.Random
     //GetHashCode is apparently not deterministic, so we need to convert the string to a numeric seed
     public static int StringToSeed(string seed)
     {
+        if(string.IsNullOrEmpty(seed))
+            return 0;
+
         int seedNumeric = 0;
 
         foreach (char c in seed)
