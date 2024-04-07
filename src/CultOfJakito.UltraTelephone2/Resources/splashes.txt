@@ -342,3 +342,8 @@ Top ten arachnid facts
 Top two insect facts
 1. Insects are not fish.
 2. Insects are not mammals.
+<ph>UT2_DOWNLOAD_COUNT</ph> downloads and counting!
+I know who you are, <ph>PLAYER_HARDWARE_NAME</ph>...
+HELLO, <ph>PLAYER_HARDWARE_NAME</ph>!
+Hello, <ph>PLAYER_STEAM_NAME</ph>!
+<ph></ph>

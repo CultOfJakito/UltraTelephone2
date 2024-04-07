@@ -223,3 +223,6 @@ DOOM 2
 DOOM 3: BFG Edition
 DOOM (2016)
 DOOM Eternal
+<ph>PLAYER_STEAM_NAME</ph> gameplay
+<ph>PLAYER_STEAM_NAME</ph> playing ULTRAKILL
+V1 controlled by <ph>PLAYER_STEAM_NAME</ph>
