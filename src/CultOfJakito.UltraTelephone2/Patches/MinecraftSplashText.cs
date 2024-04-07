@@ -1,5 +1,6 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
+using CultOfJakito.UltraTelephone2.Placeholders;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using Steamworks;
@@ -71,6 +72,8 @@ namespace CultOfJakito.UltraTelephone2.Patches
                 return;
 
             string phrase = new UniRandom(UltraTelephoneTwo.Instance.Random.Seed ^ seedOffset).SelectRandomFromSet(splashPhrases.ToArray());
+
+            phrase = PlaceholderHelper.ReplacePlaceholders(phrase);
 
             if (Utility.UserIsDeveloper())
                 phrase = "A Complete and Utter Destruction of your game. With Love, -CoJ";

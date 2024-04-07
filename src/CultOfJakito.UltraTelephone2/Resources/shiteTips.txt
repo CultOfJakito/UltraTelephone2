@@ -68,3 +68,6 @@ sometimes if you press the button it uhh.. does something..
 sometimes you should press the uhm, to do things.
 if you press something.. it uh, does something else sometimes..
 Rocket fuel can be made by separating the hydrogen from the oxygen in water.
+Just try harder <ph>PLAYER_STEAM_NAME</ph>...
+Just try harder <ph>PLAYER_STEAM_NAME</ph>... you can do it...
+DO YOUR BEST, <ph>PLAYER_STEAM_NAME</ph>!!!

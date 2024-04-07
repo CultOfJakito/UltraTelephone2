@@ -13,6 +13,8 @@ using CultOfJakito.UltraTelephone2.Fun.Glungus;
 using CultOfJakito.UltraTelephone2.Fun.Herobrine;
 using CultOfJakito.UltraTelephone2.LevelInjection;
 using CultOfJakito.UltraTelephone2.Patches;
+using CultOfJakito.UltraTelephone2.Placeholders;
+using CultOfJakito.UltraTelephone2.Placeholders.PlaceholderTypes;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using UnityEngine;
@@ -28,6 +30,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     public const string MOD_NAME = "UltraTelephone2";
     public const string MOD_GUID = "CultOfJakito.UltraTelephone2";
     public ChaosManager ChaosManager { get; private set; }
+    public PlaceholderDatabase PlaceholderDatabase { get; private set; }
     public UniRandom Random { get; private set; }
 
     private ConfigBuilder _config;
@@ -95,6 +98,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         AlterFriendAvatars.Load();
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
+        BuildPlaceholders();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
 
@@ -110,6 +114,18 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         GameEvents.OnLevelStateChange += _ => RandomWindowTitle.Reroll();
         RandomWindowTitle.Reroll();
+    }
+
+    private void BuildPlaceholders()
+    {
+        PlaceholderDatabase = new PlaceholderDatabase();
+        PlaceholderDatabase.AddPlaceholder(new UltrakillDeveloperName());
+        PlaceholderDatabase.AddPlaceholder(new TelephoneDeveloperName());
+        PlaceholderDatabase.AddPlaceholder(new UltraTelephone2DownloadCount());
+        PlaceholderDatabase.AddPlaceholder(new PlayerHardwardName());
+        PlaceholderDatabase.AddPlaceholder(new PlayerSteamName());
+        PlaceholderDatabase.AddPlaceholder(new CurrentTime());
+        PlaceholderDatabase.AddPlaceholder(new CurrentDate());
     }
 
 
