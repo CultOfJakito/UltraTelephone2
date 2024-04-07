@@ -12,7 +12,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
     {
         [Configgable("Patches", "Shite Terminal Tips")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
-        private static List<string> tips => UT2TextFiles.S_ShiteTipsFile.TextList;
+        private static List<string> tips => UT2TextFiles.ShiteTipsFile.TextList;
 
         [HarmonyPatch(typeof(ShopZone), nameof(ShopZone.Start)), HarmonyPostfix]
         public static void OnShopZoneStart(ShopZone __instance)

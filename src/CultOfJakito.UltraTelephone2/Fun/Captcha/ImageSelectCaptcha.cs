@@ -44,7 +44,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Captcha
             verifyButton.interactable = true;
             verifyButton.gameObject.SetActive(true);
 
-            string randomWord = random.SelectRandom(UT2TextFiles.S_WordList10k.TextList);
+            string randomWord = random.SelectRandom(UT2TextFiles.WordList10kFile.TextList);
             promptText.text = "Select all images containing: " + randomWord;
 
             gameObject.SetActive(true);
@@ -52,7 +52,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Captcha
 
         public void OnImageClicked(ImageSelectCaptchaButton button)
         {
-            float delay = random.Range(0.1f, 1.2f);
+            float delay = random.Range(0f, 0.6f);
 
             //laggy on purpose :3c
             this.DoAfterTimeUnscaled(delay, () =>

@@ -3,6 +3,7 @@ using BepInEx;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Chaos;
+using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Fun;
@@ -20,9 +21,10 @@ namespace CultOfJakito.UltraTelephone2;
 
 [BepInDependency("Hydraxous.ULTRAKILL.Configgy")]
 [BepInPlugin(MOD_GUID, MOD_NAME, VERSION)]
+[HarmonyPatch]
 public class UltraTelephoneTwo : BaseUnityPlugin
 {
-    public const string VERSION = "1.0.0";
+    public const string VERSION = "1.1.0";
     public const string MOD_NAME = "UltraTelephone2";
     public const string MOD_GUID = "CultOfJakito.UltraTelephone2";
     public ChaosManager ChaosManager { get; private set; }
@@ -37,10 +39,10 @@ public class UltraTelephoneTwo : BaseUnityPlugin
     private void Awake()
     {
         Instance = this;
+        AddressableManager.LoadCatalog();
 
         LogBuffer = new List<string>();
         Application.logMessageReceived += Application_logMessageReceived;
-
 
         _config = new ConfigBuilder(nameof(UltraTelephone2), "Ultra Telephone 2");
         _config.Build();
@@ -53,22 +55,23 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         if(DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
         {
-            Debug.LogWarning("Happy April Fools! UT2 Seed is 69 for the day!!");
-            globalSeed = 69;
+            Debug.LogWarning("Happy April Fools! UT2 Seed is 69^YOU for the day!!");
+            globalSeed = 69^UniRandom.StringToSeed(Environment.UserName);
         }
 
         Random = new UniRandom(globalSeed);
         UniRandom.InitializeGlobal(globalSeed);
 
+        BackupSaveData.EnsureBackupExists();
 
         //UT2Assets.ValidateAssetIntegrity();
         UT2Paths.EnsureFolders();
-        AddressableManager.LoadCatalog();
         UT2SaveData.Load();
 
+        Jumpscare.ValidateFiles();
         TextureHelper.LoadTextures(UT2Paths.TextureFolder);
-        AudioHelper.LoadClips(UT2Paths.AudioFolder);
-
+        TextDestruction.Initialize();
+        //AudioHelper.LoadClips(UT2Paths.AudioFolder); Unused for now.
 
         InitializeObjects();
 
@@ -85,6 +88,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
     private void InitializeObjects()
     {
+        LoadBearingCoconut.EnsureStability();
+
         gameObject.AddComponent<LevelInjectionManager>();
 
         AlterFriendAvatars.Load();
@@ -92,7 +97,6 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         UT2TextFiles.ReloadFiles();
         HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
         BuyablesManager.Load();
-
 
         GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;
         GameEvents.OnEnemyDeath += (v) =>
@@ -103,7 +107,9 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             }
         };
 
-       
+
+        GameEvents.OnLevelStateChange += _ => RandomWindowTitle.Reroll();
+        RandomWindowTitle.Reroll();
     }
 
 
@@ -114,6 +120,8 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             //full random seed.
             Random = UniRandom.CreateFullRandom();
         }
+
+        CantRead.IgnoreBookGameObjectHashes.Clear();
 
         if (!InGameCheck.InLevel())
         {
@@ -172,6 +180,14 @@ public class UltraTelephoneTwo : BaseUnityPlugin
             case PersonalizationLevel.ULTRAPERSONALIZED:
                 return (int)DateTime.Now.Ticks^UniRandom.StringToSeed(Environment.UserName);
         }
+    }
+
+    [HarmonyPatch(typeof(LeaderboardController), nameof(LeaderboardController.SubmitCyberGrindScore))]
+    [HarmonyPatch(typeof(LeaderboardController), nameof(LeaderboardController.SubmitLevelScore))]
+    [HarmonyPrefix]
+    public static bool DisableCg()
+    {
+        return false;
     }
 }
 

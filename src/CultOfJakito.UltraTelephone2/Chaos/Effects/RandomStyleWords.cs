@@ -15,11 +15,11 @@ public class RandomStyleWords : ChaosEffect
     private static ConfigToggle s_enabled = new(true);
 
     private static bool s_currentlyActive;
-    private static List<string> wordlist => UT2TextFiles.S_WordList10k.TextList;
+    private static List<string> wordlist => UT2TextFiles.WordList10kFile.TextList;
 
     public override void BeginEffect(UniRandom random) => s_currentlyActive = true;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
-    public override int GetEffectCost() => 1;
+    public override int GetEffectCost() => 2;
 
     [HarmonyPostfix, HarmonyPatch(typeof(StyleHUD), nameof(StyleHUD.GetLocalizedName))]
     public static void Patch(ref string __result)

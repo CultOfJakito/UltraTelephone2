@@ -137,7 +137,7 @@ namespace CultOfJakito.UltraTelephone2.Fun
                 instance.DoScare(force);
         }
 
-        public void DoScare(bool force = false)
+        public void DoScare(bool force = false, bool dontRepeat = false)
         {
             Debug.Log($"Doscare: {running} {force}");
             if (running && !force)
@@ -149,11 +149,22 @@ namespace CultOfJakito.UltraTelephone2.Fun
             {
                 image.sprite = TextureToSprite(currentTexture);
                 StartCoroutine(FlashImage());
+
+                if (!dontRepeat && rand.Chance(0.2f))
+                {
+                    StartCoroutine(RepeatJumpscare());
+                }
             }
             else
             {
                 running = false;
             }
+        }
+
+        private IEnumerator RepeatJumpscare()
+        {
+            yield return new WaitForSeconds(rand.Range(0.2f, 0.5f));
+            DoScare(true);
         }
 
         public static void ScareWithTexture(Texture2D texture, bool force)
@@ -170,7 +181,6 @@ namespace CultOfJakito.UltraTelephone2.Fun
             instance.running = true;
             instance.StopAllCoroutines();
             instance.SetNewTexture(texture);
-
             if (instance.image != null)
             {
                 instance.image.sprite = instance.TextureToSprite(instance.currentTexture);
@@ -179,6 +189,76 @@ namespace CultOfJakito.UltraTelephone2.Fun
             else
             {
                 instance.running = false;
+            }
+        }
+
+        private static string s_jumpscarePicsPath => Path.Combine(UT2Paths.TextureFolder, "Jumpscare");
+
+        private static void ValidateBuiltInImage(string filePath, byte[] data)
+        {
+            if (File.Exists(filePath))
+                return;
+
+            File.WriteAllBytes(filePath, data);
+        }
+
+        public static void ValidateFiles()
+        {
+            //Only unpack if the directory doesn't exist since the user may have added their own images and deleted the packed ones
+            if (!Directory.Exists(s_jumpscarePicsPath))
+            {
+                Directory.CreateDirectory(s_jumpscarePicsPath);
+
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "bro.jpg"), Properties.Resources.bro);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "CatExperiencee.PNG"), Properties.Resources.CatExperiencee);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "chartreused.png"), Properties.Resources.chartreused);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "chees1.jpg"), Properties.Resources.chees1);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "coconut.png"), Properties.Resources.coconut);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "ComeHere.PNG"), Properties.Resources.ComeHere);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "cover2 (4).jpg"), Properties.Resources.cover2__4_);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "crydeath.jpg"), Properties.Resources.crydeath);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "DeathImage.PNG"), Properties.Resources.DeathImage);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "dfgdth.PNG"), Properties.Resources.dfgdth);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "dog-stare-zoom.png"), Properties.Resources.dog_stare_zoom);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "drgd.PNG"), Properties.Resources.drgd);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "drghdtfhftgiu.PNG"), Properties.Resources.drghdtfhftgiu);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "dug.png"), Properties.Resources.dug);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "dyftuftyuure.PNG"), Properties.Resources.dyftuftyuure);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "earinfection.png"), Properties.Resources.earinfection);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "F5GRMlEWUAAAiym.jpg"), Properties.Resources.F5GRMlEWUAAAiym);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "FbyFm47UcAEI1Cq.jpeg"), Properties.Resources.FbyFm47UcAEI1Cq);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "FhOuLBjWIAwab1v.png"), Properties.Resources.FhOuLBjWIAwab1v);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "Fuel.png"), Properties.Resources.Fuel);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "FwM5Y36XoAEO7r8.jpg"), Properties.Resources.FwM5Y36XoAEO7r8);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "Fx-3ZYsWcAIDlzG.jpg"), Properties.Resources.Fx_3ZYsWcAIDlzG);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "gobrae.PNG"), Properties.Resources.gobrae);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "gorp.png"), Properties.Resources.gorp);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "herobrine.png"), Properties.Resources.herobrine);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "jnjhk.PNG"), Properties.Resources.jnjhk);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "kettamean.jpg"), Properties.Resources.kettamean);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "maxresdefault (44).jpg"), Properties.Resources.maxresdefault__44_);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "ohdatsJudment.jpg"), Properties.Resources.ohdatsJudment);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "r.png"), Properties.Resources.r);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "sergsrhds.PNG"), Properties.Resources.sergsrhds);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "skol.PNG"), Properties.Resources.skol);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "SmartSelect_20211116-174331.jpg"), Properties.Resources.SmartSelect_20211116_174331);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "SmartSelect_20211125-164814.jpg"), Properties.Resources.SmartSelect_20211125_164814);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "SmartSelect_s20210321-152814.jpg"), Properties.Resources.SmartSelect_s20210321_152814);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "soypoint.png"), Properties.Resources.soypoint);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "stare.PNG"), Properties.Resources.stare);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "steamhappy.png"), Properties.Resources.steamhappy);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "Stinker.PNG"), Properties.Resources.Stinker);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "t56f7yit657yf7t6fyiuk.PNG"), Properties.Resources.t56f7yit657yf7t6fyiuk);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "tarwaee.PNG"), Properties.Resources.tarwaee);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "unnamed (4).jpg"), Properties.Resources.unnamed__4_);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "vgvhure.PNG"), Properties.Resources.vgvhure);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "yeahlmao.PNG"), Properties.Resources.yeahlmao);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "20230331_153754.jpg"), Properties.Resources._20230331_153754);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "20230420_163631.jpg"), Properties.Resources._20230420_163631);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "absoluteterror.png"), Properties.Resources.absoluteterror);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "aetsesye.PNG"), Properties.Resources.aetsesye);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "afarft.jpg"), Properties.Resources.afarft);
+                ValidateBuiltInImage(Path.Combine(s_jumpscarePicsPath, "artworks-dgGS7o4DGuYHt1xX-IjeBqw-t500x500.jpg"), Properties.Resources.artworks_dgGS7o4DGuYHt1xX_IjeBqw_t500x500);
             }
         }
     }

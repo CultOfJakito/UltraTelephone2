@@ -5,6 +5,7 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;
+using CultOfJakito.UltraTelephone2.Fun.Herobrine;
 using HarmonyLib;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
+            Herobrine.MoreFrequentHerobrine = true;
             s_enabled.OnValueChanged += OnEnabledChanged;
             s_effectActive = true;
 
@@ -119,6 +121,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         protected override void OnDestroy()
         {
+            Herobrine.MoreFrequentHerobrine = false;
             s_effectActive = false;
             s_enabled.OnValueChanged -= OnEnabledChanged;
         }

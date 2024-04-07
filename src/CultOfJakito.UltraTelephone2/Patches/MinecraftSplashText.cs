@@ -11,7 +11,7 @@ namespace CultOfJakito.UltraTelephone2.Patches
     [HarmonyPatch]
     public static class MinecraftSplashText
     {
-        private static List<string> splashPhrases => UT2TextFiles.S_SplashTextsFile.TextList;
+        private static List<string> splashPhrases => UT2TextFiles.SplashTextsFile.TextList;
         private static string splashTextFilePath => Path.Combine(UT2Paths.DataFolder, "splashes.txt");
 
         [Configgable("Fun/SplashText", "Enable Splash Text")]

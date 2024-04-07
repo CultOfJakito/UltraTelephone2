@@ -13,6 +13,9 @@ public class TerminalVelocity : ChaosEffect
     [Configgable("Chaos/Effects", "Terminal Velocity")]
     private static ConfigToggle s_enabled = new(true);
 
+    [Configgable("Chaos/Effects/Terminal Velocity/Terminal Velocity", "Maximum velocity")]
+    private static float s_terminalVelocity = 15f;
+
     private static bool s_effectActive;
 
     public override void BeginEffect(UniRandom random)
@@ -20,6 +23,7 @@ public class TerminalVelocity : ChaosEffect
         //Defer activation until the player lands. Otherwise you have to wait like literally 2 mins to land.
         GameEvents.OnPlayerActivated += EnableEffect;
     }
+
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
     public override int GetEffectCost() => 3;
 
@@ -29,12 +33,7 @@ public class TerminalVelocity : ChaosEffect
         if (!s_effectActive || !s_enabled.Value)
             return;
 
-        if (__instance.rb.velocity.y < -1)
-        {
-            Vector3 currentVelocity = __instance.rb.velocity;
-            currentVelocity.y = -1;
-            __instance.rb.velocity = currentVelocity;
-        }
+        __instance.rb.velocity = Vector3.ClampMagnitude(__instance.rb.velocity, s_terminalVelocity);
     }
 
     private void EnableEffect(PlayerActivatedEvent _)

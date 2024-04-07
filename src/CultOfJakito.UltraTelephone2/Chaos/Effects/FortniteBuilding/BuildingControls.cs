@@ -1,13 +1,14 @@
-﻿using CultOfJakito.UltraTelephone2.Assets;
+﻿using Configgy;
+using CultOfJakito.UltraTelephone2.Assets;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
 public class BuildingControls : MonoSingleton<BuildingControls>
 {
     private bool _currentlyBuilding = false;
 
-    private static readonly KeyValuePair<KeyCode, BuildTypes>[] s_keyToType =
+    private static KeyValuePair<KeyCode, BuildTypes>[] s_keyToType =
     {
         new(KeyCode.Z, BuildTypes.Wall),
         new(KeyCode.X, BuildTypes.Floor),
@@ -15,7 +16,7 @@ public class BuildingControls : MonoSingleton<BuildingControls>
         new(KeyCode.V, BuildTypes.Cone)
     };
 
-    private static readonly Dictionary<BuildTypes, GameObject> s_typeToBuild = new()
+    private static Dictionary<BuildTypes, GameObject> s_typeToBuild = new()
     {
         { BuildTypes.Wall, UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Fortnite Builds/Wall.prefab") },
         { BuildTypes.Floor, UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Fortnite Builds/Floor.prefab") },
@@ -31,12 +32,39 @@ public class BuildingControls : MonoSingleton<BuildingControls>
         { BuildTypes.Cone, UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Fortnite Builds/Preview/Cone 1.prefab") }
     };
 
+    [Configgable("Chaos/Effects/Fortnite Building", "Switch mode key")] private static ConfigKeybind _switchKey = new(KeyCode.Q);
+    [Configgable("Chaos/Effects/Fortnite Building", "Wall key")] private static ConfigKeybind _wallKey = new(KeyCode.Z);
+    [Configgable("Chaos/Effects/Fortnite Building", "Floor key")] private static ConfigKeybind _floorKey = new(KeyCode.X);
+    [Configgable("Chaos/Effects/Fortnite Building", "Ramp key")] private static ConfigKeybind _rampKey = new(KeyCode.C);
+    [Configgable("Chaos/Effects/Fortnite Building", "Cone key")] private static ConfigKeybind _coneKey = new(KeyCode.V);
+
     private Dictionary<BuildTypes, GameObject> _typeToPreview = new();
     private Dictionary<GameObject, string> _placedWallIdentifiers = new(); //this fucking sucks but im tired
     private Dictionary<GameObject, string> _placedFloorIdentifiers = new();
     private Dictionary<GameObject, string> _placedRampConeIdentifiers = new();
     private BuildTypes _currentBuild;
+    private bool _addedEvents;
     private const int VoxelSize = 10;
+
+    private static void RefreshKeyToType()
+    {
+        s_keyToType = [new(_wallKey.Value, BuildTypes.Wall),
+            new(_floorKey.Value, BuildTypes.Floor),
+            new(_rampKey.Value, BuildTypes.Ramp),
+            new(_coneKey.Value, BuildTypes.Cone)];
+
+        if (BuildingHud.instance == null)
+        {
+            return;
+        }
+
+        foreach (KeyValuePair<KeyCode, BuildTypes> keyToBuild in s_keyToType)
+        {
+            BuildingHud.instance.BuildBindTexts[(int)keyToBuild.Value].text = keyToBuild.Key.ToString();
+        }
+
+        BuildingHud.instance.SwitchText.text = _switchKey.Value.ToString();
+    }
 
     private void Start()
     {
@@ -45,6 +73,18 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             _typeToPreview.Add(kvp.Key, Instantiate(kvp.Value));
             s_typeToPreviewPrefab[kvp.Key].SetActive(false);
         }
+
+        if (!_addedEvents)
+        {
+            _wallKey.OnValueChanged += _ => RefreshKeyToType();
+            _floorKey.OnValueChanged += _ => RefreshKeyToType();
+            _rampKey.OnValueChanged += _ => RefreshKeyToType();
+            _coneKey.OnValueChanged += _ => RefreshKeyToType();
+            _switchKey.OnValueChanged += _ => RefreshKeyToType();
+            _addedEvents = true;
+        }
+
+        RefreshKeyToType();
     }
 
     private void Update()
@@ -54,17 +94,27 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(_switchKey.Value))
         {
             _currentlyBuilding = !_currentlyBuilding;
 
             if (_currentlyBuilding)
             {
                 GunControl.Instance.NoWeapon();
+
+                foreach (KeyValuePair<BuildTypes, GameObject> kvp in _typeToPreview)
+                {
+                    kvp.Value.SetActive(kvp.Key == _currentBuild);
+                }
             }
             else
             {
                 GunControl.Instance.YesWeapon();
+
+                foreach (GameObject preview in _typeToPreview.Values)
+                {
+                    preview.SetActive(false);
+                }
             }
         }
 
@@ -78,6 +128,7 @@ public class BuildingControls : MonoSingleton<BuildingControls>
             if (Input.GetKeyDown(keyAndBuild.Key))
             {
                 _currentBuild = keyAndBuild.Value;
+                BuildingHud.Instance.SelectOutline(_currentBuild);
 
                 foreach (KeyValuePair<BuildTypes, GameObject> kvp in _typeToPreview)
                 {

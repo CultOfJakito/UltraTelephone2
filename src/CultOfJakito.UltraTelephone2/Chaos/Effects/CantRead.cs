@@ -4,7 +4,7 @@ using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
     [HarmonyPatch]
     [RegisterChaosEffect]
@@ -15,7 +15,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         private static bool s_effectActive = false;
 
-        private static List<string> s_illegebleWords => UT2TextFiles.S_CantReadWordsFile.TextList;
+        private static List<string> s_illegebleWords => UT2TextFiles.CantReadWordsFile.TextList;
 
         private static UniRandom s_rng;
 
@@ -31,6 +31,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos
 
         protected override void OnDestroy() => s_effectActive = false;
 
+        public static HashSet<int> IgnoreBookGameObjectHashes = new HashSet<int>();
+
 
         [HarmonyPatch(typeof(ScanningStuff), nameof(ScanningStuff.ScanBook)), HarmonyPrefix]
         private static void OnScanBook(ScanningStuff __instance, ref string text, int instanceId)
@@ -38,7 +40,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             if (!s_enabled.Value || !s_effectActive)
                 return;
 
-            if (instanceId == ChaosManager.ChaosBookHashCode)
+            if (IgnoreBookGameObjectHashes.Contains(instanceId))
                 return;
 
             int option = s_rng.Next(0, 3);

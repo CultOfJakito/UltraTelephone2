@@ -62,7 +62,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return 1;
         }
 
-   
+
         protected override void OnDestroy() {}
     }
 
@@ -91,9 +91,22 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel speed")]
         private static ConfigInputField<float> s_viewmodelSpeed = new ConfigInputField<float>(19f);
 
-        UniRandom rng;
 
-        private float maxViewmodelDistance = 0.2f;
+        //Sway
+        [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel Max Sway Amount")]
+        private static ConfigInputField<float> s_viewmodelMaxSway = new ConfigInputField<float>(30f);
+
+        [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel Sway Amount")]
+        private static ConfigInputField<float> s_viewmodelSwayAmount = new ConfigInputField<float>(7f);
+
+        [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel Sway Attack")]
+        private static ConfigInputField<float> s_viewmodelSwayAttack = new ConfigInputField<float>(7f);
+
+        [Configgable("Chaos/Effects/Exaggerated Viewmodel Lag", "Viewmodel Sway Decay")]
+        private static ConfigInputField<float> s_viewmodelSwayDecay = new ConfigInputField<float>(16f);
+
+        UniRandom rng;
+        private float maxViewmodelDistance = 0.5f;
 
         private void Awake()
         {
@@ -109,13 +122,29 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         }
 
         //does the viewmodel sway but on OUR terms... :3c
-        //This is ripped from player update loop.
+        //The positional one is ripped from player update loop
+        //The rotational is custom :3
         private void Update()
         {
             Vector3 offset = Vector3.ClampMagnitude(player.camOriginalPos - this.cameraReference.InverseTransformDirection(this.watchedBody.velocity) / s_velocityDivisor.Value * s_velocityDirectionMultiplier.Value, maxViewmodelDistance);
             Vector3 localPosition = this.transform.localPosition;
             float dist = Vector3.Distance(offset, localPosition);
             transform.localPosition = Vector3.MoveTowards(localPosition, offset, Time.deltaTime * s_viewmodelSpeed.Value * dist);
+
+            Vector2 input = InputManager.Instance.InputSource.Look.ReadValue<Vector2>();
+            Vector2 tilt = -input * s_viewmodelSwayAmount.Value;
+            float maxTilt = s_viewmodelMaxSway.Value;
+
+            tilt.x = Mathf.Clamp(tilt.x, -maxTilt, maxTilt);
+            tilt.y = Mathf.Clamp(tilt.y, -maxTilt, maxTilt);
+
+            Quaternion targetRot = Quaternion.Euler(tilt.y, -tilt.x, 0);
+
+            float speed = (tilt == Vector2.zero) ? s_viewmodelSwayDecay.Value : s_viewmodelSwayAttack.Value;
+
+            Quaternion rotation = transform.localRotation;
+            rotation = Quaternion.Slerp(rotation, targetRot, Time.deltaTime * speed);
+            transform.localRotation = rotation;
         }
     }
 

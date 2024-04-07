@@ -19,8 +19,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         [Configgable("Patches/Silly Names", "Suffix Chance")]
         private static FloatSlider s_suffixChance = new FloatSlider(0.15f, 0f, 1f);
 
-        private static List<string> s_prefixes => UT2TextFiles.S_BossBarPrefixesFile.TextList;
-        private static List<string> s_suffixes => UT2TextFiles.S_BossBarSuffixesFile.TextList;
+        private static List<string> s_prefixes => UT2TextFiles.BossBarPrefixesFile.TextList;
+        private static List<string> s_suffixes => UT2TextFiles.BossBarSuffixesFile.TextList;
 
         private static bool s_effectActive;
 
@@ -47,7 +47,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return name;
         }
 
-        [HarmonyPatch(typeof(BossHealthBar), "Awake"), HarmonyPostfix]
+        [HarmonyPatch(typeof(BossHealthBar), nameof(BossHealthBar.Awake)), HarmonyPostfix]
         public static void OnBossBar(BossHealthBar __instance)
         {
             if (!s_enabled.Value)

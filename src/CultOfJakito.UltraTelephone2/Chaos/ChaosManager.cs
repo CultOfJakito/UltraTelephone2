@@ -2,6 +2,7 @@
 using System.Text;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
+using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Util;
@@ -12,7 +13,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos;
 public class ChaosManager : MonoBehaviour, IDisposable
 {
     [Configgable(displayName:"Chaos Budget")]
-    private static ConfigInputField<int> _chaosBudget = new ConfigInputField<int>(32, (v) =>
+    private static ConfigInputField<int> s_chaosBudget = new ConfigInputField<int>(60, (v) =>
     {
         return v > 0;
     });
@@ -23,8 +24,6 @@ public class ChaosManager : MonoBehaviour, IDisposable
     [Configgable(displayName:"Chaos Enabled")]
     private static ConfigToggle s_enabled = new ConfigToggle(true);
 
-    public static int ChaosBookHashCode { get; private set; }
-
     public void BeginEffects()
     {
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
@@ -34,7 +33,14 @@ public class ChaosManager : MonoBehaviour, IDisposable
             .GetSeed();
 
         UniRandom random = new UniRandom(seed);
-        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, _chaosBudget.Value);
+        int budget = s_chaosBudget.Value;
+
+        if (Crash.IsDestabilized)
+        {
+            budget = 600;
+        }
+
+        _ctx = new ChaosSessionContext(this, SceneHelper.CurrentScene, budget);
 
         foreach (IChaosEffect possibleEffect in GetChaosEffects().ShuffleIEnumerable(random))
         {
@@ -69,19 +75,13 @@ public class ChaosManager : MonoBehaviour, IDisposable
             effect.BeginEffect(new UniRandom(random.Next()));
         }
 
-        if(random.Chance(0.2f))
-            DropChaosBook(effectlistString.ToString());
+        if (random.Chance(0.2f))
+            BookUtil.CreateBook()
+                .SetText(effectlistString.ToString())
+                .IgnoreCantReadEffect();
     }
 
-    private void DropChaosBook(string bookText)
-    {
-        GameObject book = GameObject.Instantiate(UkPrefabs.Book.GetObject());
-        Readable readable = book.GetComponent<Readable>();
-        readable.content = bookText;
-        ChaosBookHashCode = readable.gameObject.GetHashCode();
-
-        book.transform.position = CameraController.Instance.transform.position;
-    }
+   
 
     private List<IChaosEffect> activatedEffects;
 

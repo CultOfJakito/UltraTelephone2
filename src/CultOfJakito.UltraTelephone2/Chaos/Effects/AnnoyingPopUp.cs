@@ -1,6 +1,5 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
@@ -8,7 +7,7 @@ using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using HarmonyLib;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Chaos
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 {
 
     [HarmonyPatch]
@@ -61,6 +60,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
         {
             ModalDialogueEvent dialogue = s_rng.Chance(0.25f) ? s_rng.SelectRandomFromSet(_dialogueBuilders).Invoke() : CreateRandomized();
             ModalDialogue.ShowDialogue(dialogue);
+            UT2Assets.GetAsset<AudioClip>("Assets/Telephone 2/Misc/Sounds/winxperror.mp3").PlaySound(CameraController.Instance.transform.position).ignoreListenerPause = true;
         }
 
         private DialogueBoxOption[] _evilOptions;
@@ -384,7 +384,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos
             if (s_rng.Bool())
                 _randomDialogueEvent.Message = s_rng.SelectRandomFromSet(s_messages);
             else
-                _randomDialogueEvent.Message = s_rng.SelectRandom(UT2TextFiles.S_ShiteTipsFile.TextList);
+                _randomDialogueEvent.Message = s_rng.SelectRandom(UT2TextFiles.ShiteTipsFile.TextList);
             _randomDialogueEvent.Title = s_rng.SelectRandomFromSet(s_titles);
             _randomDialogueEvent.Options = new DialogueBoxOption[options];
             for (int i = 0; i < _randomDialogueEvent.Options.Length; i++)

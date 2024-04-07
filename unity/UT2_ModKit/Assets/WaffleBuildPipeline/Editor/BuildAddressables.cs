@@ -94,10 +94,8 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
+            Settings.groups.RemoveAll(group => group != null && s_commonGroupNames.Contains(group.name));
             RefreshGroups();
-
-			List<AddressableAssetGroup> commonGroups = new List<AddressableAssetGroup>(Settings.groups.Where(group => s_commonGroupNames.Contains(group.name)));
-            Settings.groups.RemoveAll(commonGroups.Contains);
 
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
 
@@ -107,9 +105,37 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
                 return;
             }
 
-            Settings.groups.AddRange(commonGroups);
-            RefreshGroups();
+            AddMissingCommon();
 		}
+
+        // awful hack but yeah
+        private static void AddMissingCommon()
+        {
+            string assetPath = "Assets/AddressableAssetsData/AssetGroups/{0}.asset";
+
+            if (Settings.groups.All(group => group != null)) //.contains doesnt use the == overload, so .contains(null) is false when destroyed
+            {
+                Debug.Log("No null groups !!! Yippee!!");
+                return;
+            }
+
+            Debug.Log("A group is missing !!!!");
+            Settings.groups.RemoveAll(group => group == null);
+
+            foreach (string commonGroup in s_commonGroupNames)
+            {
+                if (Settings.groups.Any(group => group != null && group.name == commonGroup))
+                {
+                    Debug.Log($"{commonGroup} exists");
+                    return;
+                }
+
+                Debug.Log($"Adding {commonGroup}!");
+                Settings.groups.Add(AssetDatabase.LoadAssetAtPath<AddressableAssetGroup>(string.Format(assetPath, commonGroup)));
+            }
+
+            RefreshGroups();
+        }
 
 		private static void SetCorrectValuesForSettings()
 		{
@@ -167,12 +193,12 @@ namespace Ultracrypt.Editor.WaffleBuildPipeline
 
         private static void RefreshGroups()
         {
-            string assetPath = "Assets/AddressableAssetsData/AddressableAssetSettings.asset";
-            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
-            AddressableAssetSettingsDefaultObject.Settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>(assetPath);
             EditorUtility.SetDirty(Settings);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+            string assetPath = "Assets/AddressableAssetsData/AddressableAssetSettings.asset";
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            AddressableAssetSettingsDefaultObject.Settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>(assetPath);
         }
 
 		// TundraEditor: Core/Editor/TundraInit.cs

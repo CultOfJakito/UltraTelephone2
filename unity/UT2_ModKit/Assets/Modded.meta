@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:unity/UT2_ModKit/Assets/Modded.meta
 guid: 9937e84a105e2dc4e9eb4209a9844f15
+========
+guid: ab752f69912bb454d8d6a3c07c5efa84
+>>>>>>>> main:unity/UT2_ModKit/Assets/Custom.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

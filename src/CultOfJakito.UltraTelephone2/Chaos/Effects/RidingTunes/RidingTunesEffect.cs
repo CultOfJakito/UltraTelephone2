@@ -1,9 +1,8 @@
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
 
-namespace CultOfJakito.UltraTelephone2.Zed
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.RidingTunes
 {
     [RegisterChaosEffect]
     [HarmonyPatch]

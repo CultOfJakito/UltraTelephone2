@@ -1,7 +1,7 @@
 ﻿using CultOfJakito.UltraTelephone2.Assets;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Zed;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.RidingTunes;
 
 public class MusicalRocket : MonoBehaviour
 {

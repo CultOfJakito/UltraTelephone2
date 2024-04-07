@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Runtime.InteropServices;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Fun;
+using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.MovingWindow;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MovingWindow;
 
 [RegisterChaosEffect]
 public class WindowDanceEffect : ChaosEffect
@@ -20,10 +21,7 @@ public class WindowDanceEffect : ChaosEffect
     };
 
     private Coroutine _movementRoutine;
-    private IntPtr? _currentWindowHandle;
-    private Resolution _startRes;
     private Rect _startRect;
-    private bool _wasFullscreen;
     private Vector2Int _resolution;
 
     [DllImport("user32.dll", EntryPoint = "SetWindowPos")] private static extern bool SetWindowPos(IntPtr hwnd, int hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
@@ -48,25 +46,26 @@ public class WindowDanceEffect : ChaosEffect
         StopCoroutine(_movementRoutine);
     }
 
-    protected override void OnDestroy() { }
+    protected override void OnDestroy()
+    {
+        ResolutionFuckeryUtils.ResetToDefault();
+    }
 
     public override int GetEffectCost() => 10;
-    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx);
+    public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx) && !ctx.ContainsEffect<ResolutionSwitcher>();
 
     private void StartMoving()
     {
-        _currentWindowHandle ??= FindWindow(null, Application.productName);
-        _wasFullscreen = Screen.fullScreen;
-        _startRes = Screen.currentResolution;
-        GetWindowRect(_currentWindowHandle.Value, ref _startRect);
-        _resolution = new Vector2Int(Screen.width / 3, Screen.height / 3); //unity sucks, screen.currentres is just straight up wrong!!! gotta set it yourself
+        GetWindowRect(RandomWindowTitle.WindowHandle, ref _startRect);
+        Vector2 resDecimal = (Vector2)ResolutionFuckeryUtils.StandardResolution / 2.5f;
+        _resolution = new Vector2Int((int)resDecimal.x, (int)resDecimal.y);
         Screen.SetResolution(_resolution.x, _resolution.y, false);
     }
 
     private void StopMoving()
     {
-        SetWindowPos(_currentWindowHandle.Value, 0, _startRect.Left, _startRect.Top, _startRect.Right - _startRect.Left, _startRect.Bottom - _startRect.Top, 5);
-        Screen.SetResolution(_startRes.width, _startRes.height, _wasFullscreen);
+        SetWindowPos(RandomWindowTitle.WindowHandle, 0, _startRect.Left, _startRect.Top, _startRect.Right - _startRect.Left, _startRect.Bottom - _startRect.Top, 5);
+        ResolutionFuckeryUtils.ResetToDefault();
     }
 
     private IEnumerator WindowMovement()
@@ -82,12 +81,11 @@ public class WindowDanceEffect : ChaosEffect
 
             MovementMode mode = Activator.CreateInstance(s_effectTypes[UnityEngine.Random.Range(0, s_effectTypes.Length)]) as MovementMode; //i cant think of a better way, reflection sucks :(
             Debug.Log($"Window dance starting of type {mode.GetType().Name}");
-            SetWindowPos(_currentWindowHandle.Value, 0, mode.StartPosition.x, mode.StartPosition.y, _resolution.x, _resolution.y, 5);
 
             while (timer < moveLength)
             {
                 Rect rect = new();
-                GetWindowRect(_currentWindowHandle.Value, ref rect);
+                GetWindowRect(RandomWindowTitle.WindowHandle, ref rect);
 
                 Vector2Int currentWindowPoint = new(rect.Left, rect.Top);
                 cumulativeMovement += mode.Move(_resolution, currentWindowPoint) * Time.unscaledDeltaTime;
@@ -96,7 +94,10 @@ public class WindowDanceEffect : ChaosEffect
                 cumulativeMovement -= toMove;
 
                 Vector2Int targetPos = currentWindowPoint + toMove;
-                SetWindowPos(_currentWindowHandle.Value, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
+                Debug.Log($"window at {currentWindowPoint} moving to {targetPos} by {toMove}");
+                targetPos.x = Mathf.Clamp(targetPos.x, 0, Screen.currentResolution.width - _resolution.x);
+                targetPos.y = Mathf.Clamp(targetPos.y, 0, Screen.currentResolution.height - _resolution.y);
+                SetWindowPos(RandomWindowTitle.WindowHandle, 0, targetPos.x, targetPos.y, _resolution.x, _resolution.y, 5);
 
                 timer += Time.unscaledDeltaTime;
                 yield return null;

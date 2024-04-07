@@ -1,17 +1,18 @@
-﻿using UnityEngine;
+﻿using Configgy;
+using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
 public class FortniteBuild : MonoBehaviour
 {
-    public const KeyCode EditBind = KeyCode.G;
+    [Configgable("Chaos/Effects/Fortnite Building", "Edit key")] private static ConfigInputField<KeyCode> EditKey = new(KeyCode.G);
     public BuildChunk[] Edits;
     [field: SerializeField] public BuildTypes BuildType { get; private set; }
     private bool _editing;
 
     private void Update()
     {
-        if (Input.GetKeyDown(EditBind) && Edits.Any(chunk => chunk.LookingAt))
+        if (Input.GetKeyDown(EditKey.Value) && Edits.Any(chunk => chunk.LookingAt))
         {
             if (!_editing)
             {

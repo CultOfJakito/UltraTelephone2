@@ -1,15 +1,15 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
+using UnityEngine;
 
-namespace CultOfJakito.UltraTelephone2.Effects.FortniteBuilding;
+namespace CultOfJakito.UltraTelephone2.Chaos.Effects.FortniteBuilding;
 
 [HarmonyPatch]
 [RegisterChaosEffect]
 public class BuildingEffect : ChaosEffect
 {
-    [Configgable("Chaos/Effects", "Fortnite Building")]
+    [Configgable("Chaos/Effects/Fortnite Building", "Fortnite Building")]
     private static ConfigToggle s_enabled = new(true);
     public static bool CurrentlyActive { get; private set; }
 
@@ -17,6 +17,7 @@ public class BuildingEffect : ChaosEffect
     {
         CurrentlyActive = true;
         NewMovement.Instance.gameObject.AddComponent<BuildingControls>();
+        BuildingHud.Create();
     }
 
     public override void Dispose()

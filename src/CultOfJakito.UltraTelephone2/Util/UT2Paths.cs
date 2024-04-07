@@ -22,7 +22,7 @@ namespace CultOfJakito.UltraTelephone2.Util
         /// <summary>
         /// Audio here!
         /// </summary>
-        public static string AudioFolder => Path.Combine(DataFolder, "audio");
+        //public static string AudioFolder => Path.Combine(DataFolder, "audio");
 
         /// <summary>
         /// Text here
@@ -33,11 +33,14 @@ namespace CultOfJakito.UltraTelephone2.Util
         /// <summary>
         /// internal assets here
         /// </summary>
-        public static string InternalAssetsFolder => Path.Combine(ModFolder, "Assets");
+        public static string InternalAssetsFolder => Path.Combine(DataFolder, "internal_assets");
 
 
         public static void EnsureFolders()
         {
+            if(!Directory.Exists(InternalAssetsFolder))
+                Directory.CreateDirectory(InternalAssetsFolder);
+
             if (!Directory.Exists(DataFolder))
                 Directory.CreateDirectory(DataFolder);
 
@@ -47,8 +50,8 @@ namespace CultOfJakito.UltraTelephone2.Util
             if (!Directory.Exists(TextureFolder))
                 Directory.CreateDirectory(TextureFolder);
 
-            if (!Directory.Exists(AudioFolder))
-                Directory.CreateDirectory(AudioFolder);
+            //if (!Directory.Exists(AudioFolder))
+            //    Directory.CreateDirectory(AudioFolder);
 
             if (!Directory.Exists(TextFolder))
                 Directory.CreateDirectory(TextFolder);
