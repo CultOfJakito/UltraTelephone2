@@ -96,6 +96,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             if(enemy.GetComponentInChildren<BossHealthBar>())
             {
+                enemy.overrideFullName = name;
                 BossHealthBar bossbar = enemy.GetComponentInChildren<BossHealthBar>();
                 bossbar.bossName = name;
 
