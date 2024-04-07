@@ -2,6 +2,7 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Placeholders;
 using HarmonyLib;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects
@@ -79,7 +80,9 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
                 for (int i = 0; i < words; i++)
                 {
-                    sb.Append(s_rng.SelectRandom(s_illegebleWords));
+                    string randomWord = s_rng.SelectRandom(s_illegebleWords);
+                    randomWord = PlaceholderHelper.ReplacePlaceholders(randomWord);
+                    sb.Append(randomWord);
                     sb.Append(' ');
                 }
 
