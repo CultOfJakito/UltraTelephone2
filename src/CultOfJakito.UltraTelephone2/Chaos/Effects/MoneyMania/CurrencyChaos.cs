@@ -58,9 +58,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         { 
             UT2SaveData.SaveData.Rings++;
             UT2SaveData.MarkDirty();
+            CurrencyHUD.Instance.UpdateRingsCounter();
         }
 
-        private HashSet<EnemyType> _machines =
+        private readonly HashSet<EnemyType> _machines =
             [
                 EnemyType.Drone,
                 EnemyType.Streetcleaner,

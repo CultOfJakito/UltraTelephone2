@@ -18,6 +18,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
             UT2SaveData.SaveData.Vbucks += VBucksAmount;
             UT2SaveData.MarkDirty();
             Application.OpenURL(_charityURL);
+            HudMessageReceiver.instance.SendHudMessage($"{VBucksAmount} V1-Bucks sucessfully purchased!");
         }
     }
 }
