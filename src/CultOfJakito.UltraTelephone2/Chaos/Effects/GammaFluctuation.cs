@@ -51,7 +51,6 @@ public class GammaFluctuation : ChaosEffect
             for (int i = 0; i < _random.Range(3, 10); i++)
             {
                 _target = _target < 1 ? _random.Range(1.5f, 2f) : _random.Range(0f, 0.5f);
-                Debug.Log("set target to " + _target);
                 yield return new WaitForSecondsRealtime(_random.Range(2f, 5f));
             }
 

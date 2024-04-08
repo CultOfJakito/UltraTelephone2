@@ -63,10 +63,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 NewMovement.Instance.rb.velocity) + Vector3.zero,
                 ForceMode.VelocityChange);
 
-            Console.WriteLine(__instance.GetComponent<Rigidbody>().velocity);
 
             Destroy(__instance.gameObject);
-
         }
 
         protected override void OnDestroy() => s_effectActive = false;

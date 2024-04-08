@@ -34,7 +34,8 @@ public static class AddressableManager
         catch (Exception ex)
         {
             // i hate using trycatch but if this isnt set back to false, every unmodded scene load will fail
-            Debug.LogError(ex.ToString());
+            Debug.LogError($"Error in {nameof(LoadSceneUnsanitzed)}. Scene load failed?");
+            Debug.LogException(ex);
         }
 
         s_dontSanitizeScenes = false;
@@ -58,14 +59,15 @@ public static class AddressableManager
     {
         try
         {
-            if (File.Exists(filePath) && File.ReadAllBytes(filePath) == data)
+            if (File.Exists(filePath) && File.ReadAllBytes(filePath).SequenceEqual(data))
                 return;
 
             File.WriteAllBytes(filePath, data);
         }
         catch (Exception ex)
         {
-            Debug.LogError("Validate file exception!! " + ex);
+            Debug.LogError($"File validation error. ({filePath})");
+            Debug.LogException(ex);
         }
     }
 
