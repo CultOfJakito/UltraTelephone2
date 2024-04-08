@@ -6,11 +6,28 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
 {
     internal class CurrencyHUD : MonoBehaviour
     {
-        public static CurrencyHUD Instance;
+        private static CurrencyHUD s_instance;
+
+        public static CurrencyHUD Instance
+        {
+            get
+            {
+                if (s_instance == null)
+                {
+                    s_instance = FindObjectOfType<CurrencyHUD>();
+                }
+
+                return s_instance;
+            }
+        }
+
+        private void Awake()
+        {
+            s_instance = this;
+        }
 
         public void Start()
         {
-            Instance = this;
             UpdateAllCounters();
         }
 
@@ -42,51 +59,41 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.MoneyMania
         #region Update Various Counters
         public void UpdateRingsCounter()
         {
-            Console.WriteLine("Updating Ring Counter!");
             RingsCounter.text = UT2SaveData.SaveData.Rings.ToString();
         }
         public void UpdateVbucksCounter()
         {
-            Console.WriteLine("Updating Vbucks!");
             VbucksCounter.text = UT2SaveData.SaveData.Vbucks.ToString();
         }
         public void UpdateBloodCounter()
         {
-            Console.WriteLine("Updating Blood Counter!");
             BloodCounter.text = UT2SaveData.SaveData.Blood.ToString();
         }
         public void UpdateMetalScrapsCounter()
         {
-            Console.WriteLine("Updating Scrap Counter!");
             MetalScrapsCounter.text = UT2SaveData.SaveData.MetalScraps.ToString();
         }
         public void UpdateTrophiesCounter()
         {
-            Console.WriteLine("Updating Trophies Counter!");
             TrophiesCounter.text = UT2SaveData.SaveData.Trophies.ToString();
         }
         public void UpdateGunpowderCounter()
         {
-            Console.WriteLine("Updating Gunpowder Counter!");
             GunpowderCounter.text = UT2SaveData.SaveData.Gunpowder.ToString();
         }
         public void UpdateFishCounter()
         {
-            Console.WriteLine("Updating Fish Counter!");
             FishCounter.text = UT2SaveData.SaveData.Fish.ToString();
         }
         public void UpdatePlushiesCounter()
         {
-            Console.WriteLine("Updating Plushies Counter!");
             PlushiesCounter.text = UT2SaveData.SaveData.Plushies.ToString();
         }
         #endregion
 
         public void UpdateMarketCoinCounter()
         {
-            Console.WriteLine("Updating Coin Counter!");
             int coint = UT2SaveData.SaveData.MarketCoins;
-
 
             // make sure to have the elements in order of worth most to least!
             int i = 0;

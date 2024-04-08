@@ -76,7 +76,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
                 RandomCoinAtPoint(transform.position);
 
             if (type == CoinType.Ring)
-                CurrencyChaos.InvokeRingCollected();
+                CurrencyChaos.RingCollected();
 
             Dispose();
         }
@@ -184,7 +184,6 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
 
         public static CoinCollectable CreateCoin(long value, CoinType type)
         {
-            Console.WriteLine("Making a fucking coin!!");
             GameObject obj = Instantiate(GetCoinPrefab(type));
             CoinCollectable coin = NewCoin(obj, type);
             coin.Value = value;
@@ -199,7 +198,7 @@ namespace CultOfJakito.UltraTelephone2.Fun.Coin
             long value = GetValue(type);
             CoinCollectable coin = CreateCoin(value, type);
 
-            coin.specialCoin = type == CoinType.Normal && rand.Chance(0.05f);
+            coin.specialCoin = type == CoinType.Normal && rand.Chance(0.1f);
             coin.transform.position = point + new Vector3(rand.Range(-0.2f, 0.2f), 0, rand.Range(-0.2f, 0.2f));
 
             Vector3 force = rand.UnitSphere();

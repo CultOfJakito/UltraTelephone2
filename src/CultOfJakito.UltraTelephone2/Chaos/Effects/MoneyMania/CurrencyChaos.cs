@@ -18,40 +18,38 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
     {
         [Configgable("Chaos/Effects", "Currency Chaos")]
         private static ConfigToggle s_enabled = new ConfigToggle(true);
-
-        private static bool s_effectActive = false;
-        public static bool EffectActive { get { return s_effectActive; } }
+        public static bool EffectActive { get; private set; }
 
         private static UniRandom s_random;
 
         private GameObject _currencyUI;
 
-        public static event Action OnRingCollected;
+        private static event Action s_OnRingCollected;
 
         public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && base.CanBeginEffect(ctx);
 
         public override void BeginEffect(UniRandom random)
         {
 
-            s_effectActive = true;
+            EffectActive = true;
             s_random = random;
-            OnRingCollected += CollectRing;
+            s_OnRingCollected += CollectRing;
             GameEvents.OnEnemyDeath += CollectBlood;
-            _currencyUI = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Currencies/CurrencyHUD.prefab");
-            _currencyUI = Instantiate(_currencyUI, CanvasController.instance.transform);
+            GameObject prefab = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Currencies/CurrencyHUD.prefab");
+            _currencyUI = Instantiate(prefab, CanvasController.instance.transform);
         }
         public override int GetEffectCost() => 5;
         protected override void OnDestroy()
         {
-            s_effectActive = false;
-            OnRingCollected -= CollectRing;
+            EffectActive = false;
+            s_OnRingCollected -= CollectRing;
             GameEvents.OnEnemyDeath -= CollectBlood;
             Destroy(_currencyUI);
         }
 
-        public static void InvokeRingCollected()
+        public static void RingCollected()
         {
-            OnRingCollected?.Invoke();
+            s_OnRingCollected?.Invoke();
         }
 
         private void CollectRing()
@@ -77,7 +75,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
 
         private void CollectBlood(EnemyDeathEvent deathEvent)
         {
-            if (!s_effectActive || !s_enabled.Value)
+            if (!EffectActive || !s_enabled.Value)
                 return;
 
             UT2SaveData.SaveData.Blood += s_random.Next(5, 80);
@@ -87,13 +85,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
                 if (deathEvent.Enemy.enemyType == EnemyType.Centaur)
                 {
                     UT2SaveData.SaveData.MetalScraps += s_random.Next(40, 280);
-                    UT2SaveData.MarkDirty();
-                    return;
                 }
-
-                UT2SaveData.SaveData.MetalScraps += s_random.Next(1, 4);
+                else
+                {
+                    UT2SaveData.SaveData.MetalScraps += s_random.Next(1, 4);
+                }
             }
-
 
             UT2SaveData.SaveData.MarketCoins += GetEnemyWorth(deathEvent.Enemy);
 
@@ -156,13 +153,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         [HarmonyPostfix]
         private static void CatchFish(FishingRodWeapon __instance)
         {
-            //if (!s_effectActive || !s_enabled.Value)
-            //   return;
+            if (!EffectActive || !s_enabled.Value)
+               return;
 
             UT2SaveData.SaveData.Fish++;
-
             CurrencyHUD.Instance.UpdateFishCounter();
-
             UT2SaveData.MarkDirty();
         }
 
@@ -170,16 +165,14 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         [HarmonyPostfix]
         private static void PickUpPlushie(ItemIdentifier __instance)
         {
-            if (!s_effectActive || !s_enabled.Value)
+            if (!EffectActive || !s_enabled.Value)
                 return;
 
-            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen)
+            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen or ItemType.Torch or ItemType.Readable or ItemType.Breakable or ItemType.Soap)
                 return;
 
             UT2SaveData.SaveData.Plushies++;
-
             CurrencyHUD.Instance.UpdatePlushiesCounter();
-
             UT2SaveData.MarkDirty();
         }
 
@@ -187,16 +180,14 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         [HarmonyPostfix]
         private static void PutDownPlushie(ItemIdentifier __instance)
         {
-            if (!s_effectActive || !s_enabled.Value)
+            if (!EffectActive || !s_enabled.Value)
                 return;
 
-            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen)
+            if (__instance.itemType is ItemType.SkullBlue or ItemType.SkullRed or ItemType.SkullGreen or ItemType.Torch or ItemType.Readable or ItemType.Breakable or ItemType.Soap)
                 return;
 
             UT2SaveData.SaveData.Plushies--;
-
             CurrencyHUD.Instance.UpdatePlushiesCounter();
-
             UT2SaveData.MarkDirty();
         }
 
@@ -204,13 +195,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         [HarmonyPostfix]
         private static void GainLevelCompleteTrophy()
         {
-            if (!s_effectActive || !s_enabled.Value)
+            if (!EffectActive || !s_enabled.Value)
                 return;
 
             UT2SaveData.SaveData.Trophies++;
-
             CurrencyHUD.Instance.UpdateTrophiesCounter();
-
             UT2SaveData.MarkDirty();
         }
 
@@ -218,13 +207,11 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         [HarmonyPostfix]
         private static void PickupGunpowder()
         {
-            if (!s_effectActive || !s_enabled.Value)
+            if (!EffectActive || !s_enabled.Value)
                 return;
 
             UT2SaveData.SaveData.Gunpowder++;
-
             CurrencyHUD.Instance.UpdateGunpowderCounter();
-
             UT2SaveData.MarkDirty();
         }
         #endregion
