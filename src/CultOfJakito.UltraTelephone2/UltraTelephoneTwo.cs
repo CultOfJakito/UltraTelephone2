@@ -126,6 +126,7 @@ public class UltraTelephoneTwo : BaseUnityPlugin
         PlaceholderDatabase.AddPlaceholder(new PlayerSteamName());
         PlaceholderDatabase.AddPlaceholder(new CurrentTime());
         PlaceholderDatabase.AddPlaceholder(new CurrentDate());
+        PlaceholderDatabase.AddPlaceholder(new UselessFact());
     }
 
 

@@ -346,4 +346,7 @@ Top two insect facts
 I know who you are, <ph>PLAYER_HARDWARE_NAME</ph>...
 HELLO, <ph>PLAYER_HARDWARE_NAME</ph>!
 Hello, <ph>PLAYER_STEAM_NAME</ph>!
-<ph></ph>
+<ph>USELESS_FACT</ph>
+<ph>PLAYER_STEAM_NAME</ph> approved!
+If your name is <ph>PLAYER_STEAM_NAME</ph>, you're a silly goose.
+FUN FACT! <ph>USELESS_FACT</ph>
