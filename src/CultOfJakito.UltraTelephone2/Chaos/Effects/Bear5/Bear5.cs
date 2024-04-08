@@ -72,7 +72,6 @@ public class Bear5 : MonoBehaviour
         {
             if(_enemyIdentifier.target != null)
             {
-                Debug.Log("Can't reach target, teleporting");
                 TeleportToTarget();
                 return;
             }

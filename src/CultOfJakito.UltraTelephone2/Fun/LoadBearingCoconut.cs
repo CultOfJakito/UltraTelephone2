@@ -36,8 +36,6 @@ namespace CultOfJakito.UltraTelephone2.Fun
                     hash ^= 69;
                 }
 
-                Debug.Log($"Coconut hash: {hash}");
-
                 const int expectedHash = 183;
                 if(hash != expectedHash)
                 {
