@@ -3112,13 +3112,22 @@ MonoBehaviour:
   GunpowderCounter: {fileID: 7012118440549055547}
   FishCounter: {fileID: 7012118440817503993}
   PlushiesCounter: {fileID: 7012118440579382954}
-  SteelCoinCounter: {fileID: 7012118440693943854}
-  BronzeCoinCounter: {fileID: 7012118439447058761}
-  BrassCoinCounter: {fileID: 7012118440775664746}
-  SilverCoinCounter: {fileID: 7012118439752455303}
-  GoldCoinCounter: {fileID: 7012118440621157290}
-  PlatinumCoinCounter: {fileID: 7012118440424171927}
-  UltraiteCoinCounter: {fileID: 7012118439520681770}
+  CoinCountersTexts:
+  - {fileID: 7012118439520681770}
+  - {fileID: 7012118440424171927}
+  - {fileID: 7012118440621157290}
+  - {fileID: 7012118439752455303}
+  - {fileID: 7012118440775664746}
+  - {fileID: 7012118439447058761}
+  - {fileID: 7012118440693943854}
+  CoinCountersWorths:
+  - 5e+31
+  - 5e+24
+  - 5e+18
+  - 1000000000000
+  - 10000000
+  - 1000
+  - 1
 --- !u!1 &7012118440579382952
 GameObject:
   m_ObjectHideFlags: 0

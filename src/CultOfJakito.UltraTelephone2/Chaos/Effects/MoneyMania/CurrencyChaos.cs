@@ -152,13 +152,12 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos
         }
 
         #region patches
-
         [HarmonyPatch(typeof(FishingRodWeapon), nameof(FishingRodWeapon.FishCaughtAndGrabbed))]
         [HarmonyPostfix]
         private static void CatchFish(FishingRodWeapon __instance)
         {
-            if (!s_effectActive || !s_enabled.Value)
-                return;
+            //if (!s_effectActive || !s_enabled.Value)
+            //   return;
 
             UT2SaveData.SaveData.Fish++;
 
