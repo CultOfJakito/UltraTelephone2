@@ -142,7 +142,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             lightsChecked.Add(light.GetInstanceID());
 
-            // Ignore lights that are not part of the scene
+            // Ignore lights that are not part of the _scene
             if (light.hideFlags == HideFlags.NotEditable || light.hideFlags == HideFlags.HideAndDontSave)
                 return;
 
