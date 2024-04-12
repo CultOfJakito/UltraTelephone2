@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -24,9 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="AngryLevelLoader">
-      <HintPath>libs\Other\AngryLevelLoader.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
 	  <Private>false</Private>
@@ -36,9 +33,6 @@
     </Reference>
     <Reference Include="Facepunch.Steamworks.Win64">
       <HintPath>libs\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
-    </Reference>
-    <Reference Include="RudeLevelScripts.Essentials">
-      <HintPath>libs\Other\RudeLevelScripts.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>libs\Unity.Addressables.dll</HintPath>

@@ -1,6 +1,5 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos;
 using CultOfJakito.UltraTelephone2.Chaos.Effects.CurrencyChaos;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Fun.FakePBank;

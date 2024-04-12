@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using CultOfJakito.UltraTelephone2.Fun.Herobrine;
 using HarmonyLib;
 using UnityEngine;

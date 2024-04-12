@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
-using CultOfJakito.UltraTelephone2.DependencyInjection;
+﻿using Configgy;
 using HarmonyLib;
 using UnityEngine;
 

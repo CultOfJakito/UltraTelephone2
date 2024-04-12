@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text;
-using UnityEngine;
+﻿using System.Collections;
 using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Util
 {

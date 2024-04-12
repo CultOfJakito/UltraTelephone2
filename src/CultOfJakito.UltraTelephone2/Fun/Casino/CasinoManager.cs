@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Fun.FakePBank;
-using UnityEngine;
+﻿using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 
 namespace CultOfJakito.UltraTelephone2.Fun.Casino
 {

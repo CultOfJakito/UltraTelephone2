@@ -1,5 +1,4 @@
 ﻿using CultOfJakito.UltraTelephone2.Data;
-using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using CultOfJakito.UltraTelephone2.Util;
 using TMPro;
 using UnityEngine;

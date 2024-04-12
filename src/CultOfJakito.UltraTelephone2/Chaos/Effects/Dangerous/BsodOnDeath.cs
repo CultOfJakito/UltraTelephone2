@@ -3,7 +3,6 @@ using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using HarmonyLib;
-using UnityEngine;
 using static CultOfJakito.UltraTelephone2.GeneralSettings;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Dangerous

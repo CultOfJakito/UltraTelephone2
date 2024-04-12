@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ULTRAKILL.Cheats;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects.Bear5;

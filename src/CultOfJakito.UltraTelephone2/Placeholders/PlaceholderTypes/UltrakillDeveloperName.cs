@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CultOfJakito.UltraTelephone2.Placeholders.PlaceholderTypes
+﻿namespace CultOfJakito.UltraTelephone2.Placeholders.PlaceholderTypes
 {
     public class UltrakillDeveloperName : IStringPlaceholder
     {

@@ -95,11 +95,12 @@ public class UltraTelephoneTwo : BaseUnityPlugin
 
         gameObject.AddComponent<LevelInjectionManager>();
 
+        //WackyCursor.Init(); cant build the dll so no idea wtf going on
         AlterFriendAvatars.Load();
         MinecraftBookPatch.Init();
         UT2TextFiles.ReloadFiles();
         BuildPlaceholders();
-        HerobrineManager.Init(); //Herobrine is busted af right now bc of script serialization issues
+        HerobrineManager.Init();
         BuyablesManager.Load();
 
         GameEvents.OnEnemyDeath += CoinCollectable.OnEnemyDeath;

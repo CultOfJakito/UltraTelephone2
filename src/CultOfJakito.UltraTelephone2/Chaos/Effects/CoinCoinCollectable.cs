@@ -1,5 +1,4 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Fun.Coin;
 using CultOfJakito.UltraTelephone2.Util;

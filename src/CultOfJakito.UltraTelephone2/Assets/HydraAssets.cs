@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CultOfJakito.UltraTelephone2.Patches;
+using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Assets
 {
@@ -40,5 +41,7 @@ namespace CultOfJakito.UltraTelephone2.Assets
         public static GameObject StickyHandClink => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/StickyHand/StickyHandClink.prefab");
 
         public static GameObject Cheb => UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Misc/Prefabs/Cheb/CHEB.prefab");
+
+        public static CursorDatabase CursorDatabase => UT2Assets.GetAsset<CursorDatabase>("Assets/Telephone 2/Misc/ScriptableObjects/CursorDatabase.asset");
     }
 }

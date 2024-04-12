@@ -1,6 +1,4 @@
 ﻿using Configgy;
-using CultOfJakito.UltraTelephone2.Chaos;
-using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using UnityEngine;
 

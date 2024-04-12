@@ -1,7 +1,6 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using HarmonyLib;
-using Train;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 

@@ -3,7 +3,6 @@ using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.Placeholders;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
-using Steamworks;
 using UnityEngine;
 using UnityEngine.UI;
 

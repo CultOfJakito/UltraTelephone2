@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Events;
-using CultOfJakito.UltraTelephone2.Fun.Captcha;
 using CultOfJakito.UltraTelephone2.Fun.Glungus;
 using HarmonyLib;
 using UnityEngine;

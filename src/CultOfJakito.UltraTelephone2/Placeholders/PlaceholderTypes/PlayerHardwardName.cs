@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 
 namespace CultOfJakito.UltraTelephone2.Placeholders.PlaceholderTypes
 {

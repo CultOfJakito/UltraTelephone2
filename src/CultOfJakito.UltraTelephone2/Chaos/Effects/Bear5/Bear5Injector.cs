@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Assets;
+﻿using CultOfJakito.UltraTelephone2.Assets;
 using HarmonyLib;
 using UnityEngine;
 

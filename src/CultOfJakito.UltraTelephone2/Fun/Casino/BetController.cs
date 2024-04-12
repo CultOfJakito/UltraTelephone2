@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CultOfJakito.UltraTelephone2.Fun.FakePBank;
-using CultOfJakito.UltraTelephone2.UI;
-using TMPro;
+﻿using CultOfJakito.UltraTelephone2.UI;
 using UnityEngine;
-using static Steamworks.InventoryItem;
 
 namespace CultOfJakito.UltraTelephone2.Fun.Casino
 {

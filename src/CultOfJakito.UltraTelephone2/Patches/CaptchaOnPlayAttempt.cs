@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Fun.Captcha;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace CultOfJakito.UltraTelephone2.Patches

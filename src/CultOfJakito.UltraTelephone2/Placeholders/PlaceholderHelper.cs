@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CultOfJakito.UltraTelephone2.Placeholders
+﻿namespace CultOfJakito.UltraTelephone2.Placeholders
 {
     public static class PlaceholderHelper
     {

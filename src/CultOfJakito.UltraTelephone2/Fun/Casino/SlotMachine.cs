@@ -1,6 +1,5 @@
 ﻿using CultOfJakito.UltraTelephone2.Assets;
 using CultOfJakito.UltraTelephone2.Fun.Coin;
-using CultOfJakito.UltraTelephone2.Fun.FakePBank;
 using CultOfJakito.UltraTelephone2.Util;
 using UnityEngine;
 

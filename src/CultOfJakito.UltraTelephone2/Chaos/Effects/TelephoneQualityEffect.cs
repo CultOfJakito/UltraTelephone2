@@ -1,8 +1,5 @@
-﻿using System.Runtime.ExceptionServices;
-using Configgy;
+﻿using Configgy;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
-using CultOfJakito.UltraTelephone2.Events;
-using HarmonyLib;
 using UnityEngine;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;

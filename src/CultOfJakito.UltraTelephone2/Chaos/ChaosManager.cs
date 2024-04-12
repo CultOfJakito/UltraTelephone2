@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
 using Configgy;
-using CultOfJakito.UltraTelephone2.Assets;
-using CultOfJakito.UltraTelephone2.Chaos.Effects;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
 using CultOfJakito.UltraTelephone2.Util;
