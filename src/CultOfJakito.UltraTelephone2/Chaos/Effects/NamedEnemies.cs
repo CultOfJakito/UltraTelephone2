@@ -75,10 +75,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             return name;
         }
 
-        public override int GetEffectCost()
-        {
-            return 1;
-        }
+        public override int GetEffectCost() => 1;
 
         protected override void OnDestroy() => s_effectActive = false;
 
@@ -93,6 +90,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 return;
 
             string name = GetRandomName();
+            enemy.overrideFullName = name;
 
             if(enemy.GetComponentInChildren<BossHealthBar>())
             {

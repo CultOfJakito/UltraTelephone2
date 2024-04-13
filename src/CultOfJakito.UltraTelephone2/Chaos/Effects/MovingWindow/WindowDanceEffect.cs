@@ -38,6 +38,7 @@ public class WindowDanceEffect : ChaosEffect
 
     public override void BeginEffect(UniRandom random)
     {
+        s_enabled.OnValueChanged += DisableEffect;
         _movementRoutine = StartCoroutine(WindowMovement());
     }
 
@@ -48,11 +49,21 @@ public class WindowDanceEffect : ChaosEffect
 
     protected override void OnDestroy()
     {
+        s_enabled.OnValueChanged -= DisableEffect;
         ResolutionFuckeryUtils.ResetToDefault();
     }
 
     public override int GetEffectCost() => 10;
     public override bool CanBeginEffect(ChaosSessionContext ctx) => s_enabled.Value && Application.platform == RuntimePlatform.WindowsPlayer && base.CanBeginEffect(ctx) && !ctx.ContainsEffect<ResolutionSwitcher>();
+
+    private void DisableEffect(bool value)
+    {
+        if (value)
+            return;
+
+        StopCoroutine(_movementRoutine);
+        StopMoving();
+    }
 
     private void StartMoving()
     {

@@ -77,7 +77,8 @@ public sealed class Bear5IsComing : ChaosEffect
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to spawn Bear5: {e}");
+            Debug.LogError($"Failed to spawn Bear5");
+            Debug.LogException(e);
         }
         _hasSpawnedBear5 = true;
     }

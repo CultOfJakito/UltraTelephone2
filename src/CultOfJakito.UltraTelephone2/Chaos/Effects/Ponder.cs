@@ -2,6 +2,7 @@
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
 using CultOfJakito.UltraTelephone2.Events;
+using CultOfJakito.UltraTelephone2.Placeholders;
 
 namespace CultOfJakito.UltraTelephone2.Chaos.Effects;
 
@@ -30,7 +31,9 @@ public class Ponder : ChaosEffect
     {
         if (e.IsPlaying)
         {
-            HudMessageReceiver.Instance.SendHudMessage(rng.SelectRandom(_prompts));
+            string message = rng.SelectRandom(_prompts);
+            message = PlaceholderHelper.ReplacePlaceholders(message);
+            HudMessageReceiver.Instance.SendHudMessage(message);
         }
     }
 

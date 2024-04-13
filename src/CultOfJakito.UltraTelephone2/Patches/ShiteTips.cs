@@ -1,5 +1,6 @@
 ﻿using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
+using CultOfJakito.UltraTelephone2.Placeholders;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using TMPro;
@@ -32,7 +33,9 @@ namespace CultOfJakito.UltraTelephone2.Patches
             int seed = globalSeed ^ UniRandom.StringToSeed(position.ToString()) ^ sceneSeed;
 
             UniRandom rng = new UniRandom(seed);
-            tmp.text = rng.SelectRandom(tips);
+            string tip = rng.SelectRandom(tips);
+            tip = PlaceholderHelper.ReplacePlaceholders(tip);
+            tmp.text = tip;
         }
     }
 }

@@ -28,7 +28,7 @@ public static class FakeBank
         long difference = amount - lastP;
         UT2SaveData.SaveData.FakePAmount = amount;
         UT2SaveData.MarkDirty();
-        OnMoneyChanged?.Invoke(difference);
+        OnMoneyChanged?.Invoke(amount);
     }
 
     private static void Initialize()
@@ -39,24 +39,25 @@ public static class FakeBank
         }
 
         //Dont use GetMoney() here, it will cause a stack overflow
-        int p = GameProgressSaver.GetGeneralProgress().money;
-        int lastP = UT2SaveData.SaveData.LastRealPAmount;
-        UT2SaveData.SaveData.LastRealPAmount = p;
+        int currentRealP = GameProgressSaver.GetGeneralProgress().money;
+        int lastRealP = UT2SaveData.SaveData.LastRealPAmount;
+        UT2SaveData.SaveData.LastRealPAmount = currentRealP;
 
         if (!UT2SaveData.SaveData.InitializedPAmount)
         {
-            lastP = p;
-            UT2SaveData.SaveData.FakePAmount = p;
+            lastRealP = currentRealP;
+            UT2SaveData.SaveData.FakePAmount = currentRealP;
             UT2SaveData.SaveData.InitializedPAmount = true;
             UT2SaveData.Save();
         }
 
-        if (p != lastP)
+        if (currentRealP != lastRealP)
         {
-            UT2SaveData.SaveData.FakePAmount += p - lastP;
+            //Apply the difference between the last real P and the current real P to the fake P
+            UT2SaveData.SaveData.FakePAmount += currentRealP - lastRealP;
         }
 
-
+        UT2SaveData.MarkDirty();
         s_initialized = true;
     }
 

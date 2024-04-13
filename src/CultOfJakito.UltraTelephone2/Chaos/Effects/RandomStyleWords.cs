@@ -1,6 +1,7 @@
 using Configgy;
 using CultOfJakito.UltraTelephone2.Data;
 using CultOfJakito.UltraTelephone2.DependencyInjection;
+using CultOfJakito.UltraTelephone2.Placeholders;
 using CultOfJakito.UltraTelephone2.Util;
 using HarmonyLib;
 using UnityEngine;
@@ -37,7 +38,9 @@ public class RandomStyleWords : ChaosEffect
             .GetSeed();
 
         UniRandom rng = new UniRandom(seed);
-        __result = rng.SelectRandom(wordlist);
+        string word = rng.SelectRandom(wordlist);
+        word = PlaceholderHelper.ReplacePlaceholders(word);
+        __result = word;
     }
 
     protected override void OnDestroy() => s_currentlyActive = false;

@@ -18,6 +18,8 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         private static List<GameObject> _plushiePrefabs = null;
         private static UniRandom s_random;
 
+        private static Collider playerCollider;
+
         public override void BeginEffect(UniRandom random)
         {
             _plushiePrefabs ??= new List<GameObject>()
@@ -29,6 +31,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
                 UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Dev Plushies/Plushie Prefabs/GlitchyDevPlushie.prefab"),
             };
             s_random = random;
+            playerCollider = NewMovement.Instance.playerCollider;
             s_effectActive = true;
         }
 
@@ -48,16 +51,20 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             GameObject plushie = s_random.SelectRandom(_plushiePrefabs);
             GameObject plush = Instantiate(plushie, __instance.transform.position, __instance.transform.rotation);
+
+            foreach (var col in plush.GetComponentsInChildren<Collider>())
+            {
+               Physics.IgnoreCollision(playerCollider, col);
+            }
+
             plush.GetComponent<Rigidbody>().AddForce(
                 CameraController.instance.transform.forward * 20 + Vector3.up * 15f + (NewMovement.Instance.ridingRocket ?
                 NewMovement.Instance.ridingRocket.rb.velocity :
                 NewMovement.Instance.rb.velocity) + Vector3.zero,
                 ForceMode.VelocityChange);
 
-            Console.WriteLine(__instance.GetComponent<Rigidbody>().velocity);
 
             Destroy(__instance.gameObject);
-
         }
 
         protected override void OnDestroy() => s_effectActive = false;

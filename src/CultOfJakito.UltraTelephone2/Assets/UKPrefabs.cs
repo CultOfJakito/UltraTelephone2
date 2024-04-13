@@ -22,8 +22,9 @@ public static class UkPrefabs
     public static UKAsset<GameObject> MannequinEnemy { get; private set; } = new ("Assets/Prefabs/Enemies/Mannequin.prefab");
 
     public static UKAsset<AudioClip> ThroatDrone { get; private set; } = new("Assets/Music/Drones/Throat Drone.ogg");
-
     public static UKAsset<GameObject> Book { get; private set; } = new("Assets/Prefabs/Items/Book.prefab");
+
+    public static UKAsset<GameObject> SomethingWicked { get; private set; } = new("Assets/Prefabs/Enemies/Wicked.prefab");
 }
 
 public class UKAsset<T> where T : UnityEngine.Object

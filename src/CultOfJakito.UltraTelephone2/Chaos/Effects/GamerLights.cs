@@ -46,7 +46,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private void OnEnabledChanged(bool enabled)
         {
-            if(effectActive != enabled && !enabled)
+            if(effectActive != enabled || !enabled)
             {
                 for(int i = 0; i < instances.Count; i++)
                 {
@@ -68,7 +68,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private void LateUpdate()
         {
-            if (!effectActive)
+            if (!effectActive || !s_enabled.Value)
                 return;
 
             if(timeUntilNextColorChange > 0f)
@@ -138,7 +138,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
             lightsChecked.Add(light.GetInstanceID());
 
-            // Ignore lights that are not part of the scene
+            // Ignore lights that are not part of the _scene
             if (light.hideFlags == HideFlags.NotEditable || light.hideFlags == HideFlags.HideAndDontSave)
                 return;
 

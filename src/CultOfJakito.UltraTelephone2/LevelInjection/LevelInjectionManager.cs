@@ -18,7 +18,7 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection
 
         private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
         {
-            //Onl run on the active scene
+            //Onl run on the active _scene
             if (scene != SceneManager.GetActiveScene())
                 return;
 

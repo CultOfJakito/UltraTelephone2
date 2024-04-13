@@ -4,45 +4,39 @@ namespace CultOfJakito.UltraTelephone2.Data
 {
     public class TextListFile
     {
-        public string Path { get; }
+        public string FilePath { get; }
         public string DefaultText { get; }
 
         public List<string> TextList { get; private set; }
 
         public TextListFile(string path, string defaultText)
         {
-            Path = path;
+            FilePath = path;
             DefaultText = defaultText;
         }
 
         public void Load()
         {
-            Debug.Log("loading tlf " + Path);
-            if (!File.Exists(Path))
+            if (!File.Exists(FilePath))
             {
-                Debug.Log("doesnt exist, setting to dt");
-                File.WriteAllText(Path, DefaultText);
+                File.WriteAllText(FilePath, DefaultText);
                 TextList = LinesToList(DefaultText);
-                Debug.Log("worked and ret");
                 return;
             }
 
             try
             {
-                Debug.Log("reading from file");
-                TextList = ReadFromFile(Path);
+                TextList = ReadFromFile(FilePath);
                 if (TextList == null)
                 {
                     TextList = LinesToList(DefaultText);
-                    Debug.Log("null read, dt");
                 }
             }
             catch (Exception ex)
             {
-                Debug.Log("exception!");
+                Debug.LogError($"Error loading text file at path {FilePath}");
                 Debug.LogException(ex);
                 TextList = LinesToList(DefaultText);
-                Debug.Log("set to dt, reting");
                 return;
             }
         }
