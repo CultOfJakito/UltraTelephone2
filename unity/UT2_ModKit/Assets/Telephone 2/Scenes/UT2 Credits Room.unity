@@ -37409,10 +37409,13 @@ MonoBehaviour:
   content: '<b><color=orange>Gltichy</color> - Programmer</b>
 
 
-    TODO
+    An original contributor
+    to ultratelephone 1, Glitchy has worked on pretty much everything cult has worked
+    on to date. Otherwise quite unnotable
 
 
-    <color=000000><i>"TODO"</i></color>'
+    <color=orange><i>"It all comes tumbling
+    down, does it even matter?"</i></color>'
   instantScan: 1
 --- !u!114 &1018944518
 MonoBehaviour:
