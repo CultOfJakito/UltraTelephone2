@@ -55312,7 +55312,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-7527428
+  m_Name: pb_Mesh-9355176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -82190,9 +82190,9 @@ PrefabInstance:
         type: 3}
       propertyPath: content
       value: "<b><color=lightblue>Other Cult Members</color></b>\n\nEternalUnion
-        - Occasional Assistant programmer.\nGabriel \"Niikouzu\" Sadaowski - Moral
-        Support\nCherry \"Cee\" Donuts - Artist \nLucy \"ballfartchungus43\" - Diversity
-        hire and moral support :)\nPhatomblader - Moral \"\"\"\"Support\"\"\"\"\nDebateable
+        - Occasional Assistant programmer.\nClearwater - Former Member\nGabriel \"Niikouzu\"
+        Sadaowski - Moral Support\nCherry \"Cee\" Donuts - Artist \nLucy \"ballfartchungus43\"
+        - Diversity hire and moral support :)\nPhatomblader - Moral \"\"\"\"Support\"\"\"\"\nDebateable
         \nRem Phase\nWillem\nRedNova\nMichael Mackeral"
       objectReference: {fileID: 0}
     - target: {fileID: 6524315296233893940, guid: 82f81629282bd784f87c90305bbe7e38,
