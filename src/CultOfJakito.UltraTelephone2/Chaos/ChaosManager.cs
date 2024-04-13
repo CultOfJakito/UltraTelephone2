@@ -26,6 +26,9 @@ public class ChaosManager : MonoBehaviour, IDisposable
 
     public void BeginEffects()
     {
+        if(!s_enabled.Value)
+            return;
+
         //Seed is global and scene name to give a unique seed for each scene, while still being deterministic
         int seed = new SeedBuilder()
             .WithGlobalSeed()
