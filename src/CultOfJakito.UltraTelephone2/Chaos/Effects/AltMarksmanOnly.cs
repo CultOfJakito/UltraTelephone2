@@ -74,11 +74,13 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
         public override void Dispose()
         {
             ResetLoadout();
-            s_enabled.OnValueChanged -= DisableForcedLoadout;
             base.Dispose();
         }
 
-        protected override void OnDestroy() { }
+        protected override void OnDestroy()
+        {
+            s_enabled.OnValueChanged -= DisableForcedLoadout;
+        }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
