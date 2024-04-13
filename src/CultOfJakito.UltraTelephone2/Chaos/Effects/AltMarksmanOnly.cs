@@ -11,7 +11,16 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         public override void BeginEffect(UniRandom random)
         {
+            s_enabled.OnValueChanged += DisableForcedLoadout;
             ForceLoadout();
+        }
+
+        public void DisableForcedLoadout(bool value)
+        {
+            if (value)
+                return;
+
+            ResetLoadout();
         }
 
         private void ForceLoadout()
@@ -68,7 +77,10 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
             base.Dispose();
         }
 
-        protected override void OnDestroy() { }
+        protected override void OnDestroy()
+        {
+            s_enabled.OnValueChanged -= DisableForcedLoadout;
+        }
 
         public override bool CanBeginEffect(ChaosSessionContext ctx)
         {
