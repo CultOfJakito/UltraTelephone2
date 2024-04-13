@@ -20,6 +20,9 @@ namespace CultOfJakito.UltraTelephone2.Patches
         [HarmonyPatch(typeof(FinalRank), nameof(FinalRank.LevelChange)), HarmonyPrefix]
         private static bool OnFinalPit(FinalRank __instance)
         {
+            if (!s_enabled.Value)
+                return true;
+
             UniRandom rand = new UniRandom(new SeedBuilder().WithGlobalSeed().WithSeed(StatsManager.Instance.kills));
 
             float chance = 0.33f;
