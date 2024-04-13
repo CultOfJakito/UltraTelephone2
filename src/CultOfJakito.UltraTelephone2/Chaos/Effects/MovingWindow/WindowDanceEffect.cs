@@ -49,6 +49,7 @@ public class WindowDanceEffect : ChaosEffect
 
     protected override void OnDestroy()
     {
+        s_enabled.OnValueChanged -= DisableEffect;
         ResolutionFuckeryUtils.ResetToDefault();
     }
 

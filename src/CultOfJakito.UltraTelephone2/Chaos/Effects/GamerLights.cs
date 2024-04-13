@@ -68,7 +68,7 @@ namespace CultOfJakito.UltraTelephone2.Chaos.Effects
 
         private void LateUpdate()
         {
-            if (!effectActive && !s_enabled.Value)
+            if (!effectActive || !s_enabled.Value)
                 return;
 
             if(timeUntilNextColorChange > 0f)
