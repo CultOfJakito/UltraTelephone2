@@ -12443,7 +12443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ??????????????????????
+  m_Text: Eepy
 --- !u!222 &210054448
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28752,10 +28752,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e86249fde3734893e4a84c01fc837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: '<b><color=#6e3300>Temperz</color> - ????</b>
+  content: '<b><color=#750696>Temperz</color> - ????</b>
 
 
-    <i>????</i>'
+    Temperz87 joined the
+    cult in 2023 shortly after it started and contributed to UltraTelephone. After
+    that though, blud went into hibernation and hasn''t been seen since.
+
+
+    <i>"I
+    DID JACK SHIT FOR THIS MOD I DONT KNOW WHY THE FUCK IM IN HERE
+
+    Anyways
+    on a more serious note, I''m currently someone going through university which
+    is why you don''t see much from me at this current moment, however you may be
+    seeing more from me (and perhaps a revival of a certain mod) this upcomming summer."</i>'
   instantScan: 1
 --- !u!114 &738560621
 MonoBehaviour:
@@ -37395,7 +37406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e86249fde3734893e4a84c01fc837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: '<b><color=#000000>Gltichy</color> - Programmer</b>
+  content: '<b><color=orange>Gltichy</color> - Programmer</b>
 
 
     TODO
@@ -51533,7 +51544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250124225}
   m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: -0.49999994, w: -0.5000001}
-  m_LocalPosition: {x: -0.376, y: 6, z: -6}
+  m_LocalPosition: {x: -0.376, y: 6, z: -6.75}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 1599069942}
@@ -66850,7 +66861,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1376364
+  m_Name: pb_Mesh49630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
