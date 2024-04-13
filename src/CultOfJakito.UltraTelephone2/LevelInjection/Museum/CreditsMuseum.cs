@@ -13,7 +13,7 @@ namespace CultOfJakito.UltraTelephone2.LevelInjection.Museum
         {
             if (sceneName.Equals("CreditsMuseum2"))
             {
-                _creditsEntrance = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Credits/COJCreditsRoomEntrence.prefab");
+                _creditsEntrance = UT2Assets.GetAsset<GameObject>("Assets/Telephone 2/Credits/Teleporter/COJCreditsRoomEntrence.prefab");
                 PlaceCreditEntrance();
             }
         }
