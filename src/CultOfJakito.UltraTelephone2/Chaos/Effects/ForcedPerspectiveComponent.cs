@@ -50,6 +50,12 @@ public sealed class ForcedPerspective : ChaosEffect
 
         public void Update()
         {
+            if (!s_active || !s_enabled.value)
+            {
+                Destroy(this);
+                return;
+            }
+
             float scaleFactor = ComputeDistance() / _baseDistance;
             scaleFactor = Mathf.Clamp(scaleFactor, 0.05f, 100f);
             transform.localScale = scaleFactor * _baseScale;
@@ -60,6 +66,11 @@ public sealed class ForcedPerspective : ChaosEffect
             Vector3 camPos = Camera.main.transform.position;
             Vector3 ownPos = transform.position;
             return (ownPos - camPos).magnitude;
+        }
+
+        public void OnDestroy()
+        {
+            transform.localScale = _baseScale;
         }
     }
 }
