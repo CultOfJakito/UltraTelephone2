@@ -56954,7 +56954,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-7452816
+  m_Name: pb_Mesh-11113520
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -60824,15 +60824,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e86249fde3734893e4a84c01fc837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  content: '<b><color=#101010>ZedDev</color> - Programmer</b>
+  content: '<b><color=##737373>ZedDev</color> - Programmer</b>
 
 
-    ZedDev came up
-    with the idea of the original Ultratelephone one and has been working with the
-    cult ever since. He''s participated in most of the cult''s projects.
+    ZedDev came
+    up with the idea of the original Ultratelephone one and has been working with
+    the cult ever since. He''s participated in most of the cult''s projects.
 
 
-    <color=#101010><i>"I''m
+    <color=##737373><i>"I''m
     just happy to be here man"</i></color>'
   instantScan: 1
 --- !u!114 &1597846922
@@ -83790,10 +83790,10 @@ PrefabInstance:
     - target: {fileID: 6524315296233893940, guid: 82f81629282bd784f87c90305bbe7e38,
         type: 3}
       propertyPath: content
-      value: "<b><color=lightblue>Other Cult Members</color></b>\n\nEternalUnion
-        - Occasional Assistant programmer.\nClearwater - Former Member\nGabriel \"Niikouzu\"
-        Sadaowski - Moral Support\nCherry \"Cee\" Donuts - \"huh whuh\"\nLucy \"ballfartchungus43\"
-        - Diversity hire and moral support :)\nPhantomblader - Moral \"\"\"\"Support\"\"\"\"\nDebateable\nRobi
+      value: "<b><color=lightblue>Other Cult Members</color></b>\n\nClearwater -
+        Former Member\nGabriel \"Niikouzu\" Sadaowski - Moral Support\nCherry \"Cee\"
+        Donuts - \"huh whuh\"\nLucy \"ballfartchungus43\" - Diversity hire and moral
+        support :)\nEternalUnion\nPhantomblader - Moral \"\"\"\"Support\"\"\"\"\nDebateable\nRobi
         \nRem Phase\nWillem\nRedNova\nMichael Mackerel"
       objectReference: {fileID: 0}
     - target: {fileID: 6524315296233893940, guid: 82f81629282bd784f87c90305bbe7e38,
