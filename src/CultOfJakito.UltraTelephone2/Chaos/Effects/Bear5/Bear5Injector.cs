@@ -15,7 +15,7 @@ public static class Bear5Injector
     [HarmonyPatch("Awake"), HarmonyPrefix]
     private static void Start(ref SpawnableObjectsDatabase ___objects)
     {
-        //Only add our content once, since the ScriptableObject's data will persist between scene loads.
+        //Only add our content once, since the ScriptableObject's data will persist between _scene loads.
         if (injected)
             return;
 

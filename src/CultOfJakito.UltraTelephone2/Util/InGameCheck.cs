@@ -17,7 +17,7 @@ public static class InGameCheck
     }
 
     /// <summary>
-    /// Enumerated version of the Ultrakill scene types
+    /// Enumerated version of the Ultrakill _scene types
     /// </summary>
     public enum UkLevelType
     {
@@ -42,7 +42,7 @@ public static class InGameCheck
     public static UkLevelType CurrentLevelType = UkLevelType.Intro;
 
     /// <summary>
-    /// Returns the currently active ultrakill scene name.
+    /// Returns the currently active ultrakill _scene name.
     /// </summary>
     public static string CurrentSceneName = "";
 
@@ -52,7 +52,7 @@ public static class InGameCheck
     public static event Action<UkLevelType> OnLevelTypeChanged;
 
     /// <summary>
-    /// Invoked whenever the scene is changed.
+    /// Invoked whenever the _scene is changed.
     /// </summary>
     public static event Action<string> OnLevelChanged;
 
@@ -80,9 +80,9 @@ public static class InGameCheck
     //Perhaps there is a better way to do this. Also this will most definitely cause problems in the future if PITR or Hakita rename any scenes.
 
     /// <summary>
-    /// Gets enumerated level type from the name of a scene.
+    /// Gets enumerated level type from the name of a _scene.
     /// </summary>
-    /// <param name="sceneName">Name of the scene</param>
+    /// <param name="sceneName">Name of the _scene</param>
     /// <returns></returns>
     public static UkLevelType GetUkLevelType(string sceneName)
     {
@@ -126,7 +126,7 @@ public static class InGameCheck
     private static ConfigToggle s_cfgForceInLevelCheckTrue = new(false);
 
     /// <summary>
-    /// Returns true if the current scene is playable.
+    /// Returns true if the current _scene is playable.
     /// This will return false for all secret levels.
     /// </summary>
     /// <returns></returns>

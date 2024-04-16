@@ -3,12 +3,12 @@
 namespace CultOfJakito.UltraTelephone2.Util
 {
     /// <summary>
-    /// Utility class for locating objects in the scene because frankly, Unity sucks at it.
+    /// Utility class for locating objects in the _scene because frankly, Unity sucks at it.
     /// </summary>
     public static class Locator
     {
         /// <summary>
-        /// Returns the first object of type T in the scene that matches the given parental path. If no object is found, returns null.
+        /// Returns the first object of type T in the _scene that matches the given parental path. If no object is found, returns null.
         /// </summary>
         /// <typeparam name="T">Type of the component</typeparam>
         /// <param name="path">Parental path of the object for matching accuracy</param>
@@ -20,7 +20,7 @@ namespace CultOfJakito.UltraTelephone2.Util
         }
 
         /// <summary>
-        /// Locates all objects of type T in the scene including inactive objects
+        /// Locates all objects of type T in the _scene including inactive objects
         /// </summary>
         /// <typeparam name="T">Component type</typeparam>
         /// <returns></returns>
